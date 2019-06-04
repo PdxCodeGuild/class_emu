@@ -17,8 +17,6 @@ import string
 import random
 
 ### LETTERS ###
-# Create a list from string.ascii_letters
-string_ascii_letters = list(string.ascii_letters)
 # Ask the user to choose how many ascii_letters will be included in the password.
 # While loop: Ensure the user input is within range. (Error handling)
 while True:
@@ -28,6 +26,8 @@ while True:
             break
         else:
             print("Try Again! The value must be between 1 and 52.")
+# Create a list from string.ascii_letters
+string_ascii_letters = list(string.ascii_letters)
 # For loop: Create a list of letters randomly chosen from the string_ascii_letters list and quantity from user input.
 out_string1 = ''
 for num in range(int(input_length1)):
@@ -35,8 +35,6 @@ for num in range(int(input_length1)):
 letters_list = list(out_string1)
 
 ### NUMBERS ###
-# Create a list from string.digits
-string_digits = list(string.digits)
 # Ask the user to choose how many numbers will be included in the password.
 # While loop: Ensure the user input is within range. (Error handling)
 while True:
@@ -46,6 +44,8 @@ while True:
             break
         else:
             print("Try Again! The value must be between 1 and 10.")
+# Create a list from string.digits
+string_digits = list(string.digits)
 # For loop: Create a list of numbers randomly chosen from the string_digits list and quantity from user input.
 out_string2 = ''
 for num in range(int(input_length2)):
@@ -53,8 +53,6 @@ for num in range(int(input_length2)):
 numbers_list = list(out_string2)
 
 ### PUNCTUATION ###
-# Create a list from string.punctuation
-string_punctuation = list(string.punctuation)
 # Ask the user to choose how many punctuation marks will be included in the password.
 # While loop: Ensure the user input is within range. (Error handling)
 while True:
@@ -64,6 +62,8 @@ while True:
             break
         else:
             print("Try Again! The value must be between 1 and 32.")
+# Create a list from string.punctuation
+string_punctuation = list(string.punctuation)
 # For loop: Create a list of punctuation marks randomly chosen from the string_punctuation list and quantity from user input.
 out_string3 = ''
 for num in range(int(input_length3)):
