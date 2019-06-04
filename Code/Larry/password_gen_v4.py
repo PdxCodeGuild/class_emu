@@ -59,8 +59,8 @@ string_punctuation = list(string.punctuation)
 # While loop: Ensure the user input is within range. (Error handling)
 while True:
     input_length3 = input("How many PUNCTUATION MARKS do you want in the password. Enter a value from 1 - 32: ")
-    if int(input_length2) > 0:
-        if int(input_length2) < 33:
+    if int(input_length3) > 0:
+        if int(input_length3) < 33:
             break
         else:
             print("Try Again! The value must be between 1 and 32.")
