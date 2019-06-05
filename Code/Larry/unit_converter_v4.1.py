@@ -8,7 +8,6 @@ See unit_converter.py, unit_converter_v2.py, and unit_converter_v3.py for previo
 
 Version 4
 Now we'll ask the user for the distance, the starting units, and the units to convert to.
-
 '''
 
 # Ask the user for the number of feet
