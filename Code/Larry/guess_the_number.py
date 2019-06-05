@@ -18,7 +18,6 @@ print(x)
 # Computer will guess a random int between 1 and 10.
 import random
 computer_number = random.randint(1,10)
-print(computer_number)
 # Using a while loop, allow the user to guess 10 times.
 counter = 0
 while counter < 10:
