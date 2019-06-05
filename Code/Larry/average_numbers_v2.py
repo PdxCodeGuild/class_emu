@@ -62,4 +62,4 @@ for i in range(len(nums)):
 
 # Divide that sum by the number of elements in that list
 my_average = num / len(nums)
-print(my_average)
+print(f"Average: {my_average}")
