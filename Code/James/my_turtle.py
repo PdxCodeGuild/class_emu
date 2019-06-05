@@ -14,16 +14,9 @@ speed(4)
 width(5)
 begin_fill()
 
-
-forward(100)
-left(90)
-forward(100)
-left(90)
-forward(100)
-left(90)
-forward(100)
-left(90)
-forward(50)
+for angle in (360):
+    forward(1)
+    left(1)
 
 end_fill()
 
