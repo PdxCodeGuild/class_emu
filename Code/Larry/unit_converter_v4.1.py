@@ -26,7 +26,7 @@ input_units = input("What are the input units (ft, mi, m, km, yd, in)? ")
 output_units = input("What are the output units (ft, mi, m, km, yd, in)? ")
 
 # Define unit conversion (library) for feet, miles, meters, kilometers ==> meters
-unit_dict_in = { "ft": 0.3048, "feet": 0.3048,
+unit_dict = { "ft": 0.3048, "feet": 0.3048,
             "mi": 1609.344, "miles": 1609.344, "mile": 1609.344,
             "m": 1, "meters": 1, "meter": 1,
             "km": 1000, "kilometers": 1000, "kilometer": 1000,
@@ -35,19 +35,10 @@ unit_dict_in = { "ft": 0.3048, "feet": 0.3048,
             }
 
 # Convert from input(unit) to meters
-converted_dist_in_m = int(input_distance) * unit_dict_in[input_units]
-
-# Define unit conversion (library) for meters ==> feet, miles, meters, kilometers
-unit_dict_out = { "ft": 3.2808398950131, "feet": 3.2808398950131,
-            "mi": 0.00062137119223733, "miles": 0.00062137119223733, "mile": 0.00062137119223733,
-            "m": 1, "meters": 1, "meter": 1,
-            "km": 0.001, "kilometers": 0.001, "kilometer": 0.001,
-            "yd": 1.0936132983377, "yards": 1.0936132983377, "yard": 1.0936132983377,
-            "in": 39.370078740157, "inches": 39.370078740157, "inch": 39.370078740157
-            }
+converted_dist_in_m = int(input_distance) * unit_dict[input_units]
 
 # Convert from meters to output(unit)
-converted_dist_from_m = converted_dist_in_m  * unit_dict_out[output_units]
+converted_dist_from_m = converted_dist_in_m / unit_dict[output_units]
 
 # Print out the equivalent distance in meters
 print(f"You entered {input_distance} {input_units}. That's {round(converted_dist_from_m,4)} {output_units}.")
