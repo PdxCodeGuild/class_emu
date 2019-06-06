@@ -53,6 +53,7 @@ For all the built-in functions, check the [official docs](https://docs.python.or
     - float() converts a value to a float
     - str() converts a value to a string
     - chr() converts an int to a string containing the character with that unicode value, for example `chr(97)` returns the string 'a'
+    - ord() converts a character into an int representing the unicode value, for example `ord('a')` returns `97`
     - bool() converts a value to a boolean
     - list() converts a value to a list
     - tuple() converts a value to a tuple
