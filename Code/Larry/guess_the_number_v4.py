@@ -50,6 +50,9 @@ while True:
         elif user_abs_diff < last_abs_diff:
         # elif user_abs_diff < last_abs_diff, then say you're "getting warmer"
             print(f"{high_low} but you're getting warmer. Try again!")
+        elif user_abs_diff == last_abs_diff:
+        # elif user_abs_diff = last_abs_diff, then say it's the same guess
+            print(f"{high_low} but it's the same guess as the previous one. Try again!")
         else:
         # if user_abs_diff > last_abs_diff, then say you're "getting colder"
             print(f"{high_low} and you're getting colder. Try again!")
