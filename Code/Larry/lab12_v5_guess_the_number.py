@@ -36,6 +36,7 @@ random.shuffle(one_ten)
 while True:
     # computer_guess = random.randint(1,10)
     computer_guess = one_ten.pop()
+    random.shuffle(one_ten)
     print(f"computer_guess: {computer_guess}")
     # if user guesses the correct number, exit the while loop
     if human_number == computer_guess:
