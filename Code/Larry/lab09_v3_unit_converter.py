@@ -44,14 +44,21 @@ while True:
 # Ask the user what kind of unit they want to start with
 input_units = input("What are the units (ft, mi, m, km, yd, in)? ")
 
+if input_units in ['ft', 'feet']:
+    input_units = 'ft'
+elif input_units in ['mi', 'miles', 'mile']:
+    input_units = 'mi'
+elif input_units in ['m', 'meters', 'meter']:
+    input_units = 'm'
+elif input_units in ['km', 'kilometers', 'kilometer']:
+    input_units = 'km'
+elif input_units in ['yd', 'yards', 'yard']:
+    input_units = 'yd'
+elif input_units in ['in', 'inches', 'inch']:
+    input_units = 'in'
+
 # Define unit conversion (library) for feet, miles, meters, kilometers
-unit_dict = { "ft": 0.3048, "feet": 0.3048,
-            "mi": 1609.344, "miles": 1609.344, "mile": 1609.344,
-            "m": 1, "meters": 1, "meter": 1,
-            "km": 1000, "kilometers": 1000, "kilometer": 1000,
-            "yd": 0.9144, "yards": 0.9144, "yard": 0.9144,
-            "in": 0.0254, "inches": 0.0254, "inch": 0.0254
-            }
+unit_dict = { "ft": 0.3048, "mi": 1609.344, "m": 1, "km": 1000, "yd": 0.9144, "in": 0.0254 }
 
 # Convert from input(unit) to meters
 converted_dist = int(input_distance) * unit_dict[input_units]
