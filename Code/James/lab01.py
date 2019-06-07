@@ -1,23 +1,29 @@
-#turtle.py
+# lab01.py
 
-#import turtle
-#turtle.forward(100)
-#turtle.done()
+# import turtle
+# turtle.forward(100)
+# turtle.done()
 
-
+# imports the turtle module
 from turtle import *
-from sys import *
 
+from sys import *
+# designates the fill color as red
 fillcolor("red")
-color("black")
-speed(4)
+# designates the speed
+speed(2)
+# designates the width
 width(5)
+
 begin_fill()
 
-for angle in (360):
-    forward(1)
-    left(1)
 
+# for i in range(4)
+moves = [1, 2, 3, 4]
+for move in moves:
+    forward(100)
+    left(90)
+forward(50)
 end_fill()
 
 right(90)
@@ -38,8 +44,9 @@ penup()
 forward(100)
 right(90)
 forward(100)
-color("black")
 pendown()
+
+beginfill("black")
 forward(100)
 back(20)
 left(90)
