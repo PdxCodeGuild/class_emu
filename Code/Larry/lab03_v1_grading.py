@@ -23,13 +23,13 @@ while True:
         if 0 <= numeric_grade <= 100:
         # convert the number grade to a letter grade
         # then, print the result: letter grade
-            if numeric_grade in range(90,101): #the upper bound is +1 since it's not included
+            if numeric_grade in range(90,101): #the upper bound is +1 (101 vs 100) since it's not included
                 print(f"You entered {numeric_grade}. That's an A. Great job!")
-            elif numeric_grade in range(80,90): #the upper bound is +1 since it's not included
+            elif numeric_grade in range(80,90): #the upper bound is +1 (90 vs 89) since it's not included
                 print(f"You entered {numeric_grade}. That's a B. Good job!")
-            elif numeric_grade in range(70,80): #the upper bound is +1 since it's not included
+            elif numeric_grade in range(70,80): #the upper bound is +1 (80 vs 79) since it's not included
                 print(f"You entered {numeric_grade}. That's a C. Not bad!")
-            elif numeric_grade in range(60,70): #the upper bound is +1 since it's not included
+            elif numeric_grade in range(60,70): #the upper bound is +1 (70 vs 69) since it's not included
                 print(f"You entered {numeric_grade}. That's a D. Umm, did you study?!")
             else:
                 print(f"You entered {numeric_grade}. That's an F. D'oh!")
