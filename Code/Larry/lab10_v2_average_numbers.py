@@ -1,5 +1,5 @@
 # Lab 10: Average Numbers
-# average_numbers_v2.py
+# lab10_v2_average_numbers.py
 
 '''
 We're going to average a list of numbers.
