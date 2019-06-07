@@ -34,6 +34,7 @@ while True:
         print(f"Try Again! You entered '{input_length1}'. The value must be between a number between 1 and 52.")
 # Create a list from string.ascii_letters
 string_ascii_letters = list(string.ascii_letters)
+random.shuffle(string_ascii_letters)
 # For loop: Create a list of letters randomly chosen from the string_ascii_letters list and quantity from user input.
 out_string1 = ''
 for num in range(input_length1):
@@ -58,6 +59,7 @@ while True:
         print(f"Try Again! You entered '{input_length2}'. The value must be a number between 1 and 10.")
 # Create a list from string.digits
 string_digits = list(string.digits)
+random.shuffle(string_digits)
 # For loop: Create a list of numbers randomly chosen from the string_digits list and quantity from user input.
 out_string2 = ''
 for num in range(input_length2):
@@ -82,6 +84,7 @@ while True:
         print(f"Try Again! You entered '{input_length3}'. The value must be a number between 1 and 32.")
 # Create a list from string.punctuation
 string_punctuation = list(string.punctuation)
+random.shuffle(string_punctuation)
 # For loop: Create a list of punctuation marks randomly chosen from the string_punctuation list and quantity from user input.
 out_string3 = ''
 for num in range(input_length3):

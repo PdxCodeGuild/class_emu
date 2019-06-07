@@ -1,5 +1,5 @@
 # Lab 10: Average Numbers
-# average_numbers_v2.py
+# lab10_v2_average_numbers.py
 
 '''
 We're going to average a list of numbers.
@@ -62,4 +62,4 @@ for i in range(len(nums)):
 
 # Divide that sum by the number of elements in that list
 my_average = num / len(nums)
-print(my_average)
+print(f"Average: {my_average}")

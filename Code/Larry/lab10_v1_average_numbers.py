@@ -32,6 +32,5 @@ for i in range(len(nums)):
     num += nums[i]
 
 # Divide that sum by the number of elements in that list
-my_average1 = num // len(nums)
-my_average2 = (num % len(nums)) / len(nums)
-print(my_average1 + my_average2)
+my_average = num / len(nums)
+print(my_average)
