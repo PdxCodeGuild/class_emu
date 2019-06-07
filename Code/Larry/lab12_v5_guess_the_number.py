@@ -31,10 +31,11 @@ human_number = int(input("Enter a number from 1 to 10: "))
 # Keep track of how many guesses the user has made, and tell them at the end.
 counter = 0
 last_guess = 0
+# Instead of using random.randint(1,10), create a list and shuffle it.
 one_ten = list(range(1,11))
 random.shuffle(one_ten)
 while True:
-    # computer_guess = random.randint(1,10)
+    # To prevent duplicates, guesses are pop()ped from the list.
     computer_guess = one_ten.pop()
     random.shuffle(one_ten)
     print(f"computer_guess: {computer_guess}")
