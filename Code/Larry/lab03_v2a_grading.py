@@ -1,9 +1,8 @@
-# filename: lab03_v2_grading.py
+# filename: lab03_v2a_grading.py
 '''
 Instructions:
 Have the user enter a number representing the grade (0-100)
 Convert the number grade to a letter grade
-
 Numeric Ranges:
 A+ 97–100
 A	93–96
@@ -18,7 +17,6 @@ D+	67–69
 D	63–66
 D-	60–62
 F	0–59
-
 Version 2
 Find the specific letter grade (A+, B-, etc).
 You can check for more specific ranges using if statements, or use modulus % to get the ones-digit to
