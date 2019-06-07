@@ -41,13 +41,13 @@ while True:
                 plus_minus = '+' # set plus_minus equal to plus (+)
             elif numeric_grade % 10 <= 2:
                 plus_minus = '-' # set plus_minus equal to minus (-)
-            if 90 <= numeric_grade <= 100: #the upper bound is +1 (101 vs 100) since it's not included
+            if 90 <= numeric_grade <= 100:
                     print(f"You entered {numeric_grade}. That's an A{plus_minus}. Great job!")
-            elif numeric_grade in range(80,90): #the upper bound is +1 (90 vs 89) since it's not included
+            elif 80 <= numeric_grade <= 90:
                     print(f"You entered {numeric_grade}. That's a B{plus_minus}. Good job!")
-            elif numeric_grade in range(70,80): #the upper bound is +1 (80 vs 79) since it's not included
+            elif 70 <= numeric_grade <= 80:
                     print(f"You entered {numeric_grade}. That's a C{plus_minus}. Not bad!")
-            elif numeric_grade in range(60,70): #the upper bound is +1 (70 vs 69) since it's not included
+            elif 60 <= numeric_grade <= 70:
                     print(f"You entered {numeric_grade}. That's a D{plus_minus}. Umm, did you study?!")
             else:
                 print(f"You entered {numeric_grade}. That's an F. D'oh!")
