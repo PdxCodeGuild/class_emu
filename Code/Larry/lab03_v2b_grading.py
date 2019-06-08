@@ -27,7 +27,6 @@ Then you can concatenate that string with your grade string.
 # check if number is between 0 and 100
 while True:
     # get user input (0 - 100)
-    # numeric_grade = int(input("Enter a number between 0 and 100: "))
     numeric_grade = input("Enter a number between 0 and 100: ")
     if numeric_grade.isdigit():
         numeric_grade = int(numeric_grade)
