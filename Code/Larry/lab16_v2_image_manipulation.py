@@ -25,7 +25,11 @@ b = int(b*255)
 
 import colorsys
 from PIL import Image
-# Image Source: https://i.imgur.com/01oiews.png
+# img = Image.open("lab16_images/rgb_color_wheel.png") # must be in same folder
+# Image Source (gradient_orig.png): https://i.imgur.com/BGlWZ6M.png
+# img = Image.open("lab16_images/gradient_orig.png") # must be in same folder
+# Image Source (gradient.png): https://i.imgur.com/01oiews.png
+        # - this image was resized and now has a transparency value "a", i.e. rgba
 img = Image.open("lab16_images/gradient.png") # must be in same folder
 width, height = img.size
 pixels = img.load()
@@ -40,7 +44,8 @@ Type (hv) to increase the value
 
 for i in range(width):
     for j in range(height):
-        r, g, b = pixels[i, j]
+        # print(pixels[i, j])
+        r, g, b, a = pixels[i, j]
         # Y = round((.3*r + .6*g + .1*b)) # Al's code, this is for converting to grayscale
         # pixels[i, j] = (Y, Y, Y)        # Al's code, this is for converting to grayscale
 
@@ -50,39 +55,22 @@ for i in range(width):
         # do some math on h, s, v
         if which_conversion == 'ch':
             h = h / 2
-
         elif which_conversion == 'ls':
             s = s * .3
-
         elif which_conversion == 'hs':
             s = s * 3
-
         elif which_conversion == 'lv':
             v = v * .2
-
         elif which_conversion == 'hv':
             v = v * 2
 
         r, g, b = colorsys.hsv_to_rgb(h, s, v)
+        # a = 255
 
         # convert back to [0, 255]
         r = int(r*255)
         g = int(g*255)
         b = int(b*255)
-        pixels[i, j] = (r, g, b)
+        pixels[i, j] = (r, g, b, a)
 
 img.show()
-
-
-'''
-how to pull from a URL instead of a local image
->>> import requests
->>> my_rainbow = requests.get('https://i.ytimg.com/vi/ku4fm
-2fLFtI/hqdefault.jpg')
->>> my_rainbow
-<Response [200]>
->>> from PIL import Image
->>> import io
->>> img = Image.open(io.BytesIO(my_rainbow.content))
->>> img.show()
-'''
