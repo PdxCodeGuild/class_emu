@@ -1,5 +1,6 @@
 # filename: lab18_v1_peaks_and_valleys.py
 '''
+Lab 18:
 Define the following functions:
 peaks - Returns the indices of 'peaks'.
     A peak has a lower number on both the left and the right.
