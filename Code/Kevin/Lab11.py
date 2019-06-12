@@ -23,8 +23,9 @@ while True:
         print(f"Answer: {number_one / number_two}")
         if number_two == 0:
             print("Please enter a different value than 0. Don't want the Earth the explode!")
-            number_two = int(input("Second number (Remember not to divide by a zero!): \n"))
-        print(f"Answer: {number_one / number_two}")
-        break
+            # number_two = int(input("Second number (Remember not to divide by a zero!): \n"))
+        else:
+            print(f"Answer: {number_one / number_two}")
+            break
     else: 
         print("Please enter a valid op")
