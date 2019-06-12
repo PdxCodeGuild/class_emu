@@ -39,14 +39,10 @@ row_number = max(data)
 for index1 in range(max(data)): # range(max(data)) - highest value in 'data', (9) - ROWS
     temp_list = []
     for index2 in range(len(data)): # range(len(data)) - number of elements/items in the list, (20)- COLUMNS
-        # if condition, then temp_list.append('X')
-        if data[index2] < row_number:
-            # print("True")
-            temp_list.append(' ')
-        # else, temp_list.append()' ')
-        else:
-            # print("False")
+        if data[index2] >= row_number: #
             temp_list.append('X')
+        else:
+            temp_list.append(' ')
     row_number = row_number - 1
     lists_of_lists.append(temp_list)
 
