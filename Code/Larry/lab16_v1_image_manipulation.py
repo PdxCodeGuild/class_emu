@@ -17,7 +17,6 @@ To convert to greyscale, set R, G, and B to Y.
 Y = 0.299*R + 0.587*G + 0.114*B
 
 ##### Sample Code #####
-
 from PIL import Image
 img = Image.open("lenna.png") # must be in same folder
 width, height = img.size
@@ -30,20 +29,23 @@ for i in range(width):
         # your code here
 
         pixels[i, j] = (r, g, b)
-
 img.show()
 '''
 
 from PIL import Image
-# Image Source (gradient.png): https://i.imgur.com/01oiews.png
-        # - this image was resized and now has a transparency value "a", i.e. rgba
-img = Image.open("lab16_images/gradient.png") # must be in same folder
+# img = Image.open("lab16_images/gradient_orig.png") # must be in same folder -- this image has 3 channels - rgb
+img = Image.open("lab16_images/gradient.png") # must be in same folder -- this image has 4 channels - rgba
 width, height = img.size
 pixels = img.load()
 
 for i in range(width):
     for j in range(height):
-        r, g, b, a = pixels[i, j]
-        Y = round((.299*r + .587*g + .114*b)) # Al's code
-        pixels[i, j] = (Y, Y, Y, Y)        # Al's code
+        if len(pixels[0, 0]) == 4:      # runs when img = lab16_images/gradient.png (rgba)
+            r, g, b, a = pixels[i, j]
+            Y = round((.299*r + .587*g + .114*b)) # Al's code
+            pixels[i, j] = (Y, Y, Y, Y)           # Al's code
+        else:                           # runs when img = lab16_images/gradient_orig.png (rgb)
+            r, g, b = pixels[i, j]
+            Y = round((.299*r + .587*g + .114*b)) # Al's code
+            pixels[i, j] = (Y, Y, Y)           # Al's code
 img.show()

@@ -1,5 +1,6 @@
 print(f"Let's play Rock, Paper, Scissors!\n")
 player_choice = input("Go ahead and make a choice: Rock, Paper, or Scissors? ")
+player_choice = player_choice.lower()
 list_of_choices = ['rock', 'paper', 'scissors']
 import random
 cpu_choice = random.choice(list_of_choices)
