@@ -48,7 +48,6 @@ for index1 in range(max(data)): # range(max(data)) - highest value in 'data', (9
             # print("False")
             temp_list.append('X')
     row_number = row_number - 1
-
     lists_of_lists.append(temp_list)
 
 for small_list in lists_of_lists:
