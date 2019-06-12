@@ -24,7 +24,7 @@ Using the data list above, draw the image of X's below.
 #s  1  2  3  4  5  6  7  6  5  4  5  6  7  8  9  8  7  6  7  8  9
 ids 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20
 '''
-import lab18_v1_peaks_and_valleys as lab18v1 #this makes an alias to reference in the code below (see line 27)
+import lab18_v1_peaks_and_valleys as lab18v1 #this import also makes an alias
 
 # Define the dataset
 data = lab18v1.data # [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
