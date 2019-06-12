@@ -35,13 +35,13 @@ img.show()
 '''
 
 from PIL import Image
-img = Image.open("lab16_images/rgb_color_wheel.png") # must be in same folder
+img = Image.open("lab16_images/gradient.png") # must be in same folder
 width, height = img.size
 pixels = img.load()
 
 for i in range(width):
     for j in range(height):
-        r, g, b = pixels[i, j]
-        Y = round((.3*r + .6*g + .1*b)) # Al's code
-        pixels[i, j] = (Y, Y, Y)        # Al's code
+        r, g, b, a = pixels[i, j]
+        Y = round((.299*r + .587*g + .114*b)) # Al's code
+        pixels[i, j] = (Y, Y, Y, Y)        # Al's code
 img.show()
