@@ -28,23 +28,22 @@ import lab18_v1_peaks_and_valleys as lab18v1 #this makes an alias to reference i
 
 # Define the dataset
 data = lab18v1.data # [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
-#
-# my code here
 
-# for num in data:          # This prints the Xs vertically
-#     print(f"X" * num)     # based on the 'data'
+# Define variables
+lists_of_lists = []                     # base case, empty list
+row_number = max(data)                  # this returns the highest value in 'data'
 
-lists_of_lists = []
-row_number = max(data)
-for index1 in range(max(data)): # range(max(data)) - highest value in 'data', (9) - ROWS
-    temp_list = []
-    for index2 in range(len(data)): # range(len(data)) - number of elements/items in the list, (20)- COLUMNS
-        if data[index2] >= row_number: #
-            temp_list.append('X')
-        else:
-            temp_list.append(' ')
-    row_number = row_number - 1
-    lists_of_lists.append(temp_list)
+# Loop through rows and columns
+for index1 in range(max(data)):         # range(max(data)) - highest value in 'data', (9) - ROWS
+    temp_list = []                      # base case; empty list
+    for index2 in range(len(data)):     # range(len(data)) - number of elements/items in the list, (20)- COLUMNS
+        if data[index2] >= row_number:  # if the item in the list is greater than or equal to row number
+            temp_list.append('X')       # then, print an 'X'
+        else:                           # if the item in the list of less than the row number
+            temp_list.append(' ')       # then, print a space ' '
+    row_number = row_number - 1         # increment the row number
+    lists_of_lists.append(temp_list)    # add the temp list to the lists_of_lists
 
-for small_list in lists_of_lists:
-    print('  '.join(small_list))
+for small_list in lists_of_lists:       # for each sub_list with lists_of_lists
+    print('  '.join(small_list))        # convert the sub_list to string with 3 spaces between each element
+                                        # and print each row
