@@ -25,12 +25,9 @@ b = int(b*255)
 
 import colorsys
 from PIL import Image
-# img = Image.open("lab16_images/rgb_color_wheel.png") # must be in same folder
-# Image Source (gradient_orig.png): https://i.imgur.com/BGlWZ6M.png
-# img = Image.open("lab16_images/gradient_orig.png") # must be in same folder
-# Image Source (gradient.png): https://i.imgur.com/01oiews.png
-        # - this image was resized and now has a transparency value "a", i.e. rgba
-img = Image.open("lab16_images/gradient.png") # must be in same folder
+# img = Image.open("lab16_images/gradient_orig.png") # must be in same folder -- this image has 3 channels - rgb
+img = Image.open("lab16_images/gradient.png") # must be in same folder -- this image has 4 channels - rgba
+
 width, height = img.size
 pixels = img.load()
 
@@ -45,7 +42,10 @@ Type (hv) to increase the value
 for i in range(width):
     for j in range(height):
         # print(pixels[i, j])
-        r, g, b, a = pixels[i, j]
+        if len(pixels[0, 0]) == 4:          # runs when img = lab16_images/gradient.png (rgba)
+            r, g, b, a = pixels[i, j]
+        else:                               # runs when img = lab16_images/gradient_orig.png (rgb)
+            r, g, b = pixels[i, j]
         # Y = round((.3*r + .6*g + .1*b)) # Al's code, this is for converting to grayscale
         # pixels[i, j] = (Y, Y, Y)        # Al's code, this is for converting to grayscale
 
@@ -71,6 +71,10 @@ for i in range(width):
         r = int(r*255)
         g = int(g*255)
         b = int(b*255)
-        pixels[i, j] = (r, g, b, a)
+
+        if len(pixels[0, 0]) == 4:          # runs when img = lab16_images/gradient.png (rgba)
+            pixels[i, j] = (r, g, b, a)
+        else:                               # runs when img = lab16_images/gradient_orig.png (rgb)
+            pixels[i, j] = (r, g, b)
 
 img.show()
