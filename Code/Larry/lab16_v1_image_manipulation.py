@@ -35,6 +35,8 @@ img.show()
 '''
 
 from PIL import Image
+# Image Source (gradient.png): https://i.imgur.com/01oiews.png
+        # - this image was resized and now has a transparency value "a", i.e. rgba
 img = Image.open("lab16_images/gradient.png") # must be in same folder
 width, height = img.size
 pixels = img.load()
