@@ -38,9 +38,9 @@ for index1 in range(max(data)):         # range(max(data)) - highest value in 'd
     temp_list = []                      # base case; empty list
     for index2 in range(len(data)):     # range(len(data)) - number of elements/items in the list, (20)- COLUMNS
         if data[index2] >= row_number:  # if the item in the list is greater than or equal to row number
-            temp_list.append('X')       # then, print an 'X'
+            temp_list.append('X')       # then, append an 'X' to the temp_list
         else:                           # if the item in the list of less than the row number
-            temp_list.append(' ')       # then, print a space ' '
+            temp_list.append(' ')       # then, append a space ' ' to the temp_list
     row_number = row_number - 1         # increment the row number
     lists_of_lists.append(temp_list)    # add the temp list to the lists_of_lists
 
