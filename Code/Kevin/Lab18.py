@@ -7,9 +7,6 @@ def valleys(data):
         if current_number < data[i-1] and current_number < data[i+1]:
             v_list.append(i)
     return v_list
-    # #second_num = num_of_peaks[i+1]
-        #print(f"Current Num: {current_number}")
-    #return num_of_peaks[i]
 
 def peaks(num_of_peaks):
     p_list = []
