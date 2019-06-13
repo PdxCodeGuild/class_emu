@@ -18,7 +18,7 @@ import string
 base_alphabet = string.ascii_lowercase
 
 # prompt the user for a string
-user_string = input("Enter a lowercase word to ROT13 encrypt: ")
+user_string = input("Enter a lowercase word to ROT encrypt: ")
 while True:
     amount_of_rotation = int(input("Enter the amount (1 - 26): "))
     if amount_of_rotation < 1 or amount_of_rotation > 26:
