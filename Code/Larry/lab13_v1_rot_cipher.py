@@ -21,7 +21,7 @@ for letter in base_alphabet:
     rot13_alphabet = ''.join(rot13_alphabet_list)
 
 # prompt the user for a string
-user_string = input("Enter a string to ROT13 encrypt: ")
+user_string = input("Enter a lowercase word to ROT13 encrypt: ")
 
 # for each character, find the corresponding character
 rot13_letters = []
