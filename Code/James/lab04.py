@@ -1,4 +1,4 @@
-# lab04.py
+"""# lab04.py
 
 
 # imports the random module to use later in the code
@@ -10,23 +10,22 @@ answer_list = ['Yes', 'No', 'maybe']
 # print, prints to the screen.  f" allows curly braces to run code.
 print(f"Answer: {random.choice(answer_list)}")
 
-
+"""
 
 
 #v2
 
+import random
 
-
-
-#import random# imports random module
-
-#while True:
-    # asks user a question
-#    user_question = input("Hello, What question do you have?: ")
-    # list that program will choose from
-#    answer_list = ['Yes', 'No', 'Maybe']
-    # displays the random choice from the list
-#    print(f"Answer: {random.choice(answer_list)}")
-#    user_question2 = input("Keep playing? Yes or Done:  ")
-#    if user_question2.lower() == 'done':
-#        break
+while True:
+     # asks user a question, asking for input
+    user_question = input("Hello, What question do you have?: ")
+     # list that program will choose from
+    answer_list = ['Yes', 'No', 'Maybe']
+     # displays the random choice from the list
+    print(f"Answer: {random.choice(answer_list)}")
+    # asks user if they want to keep playing
+    user_question2 = input("Keep playing? Yes or Done:  ")
+    # makes users answer lowercase
+    if user_question2.lower() == 'done':
+        break
