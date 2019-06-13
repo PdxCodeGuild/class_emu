@@ -23,15 +23,9 @@ while True:
     input_length1 = input("How many ASCII_LETTERS do you want in the password. Enter a value from 1 - 52: ")
     if input_length1.isdigit():
         input_length1 = int(input_length1)
-        if input_length1 > 0:
-            if input_length1 < 53:
-                break
-            else:
-                print(f"Try Again! You entered '{input_length1}'. The value must be a number between 1 and 52.")
-        else:
-            print(f"Try Again! You entered '{input_length1}'. The value must be a number between 1 and 52.")
-    else:
-        print(f"Try Again! You entered '{input_length1}'. The value must be between a number between 1 and 52.")
+        if input_length1 > 0 and input_length1 < 53:
+            break
+    print(f"Try Again! You entered '{input_length1}'. The value must be between a number between 1 and 52.")
 # Create a list from string.ascii_letters
 string_ascii_letters = list(string.ascii_letters)
 random.shuffle(string_ascii_letters)
@@ -48,15 +42,9 @@ while True:
     input_length2 = input("How many NUMBERS do you want in the password. Enter a value from 1 - 10: ")
     if input_length2.isdigit():
         input_length2 = int(input_length2)
-        if input_length2 > 0:
-            if input_length2 < 11:
+        if input_length2 > 0 and input_length2 < 11:
                 break
-            else:
-                print(f"Try Again! You entered '{input_length2}'. The value must be a number between 1 and 10.")
-        else:
-            print(f"Try Again! You entered '{input_length2}'. The value must be a number between 1 and 10.")
-    else:
-        print(f"Try Again! You entered '{input_length2}'. The value must be a number between 1 and 10.")
+    print(f"Try Again! You entered '{input_length2}'. The value must be a number between 1 and 10.")
 # Create a list from string.digits
 string_digits = list(string.digits)
 random.shuffle(string_digits)
@@ -73,15 +61,9 @@ while True:
     input_length3 = input("How many PUNCTUATION MARKS do you want in the password. Enter a value from 1 - 32: ")
     if input_length3.isdigit():
         input_length3 = int(input_length3)
-        if input_length3 > 0:
-            if input_length3 < 33:
+        if input_length3 > 0 and input_length3 < 33:
                 break
-            else:
-                print(f"Try Again! You entered '{input_length3}'. The value must be a number between 1 and 32.")
-        else:
-            print(f"Try Again! You entered '{input_length3}'. The value must be a number between 1 and 32.")
-    else:
-        print(f"Try Again! You entered '{input_length3}'. The value must be a number between 1 and 32.")
+    print(f"Try Again! You entered '{input_length3}'. The value must be a number between 1 and 32.")
 # Create a list from string.punctuation
 string_punctuation = list(string.punctuation)
 random.shuffle(string_punctuation)
