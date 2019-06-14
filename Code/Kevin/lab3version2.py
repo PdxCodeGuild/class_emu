@@ -1,5 +1,4 @@
 user_Grade = input("Input a grade and I will tell you it's associated letter grade: \n")
-letter_grade = '+'
 user_Grade_num = int(user_Grade)
 def is_plus(grade_num):
     if grade_num % 10 > 5:
