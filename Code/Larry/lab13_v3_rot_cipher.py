@@ -24,7 +24,7 @@ len_base_char_set = len(base_char_set)
 # prompt the user for a string
 user_string = input("Enter a string to ROT encrypt: ")
 while True:
-    amount_of_rotation = int(input("Enter the amount (1 - 94): "))
+    amount_of_rotation = int(input(f"Enter the amount (1 - {len_base_char_set}): "))
     if amount_of_rotation < 1 or amount_of_rotation > len_base_char_set:
         print("Invalid amount. Try again!")
     else:
@@ -46,4 +46,4 @@ for char in user_string:
     rotN_string = ''.join(rotN_characters)
 
 # print
-print(f"ROT{amount_of_rotation}: {rotN_string}")
+print(f"ROT{amount_of_rotation}: '{rotN_string}'")

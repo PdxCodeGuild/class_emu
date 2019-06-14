@@ -42,4 +42,4 @@ for letter in user_string:
     rotN_string = ''.join(rotN_letters)
 
 # print
-print(f"ROT{amount_of_rotation}: {rotN_string}")
+print(f"ROT{amount_of_rotation}: '{rotN_string}'")
