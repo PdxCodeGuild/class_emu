@@ -55,7 +55,7 @@ def get_depths():
 def get_ends():
     # calculate the end of the lake
     # 1: inelegant method
-    # where the right side of the lake is based on a constant (the depth + n=1,2,3,etc)
+    # where the right side of the lake is based on the start + depth + 1
     depths = get_depths()
     starts = get_starts()
     # print(depths)
