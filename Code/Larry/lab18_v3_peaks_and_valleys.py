@@ -34,56 +34,35 @@ import lab18_v1_peaks_and_valleys as lab18v1 #this import also makes an alias
 # Define the dataset
 data = lab18v1.data # [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
 
+def get_lakes():
 # get starts of the lakes, a.k.a. one position to the right of the peaks
-def get_starts():
     starts = []
-    for i in range(len(lab18v1.peaks(data))):
-        start = lab18v1.peaks(data)[i] + 1
+    peaks = lab18v1.peaks(data)
+    for i in range(len(peaks)):
+        start = peaks[i] + 1
         starts.append(start)
-    return starts
 
-# get the depths of the lakes, caluculated from diff between the starts of the lake & the valleys
-def get_depths():
+    # get the depths of the lakes
     depths = []
-    for i in range(len(lab18v1.valleys(data))):
-        valley = lab18v1.valleys(data)[i]
-        peak = lab18v1.peaks(data)[i] + 1
-        depth = valley - peak + 1 #
+    valleys = lab18v1.valleys(data)
+    for i in range(len(valleys)):
+        depth = valleys[i] - (peaks[i] + 1) + 1
         depths.append(depth)
-    return depths
 
-def get_ends():
     # calculate the end of the lake
-    # 1: inelegant method
-    # where the right side of the lake is based on the start + depth + 1
-    depths = get_depths()
-    starts = get_starts()
-    # print(depths)
     ends = []
-    for i in range(len(lab18v1.peaks(data))):
+    for i in range(len(starts)):
         end = starts[i] + depths[i] + 1
         ends.append(end)
-    return ends
 
-    # 2: elegant method
-    # where the right side of the lake is the same height as the left side
+    # put values (start, end, depth) in to a tuple
+    output = []
+    for i in range(len(ends)):
+        output.append((starts[i], ends[i], depths[i]))
 
-# put values (start, end, depth) in to a tuple
-starts = get_starts()
-ends = get_ends()
-depths = get_depths()
-output_tuple_cheat = [(starts[0], ends[0], depths[0]),(starts[1], ends[1], depths[1])]
-
-# ### this isn't working yet ###
-# output = []
-# for i in range(3):
-#     for j in range(len(get_ends())):
-#         output.append((starts[j], ends[j], depths[j]))
-# print(f"output: {output}")
+    # return the final result
+    return output
 
 if __name__ == '__main__':
 
-    print(f"get_starts: {get_starts()}")
-    print(f"get_ends: {get_ends()}")
-    print(f"get_depths: {get_depths()}")
-    print(f"output_tuple_cheat: {output_tuple_cheat}")
+    print(f"output_tuples: {get_lakes()}")
