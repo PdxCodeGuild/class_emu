@@ -17,7 +17,8 @@ base_alphabet = string.ascii_lowercase
 # Generate rot13_alphabet based on base_alphabet # rot13_alphabet = 'nopqrstuvwxyzabcdefghijklm'
 rot13_alphabet_list = []
 for letter in base_alphabet:
-    rot13_alphabet_list.append(chr((ord(letter) - ord('a') + 13) % 26 + ord('a')))
+    # rot13_alphabet_list.append(chr((ord(letter) - ord('a') + 13) % 26 + ord('a'))) # uses chr/ord (ascii chart)
+    rot13_alphabet_list.append(base_alphabet[(base_alphabet.find(letter) + 13) % 26]) # uses index for base_alphabet list
     rot13_alphabet = ''.join(rot13_alphabet_list)
 
 # prompt the user for a string

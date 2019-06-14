@@ -16,7 +16,6 @@ import string
 # Set variables
 # Create base_alphabet from string library
 base_alphabet = string.ascii_lowercase
-
 # prompt the user for a string
 user_string = input("Enter a lowercase word to ROT encrypt: ")
 while True:
@@ -29,7 +28,7 @@ while True:
 # Generate rotN_alphabet based on base_alphabet
 rotN_alphabet_list = []
 for letter in base_alphabet:
-    rotN_alphabet_list.append(chr((ord(letter) - ord('a') + amount_of_rotation) % 26 + ord('a')))
+    rotN_alphabet_list.append(base_alphabet[(base_alphabet.find(letter) + amount_of_rotation) % 26]) # uses index for base_alphabet list
     rotN_alphabet = ''.join(rotN_alphabet_list)
 
 # for each character, find the corresponding character
