@@ -33,7 +33,8 @@ while True:
 # Generate rotN_chars based on base_char_set
 rotN_chars_list = []
 for char in base_char_set:
-    rotN_chars_list.append(base_char_set[(base_char_set.find(char) + amount_of_rotation) % len_base_char_set]) # uses index for base_alphabet list
+    # uses index for base_alphabet list
+    rotN_chars_list.append(base_char_set[(base_char_set.find(char) + amount_of_rotation) % len_base_char_set])
     rotN_chars = ''.join(rotN_chars_list)
 
 # for each character, find the corresponding character
