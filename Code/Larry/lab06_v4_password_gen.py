@@ -17,7 +17,7 @@ import random
 # Ask the user to choose how many ascii_letters will be included in the password.
 # While loop: Ensure the user input is within range. (Error handling)
 while True:
-    input_length1 = input("How many ASCII_LETTERS do you want in the password. Enter a value from 1 - 52: ")
+    input_length1 = input("How many ASCII_LETTERS do you want in the password? Enter a value from 1 - 52: ")
     if input_length1.isdigit(): # check if a number and not some other non-numeric character
         input_length1 = int(input_length1) # convert string to integer
         if 1 <= input_length1 <= 52: # check if integer is between 1 and 52
@@ -38,7 +38,7 @@ letters_list = list(out_string1)
 # Ask the user to choose how many numbers will be included in the password.
 # While loop: Ensure the user input is within range. (Error handling)
 while True:
-    input_length2 = input("How many NUMBERS do you want in the password. Enter a value from 1 - 10: ")
+    input_length2 = input("How many NUMBERS do you want in the password? Enter a value from 1 - 10: ")
     if input_length2.isdigit():
         input_length2 = int(input_length2)
         if input_length2 > 0 and input_length2 < 11:
@@ -58,7 +58,7 @@ numbers_list = list(out_string2)
 # Ask the user to choose how many punctuation marks will be included in the password.
 # While loop: Ensure the user input is within range. (Error handling)
 while True:
-    input_length3 = input("How many PUNCTUATION MARKS do you want in the password. Enter a value from 1 - 32: ")
+    input_length3 = input("How many PUNCTUATION MARKS do you want in the password? Enter a value from 1 - 32: ")
     if input_length3.isdigit():
         input_length3 = int(input_length3)
         if input_length3 > 0 and input_length3 < 33:
