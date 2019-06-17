@@ -25,7 +25,6 @@ def peaks(data): # Returns the indices of 'peaks'
             list_of_peaks.append(i)
     return list_of_peaks
 
-# print(peaks(data)) # => [6, 14] #  this is commented out since I'm calling the function from lab16_v2
 
 def valleys(data): # Returns the indices of 'valleys'
 
@@ -35,7 +34,6 @@ def valleys(data): # Returns the indices of 'valleys'
             list_of_valleys.append(i)
     return list_of_valleys
 
-# print(valleys(data)) # => [9, 17] #  this is commented out since I'm calling the function from lab16_v2
 
 def peaks_and_valleys(data): # Returns a single list of peaks and valleys in order of appearance in the original data
 
@@ -43,4 +41,12 @@ def peaks_and_valleys(data): # Returns a single list of peaks and valleys in ord
     list_of_peaks_and_valleys.sort()
     return list_of_peaks_and_valleys
 
-# print(peaks_and_valleys(data)) #  this is commented out since I'm calling the function from lab16_v2
+
+
+
+if __name__ == '__main__': # only run these lines when THIS file is executed, not when imported to another file
+    print(peaks(data)) # => [6, 14]
+
+    print(valleys(data)) # => [9, 17]
+
+    print(peaks_and_valleys(data)) # => [6, 9, 14, 17]

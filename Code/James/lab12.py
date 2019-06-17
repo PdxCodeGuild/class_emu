@@ -9,7 +9,7 @@ counter = 0
 
 while True:
 # asks user for guess
-    user_input = int(input("What's your choice? "))
+    user_input = int(input("Pick a number! "))
 # adds 1 to the counter during each iteration of the loop
     counter += 1;
 # if user_input does not equal random_choice
