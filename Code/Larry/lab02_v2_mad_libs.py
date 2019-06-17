@@ -1,4 +1,4 @@
-# filename: lab02_v2a_mad_libs.py
+# filename: lab02_v2_mad_libs.py
 '''
 Lab 2: Mad Libs
 Write a simple program that prompts the user for several inputs then prints a Mad Lib as the result.
