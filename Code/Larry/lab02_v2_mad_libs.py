@@ -12,12 +12,18 @@ Add randomness! Use the random module, rather than selecting which adjective goe
 import random
 
 # Ask the user for 3 adjectives
-three_adj = [] # base case, list
+three_adj = [] # base case, list # part of more optimal solution
+three_adj_str = ''
 for num in range(3):
     user_adj = input("Enter an adjective: ")
+    # create a comma-separated string of adjectives
+    # three_adj_str += user_adj + ","    # less optimal solution: loop uses three str variable IDs for one variable
     # create a list of adjectives
-    three_adj.append(user_adj)
+    three_adj.append(user_adj)       # more optimal solution: loop appends the (same) one string variable
 
+# part of less optimal solution
+# *** https://stackoverflow.com/questions/4071396/split-by-comma-and-strip-whitespace-in-python ***
+# three_adj = [x.strip() for x in three_adj_str.split(',',2)] # strips whitespace and splits into list at the commas
 
 # Add randomness! Use the random module, rather than selecting which adjective goes where in the story.
 random.shuffle(three_adj)
