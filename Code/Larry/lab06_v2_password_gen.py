@@ -23,8 +23,8 @@ while True:
     user_input = input("How many characters in the password? (1 or greater): ")
     # validate user input
     if user_input.isdigit():                # check if input is an integer
-        if int(user_input) >= 1:            # check if input is a positive integer < 0
-            user_input = int(user_input)    # if so, convert string to integer
+        user_input = int(user_input)        # if so, convert string to integer
+        if user_input >= 1:                 # check if input is a positive integer < 0
             counter = 0                     # set base value for counter integer
             your_password = ''              # set base value for your_password string
             while counter < user_input:     # Loop through n times to create an n-character password
