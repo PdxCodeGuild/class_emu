@@ -1,4 +1,4 @@
-# filename: lab03_v2b_grading.py
+# filename: lab03_v2_grading.py
 '''
 Lab 3: Grading
 Let's convert a number grade to a letter grade, using if and elif statements and comparisons.
