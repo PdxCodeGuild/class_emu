@@ -39,6 +39,7 @@ def num_matches(winning, ticket):
 
 random_6_numbers = six_numbers() # set the random_6_numbers
 balance = 0 # Start your balance at $0
+earnings = 0
 for i in range(100000): # Loop 100,000 times, for each loop
     my_guess = six_numbers() # Generate a list of 6 random numbers representing the ticket
     balance -= 2 # Subtract $2 from your balance (you bought a ticket)
@@ -46,9 +47,12 @@ for i in range(100000): # Loop 100,000 times, for each loop
     # Add to your balance the winnings from your matches
     payout_dict = {0:0, 1:4, 2:7, 3:100, 4:50000, 5:1000000, 6:25000000} #dictionary of matches:payout
     balance += payout_dict[matches] # add to the balance
+    earnings += payout_dict[matches]
 
 # After the loop, print the final balance
 # format snippet: https://stackoverflow.com/questions/5180365/python-add-comma-into-number-string
-print(f"${format (balance, ',d')}")
-# The ROI (return on investment) is defined as (earnings - expenses)/expenses -- expenses = $2 * 100,000 guesses
-print(f"ROI: {(balance - 200000)/200000}")
+print(f"Balance: ${format (balance, ',d')}")
+# The ROI (return on investment) is defined as (earnings - expenses)/expenses
+# earnings = dollar amount of payouts
+# expenses = $2 * 100,000 guesses
+print(f"ROI: {(earnings - 200000)/200000}")
