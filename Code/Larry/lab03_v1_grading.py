@@ -1,5 +1,8 @@
 # filename: lab03_v1_grading.py
 '''
+Lab 3: Grading
+Let's convert a number grade to a letter grade, using if and elif statements and comparisons.
+
 Instructions:
 Have the user enter a number representing the grade (0-100)
 Convert the number grade to a letter grade
