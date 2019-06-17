@@ -34,19 +34,27 @@ while True:
     # The computer will randomly choose rock, paper or scissors
     computer_choice = random.choice(choices)
 
+    # "It's a tie!" print statement
+    tie = f"Computer picked {computer_choice}. It's a tie!"
+    # "You win" print statement
+    you_win = f"Computer picked {computer_choice}. You win!"
+    # "You lose" print statement
+    you_lose = f"Computer picked {computer_choice}. You lose!"
+
     # Determine who won and tell the user
     if computer_choice == user_choice: # Tie: computer_choice is same as user_choice
-        print(f"Computer picked {computer_choice}. It's a tie!")
+        print(tie)
     elif computer_choice == "rock" and user_choice == "paper":
-        print(f"Computer picked {computer_choice}. You win!")
-    elif computer_choice == "rock" and user_choice == "scissors":
-        print(f"Computer picked {computer_choice}. You lose!")
-    elif computer_choice == "paper" and user_choice == "rock":
-        print(f"Computer picked {computer_choice}. You lose!")
+        print(you_win)
     elif computer_choice == "paper" and user_choice == "scissors":
-        print(f"Computer picked {computer_choice}. You win!")
+        print(you_win)
     elif computer_choice == "scissors" and user_choice == "rock":
-        print(f"Computer picked {computer_choice}. You win!")
+        print(you_win)
+    elif computer_choice == "rock" and user_choice == "scissors":
+        print(you_lose)
+    elif computer_choice == "paper" and user_choice == "rock":
+        print(you_lose)
     elif computer_choice == "scissors" and user_choice == "paper":
-        print(f"Computer picked {computer_choice}. You lose!")
-    break
+        print(you_lose)
+
+    break # get out of the while loop
