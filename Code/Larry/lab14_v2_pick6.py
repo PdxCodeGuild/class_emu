@@ -52,7 +52,8 @@ for i in range(100000): # Loop 100,000 times, for each loop
 # After the loop, print the final balance
 # format snippet: https://stackoverflow.com/questions/5180365/python-add-comma-into-number-string
 print(f"Balance: ${format (balance, ',d')}")
-# The ROI (return on investment) is defined as (earnings - expenses)/expenses
-# earnings = dollar amount of payouts
-# expenses = $2 * 100,000 guesses
+
+# Calculate your ROI, print it out along with your earnings and expenses.
+# The ROI (return on investment) = (earnings - expenses)/expenses
+# earnings = dollar amount of payouts; expenses = $2 * 100,000 guesses = $200,000
 print(f"ROI: {(earnings - 200000)/200000}")
