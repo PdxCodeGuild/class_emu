@@ -38,13 +38,11 @@ random_6_numbers = six_numbers() # set the random_6_numbers
 balance = 0 # Start your balance at 0
 for i in range(100000): # Loop 100,000 times, for each loop
     my_guess = six_numbers() # Generate a list of 6 random numbers representing the ticket
-    balance -+ 2 # Subtract 2 from your balance (you bought a ticket)
+    balance -= 2 # Subtract 2 from your balance (you bought a ticket)
     matches = num_matches(random_6_numbers, my_guess) # call num_matches(), parameters=random numbers lists
     # Add to your balance the winnings from your matches
-    payout_dict = {1:4, 2:7, 3:100, 4:50000, 5:1000000, 6:25000000} #dictionary of matches:payout
-    for i in range(1, 6): # check all dictionary elements to determine
-        if matches == i: # for matches 1 - 6
-            balance += payout_dict[i] # add to the balance
+    payout_dict = {0:0, 1:4, 2:7, 3:100, 4:50000, 5:1000000, 6:25000000} #dictionary of matches:payout
+    balance += payout_dict[matches] # add to the balance
 
 # After the loop, print the final balance
 # format snippet: https://stackoverflow.com/questions/5180365/python-add-comma-into-number-string
