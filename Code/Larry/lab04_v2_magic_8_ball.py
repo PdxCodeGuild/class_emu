@@ -1,7 +1,6 @@
 # filename: lab04_v2_magic_8_ball.py
 '''
 Lab 4: Magic 8-Ball
-
 Let's write a program to simulate the classic "Magic Eight Ball"
 
 Print a welcome screen to the user.
@@ -30,7 +29,6 @@ while True:
         break
 
     # Use the random module's random.choice() to choose a prediction.
-    # prediction = predictions[random.randint(0,len(predictions) - 1)]
     prediction = random.choice(predictions)
 
     # Display the result of the 8-ball.
