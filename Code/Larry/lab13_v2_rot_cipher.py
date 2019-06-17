@@ -25,6 +25,7 @@ while True:
     else:
         break
 
+# Part of solution 1
 # Generate rotN_alphabet based on base_alphabet
 rotN_alphabet_list = []
 for letter in base_alphabet:
@@ -34,9 +35,13 @@ for letter in base_alphabet:
 # for each character, find the corresponding character
 rotN_letters = []
 for letter in user_string:
-    id_for_letter = base_alphabet.find(letter)
+    id_for_letter = base_alphabet.find(letter)                              # part of solution 1
+    # orig_id_for_letter = base_alphabet.find(letter)                       # part of solution 2
+    # calculate the offset position                                         # part of solution 2
+    # new_id_for_letter = (orig_id_for_letter + amount_of_rotation) % 26    # part of solution 2
     # add corresponding character to an output string
-    rotN_letters.append(rotN_alphabet[id_for_letter])
+    rotN_letters.append(rotN_alphabet[id_for_letter])                       # part of solution 1
+    # rotN_letters.append(base_alphabet[new_id_for_letter])                 # part of solution 2
     # convert list to string
     rotN_string = ''.join(rotN_letters)
 

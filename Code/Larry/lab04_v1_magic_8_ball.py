@@ -22,7 +22,6 @@ print("Welcome to the Virtual Magic 8 Ball\n")
 question = input("Enter your question: ")
 
 # Use the random module's random.choice() to choose a prediction.
-# prediction = predictions[random.randint(0,len(predictions) - 1)]
 prediction = random.choice(predictions)
 
 # Display the result of the 8-ball.
