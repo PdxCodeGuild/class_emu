@@ -26,7 +26,7 @@ def six_numbers():
         random_6_numbers.append(random.randint(0,99))
     return random_6_numbers
 
-# Check which elements and position matches between random_6_numbers (winning) and my_guess (ticket)
+# Check which elements & positions match between random_6_numbers (winning) and my_guess (ticket)
 def num_matches(winning, ticket):
     matches = 0
     for i in range(len(winning)):
