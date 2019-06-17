@@ -3,11 +3,11 @@
 Lab 2: Mad Libs
 Write a simple program that prompts the user for several inputs then prints a Mad Lib as the result.
 
-Story source: https://mobileapps4teachers.wordpress.com/2012/01/18/mad-libs-lite/
-
 Version 2 (optional)
 Make a functional solution that utilizes lists. For example, ask the user for 3 adjectives, separated by commas, then use the .split() function to store each adjective and later use it in your story.
 Add randomness! Use the random module, rather than selecting which adjective goes where in the story.
+
+Story source: https://mobileapps4teachers.wordpress.com/2012/01/18/mad-libs-lite/
 '''
 import random
 
