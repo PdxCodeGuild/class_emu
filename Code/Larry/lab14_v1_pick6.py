@@ -44,7 +44,7 @@ def num_matches(winning, ticket):
 
 random_6_numbers = six_numbers() # set the random_6_numbers
 balance = 0 # Start your balance at $0
-for i in range(100000): # Loop 100,000 times, for each loop
+for i in range(100000): # Loop 100,000 times
     my_guess = six_numbers() # Generate a list of 6 random numbers representing the ticket
     balance -= 2 # Subtract $2 from your balance (you bought a ticket)
     matches = num_matches(random_6_numbers, my_guess) # call num_matches(), parameters=random numbers lists
