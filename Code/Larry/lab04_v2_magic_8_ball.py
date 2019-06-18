@@ -1,6 +1,7 @@
 # filename: lab04_v2_magic_8_ball.py
 '''
 Lab 4: Magic 8-Ball
+
 Let's write a program to simulate the classic "Magic Eight Ball"
 
 Print a welcome screen to the user.
@@ -12,6 +13,7 @@ Below are some example 'predictions': see "answer" list below
 Version 2
 Using a while loop, keep asking the user for a question, if they enter 'done', exit
 '''
+
 import random
 
 # create a list of 20 predictions
