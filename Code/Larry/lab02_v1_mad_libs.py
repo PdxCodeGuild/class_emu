@@ -1,6 +1,7 @@
 # filename: lab02_v1_mad_libs.py
 '''
 Lab 2: Mad Libs
+
 Write a simple program that prompts the user for several inputs then prints a Mad Lib as the result.
 
 Instructions:
