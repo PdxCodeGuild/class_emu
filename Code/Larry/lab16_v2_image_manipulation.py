@@ -21,6 +21,11 @@ r, g, b = colorsys.hsv_to_rgb(h, s, v)
 r = int(r*255)
 g = int(g*255)
 b = int(b*255)
+
+Hint:
+Y = round((.3*r + .6*g + .1*b)) # Al's code, this is for converting to grayscale
+pixels[i, j] = (Y, Y, Y)        # Al's code, this is for converting to grayscale
+
 '''
 
 import colorsys
@@ -46,8 +51,6 @@ for i in range(width):
             r, g, b, a = pixels[i, j]
         else:                               # runs when img = lab16_images/gradient_orig.png (rgb)
             r, g, b = pixels[i, j]
-        # Y = round((.3*r + .6*g + .1*b)) # Al's code, this is for converting to grayscale
-        # pixels[i, j] = (Y, Y, Y)        # Al's code, this is for converting to grayscale
 
         # colorsys uses colors in the range [0, 1]
         h, s, v = colorsys.rgb_to_hsv(r/255, g/255, b/255)
