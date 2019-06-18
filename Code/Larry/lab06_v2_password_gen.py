@@ -1,13 +1,15 @@
 # lab06_v2_password_gen.py
 '''
 Lab 6: Password Generator
-Let's generate a 10-character password using a while loop and random.choice, this will be a string of random characters.
+Let's generate a 10-character password using a while loop and random.choice,
+this will be a string of random characters.
 
 Hint: random.choice can be used to pick a character out of a string, as well as an element out of a list.
 
 Version 2
 Allow the user to enter the value of n, remember to convert its type, as input returns a string.
 '''
+
 # import the string variable and random function
 import string
 import random
