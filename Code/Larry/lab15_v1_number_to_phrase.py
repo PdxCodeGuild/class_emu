@@ -65,8 +65,8 @@ while True:
         print(ones_list[ones_digit])
     elif 10 <= user_number <= 19: # use teens_dict
         print(teens_dict[user_number])
-    elif 20 <= user_number <= 99: # user tens_dict & ones_list
-        print(f"{tens_dict[tens_digit*10]}-{ones_list[ones_digit]}")
+    elif 20 <= user_number <= 99: # use tens_dict & ones_list
+        print(f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}")
 
     try_again = input("Do you want to try again? (yes)(no): ").lower()
     if try_again == "yes":
