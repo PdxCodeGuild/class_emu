@@ -15,6 +15,7 @@ Assemble and display the emoticon
 Version 2
 Use a while loop to generate 5 emoticons.
 '''
+
 import random
 
 # Define a list of eyes
