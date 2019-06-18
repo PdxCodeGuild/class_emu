@@ -1,13 +1,14 @@
 # filename: lab18_v3_peaks_and_valleys.py
 '''
-Lab 18:
+Lab 18: Peaks and Valleys
+
 Define the following functions:
-peaks - Returns the indices of 'peaks'.
+1. peaks - Returns the indices of 'peaks'.
     A peak has a lower number on both the left and the right.
-valleys - Returns the indices of 'valleys'.
+2. valleys - Returns the indices of 'valleys'.
     A valley is a number with a higher number on both the left and the right.
-peaks_and_valleys - Returns a single list of the peaks and valleys in order of appearance in the original data
-    using the peak() and valleys() functions
+3. peaks_and_valleys - Returns a single list of the peaks and valleys in order of appearance
+    in the original data using the peak() and valleys() functions
 
 Version 2 (optional)
 Using the data list above, draw the image of X's below.
@@ -29,6 +30,7 @@ Make a function that takes in the dataset and a list of peaks, and returns a lis
 Each tuple should have a starting x coordinate, an ending x coordinate, and a height(depth).
 The height is relative to the base of the graph.
 '''
+
 import lab18_v1_peaks_and_valleys as lab18v1 #this import also makes an alias
 
 # Define the dataset
