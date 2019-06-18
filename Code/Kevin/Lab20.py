@@ -4,7 +4,7 @@ digits = list(digits)
 total_sum = 0
 # loop over digits, convert each element to an int and assign it back
 for i in range(len(digits)):
-    digits[i] = int(digits[i])
+    digits[i] = int(digits[i])   
 
 validation_digit = digits[len(digits)-1]
 digits = digits[0: len(digits)-1]
@@ -16,11 +16,9 @@ for i in range(len(digits)):
     if digits[i] > 9:
         digits[i] -= 9
 
-for i in range(len(digits)):
+# for i in range(len(digits)):
     total_sum += digits[i]
 
 print(total_sum)
 if total_sum % 10 == validation_digit:
     print(f"{validation_digit} is valid!")
-
-# '10' % 2
