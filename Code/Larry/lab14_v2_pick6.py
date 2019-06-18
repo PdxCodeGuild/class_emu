@@ -1,6 +1,7 @@
 # filename: lab14_v2_pick6.py
 '''
 Lab 14: Pick6
+
 Have the computer play pick6 many times and determine net balance.
 
 Initially the program will pick 6 random numbers as the 'winner'. Then try playing pick6 100,000 times, with the ticket cost and payoff below.
@@ -20,6 +21,7 @@ One function you might write is pick6() which will generate a list of 6 random n
 Version 2
 The ROI (return on investment) is defined as (earnings - expenses)/expenses. Calculate your ROI, print it out along with your earnings and expenses.
 '''
+
 import random
 
 # Generate a list of 6 random numbers representing the winning tickets
