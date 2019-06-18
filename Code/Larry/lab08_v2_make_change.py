@@ -22,7 +22,6 @@ Do this with float() and round().
 dollars = input("Enter a dollar amount (e.g. 1.36): ")
 # convert dollars & cents to pennies
 pennies = round(float(dollars) * 100)
-# print(user_pennies) #debug
 
 # Calculate the number of quarters, dimes, nickles, and pennies from user input
 quarters = pennies // 25
