@@ -1,6 +1,7 @@
 # filename: lab08_v1_make_change.py
 '''
 Lab 8: Make Change
+
 Let's convert a dollar amount into a number of coins.
 The input will be the total amount,
 the output will be the number of quarters, dimes, nickles, and pennies.
@@ -12,6 +13,7 @@ For this, you'll have to use floor division //, which throws away the remainder.
 Version 1
 Have the user enter the total number in pennies, e.g. for $1.36, the user will enter 136.
 '''
+
 # Have the user enter the total number in pennies, e.g. for $1.36 = 136.
 user_pennies = int(input("Enter a dollar amount (in pennies): "))
 
