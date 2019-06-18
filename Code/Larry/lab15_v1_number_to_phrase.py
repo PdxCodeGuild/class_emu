@@ -68,6 +68,5 @@ while True:
         print(f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}")
 
     try_again = input("Do you want to try again? (yes)(no): ").lower()
-    if try_again == "yes":
-        continue
-    break
+    if try_again == "no":
+        break
