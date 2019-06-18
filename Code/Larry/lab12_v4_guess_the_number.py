@@ -1,4 +1,4 @@
-# filename: "guess_the_number_v4.py"
+# filename: lab12_v4_guess_the_number.py
 '''
 Lab 12: Guess the Number
 
