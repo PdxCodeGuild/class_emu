@@ -1,7 +1,7 @@
-# Lab 10: Average Numbers
-# average_numbers_v4.py
-
+# filename: lab10_v4_average_numbers.py
 '''
+Lab 10: Average Numbers
+
 Version 4 (optional)
 
 The mode is the number that occurs the most. There may be multiple modes.
@@ -14,7 +14,6 @@ If it's already in the dictionary, increment that value.
 counts = list(word_dict.items()) # .items() returns a list of tuples
 counts.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
 print(counts)
-
 '''
 
 numbers_dict = {} # set base case (dictionary)

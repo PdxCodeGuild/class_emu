@@ -13,6 +13,7 @@ Allow the user to input the amount of rotation used in the encryption / decrypti
 Bonus Version by Larry
 Allow users to input UPPER + lowercase letters, numbers, punctuation
 '''
+
 # import the string libraries
 import string
 

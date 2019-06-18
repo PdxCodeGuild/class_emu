@@ -1,6 +1,7 @@
 # filename: lab08_v3_make_change.py
 '''
 Lab 8: Make Change
+
 Let's convert a dollar amount into a number of coins.
 The input will be the total amount,
 the output will be the number of quarters, dimes, nickles, and pennies.
@@ -22,6 +23,7 @@ coins = [
     ('penny', 1)
 ]
 '''
+
 # Not sure how to access items from list example above, therefore using a dictionary instead
 coins = {'quarter': 25, 'dime': 10, 'nickel': 5, 'penny': 1}
 # Have the user enter the total number in dollars & cents, e.g. 1.36.

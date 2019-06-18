@@ -1,6 +1,7 @@
 # filename: lab07_v3_rock_paper_scissors.py
 '''
 Lab 7: Rock Paper Scissors
+
 Let's play rock-paper-scissors with the computer.
 
 The computer will ask the user for their choice (rock, paper, scissors)
@@ -41,6 +42,7 @@ Version 3 (optional)
 Rock, paper, scissors, lizard, Spock!
 https://www.instructables.com/id/How-to-Play-Rock-Paper-Scissors-Lizard-Spock/
 '''
+
 import random
 
 # create list of choices
@@ -106,5 +108,4 @@ while True:
     # If they say yes, restart the game, otherwise exit.
     if start_again == "yes":
         continue
-    else:
-        break
+    break

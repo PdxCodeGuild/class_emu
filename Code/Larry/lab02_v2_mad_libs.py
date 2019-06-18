@@ -1,6 +1,7 @@
 # filename: lab02_v2_mad_libs.py
 '''
 Lab 2: Mad Libs
+
 Write a simple program that prompts the user for several inputs then prints a Mad Lib as the result.
 
 Version 2 (optional)
@@ -9,6 +10,7 @@ Add randomness! Use the random module, rather than selecting which adjective goe
 
 Story source: https://mobileapps4teachers.wordpress.com/2012/01/18/mad-libs-lite/
 '''
+
 import random
 
 # Ask the user for 3 adjectives

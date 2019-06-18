@@ -12,6 +12,7 @@ Randomly pick a nose
 Randomly pick a mouth
 Assemble and display the emoticon
 '''
+
 import random
 
 # Define a list of eyes

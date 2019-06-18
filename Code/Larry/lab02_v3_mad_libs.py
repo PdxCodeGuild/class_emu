@@ -1,6 +1,7 @@
 # filename: lab02_v3_mad_libs.py
 '''
 Lab 2: Mad Libs
+
 Write a simple program that prompts the user for several inputs then prints a Mad Lib as the result.
 
 Version 3 (optional)
@@ -8,6 +9,7 @@ Make it a repeatable game. Once you're done prompting the user for words, prompt
 
 Story source: https://mobileapps4teachers.wordpress.com/2012/01/18/mad-libs-lite/
 '''
+
 play_again = ''
 while True:
     if play_again == "no":

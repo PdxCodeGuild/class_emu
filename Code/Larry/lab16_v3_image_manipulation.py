@@ -1,4 +1,10 @@
 # filename: lab16_v3_image_manipulation.py
+'''
+Lab 16: Image Manipulation
+
+Version 3
+Pillow can also be used to draw, the code below demonstrates some functions that Pillow provides. Use these functions to draw a stick figure.
+'''
 
 from PIL import Image, ImageDraw
 

@@ -10,6 +10,7 @@ Prompt the user to ask the 8-ball a question "will I win the lottery tomorrow?"
 Display the result of the 8-ball.
 Below are some example 'predictions': see "answer" list below
 '''
+
 import random
 
 # create a list of 20 predictions

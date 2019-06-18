@@ -1,7 +1,7 @@
-# Lab 10: Average Numbers
-# average_numbers.py
-
+# filename: lab10_v1_average_numbers.py
 '''
+Lab 10: Average Numbers
+
 We're going to average a list of numbers.
 1. Start with the following list,
 2. iterate through it,

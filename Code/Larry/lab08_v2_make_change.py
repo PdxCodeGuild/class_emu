@@ -1,6 +1,7 @@
 # filename: lab08_v2_make_change.py
 '''
 Lab 8: Make Change
+
 Let's convert a dollar amount into a number of coins.
 The input will be the total amount,
 the output will be the number of quarters, dimes, nickles, and pennies.
@@ -16,6 +17,7 @@ Version 2
 Have the user enter a dollar amount (1.36), convert this to the total in pennies, and proceed as before.
 Do this with float() and round().
 '''
+
 # Have the user enter the total number in dollars & cents, e.g. 1.36.
 dollars = input("Enter a dollar amount (e.g. 1.36): ")
 # convert dollars & cents to pennies
