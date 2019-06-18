@@ -1,14 +1,14 @@
 # filename: unit_converter_v4.py
-
 '''
 Lab 9: Unit Converter
 
-Note:
-See unit_converter.py, unit_converter_v2.py, and unit_converter_v3.py for previous objectives.
+This lab will involve writing a program that allows the user to convert a number between units.
 
 Version 4
 Now we'll ask the user for the distance, the starting units, and the units to convert to.
 
+Note:
+See unit_converter.py, unit_converter_v2.py, and unit_converter_v3.py for previous objectives.
 '''
 
 # Ask the user for the number of feet
