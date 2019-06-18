@@ -49,7 +49,7 @@ for i in range(100000): # Loop 100,000 times, for each loop
     # Add to your balance the winnings from your matches
     payout_dict = {0:0, 1:4, 2:7, 3:100, 4:50000, 5:1000000, 6:25000000} #dictionary of matches:payout
     balance += payout_dict[matches] # add to the balance
-    earnings += payout_dict[matches]
+    earnings += payout_dict[matches] # add to the earnings (amount won)
 
 # After the loop, print the final balance
 # format snippet: https://stackoverflow.com/questions/5180365/python-add-comma-into-number-string
