@@ -48,7 +48,7 @@ def num_matches(winning, ticket):
 
 random_6_numbers = six_numbers() # set the random_6_numbers (winning numbers)
 balance = 0 # Start your balance at $0
-payout_dict = {0:0, 1:4, 2:7, 3:100, 4:50000, 5:1000000, 6:25000000} #dictionary of matches:payout
+payout_dict = {0:0, 1:4, 2:7, 3:100, 4:50000, 5:1000000, 6:25000000} # dictionary of matches:payout
 earnings = 0 # Start your earnings at $0
 for i in range(100000): # Loop 100,000 times
     my_guess = six_numbers() # Generate a list of 6 random numbers representing the ticket
