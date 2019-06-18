@@ -1,13 +1,14 @@
 # filename: lab18_v1_peaks_and_valleys.py
 '''
-Lab 18:
+Lab 18: Peaks and Valleys
+
 Define the following functions:
-peaks - Returns the indices of 'peaks'.
+1. peaks - Returns the indices of 'peaks'.
     A peak has a lower number on both the left and the right.
-valleys - Returns the indices of 'valleys'.
+2. valleys - Returns the indices of 'valleys'.
     A valley is a number with a higher number on both the left and the right.
-peaks_and_valleys - Returns a single list of the peaks and valleys in order of appearance in the original data
-    using the peak() and valleys() functions
+3. peaks_and_valleys - Returns a single list of the peaks and valleys in order of appearance
+    in the original data using the peak() and valleys() functions
 '''
 
 # for num in range(1, len(input_string) - 1):
@@ -40,8 +41,6 @@ def peaks_and_valleys(data): # Returns a single list of peaks and valleys in ord
     list_of_peaks_and_valleys = peaks(data) + valleys(data)
     list_of_peaks_and_valleys.sort()
     return list_of_peaks_and_valleys
-
-
 
 
 if __name__ == '__main__': # only run these lines when THIS file is executed, not when imported to another file
