@@ -15,8 +15,6 @@ for i in range(len(digits)):
         digits[i] *= 2
     if digits[i] > 9:
         digits[i] -= 9
-
-# for i in range(len(digits)):
     total_sum += digits[i]
 
 print(total_sum)
