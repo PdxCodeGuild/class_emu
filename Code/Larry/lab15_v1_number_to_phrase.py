@@ -60,7 +60,6 @@ while True:
     ones_digit = user_number % 10
 
     # Print the numeric phrase equivalent
-    # print(tens_digit, ones_digit)
     if 0 <= user_number <= 9: # use ones_list
         print(ones_list[ones_digit])
     elif 10 <= user_number <= 19: # use teens_dict
