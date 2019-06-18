@@ -1,28 +1,8 @@
-# Lab 10: Average Numbers
-# lab10_v2_average_numbers.py
-
+# filename: lab10_v2_average_numbers.py
 '''
-We're going to average a list of numbers.
-1. Start with the following list,
-2. iterate through it,
-3. keeping a 'running sum',
-4. then divide that sum by the number of elements in that list.
-
-Hint: Remember len will give you the length of a list.
-
-Example/Tip:
-nums = [5, 0, 8, 3, 4, 1, 6]
-
-# loop over the elements
-for num in nums:
-    print(num)
-
-# loop over the indices
-for i in range(len(nums)):
-    print(nums[i])
+Lab 10: Average Numbers
 
 Version 2
-
 Ask the user to enter the numbers one at a time, putting them into a list.
 If the user enters 'done', then calculate and display the average.
 The following code demonstrates how to add an element to the end of a list.
@@ -37,10 +17,7 @@ Below is an example input/output:
 > enter a number, or 'done': 4
 > enter a number, or 'done': done
 average: 4
-
 '''
-# Start with the following list
-# nums = [5, 0, 8, 3, 4, 1, 6]
 
 # Ask the user to enter the numbers one at a time, putting them into a list.
 # If the user enters 'done', then calculate and display the average.
@@ -54,7 +31,7 @@ while True:
     else:
         nums.append(int(userinput_num))
 
-# iIterate through the list
+# iterate through the list
 # Keep a 'running sum'
 num = 0
 for i in range(len(nums)):

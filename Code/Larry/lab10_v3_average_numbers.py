@@ -1,14 +1,13 @@
-# Lab 10: Average Numbers
-# average_numbers_v3.py
-
+# filename: lab10_v3_average_numbers.py
 '''
+Lab 10: Average Numbers
+
 Version 3
 
 Calculate the median.
 The median is the number in the middle when the list is sorted.
 If there's an even number of numbers, the median is a list of the two numbers in the middle.
 Remember the sort method on lists.
-
 '''
 
 # Ask the user to enter the numbers one at a time, putting them into a list.
