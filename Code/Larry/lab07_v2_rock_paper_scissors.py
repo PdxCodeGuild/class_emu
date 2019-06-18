@@ -1,6 +1,7 @@
 # filename: lab07_v2_rock_paper_scissors.py
 '''
 Lab 7: Rock Paper Scissors
+
 Let's play rock-paper-scissors with the computer.
 
 The computer will ask the user for their choice (rock, paper, scissors)
@@ -21,6 +22,7 @@ scissors vs scissors (tie)
 Version 2 (optional)
 After playing, ask them if they'd like to play again. If they say yes, restart the game, otherwise exit.
 '''
+
 import random
 
 # create list of choices
