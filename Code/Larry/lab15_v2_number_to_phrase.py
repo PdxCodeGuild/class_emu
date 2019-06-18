@@ -62,20 +62,23 @@ while True:
     elif 10 <= user_number <= 19: # use teens_dict
         print(teens_dict[user_number])
     elif 20 <= user_number <= 99: # use tens_dict & ones_list
-        print(f"{tens_dict[tens_digit*10]}-{ones_list[ones_digit]}")
+        print(f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}")
     elif 100 <= user_number <= 999: # use tens_dict & ones_list
         if ones_digit == 0 and tens_digit == 0: # if user_number is n00, e.g. 100
             print(f"{ones_list[hundreds_digit]} hundred")
         elif tens_digit == 0 and ones_digit > 0: # if user_number is n0n, e.g. 101
             print(f"{ones_list[hundreds_digit]} hundred {ones_list[ones_digit]}")
-        elif tens_digit > 0 and ones_digit == 0: # if user_number is nn0, e.g. 110
+        elif tens_digit == 1 and ones_digit == 0: # if user_number is nn0, e.g. 110
             print(f"{ones_list[hundreds_digit]} hundred {teens_dict[tens_digit*10]}")
-        elif tens_digit == 1 and ones_digit == 1: # if user_number is n11, e.g. 111
+        elif tens_digit == 1 and ones_digit >= 0: # if user_number is n1n, e.g. 111
+            print(f"{ones_list[hundreds_digit]} hundred {teens_dict[tens_digit*10+ones_digit]}")
+        elif tens_digit > 1 and ones_digit == 0: # if user_number is nn0, e.g. 120
+            print(f"{ones_list[hundreds_digit]} hundred {tens_dict[tens_digit*10]}")
+        elif tens_digit == 1 and ones_digit >= 0: # if user_number is n1n, e.g. 121
             print(f"{ones_list[hundreds_digit]} hundred {teens_dict[tens_digit*10+ones_digit]}")
         else:
             print(f"{ones_list[hundreds_digit]} hundred {tens_dict[tens_digit*10]} {ones_list[ones_digit]}")
 
     try_again = input("Do you want to try again? (yes)(no): ").lower()
-    if try_again == "yes":
-        continue
-    break
+    if try_again == "no":
+        break
