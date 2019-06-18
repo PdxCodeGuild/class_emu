@@ -10,6 +10,7 @@ so encryption is the same as decryption.
 Version 2 (optional)
 Allow the user to input the amount of rotation used in the encryption / decryption.
 '''
+
 # import the string libraries
 import string
 
