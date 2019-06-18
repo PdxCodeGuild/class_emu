@@ -1,7 +1,7 @@
 # filename: lab15_v2_test_cases.txt
 
 +-------+--------------------------+
-| Input | Output                   |
+| Input | Expected Output          |
 +-------+--------------------------+
 | -1    | Input out of range       |
 | 0     | zero                     |
