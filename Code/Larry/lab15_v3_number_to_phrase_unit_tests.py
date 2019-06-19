@@ -145,7 +145,7 @@ input_output = [
     (4200, "MMMMCC"),
     (4100, "MMMMC"),
     (4499, "MMMMCDXCIX"),
-    (4999, "MMMMCMXCIX")
+    (4999, "MMMMCMXCIX"),
 ]
 
 failed_test_count = 0
