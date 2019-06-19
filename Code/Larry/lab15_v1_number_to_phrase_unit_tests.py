@@ -59,6 +59,7 @@ def run_tests(user_number):
 # try a bunch of numbers as input
 
 input_output = [
+    (-1, None),
     (0, "zero"),
     (3, "three"),
     (9, "nine"),

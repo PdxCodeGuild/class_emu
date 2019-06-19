@@ -1,0 +1,102 @@
+# filename: lab15_v2_number_to_phrase_unit_tests.py
+'''
+Lab 15: Number to Phrase - UNIT TESTS
+
+Convert a given number into its english representation.
+For example: 67 becomes 'sixty-seven'.
+Handle numbers from 0-99.
+
+Version 2
+Handle numbers from 100-999.
+'''
+
+def run_tests(user_number):
+
+    # Define the word equivalent of the numbers
+    ones_list = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'] # 0 - 9
+    teens_dict = { # 10 - 19
+        10: 'ten',
+        11: 'eleven',
+        12: 'twelve',
+        13: 'thirteen',
+        14: 'fourteen',
+        15: 'fifteen',
+        16: 'sixteen',
+        17: 'seventeen',
+        18: 'eighteen',
+        19: 'nineteen'
+    }
+    tens_dict = { # 20 - 90
+        20: 'twenty',
+        30: 'thirty',
+        40: 'forty',
+        50: 'fifty',
+        60: 'sixty',
+        70: 'seventy',
+        80: 'eighty',
+        90: 'ninety'
+    }
+
+    # Break the number into tens_digit and ones_digit
+    hundreds_digit = user_number // 100
+    tens_digit = user_number % 100 // 10
+    ones_digit = user_number % 10
+
+    # Print the numeric phrase equivalent
+    if 0 <= user_number <= 9: # use ones_list
+        return ones_list[ones_digit]
+    elif 10 <= user_number <= 19: # use teens_dict
+        return teens_dict[user_number]
+    elif 20 <= user_number <= 99: # use tens_dict & ones_list
+        return f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}"
+    elif 100 <= user_number <= 999: # use tens_dict & ones_list
+        if ones_digit == 0 and tens_digit == 0: # if user_number is n00, e.g. 100
+            return f"{ones_list[hundreds_digit]} hundred"
+        elif tens_digit == 0 and ones_digit > 0: # if user_number is n0n, e.g. 101
+            return f"{ones_list[hundreds_digit]} hundred {ones_list[ones_digit]}"
+        elif tens_digit == 1 and ones_digit == 0: # if user_number is nn0, e.g. 110
+            return f"{ones_list[hundreds_digit]} hundred {teens_dict[tens_digit*10]}"
+        elif tens_digit == 1 and ones_digit >= 0: # if user_number is n1n, e.g. 111
+            return f"{ones_list[hundreds_digit]} hundred {teens_dict[tens_digit*10+ones_digit]}"
+        elif tens_digit > 1 and ones_digit == 0: # if user_number is nn0, e.g. 120
+            return f"{ones_list[hundreds_digit]} hundred {tens_dict[tens_digit*10]}"
+        elif tens_digit == 1 and ones_digit >= 0: # if user_number is n1n, e.g. 121
+            return f"{ones_list[hundreds_digit]} hundred {teens_dict[tens_digit*10+ones_digit]}"
+        else:
+            return f"{ones_list[hundreds_digit]} hundred {tens_dict[tens_digit*10]} {ones_list[ones_digit]}"
+
+
+
+# try a bunch of numbers as input
+
+input_output = [
+    (-1, None),
+    (0, "zero"),
+    (1, "one"),
+    (10, "ten"),
+    (100, "one hundred"),
+    (101, "one hundred one"),
+    (110, "one hundred ten"),
+    (111, "one hundred eleven"),
+    (120, "one hundred twenty"),
+    (121, "one hundred twenty one"),
+    (145, "one hundred forty five"),
+    (200, "two hundred"),
+    (259, "two hundred fifty nine"),
+    (301, "three hundred one"),
+    (436, "four hundred thirty six"),
+    (538, "five hundred thirty eight"),
+    (605, "six hundred five"),
+    (777, "seven hundred seventy seven"),
+    (888, "eight hundred eighty eight"),
+    (999, "nine hundred ninety nine"),
+    (1000, None)
+]
+
+failed_test_count = 0
+for i in range(len(input_output)):
+    if run_tests(input_output[i][0]) != input_output[i][1]:
+        print(f"{input_output[i][0]}: Fail. Expected Result: {input_output[i][1]} ==> Actual result: {run_tests(input_output[i][0])}")
+        failed_test_count += 1
+if failed_test_count == 0:
+        print("All tests passed.")
