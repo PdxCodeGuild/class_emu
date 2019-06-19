@@ -69,24 +69,13 @@ while True:
     if fivehundred == 1 and hundreds == 4:          # 900
         roman_equiv += "CM"
     elif fivehundred == 1 and 3 >= hundreds >= 1:   # 800,700,600
-            roman_equiv += "D" + "C" * hundreds
+        roman_equiv += "D" + "C" * hundreds
     elif fivehundred == 1:                          # 500
         roman_equiv += "D"
     elif hundreds == 4:                             # 400
         roman_equiv += "CD"
     elif 3 >= hundreds >= 1:                        # 300,200,100
         roman_equiv += "C" * hundreds
-
-    # if fivehundred == 1 and hundreds == 4:        # 900
-    #     roman_equiv += "CM"
-    # elif fivehundred == 1:                        # 500
-    #     roman_equiv += "D"
-    #     if 0 < hundreds <= 3:                     # 800,700,600
-    #         roman_equiv += "C" * hundreds
-    # elif hundreds == 4:                           # 400
-    #     roman_equiv += "CD"
-    # elif 0 < hundreds <= 3:                       # 300,200,100
-    #     roman_equiv += "C" * hundreds
 
     if fifty == 1 and tens == 4:                    # 90
         roman_equiv += "XC"
@@ -99,17 +88,6 @@ while True:
     elif 3 >= tens >= 1:                            # 30,20,10
         roman_equiv += "X" * tens
 
-    # if fifty == 1 and tens == 4:                    # 90
-    #     roman_equiv += "XC"
-    # elif fifty == 1:                                # 50
-    #     roman_equiv += "L"
-    #     if 0 < tens <= 3:                           # 80,70,60
-    #         roman_equiv += "X" * tens
-    # elif tens == 4:                                 # 40
-    #     roman_equiv += "XL"
-    # elif 0 < tens <= 3:                             # 30,20,10
-    #     roman_equiv += "X" * tens
-
     if five == 1 and ones == 4:                     # 9
         roman_equiv += "IX"
     elif five == 1 and 3 >= ones >= 1:              # 8,7,6
@@ -121,6 +99,54 @@ while True:
     elif ones == 4:                                 # 4
         roman_equiv += "IV"
 
+
+    print(f"{user_number} => {roman_equiv}")
+
+    try_again = input("\nDo you want to try again? (yes)(no): ").lower()
+    if try_again == "no":
+        break
+
+
+
+
+    #####################################################
+
+    # if five = 1 and ones = 4                    9
+    # elif five = 1 and ones between 3 and 1      8,7,6
+    # elif five = 1                               5
+    # elif ones = 4                               4
+    # elif ones between 3 and 1                   3,2,1
+
+    # if five = 1 and ones = 4                    9
+    # elif five = 1                               5
+    #     if ones between 3 and 1                 8,7,6
+    # elif ones = 4                               4
+    # elif ones between 3 and 1                   3,2,1
+
+    #####################################################
+
+    # if fivehundred == 1 and hundreds == 4:        # 900
+    #     roman_equiv += "CM"
+    # elif fivehundred == 1:                        # 500
+    #     roman_equiv += "D"
+    #     if 0 < hundreds <= 3:                     # 800,700,600
+    #         roman_equiv += "C" * hundreds
+    # elif hundreds == 4:                           # 400
+    #     roman_equiv += "CD"
+    # elif 0 < hundreds <= 3:                       # 300,200,100
+    #     roman_equiv += "C" * hundreds
+
+    # if fifty == 1 and tens == 4:                  # 90
+    #     roman_equiv += "XC"
+    # elif fifty == 1:                              # 50
+    #     roman_equiv += "L"
+    #     if 0 < tens <= 3:                         # 80,70,60
+    #         roman_equiv += "X" * tens
+    # elif tens == 4:                               # 40
+    #     roman_equiv += "XL"
+    # elif 0 < tens <= 3:                           # 30,20,10
+    #     roman_equiv += "X" * tens
+
     # if five == 1 and ones == 4:                   # 9
     #     roman_equiv += "IX"
     # elif five == 1:                               # 5
@@ -131,27 +157,3 @@ while True:
     #     roman_equiv += "IV"
     # elif 1 <= ones <= 3:                          # 3,2,1
     #     roman_equiv += "I" * ones
-
-
-    '''
-    if five = 1 and ones = 4                    9
-    elif five = 1 and ones between 3 and 1      8,7,6
-    elif five = 1                               5
-    elif ones = 4                               4
-    elif ones between 3 and 1                   3,2,1
-    '''
-
-    # if five = 1 and ones = 4                    9
-    # elif five = 1                               5
-    #     if ones between 3 and 1                 8,7,6
-    # elif ones = 4                               4
-    # elif ones between 3 and 1                   3,2,1
-
-
-
-
-    print(f"{user_number} => {roman_equiv}")
-
-    try_again = input("\nDo you want to try again? (yes)(no): ").lower()
-    if try_again == "no":
-        break
