@@ -51,30 +51,43 @@ def run_tests(user_number):
     elif 10 <= user_number <= 19: # use teens_dict
         return teens_dict[user_number]
     elif 20 <= user_number <= 99: # use tens_dict & ones_list
-        return f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}"
+        if ones_digit == 0:
+            return f"{tens_dict[tens_digit*10]}"
+        else:
+            return f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}"
 
 # try a bunch of numbers as input
-if run_tests(3) == "three":
-    print("3: Pass")
-else:
-    print(f"3: Fail. Expected Result: 'three' ==> Actual result: '{run_tests(3)}'")
 
-if run_tests(15) == "fifteen":
-    print("15: Pass")
-else:
-    print(f"15: Fail. Expected Result: 'fifteen' ==> Actual result: '{run_tests(15)}'")
+input_output = [
+    (0, "zero"),
+    (3, "three"),
+    (9, "nine"),
+    (10, "ten"),
+    (15, "fifteen"),
+    (19, "nineteen"),
+    (20, "twenty"),
+    (23, "twenty three"),
+    (30, "thirty"),
+    (31, "thirty one"),
+    (40, "forty"),
+    (42, "forty two"),
+    (50, "fifty"),
+    (53, "fifty three"),
+    (60, "sixty"),
+    (64, "sixty four"),
+    (70, "seventy"),
+    (75, "seventy five"),
+    (80, "eighty"),
+    (86, "eighty six"),
+    (90, "ninety"),
+    (99, "ninety nine"),
+    (101, None)
+]
 
-if run_tests(21) == "twenty one":
-    print("21: Pass")
-else:
-    print(f"21: Fail. Expected Result: 'twenty one' ==> Actual result: '{run_tests(21)}'")
-
-if run_tests(99) == "ninety nine":
-    print("99: Pass")
-else:
-    print(f"99: Fail. Expected Result: 'ninety nine' ==> Actual result: '{run_tests(99)}'")
-
-if run_tests(101) == None:
-    print("101: Pass")
-else:
-    print(f"101: Fail. Expected Result: 'None' ==> Actual result: '{run_tests(101)}'")
+failed_test_count = 0
+for i in range(len(input_output)):
+    if run_tests(input_output[i][0]) != input_output[i][1]:
+        print(f"{input_output[i][0]}: Fail. Expected Result: {input_output[i][1]} ==> Actual result: {run_tests(input_output[i][0])}")
+        failed_test_count += 1
+if failed_test_count == 0:
+        print("All tests passed.")
