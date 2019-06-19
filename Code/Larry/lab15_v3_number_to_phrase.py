@@ -20,7 +20,9 @@ Example:
 | L + X+V+I+I =
 | LXVII
 
-"Repeating a numeral up to three times represents addition of the number. For example, III represents 1 + 1 + 1 = 3. Only I, X, C, and M can be repeated; V, L, and D cannot be, and there is no need to do so."
+"Repeating a numeral up to three times represents addition of the number.
+For example, III represents 1 + 1 + 1 = 3. Only I, X, C, and M can be repeated; V, L, and D cannot be,
+and there is no need to do so."
 URL: http://sierra.nmsu.edu/morandi/coursematerials/RomanNumerals.html
 
 "For numbers over 1,000, you put a dash over the top of the Roman Numeral to indicate multiplied by 1,000."
@@ -43,26 +45,20 @@ def get_integer(prompt_text):
 while True:
     user_number = get_integer("\nEnter a number between 1 - 4999 to convert: ")
 
-    # Break the big integer into smaller integers
-    thousands = user_number // 1000
-    remainder = user_number % 1000
-
+    # Break the big integer into smaller & smaller integers
+    thousands   = user_number // 1000
+    remainder   = user_number % 1000
     fivehundred = remainder // 500
-    remainder = remainder % 500
-
-    hundreds = remainder // 100
-    remainder = remainder % 100
-
-    fifty = remainder // 50
-    remainder = remainder % 50
-
-    tens = remainder // 10
-    remainder = remainder % 10
-
-    five = remainder // 5
-    remainder = remainder % 5
-
-    ones = remainder // 1
+    remainder   = remainder % 500
+    hundreds    = remainder // 100
+    remainder   = remainder % 100
+    fifty       = remainder // 50
+    remainder   = remainder % 50
+    tens        = remainder // 10
+    remainder   = remainder % 10
+    five        = remainder // 5
+    remainder   = remainder % 5
+    ones        = remainder // 1
 
     # Convert the integers to the Roman equivalent
     roman_equiv = '' # base value for the output string variable
@@ -70,46 +66,90 @@ while True:
     if 0 < thousands <= 4:
         roman_equiv += "M" * thousands
 
-    if fivehundred == 1 and hundreds == 4: # the '9' in '1984'
+    if fivehundred == 1 and hundreds == 4:          # 900
         roman_equiv += "CM"
-    elif fivehundred == 1:
+    elif fivehundred == 1 and 3 >= hundreds >= 1:   # 800,700,600
+            roman_equiv += "D" + "C" * hundreds
+    elif fivehundred == 1:                          # 500
         roman_equiv += "D"
-        if 0 < hundreds <= 3:
-            roman_equiv += "C" * hundreds
-        elif hundreds == 4:
-            roman_equiv += "CD"
-    elif 0 < hundreds <= 3:
-        roman_equiv += "C" * hundreds
-    elif hundreds == 4:
+    elif hundreds == 4:                             # 400
         roman_equiv += "CD"
+    elif 3 >= hundreds >= 1:                        # 300,200,100
+        roman_equiv += "C" * hundreds
 
-    if fifty == 1 and tens == 4:
+    # if fivehundred == 1 and hundreds == 4:        # 900
+    #     roman_equiv += "CM"
+    # elif fivehundred == 1:                        # 500
+    #     roman_equiv += "D"
+    #     if 0 < hundreds <= 3:                     # 800,700,600
+    #         roman_equiv += "C" * hundreds
+    # elif hundreds == 4:                           # 400
+    #     roman_equiv += "CD"
+    # elif 0 < hundreds <= 3:                       # 300,200,100
+    #     roman_equiv += "C" * hundreds
+
+    if fifty == 1 and tens == 4:                    # 90
         roman_equiv += "XC"
-    elif fifty == 1:
+    elif fifty == 1 and 3 >= tens >= 1:             # 80,70,60
+        roman_equiv += "L" + "X" * tens
+    elif fifty == 1:                                # 50
         roman_equiv += "L"
-        if 0 < tens <= 3:
-            roman_equiv += "X" * tens
-        elif tens == 4:
-            roman_equiv += "XL"
-    elif 0 < tens <= 3:
-        roman_equiv += "X" * tens
-    elif tens == 4:
+    elif tens == 4:                                 # 40
         roman_equiv += "XL"
+    elif 3 >= tens >= 1:                            # 30,20,10
+        roman_equiv += "X" * tens
 
-    if five == 1 and ones == 4:
+    # if fifty == 1 and tens == 4:                    # 90
+    #     roman_equiv += "XC"
+    # elif fifty == 1:                                # 50
+    #     roman_equiv += "L"
+    #     if 0 < tens <= 3:                           # 80,70,60
+    #         roman_equiv += "X" * tens
+    # elif tens == 4:                                 # 40
+    #     roman_equiv += "XL"
+    # elif 0 < tens <= 3:                             # 30,20,10
+    #     roman_equiv += "X" * tens
+
+    if five == 1 and ones == 4:                     # 9
         roman_equiv += "IX"
-    elif five == 1:
+    elif five == 1 and 3 >= ones >= 1:              # 8,7,6
+        roman_equiv += "V" + "I" * ones
+    elif five == 1:                                 # 5
         roman_equiv += "V"
-        if 0 < ones <= 3:
-            roman_equiv += "I" * ones
-        elif ones == 4:
-            roman_equiv += "IV"
-    elif 0 < ones <= 3:
+    elif 1 <= ones <= 3:                            # 3,2,1
         roman_equiv += "I" * ones
-    elif ones == 4:
+    elif ones == 4:                                 # 4
         roman_equiv += "IV"
 
-    # print(f"\n[ {roman_equiv} ] is the Roman numeral equivalent of [ {user_number} ]")
+    # if five == 1 and ones == 4:                   # 9
+    #     roman_equiv += "IX"
+    # elif five == 1:                               # 5
+    #     roman_equiv += "V"
+    #     if 3 >= ones >= 1:                        # 8,7,6
+    #         roman_equiv += "I" * ones
+    # elif ones == 4:                               # 4
+    #     roman_equiv += "IV"
+    # elif 1 <= ones <= 3:                          # 3,2,1
+    #     roman_equiv += "I" * ones
+
+
+    '''
+    if five = 1 and ones = 4                    9
+    elif five = 1 and ones between 3 and 1      8,7,6
+    elif five = 1                               5
+    elif ones = 4                               4
+    elif ones between 3 and 1                   3,2,1
+    '''
+
+    # if five = 1 and ones = 4                    9
+    # elif five = 1                               5
+    #     if ones between 3 and 1                 8,7,6
+    # elif ones = 4                               4
+    # elif ones between 3 and 1                   3,2,1
+
+
+
+
     print(f"{user_number} => {roman_equiv}")
 
     try_again = input("\nDo you want to try again? (yes)(no): ").lower()
