@@ -110,6 +110,7 @@ input_output = [
     (67, "LXVII"),
     (73, "LXXIII"),
     (88, "LXXXVIII"),
+    (90, "XC"),
     (99, "XCIX"),
     (100, "C"),
     (103, "CIII"),
@@ -136,23 +137,43 @@ input_output = [
     (1984, "MCMLXXXIV"),
     (2013, "MMXIII"),
     (2559, "MMDLIX"),
+    (3499, "MMMCDXCIX"),
     (3984, "MMMCMLXXXIV"),
+    (4000, "MMMM"),
+    (4001, "MMMMI"),
+    (4100, "MMMMC"),
+    (4200, "MMMMCC"),
     (4100, "MMMMC"),
     (4499, "MMMMCDXCIX"),
     (4999, "MMMMCMXCIX")
 ]
 
+failed_test_count = 0
 for i in range(len(input_output)):
-    if run_tests(input_output[i][0]) == input_output[i][1]:
-        print(f"{input_output[i][0]}: Pass")
-    else:
-        print(f"{input_output[i][0]}: Fail. Expected Result: {input_output[i][1]} ==> Actual result: {run_tests(3)}")
+    if run_tests(input_output[i][0]) != input_output[i][1]:
+        print(f"{input_output[i][0]}: Fail. Expected Result: {input_output[i][1]} ==> Actual result: {run_tests(input_output[i][0])}")
+        failed_test_count += 1
+if failed_test_count == 0:
+        print("All tests passed.")
 
-    # Standalone test
-    # if run_tests(10) == "X":
-    #     print("10: Pass")
-    # else:
-    #     print(f"10: Fail. Expected Result: 'X' ==> Actual result: '{run_tests(10)}'")
+
+
+
+
+
+
+### Noisy test ### - All passing and non-passing tests are listed
+# for i in range(len(input_output)):
+#     if run_tests(input_output[i][0]) == input_output[i][1]:
+#         print(f"{input_output[i][0]}: Pass")
+#     else:
+#         print(f"{input_output[i][0]}: Fail. Expected Result: {input_output[i][1]} ==> Actual result: {run_tests(3)}")
+
+### Standalone test ###
+# if run_tests(10) == "X":
+#     print("10: Pass")
+# else:
+#     print(f"10: Fail. Expected Result: 'X' ==> Actual result: '{run_tests(10)}'")
 
 
 
