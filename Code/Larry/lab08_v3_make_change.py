@@ -24,21 +24,38 @@ coins = [
 ]
 '''
 
-# Not sure how to access items from list example above, therefore using a dictionary instead
-coins = {'quarter': 25, 'dime': 10, 'nickel': 5, 'penny': 1}
+# Define the coins in a list of tuples
+coins = [
+    ('quarter', 50),
+    ('dime', 10),
+    ('nickel', 5),
+    ('penny', 1)
+]
+# # ALTERNATE SOLUTION (lines 53-58)
+# # Define the coins in a dictionary
+# coins = {'quarter': 25, 'dime': 10, 'nickel': 5, 'penny': 1}
+
 # Have the user enter the total number in dollars & cents, e.g. 1.36.
 dollars = input("Enter a dollar amount (e.g. 1.36): ")
 # convert dollars & cents to pennies
 pennies = round(float(dollars) * 100)
-# print(user_pennies) #debug
 
 # Calculate the number of quarters, dimes, nickles, and pennies from user input
-quarters = pennies // coins["quarter"]
-pennies = pennies % coins["quarter"]
-dimes = pennies // coins["dime"]
-pennies = pennies % coins["dime"]
-nickels = pennies // coins["nickel"]
-pennies = pennies % coins["nickel"]
+quarters = pennies // coins[0][1]
+pennies = pennies % coins[0][1]
+dimes = pennies // coins[1][1]
+pennies = pennies % coins[1][1]
+nickels = pennies // coins[2][1]
+pennies = pennies % coins[2][1]
+
+# # ALTERNATE SOLUTION (line 36)
+# # Calculate the number of quarters, dimes, nickles, and pennies from user input
+# quarters = pennies // coins["quarter"]
+# pennies = pennies % coins["quarter"]
+# dimes = pennies // coins["dime"]
+# pennies = pennies % coins["dime"]
+# nickels = pennies // coins["nickel"]
+# pennies = pennies % coins["nickel"]
 
 # Print the result
 print(f"That breaks down to {quarters} quarters, {dimes} dimes, {nickels} nickels, and {pennies} pennies")
