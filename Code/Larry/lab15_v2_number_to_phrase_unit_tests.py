@@ -48,7 +48,10 @@ def run_tests(user_number):
     elif 10 <= user_number <= 19: # use teens_dict
         return teens_dict[user_number]
     elif 20 <= user_number <= 99: # use tens_dict & ones_list
-        return f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}"
+        if ones_digit == 0:
+            return f"{tens_dict[tens_digit*10]}"
+        else:
+            return f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}"
     elif 100 <= user_number <= 999: # use tens_dict & ones_list
         if ones_digit == 0 and tens_digit == 0: # if user_number is n00, e.g. 100
             return f"{ones_list[hundreds_digit]} hundred"
@@ -74,6 +77,24 @@ input_output = [
     (0, "zero"),
     (1, "one"),
     (10, "ten"),
+    (15, "fifteen"),
+    (19, "nineteen"),
+    (20, "twenty"),
+    (23, "twenty three"),
+    (30, "thirty"),
+    (31, "thirty one"),
+    (40, "forty"),
+    (42, "forty two"),
+    (50, "fifty"),
+    (53, "fifty three"),
+    (60, "sixty"),
+    (64, "sixty four"),
+    (70, "seventy"),
+    (75, "seventy five"),
+    (80, "eighty"),
+    (86, "eighty six"),
+    (90, "ninety"),
+    (99, "ninety nine"),
     (100, "one hundred"),
     (101, "one hundred one"),
     (110, "one hundred ten"),

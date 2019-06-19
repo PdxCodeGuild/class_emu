@@ -62,7 +62,10 @@ while True:
     elif 10 <= user_number <= 19: # use teens_dict
         print(teens_dict[user_number])
     elif 20 <= user_number <= 99: # use tens_dict & ones_list
-        print(f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}")
+        if ones_digit == 0:
+            print(f"{tens_dict[tens_digit*10]}")
+        else:
+            print(f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}")
     elif 100 <= user_number <= 999: # use tens_dict & ones_list
         if ones_digit == 0 and tens_digit == 0: # if user_number is n00, e.g. 100
             print(f"{ones_list[hundreds_digit]} hundred")
