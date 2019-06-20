@@ -29,17 +29,12 @@ def check_palindrome(user_word):
             user_word = user_word.replace(letter, "")
 
     # Loop through each letter in the user_word
-    letter_not_matched = 0
     for i in range(len(user_word)):
-
         # Check if 1st letter=last letter, 2nd letter=2nd to last, etc
         if user_word[i] != user_word[(-1-i)]:
-            letter_not_matched += 1
-
-    # If any of letters don't match, return False, else return True
-    if letter_not_matched == 0:
-        return True
-    return False
+            # print("False")
+            return False
+    return True
 
 # Get user input
 user_word = input("[Palindrome] Enter a word: ")
@@ -58,6 +53,8 @@ Pass: False <= racecars
 Pass: True <= Race car
 Pass: True <= Race car!
 Pass: True <= Taco cat
+Pass: False <= tacacot
+Pass: False <= afghha
 Pass: True <= Yo, banana boy!
 Pass: True <= Ed, I saw Harpo Marx ram Oprah W. aside.
 Pass: True <= Do geese see God?
