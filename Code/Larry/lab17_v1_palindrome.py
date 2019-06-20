@@ -24,9 +24,6 @@ def check_palindrome(user_word):
 
     # Sanitize user_word
     user_word = user_word.replace(" ", "").lower()
-    # for letter in user_word:
-    #     if letter in string.punctuation:
-    #         user_word = user_word.replace(letter, "")
     for letter in user_word:
         if letter not in string.ascii_lowercase:
             user_word = user_word.replace(letter, "")
