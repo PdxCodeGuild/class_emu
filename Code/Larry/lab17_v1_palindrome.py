@@ -1,4 +1,4 @@
-# filename: lab17_palindrome.py
+# filename: lab17_v1_palindrome.py
 '''
 Lab 17: Palindrome
 
