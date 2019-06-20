@@ -70,51 +70,55 @@ def get_word_number2(user_number):
 
 
 
+###########################################################
 ### UNIT TESTS ###
-# Test (at least) one number from every if/elif conditional
+###########################################################
 
-test_data = [
-    (-1, None),
-    (0, "zero"),
-    (1, "one"),
-    (10, "ten"),
-    (15, "fifteen"),
-    (19, "nineteen"),
-    (20, "twenty"),
-    (23, "twenty three"),
-    (30, "thirty"),
-    (31, "thirty one"),
-    (40, "forty"),
-    (42, "forty two"),
-    (50, "fifty"),
-    (53, "fifty three"),
-    (60, "sixty"),
-    (64, "sixty four"),
-    (70, "seventy"),
-    (75, "seventy five"),
-    (80, "eighty"),
-    (86, "eighty six"),
-    (90, "ninety"),
-    (99, "ninety nine"),
-    (100, "one hundred"),
-    (101, "one hundred one"),
-    (110, "one hundred ten"),
-    (111, "one hundred eleven"),
-    (120, "one hundred twenty"),
-    (121, "one hundred twenty one"),
-    (145, "one hundred forty five"),
-    (200, "two hundred"),
-    (259, "two hundred fifty nine"),
-    (301, "three hundred one"),
-    (436, "four hundred thirty six"),
-    (538, "five hundred thirty eight"),
-    (605, "six hundred five"),
-    (777, "seven hundred seventy seven"),
-    (888, "eight hundred eighty eight"),
-    (999, "nine hundred ninety nine"),
-    (1000, None)
-]
+# Check (at least) one number from every if/elif conditional
+if __name__ == '__main__':
 
-from lab15_unit_test import run_tests
+    test_data = [
+        (-1, None),
+        (0, "zero"),
+        (1, "one"),
+        (10, "ten"),
+        (15, "fifteen"),
+        (19, "nineteen"),
+        (20, "twenty"),
+        (23, "twenty three"),
+        (30, "thirty"),
+        (31, "thirty one"),
+        (40, "forty"),
+        (42, "forty two"),
+        (50, "fifty"),
+        (53, "fifty three"),
+        (60, "sixty"),
+        (64, "sixty four"),
+        (70, "seventy"),
+        (75, "seventy five"),
+        (80, "eighty"),
+        (86, "eighty six"),
+        (90, "ninety"),
+        (99, "ninety nine"),
+        (100, "one hundred"),
+        (101, "one hundred one"),
+        (110, "one hundred ten"),
+        (111, "one hundred eleven"),
+        (120, "one hundred twenty"),
+        (121, "one hundred twenty one"),
+        (145, "one hundred forty five"),
+        (200, "two hundred"),
+        (259, "two hundred fifty nine"),
+        (301, "three hundred one"),
+        (436, "four hundred thirty six"),
+        (538, "five hundred thirty eight"),
+        (605, "six hundred five"),
+        (777, "seven hundred seventy seven"),
+        (888, "eight hundred eighty eight"),
+        (999, "nine hundred ninety nine"),
+        (1000, None)
+    ]
 
-print(run_tests(test_data, get_word_number2))
+    from lab15_functions import run_tests
+
+    print(run_tests(test_data, get_word_number2))

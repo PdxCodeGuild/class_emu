@@ -1,6 +1,6 @@
 # filename: lab15_v1_number_to_phrase_unit_tests.py
 '''
-Lab 15: Number to Phrase - UNIT TESTS
+Lab 15: Number to Phrase - FUNCTION w/ UNIT TESTS
 
 Convert a given number into its english representation.
 For example: 67 becomes 'sixty-seven'.
@@ -58,36 +58,40 @@ def get_word_number(user_number):
 
 
 
+###########################################################
 ### UNIT TESTS ###
-# Test (at least) one number from every if/elif conditional
+###########################################################
 
-test_data = [
-    (-1, None),
-    (0, "zero"),
-    (3, "three"),
-    (9, "nine"),
-    (10, "ten"),
-    (15, "fifteen"),
-    (19, "nineteen"),
-    (20, "twenty"),
-    (23, "twenty three"),
-    (30, "thirty"),
-    (31, "thirty one"),
-    (40, "forty"),
-    (42, "forty two"),
-    (50, "fifty"),
-    (53, "fifty three"),
-    (60, "sixty"),
-    (64, "sixty four"),
-    (70, "seventy"),
-    (75, "seventy five"),
-    (80, "eighty"),
-    (86, "eighty six"),
-    (90, "ninety"),
-    (99, "ninety nine"),
-    (101, None)
-]
+# Check (at least) one number from every if/elif conditional
+if __name__ == '__main__':
 
-from lab15_unit_test import run_tests
+    test_data = [
+        (-1, None),
+        (0, "zero"),
+        (3, "three"),
+        (9, "nine"),
+        (10, "ten"),
+        (15, "fifteen"),
+        (19, "nineteen"),
+        (20, "twenty"),
+        (23, "twenty three"),
+        (30, "thirty"),
+        (31, "thirty one"),
+        (40, "forty"),
+        (42, "forty two"),
+        (50, "fifty"),
+        (53, "fifty three"),
+        (60, "sixty"),
+        (64, "sixty four"),
+        (70, "seventy"),
+        (75, "seventy five"),
+        (80, "eighty"),
+        (86, "eighty six"),
+        (90, "ninety"),
+        (99, "ninety nine"),
+        (101, None)
+    ]
 
-print(run_tests(test_data, get_word_number))
+    from lab15_functions import run_tests
+
+    print(run_tests(test_data, get_word_number))
