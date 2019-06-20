@@ -23,26 +23,25 @@ import string
 def check_palindrome(user_word):
 
     # Sanitize user_word
-    user_word = user_word.replace(" ", "").lower()
+    user_word = user_word.replace(" ", "").lower() # remove spaces and convert to lowercase letters
     for letter in user_word:
-        if letter not in string.ascii_lowercase:
-            user_word = user_word.replace(letter, "")
+        if letter not in string.ascii_lowercase:        # if any characters are not lowercase letters
+            user_word = user_word.replace(letter, "")   # replace them with nothing
 
     # Loop through each letter in the user_word
     for i in range(len(user_word)):
         # Check if 1st letter=last letter, 2nd letter=2nd to last, etc
         if user_word[i] != user_word[(-1-i)]:
-            # print("False")
-            return False
-    return True
+            return False # if any mismatches are found, break out of for loop (return False)
+    return True          # otherwise, return True
 
 # Get user input
 user_word = input("[Palindrome] Enter a word: ")
 
-if check_palindrome(user_word) == True:
-    print(f"'{user_word}' is a palindrome.")
+if check_palindrome(user_word) == True:          # check response from check_palindrome()
+    print(f"'{user_word}' is a palindrome.")     # if True, print "it's a palindrome"
 else:
-    print(f"'{user_word}' is a not palindrome.")
+    print(f"'{user_word}' is a not palindrome.") # if False, print "it's not a palindrome"
 
 
 ### UNIT TESTS ###
