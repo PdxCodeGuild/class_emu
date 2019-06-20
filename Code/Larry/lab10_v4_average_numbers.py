@@ -42,8 +42,8 @@ for num in numbers_dict:
         highest_count = numbers_dict[num]
         highest_num = num
 
-print("\n")
+print()
 print("OUTPUT")
 print(f"For Loop (list): Your preferred the number is {highest_num}.")
 print(f"Tuple: Your preferred the number is {counts[0][0]}.")
-print("\n")
+print()
