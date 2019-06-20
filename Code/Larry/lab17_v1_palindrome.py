@@ -38,10 +38,10 @@ def check_palindrome(user_word):
 # Get user input
 user_word = input("[Palindrome] Enter a word: ")
 
-if check_palindrome(user_word):          # check response from check_palindrome()
-    print(f"'{user_word}' is a palindrome.")     # if True, print "it's a palindrome"
+if check_palindrome(user_word):                  # if check_palindrome()
+    print(f"'{user_word}' is a palindrome.")     # evals to True, print "it's a palindrome"
 else:
-    print(f"'{user_word}' is a not palindrome.") # if False, print "it's not a palindrome"
+    print(f"'{user_word}' is a not palindrome.") # evals to False, print "it's not a palindrome"
 
 
 ### UNIT TESTS ###
