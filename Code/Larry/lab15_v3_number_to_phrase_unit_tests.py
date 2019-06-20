@@ -1,6 +1,6 @@
 # filename: lab15_v3_number_to_phrase_unit_tests.py
 '''
-Lab 15: Number to Phrase - UNIT TESTS
+Lab 15: Number to Phrase - FUNCTION w/ UNIT TESTS
 
 Version 3 (optional)
 Convert a number to roman numerals.

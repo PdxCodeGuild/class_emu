@@ -1,6 +1,6 @@
 # filename: lab15_v2_number_to_phrase_unit_tests.py
 '''
-Lab 15: Number to Phrase - UNIT TESTS
+Lab 15: Number to Phrase - FUNCTION w/ UNIT TESTS
 
 Convert a given number into its english representation.
 For example: 67 becomes 'sixty-seven'.
