@@ -10,7 +10,7 @@ Version 2
 Handle numbers from 100-999.
 '''
 
-def run_tests(user_number):
+def get_word_number2(user_number):
 
     # Define the word equivalent of the numbers
     ones_list = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'] # 0 - 9
@@ -70,9 +70,10 @@ def run_tests(user_number):
 
 
 
-# try a bunch of numbers as input
+### UNIT TESTS ###
+# Test (at least) one number from every if/elif conditional
 
-input_output = [
+test_data = [
     (-1, None),
     (0, "zero"),
     (1, "one"),
@@ -114,12 +115,6 @@ input_output = [
     (1000, None)
 ]
 
-failed_test_count = 0
-for i in range(len(input_output)):
-    input = run_tests(input_output[i][0])
-    expected_output = input_output[i][1]
-    if input != expected_output:
-        print(f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}")
-        failed_test_count += 1
-if failed_test_count == 0:
-        print("All tests passed.")
+from lab15_unit_test import run_tests
+
+print(run_tests(test_data, get_word_number2))

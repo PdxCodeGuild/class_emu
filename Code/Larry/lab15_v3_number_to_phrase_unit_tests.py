@@ -89,7 +89,7 @@ def get_roman_numerals(user_number):
 
 
 ### UNIT TESTS ###
-# Try a bunch of numbers as input
+# Test (at least) one number from every if/elif conditional
 
 test_data = [
     (1, "I"),
@@ -149,21 +149,32 @@ test_data = [
     (4999, "MMMMCMXCIX"),
 ]
 
-def run_tests(input_output):
-    failed_test_count = 0
-    for i in range(len(input_output)):
-        # input = run_tests(input_output[i][0])
-        input = get_roman_numerals(input_output[i][0])
-        expected_output = input_output[i][1]
-        if input != expected_output:
-            return f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}"
-            failed_test_count += 1
-    if failed_test_count == 0:
-            return "All tests passed."
 
-print(run_tests(test_data))
+from lab15_unit_test import run_tests
+
+print(run_tests(test_data, get_roman_numerals))
 
 
+
+
+
+
+
+
+
+### Quiet test ### - Only non-passing tests are listed, else it says "All tests passed."
+# def run_tests(input_output):
+#     failed_test_count = 0
+#     for i in range(len(input_output)):
+#         input = get_roman_numerals(input_output[i][0])
+#         expected_output = input_output[i][1]
+#         if input != expected_output:
+#             return f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}"
+#             failed_test_count += 1
+#     if failed_test_count == 0:
+#             return "All tests passed."
+#
+# print(run_tests(test_data)) # inline run_tests()
 
 
 ### Noisy test ### - All passing and non-passing tests are listed
