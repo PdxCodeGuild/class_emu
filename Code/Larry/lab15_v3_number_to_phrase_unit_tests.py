@@ -29,7 +29,7 @@ URL: http://sierra.nmsu.edu/morandi/coursematerials/RomanNumerals.html
 URL: https://www.integers.co/questions-answers/how-is-5001-written-in-roman-numerals.html
 '''
 
-def run_tests(user_number):
+def get_roman_numerals(user_number):
 
     # Break the big integer into smaller & smaller integers
     thousands   = user_number // 1000
@@ -88,9 +88,10 @@ def run_tests(user_number):
     return roman_equiv
 
 
-# try a bunch of numbers as input
+### UNIT TESTS ###
+# Try a bunch of numbers as input
 
-input_output = [
+test_data = [
     (1, "I"),
     (2, "II"),
     (3, "III"),
@@ -148,16 +149,19 @@ input_output = [
     (4999, "MMMMCMXCIX"),
 ]
 
-failed_test_count = 0
-for i in range(len(input_output)):
-    if run_tests(input_output[i][0]) != input_output[i][1]:
-        print(f"{input_output[i][0]}: Fail. Expected Result: {input_output[i][1]} ==> Actual result: {run_tests(input_output[i][0])}")
-        failed_test_count += 1
-if failed_test_count == 0:
-        print("All tests passed.")
+def run_tests(input_output):
+    failed_test_count = 0
+    for i in range(len(input_output)):
+        # input = run_tests(input_output[i][0])
+        input = get_roman_numerals(input_output[i][0])
+        expected_output = input_output[i][1]
+        if input != expected_output:
+            return f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}"
+            failed_test_count += 1
+    if failed_test_count == 0:
+            return "All tests passed."
 
-
-
+print(run_tests(test_data))
 
 
 

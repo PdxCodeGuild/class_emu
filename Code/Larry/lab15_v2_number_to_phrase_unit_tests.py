@@ -116,8 +116,10 @@ input_output = [
 
 failed_test_count = 0
 for i in range(len(input_output)):
-    if run_tests(input_output[i][0]) != input_output[i][1]:
-        print(f"{input_output[i][0]}: Fail. Expected Result: {input_output[i][1]} ==> Actual result: {run_tests(input_output[i][0])}")
+    input = run_tests(input_output[i][0])
+    expected_output = input_output[i][1]
+    if input != expected_output:
+        print(f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}")
         failed_test_count += 1
 if failed_test_count == 0:
         print("All tests passed.")
