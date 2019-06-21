@@ -26,25 +26,24 @@ import string
 def check_anagram(user_word1, user_word2):
 
     # Sanitize user_words
-    user_words = [user_word1, user_word2] # DEBUG anaGRAM, nag a ram!
+    user_words = [user_word1, user_word2]
     clean_words = []
     for i in range(len(user_words)):
-        user_words[i] = user_words[i].replace(" ", "").lower()
+        user_words[i] = user_words[i].replace(" ", "").lower() # remove spaces and convert to lowercase
         for letter in user_words[i]:
-            if letter not in string.ascii_lowercase:
-                user_words[i] = user_words[i].replace(letter, "")
-        clean_words.append(user_words[i])
-    # return clean_words # DEBUG ['anagram', 'nagaram']
+            if letter not in string.ascii_lowercase:    # if any letter no in ascii_lowercase string ...
+                user_words[i] = user_words[i].replace(letter, "") # ... remove it (replace with nothing)
+        clean_words.append(user_words[i])                         # add the cleaned word to clean_words list
 
-    if len(clean_words[0]) != len(clean_words[1]):
+    if len(clean_words[0]) != len(clean_words[1]): # check_anagram fails if the words aren't the same length
         return False
 
     # Split each list element string to its own list of letters
     letters_list1 = []
     letters_list2 = []
-    for i in range(len(clean_words[0])): # len=7 (i=0, i=1, ... i=6)
-        letters_list1.append(clean_words[0][i])
-        letters_list2.append(clean_words[1][i])
+    for i in range(len(clean_words[0])): # since line 38 returns True, either clean_words' length works
+        letters_list1.append(clean_words[0][i]) # split words into a list of letters
+        letters_list2.append(clean_words[1][i]) # split words into a list of letters
     # return letters_list1, letters_list2 # DEBUG
 
     # Sort the list
@@ -80,9 +79,10 @@ else:
 ### UNIT TESTS ###
 ###########################################################
 
-# [PASS] N/A: "" == ""        # Empty values are disallowed
-# [PASS] N/A: "anagram" != "" # Empty values are disallowed
-# [PASS] N/A: "" != "anagram" # Empty values are disallowed
+# [PASS] N/A: "" == ""          # Empty values are disallowed
+# [PASS] N/A: "anagram" != ""   # Empty values are disallowed
+# [PASS] N/A: "" != "anagram"   # Empty values are disallowed
+# [FAIL] N/A: "a1a" != "a2a"    # Characters not in ascii_lowercase are removed, including integers
 
 # Check (at least) one number from every if/elif conditional
 if __name__ == '__main__':
