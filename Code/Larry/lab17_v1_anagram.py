@@ -38,13 +38,10 @@ def check_anagram(user_word1, user_word2):
     if len(clean_words[0]) != len(clean_words[1]): # check_anagram fails if the words aren't the same length
         return False
 
-    # Split each list element string to its own list of letters
-    letters_list1 = []
-    letters_list2 = []
-    for i in range(len(clean_words[0])): # since line 38 returns True, either clean_words' length works
-        letters_list1.append(clean_words[0][i]) # split words into a list of letters
-        letters_list2.append(clean_words[1][i]) # split words into a list of letters
-    # return letters_list1, letters_list2 # DEBUG
+    # # Split each list element in string to its own list of letters
+    for i in range(len(clean_words)):
+        letters_list1 = list(clean_words[0]) # split words into a list of letters
+        letters_list2 = list(clean_words[1]) # split words into a list of letters
 
     # Sort the list
     letters_list1.sort()
