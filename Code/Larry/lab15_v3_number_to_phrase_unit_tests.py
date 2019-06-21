@@ -1,6 +1,6 @@
 # filename: lab15_v3_number_to_phrase_unit_tests.py
 '''
-Lab 15: Number to Phrase - UNIT TESTS
+Lab 15: Number to Phrase - FUNCTION w/ UNIT TESTS
 
 Version 3 (optional)
 Convert a number to roman numerals.
@@ -87,145 +87,71 @@ def get_roman_numerals(user_number):
 
     return roman_equiv
 
-
+###########################################################
 ### UNIT TESTS ###
-# Try a bunch of numbers as input
+###########################################################
 
-test_data = [
-    (1, "I"),
-    (2, "II"),
-    (3, "III"),
-    (4, "IV"),
-    (5, "V"),
-    (6, "VI"),
-    (7, "VII"),
-    (8, "VIII"),
-    (9, "IX"),
-    (10, "X"),
-    (11, "XI"),
-    (22, "XXII"),
-    (33, "XXXIII"),
-    (44, "XLIV"),
-    (47, "XLVII"),
-    (55, "LV"),
-    (67, "LXVII"),
-    (73, "LXXIII"),
-    (88, "LXXXVIII"),
-    (90, "XC"),
-    (99, "XCIX"),
-    (100, "C"),
-    (103, "CIII"),
-    (123, "CXXIII"),
-    (137, "CXXXVII"),
-    (145, "CXLV"),
-    (222, "CCXXII"),
-    (333, "CCCXXXIII"),
-    (455, "CDLV"),
-    (555, "DLV"),
-    (667, "DCLXVII"),
-    (777, "DCCLXXVII"),
-    (888, "DCCCLXXXVIII"),
-    (990, "CMXC"),
-    (999, "CMXCIX"),
-    (1034, "MXXXIV"),
-    (1072, "MLXXII"),
-    (1115, "MCXV"),
-    (1444, "MCDXLIV"),
-    (1455, "MCDLV"),
-    (1555, "MDLV"),
-    (1855, "MDCCCLV"),
-    (1955, "MCMLV"),
-    (1984, "MCMLXXXIV"),
-    (2013, "MMXIII"),
-    (2559, "MMDLIX"),
-    (3499, "MMMCDXCIX"),
-    (3984, "MMMCMLXXXIV"),
-    (4000, "MMMM"),
-    (4001, "MMMMI"),
-    (4100, "MMMMC"),
-    (4200, "MMMMCC"),
-    (4100, "MMMMC"),
-    (4499, "MMMMCDXCIX"),
-    (4999, "MMMMCMXCIX"),
-]
+# Check (at least) one number from every if/elif conditional
+if __name__ == '__main__':
 
-def run_tests(input_output):
-    failed_test_count = 0
-    for i in range(len(input_output)):
-        # input = run_tests(input_output[i][0])
-        input = get_roman_numerals(input_output[i][0])
-        expected_output = input_output[i][1]
-        if input != expected_output:
-            return f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}"
-            failed_test_count += 1
-    if failed_test_count == 0:
-            return "All tests passed."
+    test_data = [
+        (1, "I"),
+        (2, "II"),
+        (3, "III"),
+        (4, "IV"),
+        (5, "V"),
+        (6, "VI"),
+        (7, "VII"),
+        (8, "VIII"),
+        (9, "IX"),
+        (10, "X"),
+        (11, "XI"),
+        (22, "XXII"),
+        (33, "XXXIII"),
+        (44, "XLIV"),
+        (47, "XLVII"),
+        (55, "LV"),
+        (67, "LXVII"),
+        (73, "LXXIII"),
+        (88, "LXXXVIII"),
+        (90, "XC"),
+        (99, "XCIX"),
+        (100, "C"),
+        (103, "CIII"),
+        (123, "CXXIII"),
+        (137, "CXXXVII"),
+        (145, "CXLV"),
+        (222, "CCXXII"),
+        (333, "CCCXXXIII"),
+        (455, "CDLV"),
+        (555, "DLV"),
+        (667, "DCLXVII"),
+        (777, "DCCLXXVII"),
+        (888, "DCCCLXXXVIII"),
+        (990, "CMXC"),
+        (999, "CMXCIX"),
+        (1034, "MXXXIV"),
+        (1072, "MLXXII"),
+        (1115, "MCXV"),
+        (1444, "MCDXLIV"),
+        (1455, "MCDLV"),
+        (1555, "MDLV"),
+        (1855, "MDCCCLV"),
+        (1955, "MCMLV"),
+        (1984, "MCMLXXXIV"),
+        (2013, "MMXIII"),
+        (2559, "MMDLIX"),
+        (3499, "MMMCDXCIX"),
+        (3984, "MMMCMLXXXIV"),
+        (4000, "MMMM"),
+        (4001, "MMMMI"),
+        (4100, "MMMMC"),
+        (4200, "MMMMCC"),
+        (4100, "MMMMC"),
+        (4499, "MMMMCDXCIX"),
+        (4999, "MMMMCMXCIX"),
+    ]
 
-print(run_tests(test_data))
+    from lab15_functions import run_tests
 
-
-
-
-### Noisy test ### - All passing and non-passing tests are listed
-# for i in range(len(input_output)):
-#     if run_tests(input_output[i][0]) == input_output[i][1]:
-#         print(f"{input_output[i][0]}: Pass")
-#     else:
-#         print(f"{input_output[i][0]}: Fail. Expected Result: {input_output[i][1]} ==> Actual result: {run_tests(3)}")
-
-### Standalone test ###
-# if run_tests(10) == "X":
-#     print("10: Pass")
-# else:
-#     print(f"10: Fail. Expected Result: 'X' ==> Actual result: '{run_tests(10)}'")
-
-
-
-    #####################################################
-
-    # if five = 1 and ones = 4                    9
-    # elif five = 1 and ones between 3 and 1      8,7,6
-    # elif five = 1                               5
-    # elif ones = 4                               4
-    # elif ones between 3 and 1                   3,2,1
-
-    # if five = 1 and ones = 4                    9
-    # elif five = 1                               5
-    #     if ones between 3 and 1                 8,7,6
-    # elif ones = 4                               4
-    # elif ones between 3 and 1                   3,2,1
-
-    #####################################################
-
-    # if fivehundred == 1 and hundreds == 4:        # 900
-    #     roman_equiv += "CM"
-    # elif fivehundred == 1:                        # 500
-    #     roman_equiv += "D"
-    #     if 0 < hundreds <= 3:                     # 800,700,600
-    #         roman_equiv += "C" * hundreds
-    # elif hundreds == 4:                           # 400
-    #     roman_equiv += "CD"
-    # elif 0 < hundreds <= 3:                       # 300,200,100
-    #     roman_equiv += "C" * hundreds
-
-    # if fifty == 1 and tens == 4:                  # 90
-    #     roman_equiv += "XC"
-    # elif fifty == 1:                              # 50
-    #     roman_equiv += "L"
-    #     if 0 < tens <= 3:                         # 80,70,60
-    #         roman_equiv += "X" * tens
-    # elif tens == 4:                               # 40
-    #     roman_equiv += "XL"
-    # elif 0 < tens <= 3:                           # 30,20,10
-    #     roman_equiv += "X" * tens
-
-    # if five == 1 and ones == 4:                   # 9
-    #     roman_equiv += "IX"
-    # elif five == 1:                               # 5
-    #     roman_equiv += "V"
-    #     if 3 >= ones >= 1:                        # 8,7,6
-    #         roman_equiv += "I" * ones
-    # elif ones == 4:                               # 4
-    #     roman_equiv += "IV"
-    # elif 1 <= ones <= 3:                          # 3,2,1
-    #     roman_equiv += "I" * ones
+    print(run_tests(test_data, get_roman_numerals))

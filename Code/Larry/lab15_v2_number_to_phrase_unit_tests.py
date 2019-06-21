@@ -1,6 +1,6 @@
 # filename: lab15_v2_number_to_phrase_unit_tests.py
 '''
-Lab 15: Number to Phrase - UNIT TESTS
+Lab 15: Number to Phrase - FUNCTION w/ UNIT TESTS
 
 Convert a given number into its english representation.
 For example: 67 becomes 'sixty-seven'.
@@ -10,7 +10,7 @@ Version 2
 Handle numbers from 100-999.
 '''
 
-def run_tests(user_number):
+def get_word_number2(user_number):
 
     # Define the word equivalent of the numbers
     ones_list = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'] # 0 - 9
@@ -70,56 +70,55 @@ def run_tests(user_number):
 
 
 
-# try a bunch of numbers as input
+###########################################################
+### UNIT TESTS ###
+###########################################################
 
-input_output = [
-    (-1, None),
-    (0, "zero"),
-    (1, "one"),
-    (10, "ten"),
-    (15, "fifteen"),
-    (19, "nineteen"),
-    (20, "twenty"),
-    (23, "twenty three"),
-    (30, "thirty"),
-    (31, "thirty one"),
-    (40, "forty"),
-    (42, "forty two"),
-    (50, "fifty"),
-    (53, "fifty three"),
-    (60, "sixty"),
-    (64, "sixty four"),
-    (70, "seventy"),
-    (75, "seventy five"),
-    (80, "eighty"),
-    (86, "eighty six"),
-    (90, "ninety"),
-    (99, "ninety nine"),
-    (100, "one hundred"),
-    (101, "one hundred one"),
-    (110, "one hundred ten"),
-    (111, "one hundred eleven"),
-    (120, "one hundred twenty"),
-    (121, "one hundred twenty one"),
-    (145, "one hundred forty five"),
-    (200, "two hundred"),
-    (259, "two hundred fifty nine"),
-    (301, "three hundred one"),
-    (436, "four hundred thirty six"),
-    (538, "five hundred thirty eight"),
-    (605, "six hundred five"),
-    (777, "seven hundred seventy seven"),
-    (888, "eight hundred eighty eight"),
-    (999, "nine hundred ninety nine"),
-    (1000, None)
-]
+# Check (at least) one number from every if/elif conditional
+if __name__ == '__main__':
 
-failed_test_count = 0
-for i in range(len(input_output)):
-    input = run_tests(input_output[i][0])
-    expected_output = input_output[i][1]
-    if input != expected_output:
-        print(f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}")
-        failed_test_count += 1
-if failed_test_count == 0:
-        print("All tests passed.")
+    test_data = [
+        (-1, None),
+        (0, "zero"),
+        (1, "one"),
+        (10, "ten"),
+        (15, "fifteen"),
+        (19, "nineteen"),
+        (20, "twenty"),
+        (23, "twenty three"),
+        (30, "thirty"),
+        (31, "thirty one"),
+        (40, "forty"),
+        (42, "forty two"),
+        (50, "fifty"),
+        (53, "fifty three"),
+        (60, "sixty"),
+        (64, "sixty four"),
+        (70, "seventy"),
+        (75, "seventy five"),
+        (80, "eighty"),
+        (86, "eighty six"),
+        (90, "ninety"),
+        (99, "ninety nine"),
+        (100, "one hundred"),
+        (101, "one hundred one"),
+        (110, "one hundred ten"),
+        (111, "one hundred eleven"),
+        (120, "one hundred twenty"),
+        (121, "one hundred twenty one"),
+        (145, "one hundred forty five"),
+        (200, "two hundred"),
+        (259, "two hundred fifty nine"),
+        (301, "three hundred one"),
+        (436, "four hundred thirty six"),
+        (538, "five hundred thirty eight"),
+        (605, "six hundred five"),
+        (777, "seven hundred seventy seven"),
+        (888, "eight hundred eighty eight"),
+        (999, "nine hundred ninety nine"),
+        (1000, None)
+    ]
+
+    from lab15_functions import run_tests
+
+    print(run_tests(test_data, get_word_number2))

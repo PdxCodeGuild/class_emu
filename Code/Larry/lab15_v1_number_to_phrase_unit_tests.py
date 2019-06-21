@@ -1,6 +1,6 @@
 # filename: lab15_v1_number_to_phrase_unit_tests.py
 '''
-Lab 15: Number to Phrase - UNIT TESTS
+Lab 15: Number to Phrase - FUNCTION w/ UNIT TESTS
 
 Convert a given number into its english representation.
 For example: 67 becomes 'sixty-seven'.
@@ -14,7 +14,7 @@ Hint: you can use modulus to extract the ones and tens digit.
 Hint 2: use the digit as an index for a list of strings.
 '''
 
-def run_tests(user_number):
+def get_word_number(user_number):
 
     # Define the word equivalent of the numbers
     ones_list = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'] # 0 - 9
@@ -56,41 +56,42 @@ def run_tests(user_number):
         else:
             return f"{tens_dict[tens_digit*10]} {ones_list[ones_digit]}"
 
-# try a bunch of numbers as input
 
-input_output = [
-    (-1, None),
-    (0, "zero"),
-    (3, "three"),
-    (9, "nine"),
-    (10, "ten"),
-    (15, "fifteen"),
-    (19, "nineteen"),
-    (20, "twenty"),
-    (23, "twenty three"),
-    (30, "thirty"),
-    (31, "thirty one"),
-    (40, "forty"),
-    (42, "forty two"),
-    (50, "fifty"),
-    (53, "fifty three"),
-    (60, "sixty"),
-    (64, "sixty four"),
-    (70, "seventy"),
-    (75, "seventy five"),
-    (80, "eighty"),
-    (86, "eighty six"),
-    (90, "ninety"),
-    (99, "ninety nine"),
-    (101, None)
-]
 
-failed_test_count = 0
-for i in range(len(input_output)):
-    input = run_tests(input_output[i][0])
-    expected_output = input_output[i][1]
-    if input != expected_output:
-        print(f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}")
-        failed_test_count += 1
-if failed_test_count == 0:
-        print("All tests passed.")
+###########################################################
+### UNIT TESTS ###
+###########################################################
+
+# Check (at least) one number from every if/elif conditional
+if __name__ == '__main__':
+
+    test_data = [
+        (-1, None),
+        (0, "zero"),
+        (3, "three"),
+        (9, "nine"),
+        (10, "ten"),
+        (15, "fifteen"),
+        (19, "nineteen"),
+        (20, "twenty"),
+        (23, "twenty three"),
+        (30, "thirty"),
+        (31, "thirty one"),
+        (40, "forty"),
+        (42, "forty two"),
+        (50, "fifty"),
+        (53, "fifty three"),
+        (60, "sixty"),
+        (64, "sixty four"),
+        (70, "seventy"),
+        (75, "seventy five"),
+        (80, "eighty"),
+        (86, "eighty six"),
+        (90, "ninety"),
+        (99, "ninety nine"),
+        (101, None)
+    ]
+
+    from lab15_functions import run_tests
+
+    print(run_tests(test_data, get_word_number))
