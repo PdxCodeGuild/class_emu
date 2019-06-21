@@ -37,10 +37,10 @@ If any tests fail, a descriptive message is returned and printed.
 Otherwise, "All tests passed." is returned and printed.
 '''
 
-def run_tests(input_output, lab_name):
+def run_tests(input_output, function_name):
     failed_test_count = 0
     for i in range(len(input_output)):
-        input = lab_name(input_output[i][0])
+        input = function_name(input_output[i][0])
         expected_output = input_output[i][1]
         if input != expected_output:
             return f"{input}: Fail. Expected Result: {expected_output} ==> Actual result: {input}"
