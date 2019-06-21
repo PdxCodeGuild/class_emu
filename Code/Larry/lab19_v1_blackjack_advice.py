@@ -27,19 +27,10 @@ Print out the current total point value and the advice.
 # 21 Blackjack!
 '''
 
-# # Ask the user for three playing cards & convert string to integer
-# # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
-# # Note: 'A' is worth '1' in this version
-# print("Let's play Blackjack. Enter one of these values: (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)")
-# first_card = int(input("What's your first card? "))
-# second_card = int(input("What's your second card? "))
-# third_card = int(input("What's your third card?" ))
-# cards = [first_card, second_card, third_card]
-
-# Then, figure out the point value of each card individually
-# Note: Number cards are worth their number, all face cards are worth 10
-
 def play_blackjack(cards):
+
+    # Figure out the point value of each card individually
+    # Note: Number cards are worth their number, all face cards are worth 10
 
     card_value_total = 0
     for card in cards:
