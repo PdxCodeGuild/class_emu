@@ -71,7 +71,7 @@ else:
 # [PASS] N/A: "" != "anagram"   # Empty values are disallowed
 # [FAIL] N/A: "a1a" != "a2a"    # Characters not in ascii_lowercase are removed, including integers
 
-# Check (at least) one number from every if/elif conditional
+# Check a variety of comparison (with spaces, Capital letters, punctuation)
 if __name__ == '__main__':
 
     test_data = [
@@ -85,7 +85,7 @@ if __name__ == '__main__':
         (True, 'Dusty', 'Study'),
         (True, 'Night', 'Thing'),
         (True, 'Inch', 'Chin'),
-        (True, 'Brag', 'Grab'),
+        (True, 'Brag', 'Grab!'),
         (True, 'Cat', 'Act'),
         (True, 'Bored', 'Robed'),
         (True, 'Save', 'Vase'),
@@ -101,7 +101,7 @@ if __name__ == '__main__':
         (True, 'A gentleman', 'Elegant man'),
         (True, 'Funeral', 'Real fun'),
         (True, 'The Morse Codes', 'Here comes dots'),
-        (True, 'Eleven plus two', 'Twelve plus one'),
+        (True, 'Eleven, plus two', 'Twelve, plus one'),
         (True, 'Slot machines', 'Cash lost in me'),
         (True, 'Fourth of July', 'Joyful Fourth'),
         (False, 'The Morse Code', 'Here comes dots'),
@@ -110,7 +110,7 @@ if __name__ == '__main__':
         (False, 'Angel', 'Gleam'),
         (False, 'Astronomer', 'Moon starts'),
         (False, 'Fourth of June', 'Joyful Fourth'),
-        (False, 'asdf', 'fdda')
+        (False, 'asdf', '(fdda)')
     ]
 
 ### RUN TESTS ###
