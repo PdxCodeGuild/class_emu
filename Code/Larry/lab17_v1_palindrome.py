@@ -47,21 +47,24 @@ else:
 ### UNIT TESTS ###
 '''
 Source: https://www.grammarly.com/blog/16-surprisingly-funny-palindromes/
-Pass: True <= racecar
-Pass: False <= racecars
-Pass: True <= Race car
-Pass: True <= Race car!
-Pass: True <= Taco cat
-Pass: False <= tacacot
-Pass: False <= afghha
-Pass: True <= Yo, banana boy!
-Pass: True <= Ed, I saw Harpo Marx ram Oprah W. aside.
-Pass: True <= Do geese see God?
-Pass: True <= A man, a plan, a canal: Panama.
-Pass: True <= Straw? No, too stupid a fad; I put soot on warts.
-Pass: True <= A nut for a jar of tuna.
-Pass: True <= Al lets Della call Ed "Stella."
-Pass: True <= Al lets Della call Ed “Stella.”
-Pass: True <= Are we not pure? "No, sir!" Panama's moody Noriega brags. "It is garbage!" Irony dooms a man—a prisoner up to new era.
-Pass: True <= Are we not pure? “No, sir!” Panama’s moody Noriega brags. “It is garbage!” Irony dooms a man—a prisoner up to new era.
+
+test_data = [
+    (True, 'racecar'),
+    (True, 'Race car'),
+    (True, 'Race car!'),
+    (True, 'Taco cat'),
+    (True, 'Yo, banana boy!'),
+    (True, 'Ed, I saw Harpo Marx ram Oprah W. aside.'),
+    (True, 'Do geese see God?'),
+    (True, 'A man, a plan, a canal: Panama.'),
+    (True, 'Straw? No, too stupid a fad; I put soot on warts),
+    (True, 'A nut for a jar of tuna.'),
+    (True, 'Al lets Della call Ed "Stella."'),
+    (True, 'Al lets Della call Ed “Stella.”'),
+    (True, 'Are we not pure? "No, sir!" Panama's moody Noriega brags. "It is garbage!" Irony dooms a man—a prisoner up to new era.'),
+    (True, 'Are we not pure? “No, sir!” Panama’s moody Noriega brags. “It is garbage!” Irony dooms a man—a prisoner up to new era.'),
+    (False, 'tacacot'),
+    (False, 'afghha'),
+    (False, 'racecars'),
+]
 '''
