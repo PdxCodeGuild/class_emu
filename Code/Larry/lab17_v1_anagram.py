@@ -2,7 +2,7 @@
 '''
 Lab 17: Anagram
 
-Let's write an anagram - THIS VERSION USES a for loop to split the letters AND list.sort()
+Let's write an anagram - This version uses 'for' loop to split the words AND list.sort()
 
 Two words are anagrams of each other if the letters of one can be rearranged to fit the other.
 e.g. anagram and nag a ram.

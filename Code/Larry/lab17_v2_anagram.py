@@ -2,7 +2,7 @@
 '''
 Lab 17: Anagram
 
-Let's write an anagram - THIS VERSION USED sorted(list)
+Let's write an anagram - This version uses sorted(list) to split the words to letters AND do the sorting
 
 Two words are anagrams of each other if the letters of one can be rearranged to fit the other.
 e.g. anagram and nag a ram.
