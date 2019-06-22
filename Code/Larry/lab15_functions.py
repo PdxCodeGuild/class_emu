@@ -44,8 +44,8 @@ def run_tests(input_output, function_name):
         function_output = function_name(input_output[i][0])
         expected_output = input_output[i][1]
         if function_output != expected_output:
-            failed_test_msg += f"\n{input_output[i][0]}: Fail.\nExpected Result: {expected_output} ==> Actual result: {function_output}\n"
             failed_test_count += 1
+            failed_test_msg += f"\n{input_output[i][0]}: Fail.\nExpected Result: {expected_output} ==> Actual result: {function_output}\n"
     if failed_test_count != 0:
             return failed_test_msg
     if failed_test_count == 0:
