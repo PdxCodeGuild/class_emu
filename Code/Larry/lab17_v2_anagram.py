@@ -8,7 +8,7 @@ Two words are anagrams of each other if the letters of one can be rearranged to 
 e.g. anagram and nag a ram.
 
 Write another function check_anagram that takes two strings as parameters and
-returns True if they're anagrams of eachother,
+returns True if they're anagrams of each other,
 returns False if they're not.
 
 The procedure for comparing the two strings is as follow:
@@ -38,7 +38,7 @@ def check_anagram(user_word1, user_word2):
     if len(clean_words[0]) != len(clean_words[1]): # check_anagram fails if the words aren't the same length
         return False
 
-    # Compare the list => CHEAT :) BY USING sorted()
+    # Compare the list using the sorted() function
     if sorted(clean_words[0]) == sorted(clean_words[1]): # if both lists of letters are equal, ...
         return True                                      # ... return True
     return False                                         # else return False
@@ -116,13 +116,16 @@ if __name__ == '__main__':
 ### RUN TESTS ###
 def run_tests(input_output, function_name):
     failed_test_count = 0
+    failed_test_msg = ''
     for i in range(len(input_output)):
         function_output = function_name(input_output[i][1], input_output[i][2])
         expected_output = input_output[i][0]
         if function_output != expected_output:
-            return f"Input: {input_output[i][1], input_output[i][2]}\nFail. Expected Result: {expected_output} ==> Actual result: {function_output}"
+            failed_test_msg += f"\nInput: {input_output[i][1], input_output[i][2]}\nFail. Expected Result: {expected_output} ==> Actual result: {function_output}\n"
             failed_test_count += 1
+    if failed_test_count != 0:
+        return failed_test_msg
     if failed_test_count == 0:
-            return "All tests passed."
+        return "All tests passed."
 
-# print(run_tests(test_data, check_anagram))  # *** uncomment this line to run the unit tests ***
+# run_tests(test_data, check_anagram)  # *** uncomment this line to run the unit tests ***
