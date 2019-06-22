@@ -28,7 +28,7 @@ def play_blackjack(cards):
         card_value_total += card_value
 
     # check how the aces (values: 1, 11) will affect the card_value_total
-    
+
     if how_many_aces == 1:
         if card_value_total + 11 < 21:  # if adding 11 to total equals less than 21
             card_value_total += 11      # use Ace=11
@@ -60,6 +60,7 @@ def play_blackjack(cards):
     elif card_value_total > 21:
         return f"\n{card_value_total} Already busted! (sad trombone)\n"
 
+# ''' Uncomment this line to run the tests
 # Ask the user for three playing cards & convert string to integer
 # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
 # Note: 'A' is worth '1' in this version
@@ -81,6 +82,7 @@ cards = [first_card, second_card, third_card]
 
 # Print out the current total point value and the advice.
 print(play_blackjack(cards))
+# '''
 
 ###########################################################
 ### UNIT TESTS ###
@@ -91,9 +93,25 @@ if __name__ == '__main__':
 
     test_data = [
         ('2', '4', '8', 'Hit'),             # 14
-        ('A', 'A', 'A', 'Hit'),             # 13, lines 40-44
-        ('A', 'A', '4', 'Hit'),             # 16, lines 35-39
+        ('A', 'A', 'A', 'Hit'),             # 13, three As - lines 40-44
+        ('A', 'A', '4', 'Hit'),             # 16, two As - lines 35-39
         ('K', '3', '5', 'Stay'),            # 18
-        ('J', 'Q', 'A', 'Blackjack!'),      # 21, lines 30-34
-        ('9', '7', '6', 'Already busted!'), # 22
+        ('J', 'Q', 'A', 'Blackjack!'),      # 21, one A - lines 30-34
+        ('9', '7', '6', 'Already busted!')  # 22
     ]
+
+    def run_tests(input_output, function_name):
+        failed_test_count = 0
+        failed_test_msg = ''
+        for i in range(1):
+            function_output = function_name(input_output[i][0])
+            expected_output = input_output[i][1]
+            if function_output != expected_output:
+                failed_test_count += 1
+                failed_test_msg += f"\n{input_output[i][0]}: Fail.\nExpected Result: {expected_output} ==> Actual result: {function_output}\n"
+        if failed_test_count != 0:
+                return failed_test_msg
+        if failed_test_count == 0:
+                return "All tests passed."
+
+        # print(run_tests(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***

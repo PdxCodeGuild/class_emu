@@ -15,16 +15,6 @@ Print out the current total point value and the advice.
 # What's your second card? 2
 # What's your third card? 3
 # 15 Hit
-#
-# What's your first card? K
-# What's your second card? 5
-# What's your third card? 5
-# 20 Stay
-#
-# What's your first card? Q
-# What's your second card? J
-# What's your third card? A
-# 21 Blackjack!
 '''
 
 def play_blackjack(cards):
@@ -49,14 +39,15 @@ def play_blackjack(cards):
     # • Over 21, advise "Already Busted"
 
     if card_value_total < 17:
-        return f"{card_value_total} Hit"
+        return f"\n{card_value_total} Hit\n"
     elif 17 <= card_value_total < 21:
-        return f"{card_value_total} Stay"
+        return f"\n{card_value_total} Stay\n"
     elif card_value_total == 21:
-        return f"{card_value_total} Blackjack!"
+        return f"\n{card_value_total} Blackjack!\n"
     elif card_value_total > 21:
-        return f"{card_value_total} Already busted! (sad trombone)"
+        return f"\n{card_value_total} Already busted! (sad trombone)\n"
 
+# ''' Uncomment this line to run the tests
 # Ask the user for three playing cards & convert string to integer
 # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
 # Note: 'A' is worth '1' in this version
@@ -70,3 +61,34 @@ cards = [first_card, second_card, third_card]
 # Print out the current total point value and the advice.
 
 print(play_blackjack(cards))
+# '''
+
+###########################################################
+### UNIT TESTS ###
+###########################################################
+
+# Check a variety of comparison (with spaces, Capital letters, punctuation)
+if __name__ == '__main__':
+
+    test_data = [
+        (['2', '4', '8'], '14 Hit'),             # 14
+        (['K', '3', '5'], '18 Stay'),            # 18
+        (['J', 'Q', 'A'], '21 Blackjack!'),      # 21
+        (['9', '7', '6'], '22 Already busted!')  # 22
+    ]
+
+    def run_tests(input_output, function_name):
+        failed_test_count = 0
+        failed_test_msg = ''
+        for i in range(1):
+            function_output = function_name(input_output[i][0])
+            expected_output = input_output[i][1]
+            if function_output != expected_output:
+                failed_test_count += 1
+                failed_test_msg += f"\n{input_output[i][0]}: Fail.\nExpected Result: {expected_output} ==> Actual result: {function_output}\n"
+        if failed_test_count != 0:
+                return failed_test_msg
+        if failed_test_count == 0:
+                return "All tests passed."
+
+        # print(run_tests(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***
