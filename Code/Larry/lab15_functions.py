@@ -39,11 +39,14 @@ Otherwise, "All tests passed." is returned and printed.
 
 def run_tests(input_output, function_name):
     failed_test_count = 0
+    failed_test_msg = ''
     for i in range(len(input_output)):
         function_output = function_name(input_output[i][0])
         expected_output = input_output[i][1]
         if function_output != expected_output:
-            return f"{input_output[i][0]}: Fail.\nExpected Result: {expected_output} ==> Actual result: {function_output}"
+            failed_test_msg += f"\n{input_output[i][0]}: Fail.\nExpected Result: {expected_output} ==> Actual result: {function_output}\n"
             failed_test_count += 1
+    if failed_test_count != 0:
+            return failed_test_msg
     if failed_test_count == 0:
             return "All tests passed."
