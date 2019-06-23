@@ -14,7 +14,6 @@ returns False if it's not.
 
 >>> enter a word: racecar
 >>> 'racecar' is a palindrome
-
 >>> enter a word: palindrome
 >>> 'palindrome' is not a palindrome
 '''
@@ -35,7 +34,7 @@ def check_palindrome(user_word):
             return False # if any mismatches are found, break out of for loop (return False)
     return True          # otherwise, return True
 
-''' *** uncomment this line to run the unit tests ***
+# ''' *** uncomment this line to run the unit tests ***
 # Get user input
 user_word = input("[Palindrome] Enter a word: ")
 
@@ -75,4 +74,4 @@ if __name__ == '__main__':
     ]
     from lab17_functions import run_tests_p
 
-    print(run_tests_p(test_data, check_palindrome)) # *** uncomment this line to run the unit tests ***
+    # print(run_tests_p(test_data, check_palindrome)) # *** uncomment this line to run the unit tests ***

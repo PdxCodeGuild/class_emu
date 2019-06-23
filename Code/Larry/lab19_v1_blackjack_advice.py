@@ -47,7 +47,7 @@ def play_blackjack(cards):
     elif card_value_total > 21:                     # 22 - 30
         return f"{card_value_total} Already busted!"
 
-''' Uncomment this line to run the tests
+# ''' Uncomment this line to run the tests
 # Ask the user for three playing cards & convert string to integer
 # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
 # Note: 'A' is worth '1' in this version
@@ -80,4 +80,4 @@ if __name__ == '__main__':
 
     from lab19_functions import run_tests
 
-    print(run_tests(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***
+    # print(run_tests(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***

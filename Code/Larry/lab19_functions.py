@@ -2,6 +2,7 @@
 '''
 This file contains one function: run_tests().
     • run_tests() is for the units tests embedded in the bottom of the lab 15 solutions.
+    • TODO: add the input section from v1 and v1 of the labs, if time allows.
 '''
 
 '''
@@ -9,10 +10,10 @@ This file contains one function: run_tests().
 ### RUN TESTS ###
 #################
 
-This function takes two parameters: user input (list of pokers cards) and expected output
-from a list of tuples.
-input_output = test number, list of poker cards, expected result string
+This function takes two parameters: user input (list of pokers cards) & expected output
+from a list of tuples,
 
+input_output => [(test number, [list of poker cards], expected result string)]
 e.g.
 ### v1 - Ace is always worth 1 ###
 # (1, ['A', '8', '2'], '11 Hit'),            # 11
@@ -28,6 +29,9 @@ e.g.
 # (5, ['J', 'Q', 'A'], '21 Blackjack!'),     # 21, one A (1) - lines 30-34
 # (6, ['A', '8', '2'], '21 Blackjack!'),     # 21, one A (11) - lines 30-34
 # (7, ['9', '7', '6'], '22 Already busted!') # 22
+
+and submits each set of 3-cards to the function-under-test,
+then returns the result of comparing the actual output & expected output.
 
 If any tests fail, a descriptive message is returned and printed.
 Otherwise, "All tests passed." is returned and printed.
