@@ -15,16 +15,6 @@ Print out the current total point value and the advice.
 # What's your second card? 2
 # What's your third card? 3
 # 15 Hit
-#
-# What's your first card? K
-# What's your second card? 5
-# What's your third card? 5
-# 20 Stay
-#
-# What's your first card? Q
-# What's your second card? J
-# What's your third card? A
-# 21 Blackjack!
 '''
 
 def play_blackjack(cards):
@@ -48,15 +38,16 @@ def play_blackjack(cards):
     # • Exactly 21, advise "Blackjack!"
     # • Over 21, advise "Already Busted"
 
-    if card_value_total < 17:
+    if card_value_total < 17:                       # 3 - 16
         return f"{card_value_total} Hit"
-    elif 17 <= card_value_total < 21:
+    elif 17 <= card_value_total < 21:               # 17 - 20
         return f"{card_value_total} Stay"
-    elif card_value_total == 21:
+    elif card_value_total == 21:                    # 21
         return f"{card_value_total} Blackjack!"
-    elif card_value_total > 21:
-        return f"{card_value_total} Already busted! (sad trombone)"
+    elif card_value_total > 21:                     # 22 - 30
+        return f"{card_value_total} Already busted!"
 
+''' Uncomment this line to run the tests
 # Ask the user for three playing cards & convert string to integer
 # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
 # Note: 'A' is worth '1' in this version
@@ -69,4 +60,24 @@ cards = [first_card, second_card, third_card]
 
 # Print out the current total point value and the advice.
 
-print(play_blackjack(cards))
+print(f"\n{play_blackjack(cards)}\n")
+# '''
+
+###########################################################
+### UNIT TESTS ###
+###########################################################
+
+# Check a variety of comparison (with spaces, Capital letters, punctuation)
+if __name__ == '__main__':
+
+    test_data = [
+        (1, ['A', '8', '2'], '11 Hit'),            # 11
+        (2, ['2', '4', '8'], '14 Hit'),            # 14
+        (3, ['K', '3', '5'], '18 Stay'),           # 18
+        (4, ['J', 'Q', 'A'], '21 Blackjack!'),     # 21
+        (5, ['9', '7', '6'], '22 Already busted!') # 22
+    ]
+
+    from lab19_functions import run_tests
+
+    print(run_tests(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***
