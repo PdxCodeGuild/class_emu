@@ -30,20 +30,20 @@ def play_blackjack(cards):
     # check how the aces (values: 1, 11) will affect the card_value_total
 
     if how_many_aces == 1:
-        if card_value_total + 11 < 21:  # if adding 11 to total equals less than 21
-            card_value_total += 11      # use Ace=11
-        else:                           # else implies> if adding 11 to total equals greater than 21
-            card_value_total += 1       # use Ace=1
+        if card_value_total + 11 > 21: # if adding 11 makes card_value_total > 21
+            card_value_total += 1      # use Ace=1
+        else:                          # else implies> if adding 11 makes card_value_total <= 21
+            card_value_total += 11     # use Ace=11
     elif how_many_aces == 2:
-        if card_value_total + 12 < 21: # if adding 12 (11+1) to total equals less than 21
-            card_value_total += 12      # use Ace=1 and Ace=11 or Aces=12
-        else:                           # else implies> if adding 12 to total equals greater than 21
-            card_value_total += 2       # use Ace=1 and Ace=1 or Aces=2
+        if card_value_total + 12 > 21: # if adding 12 (11+1) makes card_value_total > 21
+            card_value_total += 2      # use Aces=2
+        else:                          # else implies> if adding 12 makes card_value_total <= 21
+            card_value_total += 12     # use Ace=12
     elif how_many_aces == 3:
-        if card_value_total + 13 < 21:  # if adding 13 (11+1+1) to total equals less than 21
-            card_value_total += 13      # use Aces=13
-        else:                           # else implies> if adding 13 to total equals greater than 21
-            card_value_total += 3       # use Aces=3
+        if card_value_total + 13 > 21: # if adding 13 (11+1+1) makes card_value_total > 21
+            card_value_total += 3      # use Aces=3
+        else:                          # else implies> if adding 13 makes card_value_total <= 21
+            card_value_total += 13     # use Aces=13
 
     # Rules:
     # • Less than 17, advise to "Hit"
@@ -51,19 +51,19 @@ def play_blackjack(cards):
     # • Exactly 21, advise "Blackjack!"
     # • Over 21, advise "Already Busted"
 
-    if card_value_total < 17:
-        return f"\n{card_value_total} Hit\n"
-    elif 17 <= card_value_total < 21:
-        return f"\n{card_value_total} Stay\n"
-    elif card_value_total == 21:
-        return f"\n{card_value_total} Blackjack!\n"
-    elif card_value_total > 21:
-        return f"\n{card_value_total} Already busted! (sad trombone)\n"
+    if card_value_total < 17:                       # 3 - 16
+        return f"{card_value_total} Hit"
+    elif 17 <= card_value_total < 21:               # 17 - 20
+        return f"{card_value_total} Stay"
+    elif card_value_total == 21:                    # 21
+        return f"{card_value_total} Blackjack!"
+    elif card_value_total > 21:                     # 22 - 30
+        return f"{card_value_total} Already busted!"
 
 # ''' Uncomment this line to run the tests
 # Ask the user for three playing cards & convert string to integer
 # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
-# Note: 'A' is worth '1' in this version
+# Note: 'A' can be worth '1' or '11' in this version
 
 print("Let's play Blackjack.\nEnter one of these values: (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)\n")
 while True:                                 # stay on this input prompt, ...
@@ -81,7 +81,8 @@ while True:                                 # stay on this input prompt, ...
 cards = [first_card, second_card, third_card]
 
 # Print out the current total point value and the advice.
-print(play_blackjack(cards))
+
+print(f"\n{play_blackjack(cards)}\n")
 # '''
 
 ###########################################################
@@ -92,26 +93,15 @@ print(play_blackjack(cards))
 if __name__ == '__main__':
 
     test_data = [
-        ('2', '4', '8', 'Hit'),             # 14
-        ('A', 'A', 'A', 'Hit'),             # 13, three As - lines 40-44
-        ('A', 'A', '4', 'Hit'),             # 16, two As - lines 35-39
-        ('K', '3', '5', 'Stay'),            # 18
-        ('J', 'Q', 'A', 'Blackjack!'),      # 21, one A - lines 30-34
-        ('9', '7', '6', 'Already busted!')  # 22
+        (1, ['2', '4', '8'], '14 Hit'),            # 14
+        (2, ['A', 'A', 'A'], '13 Hit'),            # 13, three As (11+1+1) - lines 40-44
+        (3, ['A', 'A', '4'], '16 Hit'),            # 16, two As (11+1) - lines 35-39
+        (4, ['K', '3', '5'], '18 Stay'),           # 18
+        (5, ['J', 'Q', 'A'], '21 Blackjack!'),     # 21, one A (1) - lines 30-34
+        (6, ['A', '8', '2'], '21 Blackjack!'),     # 21, one A (11) - lines 30-34
+        (7, ['9', '7', '6'], '22 Already busted!') # 22
     ]
 
-    def run_tests(input_output, function_name):
-        failed_test_count = 0
-        failed_test_msg = ''
-        for i in range(1):
-            function_output = function_name(input_output[i][0])
-            expected_output = input_output[i][1]
-            if function_output != expected_output:
-                failed_test_count += 1
-                failed_test_msg += f"\n{input_output[i][0]}: Fail.\nExpected Result: {expected_output} ==> Actual result: {function_output}\n"
-        if failed_test_count != 0:
-                return failed_test_msg
-        if failed_test_count == 0:
-                return "All tests passed."
+    from lab19_functions import run_tests
 
-        # print(run_tests(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***
+    # print(run_tests(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***

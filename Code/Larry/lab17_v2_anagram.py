@@ -113,19 +113,6 @@ if __name__ == '__main__':
         (False, 'asdf', '(fdda)')
     ]
 
-    ### RUN TESTS ###
-    def run_tests(input_output, function_name):
-        failed_test_count = 0
-        failed_test_msg = ''
-        for i in range(len(input_output)):
-            function_output = function_name(input_output[i][1], input_output[i][2])
-            expected_output = input_output[i][0]
-            if function_output != expected_output:
-                failed_test_count += 1
-                failed_test_msg += f"\nInput: {input_output[i][1], input_output[i][2]}\nFail. Expected Result: {expected_output} ==> Actual result: {function_output}\n"
-        if failed_test_count != 0:
-            return failed_test_msg
-        if failed_test_count == 0:
-            return "All tests passed."
+    from lab17_functions import run_tests
 
-    # run_tests(test_data, check_anagram)  # *** uncomment this line to run the unit tests ***
+    # print(run_tests(test_data, check_anagram)) # *** uncomment this line to run the unit tests ***
