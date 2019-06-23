@@ -1,13 +1,13 @@
 # L10_average_numbers_V4.py
+'''
+** Version 4 (optional) **
 
-# Version 4 (optional)
-# The mode is the number that occurs the most. There may be multiple modes.
-# Hint: use a dictionary to count the occurances of each number, the key can be the number, the value can be the number of occurances.
-# If it's not in the dictionary, add it and set it's value to one. If it's already in the dictionary, increment that value.
-#
-# counts = list(word_dict.items()) # .items() returns a list of tuples
-# counts.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
-# print(counts)
+The mode is the number that occurs the most. There may be multiple modes. Hint: use a dictionary to count the occurances of each number, the key can be the number, the value can be the number of occurances. If it's not in the dictionary, add it and set it's value to one. If it's already in the dictionary, increment that value.
+
+counts = list(word_dict.items()) # .items() returns a list of tuples
+counts.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
+print(counts)
+'''
 
 number_list = [5, 0, 8, 3, 4, 1, 6, 5, 5, 1, 5, 1, 3] # defines variable number_list as list of numbers
 number_dict = {} # defines number_dict as an empty dictionary

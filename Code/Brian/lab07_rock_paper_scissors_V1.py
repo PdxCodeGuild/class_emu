@@ -1,4 +1,27 @@
 # lab07_rock_paper_scissors_V1.py
+'''
+Lab 7: Rock Paper Scissors
+
+** Version 1 **
+
+Let's play rock-paper-scissors with the computer.
+
+The computer will ask the user for their choice (rock, paper, scissors)
+The computer will randomly choose rock, paper or scissors
+Determine who won and tell the user
+Let's list all the cases:
+
+rock vs rock (tie)
+rock vs paper
+rock vs scissors
+paper vs rock
+paper vs paper (tie)
+paper vs scissors
+scissors vs rock
+scissors vs paper
+scissors vs scissors (tie)
+
+'''
 import random #imports the random module for random number/word generation
 rock_paper_scissors_list = ['Rock', 'Paper', 'Scissors'] #creates list to choose from
 user_choice = input("Do you want (Rock), (Paper) or (Scissors)? ") #asks user for input

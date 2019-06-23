@@ -1,4 +1,12 @@
 # lab09_unit_converter_V3.py
+'''
+** Version 3 **
+
+Add support for yards, and inches.
+
+1 yard is 0.9144 m
+1 inch is 0.0254 m
+'''
 import string
 distance = float(input("What is the distance?: ")) # prompt user to input distance and store in variable distance
 units = input("Is that distance in feet('ft'), miles('mi'), meters('m'), kilometers('km'), inches('in') or yards('yd')? ").lower() # prompt user to input units and store in variable units

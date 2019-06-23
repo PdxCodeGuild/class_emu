@@ -1,4 +1,9 @@
 # lab08_make_change_V2.py
+'''
+** Version 2 **
+
+Have the user enter a dollar amount (1.36), convert this to the total in pennies.
+'''
 unconverted_dollars = input('Please enter how much money you have.  Example: $4.67: ') #asks user for input
 unconverted_dollars = int(float(unconverted_dollars.strip('$'))*100) #converts to interger and float, strips away the $ and multiplies by 100 to convert to pennies
 print(unconverted_dollars//25, "quarters") #prints the users input floor divided by 25 for quarters

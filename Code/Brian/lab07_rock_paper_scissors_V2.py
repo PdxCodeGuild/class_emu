@@ -1,4 +1,9 @@
 # lab07_rock_paper_scissors_V2.py
+'''
+** Version 2 (optional) **
+
+After playing, ask them if they'd like to play again. If they say yes, restart the game, otherwise exit.
+'''
 import random #imports the random module for random number/word generation
 rock_paper_scissors_list = ['Rock', 'Paper', 'Scissors'] #creates list to choose from
 while True: #using a while loop to ask the user to choose to continue OR stop playing

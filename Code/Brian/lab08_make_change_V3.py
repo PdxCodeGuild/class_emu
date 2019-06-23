@@ -1,4 +1,11 @@
 # lab08_make_change_V3.py
+'''
+** Version 3 (optional) **
+
+Instead of hard-coding the coins, store them in a list. This way you can make custom coins.
+
+coins = [('quarter', 50), ('dime', 10), ('nickel', 5), ('penny', 1)]
+'''
 coins = [] #empty list to be populated
 unconverted_dollars = input('Please enter how much money you have.  Example: $4.67: ') #asks user for input
 unconverted_dollars = int(float(unconverted_dollars.strip('$'))*100) #converts to interger and float, strips away the $ and multiplies by 100 to convert to pennies
