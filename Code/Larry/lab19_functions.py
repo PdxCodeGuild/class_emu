@@ -10,11 +10,12 @@ This file contains one function: run_tests().
 ### RUN TESTS ###
 #################
 
-This function takes two parameters: user input (list of pokers cards) & expected output
-from a list of tuples,
+This function takes two parameters: user input (list of tuples) & function_name,
+submits each set of 3-cards to the function-name under-test, then
+returns the result of comparison: actual output vs. expected output.
 
-input_output => [(test number, [list of poker cards], expected result string)]
 e.g.
+input_output => [(test number, [list of poker cards], expected result string)]
 ### v1 - Ace is always worth 1 ###
 # (1, ['A', '8', '2'], '11 Hit'),            # 11
 # (2, ['K', '3', '5'], '18 Stay'),           # 18
@@ -29,9 +30,6 @@ e.g.
 # (5, ['J', 'Q', 'A'], '21 Blackjack!'),     # 21, one A (1) - lines 30-34
 # (6, ['A', '8', '2'], '21 Blackjack!'),     # 21, one A (11) - lines 30-34
 # (7, ['9', '7', '6'], '22 Already busted!') # 22
-
-and submits each set of 3-cards to the function-under-test,
-then returns the result of comparing the actual output & expected output.
 
 If any tests fail, a descriptive message is returned and printed.
 Otherwise, "All tests passed." is returned and printed.

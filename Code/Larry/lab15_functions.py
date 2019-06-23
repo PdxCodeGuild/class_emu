@@ -2,15 +2,19 @@
 '''
 This file contains two functions: get_integer() and run_tests().
     • get_integer() is for getting and validating the user input (integer).
+    • try_again() is for prompting the user to continue or exit the program.
     • run_tests() is for the units tests embedded in the bottom of the lab 15 solutions.
 '''
 
 '''
+###################
 ### GET INTEGER ###
+###################
+
 This function takes two parameters: user input prompt text (string) and upper_range_limit (integer),
-e.g.
-"Enter a number between 0 - 99 to convert: "
 and returns a integer between 0 and the upper_range_limit.
+e.g.
+prompt_text = "Enter a number between 0 - 99 to convert: "
 '''
 
 def get_integer(prompt_text, upper_range_limit):
@@ -26,29 +30,33 @@ def get_integer(prompt_text, upper_range_limit):
             print(error_msg)
 
 '''
+#################
 ### TRY AGAIN ###
+#################
+
 This function takes one parameter: user input prompt text (string),
-e.g.
-"Do you want to try again? (yes)(no): "
 and returns True if the user types "no".
+e.g.
+prompt_text = "Do you want to try again? (yes)(no): "
 '''
 def try_again(prompt_text):
     if input(prompt_text).lower() == "no":
         return True
 
 '''
+#################
 ### RUN TESTS ###
-This function takes two parameters: user input (integer) & expected_output and function_name,
-from a list of tuples,
+#################
 
-input_output = [(integer, cardinal number || Roman numeral))]
+This function takes two parameters: user input (list of tuples) and function_name,
+submits each integer to the function-name under-test, then
+returns the result of comparison: actual output vs. expected output.
+
 e.g.
+input_output = [(integer, cardinal number)] or [(integer, Roman numeral)]
 [(7, "seven"), (17, "seventeen"), (77, "seventy seven")]            # lab 15, v1
 [(107, "one hundred seven"), (777, "seven hundred seventy seven")]  # lab 15, v2
 [(7, "VII"), (17, "XVII"), (77, "LXXVII"), (777, "DCCLXXVII")]      # lab 15, v3
-
-and submits each integer to the function-under-test,
-then returns the result of comparing the actual output & expected output.
 
 If any tests fail, a descriptive message is returned and printed.
 Otherwise, "All tests passed." is returned and printed.

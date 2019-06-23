@@ -6,19 +6,20 @@ This file contains one function: run_tests().
 '''
 
 '''
+###########################
 ### RUN TESTS - Anagram ###
-This function takes two parameters: expected output & user input (input_output) and function_name
-from a list of tuples,
+###########################
 
-input_output = [(expected_output(boolean)), first string, second string)]
+This function takes two parameters, user input & expected output (list of tuples) and function_name,
+submits first_string and second_string to the function-name under-test, then
+returns the result of comparison: actual output vs. expected output.
+
 e.g.
+input_output = [(expected_output(boolean)), first string, second string)]
 [(True, 'nude dragons', 'soundgarden'),         # input includes spaces
 (True, 'Brag', 'Grab!'),                        # input includes capital letters and punctuation
 (False, 'The Morse Code', 'Here comes dots'),   # length mismatch
 (False, 'Angel', 'Gleam')]                      # letters don't match
-
-and submits each pair of strings to the function-under-test,
-then returns the result of comparing the actual output & expected output.
 
 If any tests fail, a descriptive message is returned and printed.
 Otherwise, "All tests passed." is returned and printed.
@@ -41,19 +42,20 @@ def run_tests(input_output, function_name):
         return "All tests passed."
 
 '''
+##############################
 ### RUN TESTS - Palindrome ###
-This function takes two parameters: expected output & user input (string) and function_name
-from a list of tuples,
+##############################
 
-input_output = [(expected_output(boolean)), test_input(string)]
+This function takes two parameters, user input & expected output (list of tuples) and function_name,
+submits each test_input(string) to the function-name under-test, then
+returns the result of comparison: actual output vs. expected output.
+
 e.g.
+input_output = [(expected_output), test_input(string)]
 [(True, 'racecar'),   # base case (no capital letters, spaces, or non-ascii letters)
 (True, 'Race car'),   # capital letters are converted to lowercase
 (True, 'racecar!'),   # non-ascii letters are ignored
 (False, 'racecar')]   # the second 'a' and 'o' are transposed
-
-and submits each string to the function-under-test,
-then returns the result of comparing the actual output & expected output.
 
 If any tests fail, a descriptive message is returned and printed.
 Otherwise, "All tests passed." is returned and printed.
