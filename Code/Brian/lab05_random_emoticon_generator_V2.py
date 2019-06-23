@@ -1,4 +1,9 @@
 # lab05_random_emoticon_generator_V2.py
+'''
+** Version 2 **
+
+Use a while loop to generate 5 emoticons.
+'''
 import random #import used for random generation/choice of intergers and strings
 while True:
     eyes_list = [':', ';'] #defines a list of eyes

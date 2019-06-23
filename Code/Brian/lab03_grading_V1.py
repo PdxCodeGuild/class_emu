@@ -1,4 +1,26 @@
 # Lab_03_Grading_V1.py
+'''
+Lab 3: Grading
+
+** Version 1 **
+
+Let's convert a number grade to a letter grade, using if and elif statements and comparisons.
+
+Concepts Covered
+input, print
+type conversion (str to int)
+comparisons (< <= > >=)
+if, elif, else
+Instructions
+Have the user enter a number representing the grade (0-100)
+Convert the number grade to a letter grade
+Numeric Ranges
+90-100: A
+80-89: B
+70-79: C
+60-69: D
+0-59: F
+'''
 import random # imports random for use to randomize things
 user_grade = input("What was your score on the test?: ") # asks user to enter test score, is string
 user_grade = int(user_grade) # converts string to interger

@@ -1,14 +1,16 @@
 # lab11_simple_calculator_V2.py
-# Version 2
-# Allow the user to keep performing operations until they say 'done'.
-#Use while True and break. Below is some sample input/output.
-#
-# > what is the operation you'd like to perform? +
-# > what is the first number? 5
-# > what is the second number? 12
-# > 5 + 12 = 17
-# > what is the operation you'd like to perform? done
-# > goodbye!
+'''
+** Version 2 **
+
+Allow the user to keep performing operations until they say 'done'. Use while True and break. Below is some sample input/output.
+
+> what is the operation you'd like to perform? +
+> what is the first number? 5
+> what is the second number? 12
+> 5 + 12 = 17
+> what is the operation you'd like to perform? done
+> goodbye!
+'''
 
 print("Let's solve a math problem! ") # prints a statement
 while True: # a while loop to run while the condition is true or until a break or program interrup or crash

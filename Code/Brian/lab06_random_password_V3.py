@@ -1,4 +1,10 @@
 # lab06_random_password_V3.py
+'''
+** Version 3 (optional) **
+
+Ask the user for how many lowercase letters, uppercase letters, numbers, and special characters they'd like in their password.
+Generate a password accordingly.
+'''
 import random #imports the random module to be used in random number and word generation
 print("Let's create a secure password using each type of character! ")
 lower_characters = 'abcdefghijklmnopqrstuvwxyz' #string of all lowercase characters for use in the password

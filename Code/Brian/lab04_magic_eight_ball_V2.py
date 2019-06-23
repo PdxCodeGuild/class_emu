@@ -1,4 +1,9 @@
 # lab04_magic_eight_ball_V2
+'''
+** Version 2 **
+
+Using a while loop, keep asking the user for a question, if they enter 'done', exit
+'''
 import random #import random imports the random module, which contains a variety of things to do with random number generation.
 print("Welcome") #The print function in Python is a function that outputs to your console window whatever you say you want to print out.
 while True:

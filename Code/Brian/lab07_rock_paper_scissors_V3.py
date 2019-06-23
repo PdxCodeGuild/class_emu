@@ -1,4 +1,10 @@
 # lab07_rock_paper_scissors_V3.py
+'''
+** Version 3 (optional) **
+
+Rock, paper, scissors, lizard, Spock!
+https://www.instructables.com/id/How-to-Play-Rock-Paper-Scissors-Lizard-Spock/
+'''
 import random #imports the random module for random number/word generation
 rpsclsp_list = ['Rock', 'Paper', 'Scissors', 'Lizard', 'Spock'] #creates list to choose from
 user_choice = input("Do you want (Rock), (Paper), (Scissors), (Lizard) or (Spock)? ") #asks user for input

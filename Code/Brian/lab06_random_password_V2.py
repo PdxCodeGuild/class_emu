@@ -1,4 +1,9 @@
 # lab06_random_password_V2.py
+'''
+** Version 2 **
+
+Allow the user to enter the value of n, remember to convert its type, as input returns a string.
+'''
 import random #imports the random module to be used in random number and word generation
 print("Let's create a secure password! ")
 characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&()*+,-./:;<=>?@[]^_`{|}~' #string of all characters for use in the password

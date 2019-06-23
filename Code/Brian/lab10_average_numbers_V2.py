@@ -1,19 +1,19 @@
 # L10_average_numbers_V2.py
+'''
+** Version 2 **
+Ask the user to enter the numbers one at a time, putting them into a list. If the user enters 'done', then calculate and display the average. The following code demonstrates how to add an element to the end of a list.
 
-# Version 2
-# Ask the user to enter the numbers one at a time, putting them into a list.
-#If the user enters 'done', then calculate and display the average.
-#The following code demonstrates how to add an element to the end of a list.
-# nums = []
-# nums.append(5)
-# print(nums)
-# Below is an example input/output:
-#
-# > enter a number, or 'done': 5
-# > enter a number, or 'done': 3
-# > enter a number, or 'done': 4
-# > enter a number, or 'done': done
-# average: 4
+nums = []
+nums.append(5)
+print(nums)
+Below is an example input/output:
+
+> enter a number, or 'done': 5
+> enter a number, or 'done': 3
+> enter a number, or 'done': 4
+> enter a number, or 'done': done
+average: 4
+'''
 
 num_list = [] # defines the variable num_list as a blank list
 while True: # checks if the value is true and, if so, runs the while loop
