@@ -1,6 +1,6 @@
 # filename: lab15_functions.py
 '''
-This file contains two functions: get_integer() and run_tests().
+This file contains three functions: get_integer(), try_again(), and run_tests().
     • get_integer() is for getting and validating the user input (integer).
     • try_again() is for prompting the user to continue or exit the program.
     • run_tests() is for the units tests embedded in the bottom of the lab 15 solutions.
