@@ -125,4 +125,4 @@ if len(sys.argv) > 1:
 
         from lab_functions import run_tests_2
 
-        print(run_tests_2(test_data, check_anagram)) # *** uncomment this line to run the unit tests ***
+        print(run_tests_2(test_data, check_anagram))

@@ -78,4 +78,4 @@ if len(sys.argv) > 1:
 
         from lab_functions import run_tests_1
 
-        print(run_tests_1(test_data, check_palindrome)) # *** uncomment this line to run the unit tests ***
+        print(run_tests_1(test_data, check_palindrome))
