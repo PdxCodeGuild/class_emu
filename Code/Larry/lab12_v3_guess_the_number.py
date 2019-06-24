@@ -6,9 +6,11 @@ Version 3
 Tell the user whether their guess is above ('too high!') or below ('too low!') the target value.
 '''
 
-# Computer will guess a random int between 1 and 10.
 import random
+
+# Computer will guess a random int between 1 and 10.
 computer_number = random.randint(1,10)
+
 # Using a while loop, allow the user to guess infinite times.
 # Keep track of how many guesses the user has made, and tell them at the end.
 counter = 0

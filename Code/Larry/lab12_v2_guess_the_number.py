@@ -6,13 +6,12 @@ Version 2
 
 Allow the user to make an unlimited number of guesses using a while True and break.
 Keep track of how many guesses the user has made, and tell them at the end.
-
 '''
 
-# Computer will guess a random int between 1 and 10.
 import random
+
+# Computer will guess a random int between 1 and 10.
 computer_number = random.randint(1,10)
-# print(computer_number)
 
 # Using a while loop, allow the user to guess infinite times.
 # Keep track of how many guesses the user has made, and tell them at the end.
@@ -28,6 +27,5 @@ while True:
     elif user_guess == "done":
         print("Adios. Sayonara, buh-bye!")
         break
-    else:
-        print(f"That's not it. Try again!")
+    print(f"That's not it. Try again!")
     counter = counter + 1

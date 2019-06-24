@@ -22,9 +22,9 @@ and the computer will make random guesses until they get it right.
 # 3. if the computer_guess is less than human_number, set computer_guess higher by 1
 '''
 
-# Computer will guess a random int between 1 and 10.
 import random
-# computer_number = random.randint(1,10)
+
+# Human will select an int between 1 and 10.
 human_number = int(input("Enter a number from 1 to 10: "))
 
 # Using a while loop, allow the user to guess infinite times.

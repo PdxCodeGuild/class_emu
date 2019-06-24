@@ -12,8 +12,9 @@ Hint: you're interested in comparing the two absolute differences:
 abs(current_guess-target) and abs(last_guess-target).
 '''
 
-# Computer will guess a random int between 1 and 10.
 import random
+
+# Computer will guess a random int between 1 and 10.
 computer_number = random.randint(1,10)
 
 # Using a while loop, allow the user to guess infinite times.
