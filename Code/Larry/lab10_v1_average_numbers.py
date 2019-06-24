@@ -1,7 +1,7 @@
-# Lab 10: Average Numbers
-# average_numbers.py
-
+# filename: lab10_v1_average_numbers.py
 '''
+Lab 10: Average Numbers
+
 We're going to average a list of numbers.
 1. Start with the following list,
 2. iterate through it,
@@ -20,8 +20,8 @@ for num in nums:
 # loop over the indices
 for i in range(len(nums)):
     print(nums[i])
-
 '''
+
 # Start with the following list
 nums = [5, 0, 8, 3, 4, 1, 6]
 
