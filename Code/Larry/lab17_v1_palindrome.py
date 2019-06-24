@@ -17,7 +17,8 @@ returns False if it's not.
 >>> enter a word: palindrome
 >>> 'palindrome' is not a palindrome
 '''
-import string
+import sys # for using sys.argv e.g. $python3 this_file.py run_tests
+import string # for utilizing the ascii_lowercase set
 
 def check_palindrome(user_word):
 
@@ -34,45 +35,47 @@ def check_palindrome(user_word):
             return False # if any mismatches are found, break out of for loop (return False)
     return True          # otherwise, return True
 
-# ''' *** uncomment this line to run the unit tests ***
-# Get user input
-user_word = input("\n[Palindrome] Enter a word: ")
+if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
 
-# Print the result of the comparsion
-result = check_palindrome(user_word)
-if result:
-    print(f"\n{result}: '{user_word}' is a palindrome.\n")     # evals to True, print "it's a palindrome"
-else:
-    print(f"\n{result}: '{user_word}' is a not palindrome.\n") # evals to False, print "it's not a palindrome"
-# '''
+    # Get user input
+    user_word = input("\n[Palindrome] Enter a word: ")
+
+    # Print the result of the comparsion
+    result = check_palindrome(user_word)
+    if result:
+        print(f"\n{result}: '{user_word}' is a palindrome.\n")     # evals to True, print "it's a palindrome"
+    else:
+        print(f"\n{result}: '{user_word}' is a not palindrome.\n") # evals to False, print "it's not a palindrome"
 
 ###########################################################
 ### UNIT TESTS ###
 ###########################################################
 
 # Check a variety of comparison (with spaces, Capital letters, punctuation)
-if __name__ == '__main__':
+if len(sys.argv) > 1:
+    if sys.argv[1] == 'run_tests':  # 1 first argument after the program name, e.g. py filename.py run_tests
 
-    # Source: https://www.grammarly.com/blog/16-surprisingly-funny-palindromes/
-    test_data = [
-        (1, 'racecar', True),
-        (2, 'Race car', True),
-        (3, 'Race car!', True),
-        (4, 'Taco cat', True),
-        (5, 'Yo, banana boy!', True),
-        (6, 'Ed, I saw Harpo Marx ram Oprah W. aside.', True),
-        (7, 'Do geese see God?', True),
-        (8, 'A man, a plan, a canal: Panama.', True),
-        (9, 'Straw? No, too stupid a fad; I put soot on warts', True),
-        (10, 'A nut for a jar of tuna.', True),
-        (11, 'Al lets Della call Ed "Stella."', True),
-        (12, 'Al lets Della call Ed “Stella.”', True),
-        (13, 'Are we not pure? "No, sir!" Panama\'s moody Noriega brags. "It is garbage!" Irony dooms a man—a prisoner up to new era.', True),
-        (14, 'Are we not pure? “No, sir!” Panama’s moody Noriega brags. “It is garbage!” Irony dooms a man—a prisoner up to new era.', True),
-        (15, 'tacacot', False),
-        (16, 'afghha', False),
-        (17, 'racecars', False)
-    ]
-    from lab_functions import run_tests_1
+        # Source: https://www.grammarly.com/blog/16-surprisingly-funny-palindromes/
+        test_data = [
+            (1, 'racecar', True),
+            (2, 'Race car', True),
+            (3, 'Race car!', True),
+            (4, 'Taco cat', True),
+            (5, 'Yo, banana boy!', True),
+            (6, 'Ed, I saw Harpo Marx ram Oprah W. aside.', True),
+            (7, 'Do geese see God?', True),
+            (8, 'A man, a plan, a canal: Panama.', True),
+            (9, 'Straw? No, too stupid a fad; I put soot on warts', True),
+            (10, 'A nut for a jar of tuna.', True),
+            (11, 'Al lets Della call Ed "Stella."', True),
+            (12, 'Al lets Della call Ed “Stella.”', True),
+            (13, 'Are we not pure? "No, sir!" Panama\'s moody Noriega brags. "It is garbage!" Irony dooms a man—a prisoner up to new era.', True),
+            (14, 'Are we not pure? “No, sir!” Panama’s moody Noriega brags. “It is garbage!” Irony dooms a man—a prisoner up to new era.', True),
+            (15, 'tacacot', False),
+            (16, 'afghha', False),
+            (17, 'racecars', False)
+        ]
 
-    # print(run_tests_1(test_data, check_palindrome)) # *** uncomment this line to run the unit tests ***
+        from lab_functions import run_tests_1
+
+        print(run_tests_1(test_data, check_palindrome)) # *** uncomment this line to run the unit tests ***

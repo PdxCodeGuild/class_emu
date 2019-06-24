@@ -9,6 +9,7 @@ Aces can be worth 11 if they won't put the total point value of both cards over 
 
 e.g. A = [1, 11], A + A = [2, 12, 22], A + A + A = [3, 13, 33]
 '''
+import sys # for using sys.argv e.g. $python3 this_file.py run_tests
 
 def play_blackjack(cards):
 
@@ -60,48 +61,49 @@ def play_blackjack(cards):
     elif card_value_total > 21:                     # 22 - 30
         return f"{card_value_total} Already busted!"
 
-# ''' Uncomment this line to run the tests
-# Ask the user for three playing cards & convert string to integer
-# e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
-# Note: 'A' can be worth '1' or '11' in this version
+if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
 
-print("\nLet's play Blackjack.\nEnter one of these values: (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)\n")
-while True:                                 # stay on this input prompt, ...
-    first_card = input("What's your first card? ")
-    if len(first_card) > 0: #               # ... unless the user submits at least one character
-        break
-while True:                                 # stay on this input prompt, ...
-    second_card = input("What's your second card? ")
-    if len(second_card) > 0: #               # ... unless the user submits at least one character
-        break
-while True:                                 # stay on this input prompt, ...
-    third_card = input("What's your third card? ")
-    if len(third_card) > 0: #               # ... unless the user submits at least one character
-        break
-cards = [first_card, second_card, third_card]
+    # Ask the user for three playing cards & convert string to integer
+    # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
+    # Note: 'A' can be worth '1' or '11' in this version
 
-# Print out the current total point value and the advice.
+    print("\nLet's play Blackjack.\nEnter one of these values: (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)\n")
+    while True:                                 # stay on this input prompt, ...
+        first_card = input("What's your first card? ")
+        if len(first_card) > 0: #               # ... unless the user submits at least one character
+            break
+    while True:                                 # stay on this input prompt, ...
+        second_card = input("What's your second card? ")
+        if len(second_card) > 0: #               # ... unless the user submits at least one character
+            break
+    while True:                                 # stay on this input prompt, ...
+        third_card = input("What's your third card? ")
+        if len(third_card) > 0: #               # ... unless the user submits at least one character
+            break
+    cards = [first_card, second_card, third_card]
 
-print(f"\n{play_blackjack(cards)}\n")
-# '''
+    # Print out the current total point value and the advice.
+
+    print(f"\n{play_blackjack(cards)}\n")
 
 ###########################################################
 ### UNIT TESTS ###
 ###########################################################
 
 # Check a variety of comparison (with spaces, Capital letters, punctuation)
-if __name__ == '__main__':
+if len(sys.argv) > 1:
+    if sys.argv[1] == 'run_tests':  # 1 first argument after the program name, e.g. py filename.py run_tests
 
-    test_data = [
-        (1, ['2', '4', '8'], '14 Hit'),            # 14
-        (2, ['A', 'A', 'A'], '13 Hit'),            # 13, three As (11+1+1) - lines 40-44
-        (3, ['A', 'A', '4'], '16 Hit'),            # 16, two As (11+1) - lines 35-39
-        (4, ['K', '3', '5'], '18 Stay'),           # 18
-        (5, ['J', 'Q', 'A'], '21 Blackjack!'),     # 21, one A (1) - lines 30-34
-        (6, ['A', '8', '2'], '21 Blackjack!'),     # 21, one A (11) - lines 30-34
-        (7, ['9', '7', '6'], '22 Already busted!') # 22
-    ]
+        test_data = [
+            (1, ['2', '4', '8'], '14 Hit'),            # 14
+            (2, ['A', 'A', 'A'], '13 Hit'),            # 13, three As (11+1+1) - lines 40-44
+            (3, ['A', 'A', '4'], '16 Hit'),            # 16, two As (11+1) - lines 35-39
+            (4, ['K', '3', '5'], '18 Stay'),           # 18
+            (5, ['J', 'Q', 'A'], '21 Blackjack!'),     # 21, one A (1) - lines 30-34
+            (6, ['A', '8', '2'], '21 Blackjack!'),     # 21, one A (11) - lines 30-34
+            (7, ['9', '7', '6'], '22 Already busted!') # 22
+        ]
 
-    from lab_functions import run_tests_1
+        from lab_functions import run_tests_1
 
-    # print(run_tests_1(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***
+        print(run_tests_1(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***

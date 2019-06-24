@@ -16,6 +16,7 @@ Print out the current total point value and the advice.
 # What's your third card? 3
 # 15 Hit
 '''
+import sys # for using sys.argv e.g. $python3 this_file.py run_tests
 
 def play_blackjack(cards):
 
@@ -47,37 +48,38 @@ def play_blackjack(cards):
     elif card_value_total > 21:                     # 22 - 30
         return f"{card_value_total} Already busted!"
 
-# ''' Uncomment this line to run the tests
-# Ask the user for three playing cards & convert string to integer
-# e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
-# Note: 'A' is worth '1' in this version
+if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
 
-print("\nLet's play Blackjack.\nEnter one of these values: (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)\n")
-first_card = input("What's your first card? ")
-second_card = input("What's your second card? ")
-third_card = input("What's your third card? ")
-cards = [first_card, second_card, third_card]
+    # Ask the user for three playing cards & convert string to integer
+    # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
+    # Note: 'A' is worth '1' in this version
 
-# Print out the current total point value and the advice.
+    print("\nLet's play Blackjack.\nEnter one of these values: (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)\n")
+    first_card = input("What's your first card? ")
+    second_card = input("What's your second card? ")
+    third_card = input("What's your third card? ")
+    cards = [first_card, second_card, third_card]
 
-print(f"\n{play_blackjack(cards)}\n")
-# '''
+    # Print out the current total point value and the advice.
+
+    print(f"\n{play_blackjack(cards)}\n")
 
 ###########################################################
 ### UNIT TESTS ###
 ###########################################################
 
 # Check a variety of comparison (with spaces, Capital letters, punctuation)
-if __name__ == '__main__':
+if len(sys.argv) > 1:
+    if sys.argv[1] == 'run_tests':  # 1 first argument after the program name, e.g. py filename.py run_tests
 
-    test_data = [
-        (1, ['A', '8', '2'], '11 Hit'),            # 11
-        (2, ['2', '4', '8'], '14 Hit'),            # 14
-        (3, ['K', '3', '5'], '18 Stay'),           # 18
-        (4, ['J', 'Q', 'A'], '21 Blackjack!'),     # 21
-        (5, ['9', '7', '6'], '22 Already busted!') # 22
-    ]
+        test_data = [
+            (1, ['A', '8', '2'], '11 Hit'),            # 11
+            (2, ['2', '4', '8'], '14 Hit'),            # 14
+            (3, ['K', '3', '5'], '18 Stay'),           # 18
+            (4, ['J', 'Q', 'A'], '21 Blackjack!'),     # 21
+            (5, ['9', '7', '6'], '22 Already busted!') # 22
+        ]
 
-    from lab_functions import run_tests_1
+        from lab_functions import run_tests_1
 
-    # print(run_tests_1(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***
+        print(run_tests_1(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***
