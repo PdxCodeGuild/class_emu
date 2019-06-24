@@ -10,9 +10,6 @@ Version 3 (optional)
 Allow the user to enter a full arithmetic expression and use eval to evaluate it.
 '''
 
-# Import operator function (to convert string to operator)
-import operator
-
 while True:
     # User input: Ask for an operator and an operand (int, float)
     user_arith_exp = input("Enter a full arithmetic expression, e.g. 3+4 (x+y)(x-y)(x*y)(x/y): ")
@@ -21,7 +18,7 @@ while True:
     result = eval(user_arith_exp)
 
     # Check if the float ends with in (x.0, x.00, etc). if True, round it off
-    if int(result) == result and isinstance(result, float) == True:
+    if int(result) == result and isinstance(result, float):
         result = round(result)
 
     # Print the result
