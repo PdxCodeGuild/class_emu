@@ -18,6 +18,7 @@ while True:
     result = eval(user_arith_exp)
 
     # Check if the float ends with in (x.0, x.00, etc). if True, round it off
+    # Source: https://stackoverflow.com/questions/16995249/how-to-see-if-a-number-ends-in-0
     if int(result) == result and isinstance(result, float):
         result = round(result)
 
