@@ -36,13 +36,14 @@ def check_palindrome(user_word):
 
 # ''' *** uncomment this line to run the unit tests ***
 # Get user input
-user_word = input("[Palindrome] Enter a word: ")
+user_word = input("\n[Palindrome] Enter a word: ")
 
 # Print the result of the comparsion
-if check_palindrome(user_word):                  # if check_palindrome()
-    print(f"'{user_word}' is a palindrome.")     # evals to True, print "it's a palindrome"
+result = check_palindrome(user_word)
+if result:
+    print(f"\n{result}: '{user_word}' is a palindrome.\n")     # evals to True, print "it's a palindrome"
 else:
-    print(f"'{user_word}' is a not palindrome.") # evals to False, print "it's not a palindrome"
+    print(f"\n{result}: '{user_word}' is a not palindrome.\n") # evals to False, print "it's not a palindrome"
 # '''
 
 ###########################################################
@@ -54,24 +55,24 @@ if __name__ == '__main__':
 
     # Source: https://www.grammarly.com/blog/16-surprisingly-funny-palindromes/
     test_data = [
-        (True, 'racecar'),
-        (True, 'Race car'),
-        (True, 'Race car!'),
-        (True, 'Taco cat'),
-        (True, 'Yo, banana boy!'),
-        (True, 'Ed, I saw Harpo Marx ram Oprah W. aside.'),
-        (True, 'Do geese see God?'),
-        (True, 'A man, a plan, a canal: Panama.'),
-        (True, 'Straw? No, too stupid a fad; I put soot on warts'),
-        (True, 'A nut for a jar of tuna.'),
-        (True, 'Al lets Della call Ed "Stella."'),
-        (True, 'Al lets Della call Ed “Stella.”'),
-        (True, 'Are we not pure? "No, sir!" Panama\'s moody Noriega brags. "It is garbage!" Irony dooms a man—a prisoner up to new era.'),
-        (True, 'Are we not pure? “No, sir!” Panama’s moody Noriega brags. “It is garbage!” Irony dooms a man—a prisoner up to new era.'),
-        (False, 'tacacot'),
-        (False, 'afghha'),
-        (False, 'racecars'),
+        (1, 'racecar', True),
+        (2, 'Race car', True),
+        (3, 'Race car!', True),
+        (4, 'Taco cat', True),
+        (5, 'Yo, banana boy!', True),
+        (6, 'Ed, I saw Harpo Marx ram Oprah W. aside.', True),
+        (7, 'Do geese see God?', True),
+        (8, 'A man, a plan, a canal: Panama.', True),
+        (9, 'Straw? No, too stupid a fad; I put soot on warts', True),
+        (10, 'A nut for a jar of tuna.', True),
+        (11, 'Al lets Della call Ed "Stella."', True),
+        (12, 'Al lets Della call Ed “Stella.”', True),
+        (13, 'Are we not pure? "No, sir!" Panama\'s moody Noriega brags. "It is garbage!" Irony dooms a man—a prisoner up to new era.', True),
+        (14, 'Are we not pure? “No, sir!” Panama’s moody Noriega brags. “It is garbage!” Irony dooms a man—a prisoner up to new era.', True),
+        (15, 'tacacot', False),
+        (16, 'afghha', False),
+        (17, 'racecars', False)
     ]
-    from lab17_functions import run_tests_p
+    from lab_functions import run_tests_1
 
-    # print(run_tests_p(test_data, check_palindrome)) # *** uncomment this line to run the unit tests ***
+    # print(run_tests_1(test_data, check_palindrome)) # *** uncomment this line to run the unit tests ***

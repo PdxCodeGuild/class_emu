@@ -29,9 +29,9 @@ def check_anagram(user_word1, user_word2):
     user_words = [user_word1, user_word2]
     clean_words = []
     for i in range(len(user_words)):
-        user_words[i] = user_words[i].replace(" ", "").lower() # remove spaces and convert to lowercase
+        user_words[i] = user_words[i].replace(" ", "").lower()    # remove spaces and convert to lowercase
         for letter in user_words[i]:
-            if letter not in string.ascii_lowercase:    # if any letter no in ascii_lowercase string ...
+            if letter not in string.ascii_lowercase:       # if any letter no in ascii_lowercase string ...
                 user_words[i] = user_words[i].replace(letter, "") # ... remove it (replace with nothing)
         clean_words.append(user_words[i])                         # add the cleaned word to clean_words list
 
@@ -46,11 +46,11 @@ def check_anagram(user_word1, user_word2):
 # ''' *** uncomment this line to run the unit tests ***
 # Get user input
 while True:                                 # stay on this input prompt, ...
-    user_word1 = input("[Anagram] Enter a word: ")
+    user_word1 = input("\n[Anagram] Enter a word: ")
     if len(user_word1) > 0: #               # ... unless the user submits at least one character
         break
 while True:                                 # stay on this input prompt, ...
-    user_word2 = input("Enter another word: ")
+    user_word2 = input("[Anagram] Enter another word: ")
     if len(user_word2) > 0:                 # ... unless the user submits at least one character
         break
 
@@ -75,44 +75,44 @@ else:
 if __name__ == '__main__':
 
     test_data = [
-        (True, 'anagram', 'nag a ram'),
-        (True, 'Nude Dragons', 'Soundgarden'),
-        (True, 'Tar', 'Rat'),
-        (True, 'Arc', 'Car'),
-        (True, 'Elbow', 'Below'),
-        (True, 'State', 'Taste'),
-        (True, 'Cider', 'Cried'),
-        (True, 'Dusty', 'Study'),
-        (True, 'Night', 'Thing'),
-        (True, 'Inch', 'Chin'),
-        (True, 'Brag', 'Grab!'),
-        (True, 'Cat', 'Act'),
-        (True, 'Bored', 'Robed'),
-        (True, 'Save', 'Vase'),
-        (True, 'Angel', 'Glean'),
-        (True, 'Stressed', 'Desserts'),
-        (True, 'debit card', 'bad credit'),
-        (True, 'Dormitory', 'Dirty room'),
-        (True, 'School master', 'The classroom'),
-        (True, 'Conversation', 'Voices rant on'),
-        (True, 'Listen', 'Silent'),
-        (True, 'Astronomer', 'Moon starer'),
-        (True, 'The eyes', 'They see'),
-        (True, 'A gentleman', 'Elegant man'),
-        (True, 'Funeral', 'Real fun'),
-        (True, 'The Morse Codes', 'Here comes dots'),
-        (True, 'Eleven, plus two', 'Twelve, plus one'),
-        (True, 'Slot machines', 'Cash lost in me'),
-        (True, 'Fourth of July', 'Joyful Fourth'),
-        (False, 'The Morse Code', 'Here comes dots'),
-        (False, 'tacocat', 'tacacat'),
-        (False, 'School master', 'The glassroom'),
-        (False, 'Angel', 'Gleam'),
-        (False, 'Astronomer', 'Moon starts'),
-        (False, 'Fourth of June', 'Joyful Fourth'),
-        (False, 'asdf', '(fdda)')
+        (1, 'anagram', 'nag a ram', True),
+        (2, 'Nude Dragons', 'Soundgarden', True),
+        (3, 'Tar', 'Rat', True),
+        (4, 'Arc', 'Car', True),
+        (5, 'Elbow', 'Below', True),
+        (6, 'State', 'Taste', True),
+        (7, 'Cider', 'Cried', True),
+        (8, 'Dusty', 'Study', True),
+        (9, 'Night', 'Thing', True),
+        (10, 'Inch', 'Chin', True),
+        (11, 'Brag', 'Grab!', True),
+        (12, 'Cat', 'Act', True),
+        (13, 'Bored', 'Robed', True),
+        (14, 'Save', 'Vase', True),
+        (15, 'Angel', 'Glean', True),
+        (16, 'Stressed', 'Desserts', True),
+        (17, 'debit card', 'bad credit', True),
+        (18, 'Dormitory', 'Dirty room', True),
+        (19, 'School master', 'The classroom', True),
+        (20, 'Conversation', 'Voices rant on', True),
+        (21, 'Listen', 'Silent', True),
+        (22, 'Astronomer', 'Moon starer', True),
+        (23, 'The eyes', 'They see', True),
+        (24, 'A gentleman', 'Elegant man', True),
+        (25, 'Funeral', 'Real fun', True),
+        (26, 'The Morse Codes', 'Here comes dots', True),
+        (27, 'Eleven, plus two', 'Twelve, plus one', True),
+        (28, 'Slot machines', 'Cash lost in me', True),
+        (29, 'Fourth of July', 'Joyful Fourth', True),
+        (30, 'The Morse Code', 'Here comes dots', False),
+        (31, 'tacocat', 'tacacat', False),
+        (32, 'School master', 'The glassroom', False),
+        (33, 'Angel', 'Gleam', False),
+        (34, 'Astronomer', 'Moon starts', False),
+        (35, 'Fourth of June', 'Joyful Fourth', False),
+        (36, 'asdf', '(fdda)', False)
     ]
 
-    from lab17_functions import run_tests
+    from lab_functions import run_tests_2
 
-    # print(run_tests(test_data, check_anagram)) # *** uncomment this line to run the unit tests ***
+    # print(run_tests_2(test_data, check_anagram)) # *** uncomment this line to run the unit tests ***

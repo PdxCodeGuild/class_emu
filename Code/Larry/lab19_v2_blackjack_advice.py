@@ -65,7 +65,7 @@ def play_blackjack(cards):
 # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
 # Note: 'A' can be worth '1' or '11' in this version
 
-print("Let's play Blackjack.\nEnter one of these values: (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)\n")
+print("\nLet's play Blackjack.\nEnter one of these values: (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)\n")
 while True:                                 # stay on this input prompt, ...
     first_card = input("What's your first card? ")
     if len(first_card) > 0: #               # ... unless the user submits at least one character
@@ -102,6 +102,6 @@ if __name__ == '__main__':
         (7, ['9', '7', '6'], '22 Already busted!') # 22
     ]
 
-    from lab19_functions import run_tests
+    from lab_functions import run_tests_1
 
-    # print(run_tests(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***
+    # print(run_tests_1(test_data, play_blackjack)) # *** uncomment this line to run the unit tests ***

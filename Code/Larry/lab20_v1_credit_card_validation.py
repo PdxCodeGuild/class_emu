@@ -20,7 +20,7 @@ e.g. credit_card_number = 4556737586899855
 '''
 
 def validate_credit_card(cc_number):
-    numbers = list(credit_card_number)           # Convert the input string into a list of ints
+    numbers = list(cc_number)                    # Convert the input string into a list of ints
     check_digit = numbers.pop()                  # Slice off the last digit. That is the check digit.
 
     counter = 0                                  #
@@ -47,9 +47,16 @@ def validate_credit_card(cc_number):
     else:
         return False
 
-# ''' *** uncomment this line to run the unit tests ***
+''' *** uncomment this line to run the unit tests ***
+# Get user input
 credit_card_number = input("\nEnter a credit card number: ") # Get input, e.g. "4556737586899855"
-print(f"\n{validate_credit_card(credit_card_number)}\n")     # Print the result
+
+# Print the result
+result = validate_credit_card(credit_card_number)
+if result:
+    print(f"\n{result}: This is a valid credit card number.\n")
+else:
+    print(f"\n{result}: This is not a valid credit card number.\n")
 # '''
 
 ###########################################################
@@ -94,6 +101,6 @@ if __name__ == '__main__':
         (30, "343771381317140", True)    # American Express
     ]
 
-    # from lab20_functions import run_tests
+    from lab_functions import run_tests_1
 
-    # print(run_tests(test_data, validate_credit_card) # *** uncomment this line to run the unit tests ***
+    print(run_tests_1(test_data, validate_credit_card)) # *** uncomment this line to run the unit tests ***
