@@ -51,7 +51,7 @@ for i in range(len(clean_words)-1):
 # based on snippet of code from lab10_v4_average_numbers.py
 words_pairs_dict = {} # set base case (dictionary)
 for word_pair in list_of_word_pairs:
-    if len(word_pair[0]) > 2 and len(word_pair[1]): #skips '', 1- and 2-letters words like 'a', 'an'
+    if len(word_pair[0]) > 2 and len(word_pair[1]) > 2: #skips '', 1- and 2-letters words like 'a', 'an'
         if word_pair in words_pairs_dict:
             # if the user enters a number that already exists, increment the count by 1
             words_pairs_dict[word_pair] += 1
