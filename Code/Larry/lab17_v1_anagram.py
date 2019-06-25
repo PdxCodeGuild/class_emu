@@ -1,4 +1,4 @@
-# filename: lab17_v1_anagram.py
+    # filename: lab17_v1_anagram.py
 '''
 Lab 17: Anagram
 
@@ -20,8 +20,8 @@ Check if the two are equal
 >>> enter the second word: nag a ram
 >>> 'anagram' and 'nag a ram' are anagrams
 '''
-
-import string
+import sys # for using sys.argv e.g. $python3 this_file.py run_tests
+import string # for utilizing the ascii_lowercase set
 
 def check_anagram(user_word1, user_word2):
 
@@ -29,16 +29,16 @@ def check_anagram(user_word1, user_word2):
     user_words = [user_word1, user_word2]
     clean_words = []
     for i in range(len(user_words)):
-        user_words[i] = user_words[i].replace(" ", "").lower() # remove spaces and convert to lowercase
+        user_words[i] = user_words[i].replace(" ", "").lower()    # remove spaces and convert to lowercase
         for letter in user_words[i]:
-            if letter not in string.ascii_lowercase:    # if any letter no in ascii_lowercase string ...
+            if letter not in string.ascii_lowercase:        # if any letter no in ascii_lowercase string ...
                 user_words[i] = user_words[i].replace(letter, "") # ... remove it (replace with nothing)
         clean_words.append(user_words[i])                         # add the cleaned word to clean_words list
 
     if len(clean_words[0]) != len(clean_words[1]): # check_anagram fails if the words aren't the same length
         return False
 
-    # # Split each list element in string to its own list of letters
+    # Split each list element in string to its own list of letters
     for i in range(len(clean_words)):
         letters_list1 = list(clean_words[0]) # split words into a list of letters
         letters_list2 = list(clean_words[1]) # split words into a list of letters
@@ -52,24 +52,24 @@ def check_anagram(user_word1, user_word2):
         return True                     # ... return True
     return False                        # else return False
 
-# ''' *** uncomment this line to run the unit tests ***
-# Get user input
-while True:                                 # stay on this input prompt, ...
-    user_word1 = input("[Anagram] Enter a word: ")
-    if len(user_word1) > 0: #               # ... unless the user submits at least one character
-        break
-while True:                                 # stay on this input prompt, ...
-    user_word2 = input("Enter another word: ")
-    if len(user_word2) > 0:                 # ... unless the user submits at least one character
-        break
+if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
 
-# Print the result of the comparsion
-result = check_anagram(user_word1, user_word2)
-if result:
-    print(f"\n{result}: '{user_word1}' is an anagram of '{user_word2}'\n")
-else:
-    print(f"\n{result}: '{user_word1}' is NOT an anagram of '{user_word2}'\n")
-# '''
+    # Get user input
+    while True:                                 # stay on this input prompt, ...
+        user_word1 = input("\n[Anagram] Enter a word: ")
+        if len(user_word1) > 0: #               # ... unless the user submits at least one character
+            break
+    while True:                                 # stay on this input prompt, ...
+        user_word2 = input("[Anagram] Enter another word: ")
+        if len(user_word2) > 0:                 # ... unless the user submits at least one character
+            break
+
+    # Print the result of the comparsion
+    result = check_anagram(user_word1, user_word2)
+    if result:
+        print(f"\n{result}: '{user_word1}' is an anagram of '{user_word2}'\n")
+    else:
+        print(f"\n{result}: '{user_word1}' is NOT an anagram of '{user_word2}'\n")
 
 ###########################################################
 ### UNIT TESTS ###
@@ -81,47 +81,48 @@ else:
 # [FAIL] N/A: "a1a" != "a2a"    # Characters not in ascii_lowercase are removed, including integers
 
 # Check a variety of comparison (with spaces, Capital letters, punctuation)
-if __name__ == '__main__':
+if len(sys.argv) > 1:
+    if sys.argv[1] == 'run_tests':  # 1 first argument after the program name, e.g. py filename.py run_tests
 
-    test_data = [
-        (True, 'anagram', 'nag a ram'),
-        (True, 'Nude Dragons', 'Soundgarden'),
-        (True, 'Tar', 'Rat'),
-        (True, 'Arc', 'Car'),
-        (True, 'Elbow', 'Below'),
-        (True, 'State', 'Taste'),
-        (True, 'Cider', 'Cried'),
-        (True, 'Dusty', 'Study'),
-        (True, 'Night', 'Thing'),
-        (True, 'Inch', 'Chin'),
-        (True, 'Brag', 'Grab!'),
-        (True, 'Cat', 'Act'),
-        (True, 'Bored', 'Robed'),
-        (True, 'Save', 'Vase'),
-        (True, 'Angel', 'Glean'),
-        (True, 'Stressed', 'Desserts'),
-        (True, 'debit card', 'bad credit'),
-        (True, 'Dormitory', 'Dirty room'),
-        (True, 'School master', 'The classroom'),
-        (True, 'Conversation', 'Voices rant on'),
-        (True, 'Listen', 'Silent'),
-        (True, 'Astronomer', 'Moon starer'),
-        (True, 'The eyes', 'They see'),
-        (True, 'A gentleman', 'Elegant man'),
-        (True, 'Funeral', 'Real fun'),
-        (True, 'The Morse Codes', 'Here comes dots'),
-        (True, 'Eleven, plus two', 'Twelve, plus one'),
-        (True, 'Slot machines', 'Cash lost in me'),
-        (True, 'Fourth of July', 'Joyful Fourth'),
-        (False, 'The Morse Code', 'Here comes dots'),
-        (False, 'tacocat', 'tacacat'),
-        (False, 'School master', 'The glassroom'),
-        (False, 'Angel', 'Gleam'),
-        (False, 'Astronomer', 'Moon starts'),
-        (False, 'Fourth of June', 'Joyful Fourth'),
-        (False, 'asdf', '(fdda)')
-    ]
+        test_data = [
+            (1, 'anagram', 'nag a ram', True),
+            (2, 'Nude Dragons', 'Soundgarden', True),
+            (3, 'Tar', 'Rat', True),
+            (4, 'Arc', 'Car', True),
+            (5, 'Elbow', 'Below', True),
+            (6, 'State', 'Taste', True),
+            (7, 'Cider', 'Cried', True),
+            (8, 'Dusty', 'Study', True),
+            (9, 'Night', 'Thing', True),
+            (10, 'Inch', 'Chin', True),
+            (11, 'Brag', 'Grab!', True),
+            (12, 'Cat', 'Act', True),
+            (13, 'Bored', 'Robed', True),
+            (14, 'Save', 'Vase', True),
+            (15, 'Angel', 'Glean', True),
+            (16, 'Stressed', 'Desserts', True),
+            (17, 'debit card', 'bad credit', True),
+            (18, 'Dormitory', 'Dirty room', True),
+            (19, 'School master', 'The classroom', True),
+            (20, 'Conversation', 'Voices rant on', True),
+            (21, 'Listen', 'Silent', True),
+            (22, 'Astronomer', 'Moon starer', True),
+            (23, 'The eyes', 'They see', True),
+            (24, 'A gentleman', 'Elegant man', True),
+            (25, 'Funeral', 'Real fun', True),
+            (26, 'The Morse Codes', 'Here comes dots', True),
+            (27, 'Eleven, plus two', 'Twelve, plus one', True),
+            (28, 'Slot machines', 'Cash lost in me', True),
+            (29, 'Fourth of July', 'Joyful Fourth', True),
+            (30, 'The Morse Code', 'Here comes dots', False),
+            (31, 'tacocat', 'tacacat', False),
+            (32, 'School master', 'The glassroom', False),
+            (33, 'Angel', 'Gleam', False),
+            (34, 'Astronomer', 'Moon starts', False),
+            (35, 'Fourth of June', 'Joyful Fourth', False),
+            (36, 'asdf', '(fdda)', False)
+        ]
 
-    from lab17_functions import run_tests
+        from lab_functions import run_tests_2
 
-    # print(run_tests(test_data, check_anagram)) # *** uncomment this line to run the unit tests ***
+        print(run_tests_2(test_data, check_anagram))
