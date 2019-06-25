@@ -20,11 +20,17 @@ Find a book on Project Gutenberg. Download it as a UTF-8 text file.
 # for i in range(min(10, len(words))):  # print the top 10 words, or all of them, whichever is smaller
 #   print(words[i])
 """
+
+import requests
 import string
 
-# Open the file.
-with open(r'/users/larrymoiola/Desktop/class_emu/1 Python/data/apothecary.txt', 'r', encoding='utf-8') as f:
-    contents = f.read()
+# Get the file
+response = requests.get("http://www.gutenberg.org/cache/epub/31168/pg31168.txt")
+contents = response.text
+
+# # Open the file.
+# with open(r'/users/larrymoiola/Desktop/class_emu/1 Python/data/apothecary.txt', 'r', encoding='utf-8') as f:
+#     contents = f.read()
 
 # Split into a list of words.
 words_list = contents.split() # split on whitespace
@@ -33,26 +39,23 @@ words_list = contents.split() # split on whitespace
 # based on snippet of code from lab17_v2_anagram.py
 clean_words = []
 for i in range(len(words_list)):
-    # words_list[i] = words_list[i].replace(" ", "").lower()    # remove spaces and convert to lowercase
-    words_list[i] = words_list[i].lower()                       # convert to lowercase
+    words_list[i] = words_list[i].lower()                     # convert to lowercase
     for letter in words_list[i]:
         if letter not in string.ascii_lowercase:       # if any letter no in ascii_lowercase string ...
             words_list[i] = words_list[i].replace(letter, "") # ... remove it (replace with nothing)
     clean_words.append(words_list[i])                         # add the cleaned word to clean_words list
 
 for word in clean_words:
-    if word == '':
-        clean_words.remove('')
-    elif word == 'wwwgutenbergorg':
+    if word == 'wwwgutenbergorg':
         clean_words.remove('wwwgutenbergorg') # maybe unnecessary since count is low
-    # could check a host of words(strings): youll, th (from 18TH), etc.
+    # Add checks for a host of unwanted words(strings), e.g. 'youll', 'th' (from 18TH), etc.
 
 # * If a word isn't in your dictionary yet, add it with a count of 1.
 # * If it is, increment its count.
 # based on snippet of code from lab10_v4_average_numbers.py
 words_dict = {} # set base case (dictionary)
 for clean_word in clean_words:
-    if len(clean_word) > 2:
+    if len(clean_word) > 2: #skips '', 1- and 2-letters words like 'a', 'an'
         if clean_word in words_dict:
             # if the user enters a number that already exists, increment the count by 1
             words_dict[clean_word] += 1
