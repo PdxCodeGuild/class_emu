@@ -16,16 +16,19 @@ same age and grade level as scores of 14.
 
 import requests
 import string
+import re
 
 # Get the file
 # response = requests.get("http://www.gutenberg.org/cache/epub/31168/pg31168.txt")
-# contents = response.text
-# book_title = "ASTOUNDING STORIES"
+# book_title = "Astounding Stories"
+response = requests.get("http://www.veryabc.cn/movie/uploads/script/Dialog-TheShawshankRedemption.txt")
+book_title = "The Shawshank Redemption"
+contents = response.text
 
 # Open the file.
-with open(r'/home/larry/software_dev/Python/class_emu/1 Python/data/apothecary.txt', 'r', encoding='utf-8') as f:
-    contents = f.read()
-book_title = "THE APOTHECARY"
+# with open(r'/home/larry/software_dev/Python/class_emu/1 Python/data/apothecary.txt', 'r', encoding='utf-8') as f:
+#     contents = f.read()
+# book_title = "The Apothecary"
     # print(contents)
 
 # contents = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -41,37 +44,30 @@ for i in range(len(words_list)):
             words_list[i] = words_list[i].replace(letter, "")   # ... remove it (replace with nothing)
     clean_words.append(words_list[i])                           # add the cleaned word to clean_words list
 
-
 for word in clean_words:
     if word == '':
-        clean_words.remove('') # example (maybe unnecessary since count is low)
-
+        clean_words.remove('') # example
 # print(f"clean words: {clean_words}")
 
 # Get number of characters (number_of_characters)
 # concatenate to giant string & count the letters
 number_of_characters = len(''.join(clean_words))
-# print(f"num of chars: {number_of_characters}")                                              # 369
 
 # Get number of words (number_of_words)
 number_of_words = len(clean_words)
-# print(f"num of words: {number_of_words}")                                                   # 69
 
-# char_word_avg = (number of characters / number of words) * 4.71
-char_word_avg = number_of_characters / number_of_words * 4.71                               # 25.19
-# print(f"char, word avg: {char_word_avg}")
+# char_word_avg = (number of characters divided by number of words) multiplied by 4.71
+char_word_avg = (number_of_characters / number_of_words) * 4.71
 
 # Get number of sentences (number_of_sentences)
-number_of_sentences = len(contents.split('. ')) # split on period+space, then get length    # 4
-# print(f"num of sentences: {number_of_sentences}")
+number_of_sentences = len(re.split('[\w\s][\.!\?][\w\s]', contents)) # split on . or ? or ! plus space, then get length
+# number_of_sentences = len(contents.split(". ")) # split on period+space, then get length
 
-# word_sentences_avg = (number of words / number of sentences ) * 0.5
-word_sentences_avg = number_of_words / number_of_sentences * 0.5                            # 8.63
-# print(f"word, sentences avg: {word_sentences_avg}")
+# word_sentences_avg = (number of words divided by number of sentences) multiplied by 0.5
+word_sentences_avg = (number_of_words / number_of_sentences) * 0.5
 
 # ari = (characters/words + words/sentences) - 21.43
-ari = round(char_word_avg + word_sentences_avg - 21.43)                                     # 12
-# print(f"ari: {ari}")
+ari = round((char_word_avg + word_sentences_avg) - 21.43)
 if ari > 14:
     ari = 14
 
@@ -102,9 +98,6 @@ ari_scale = {
 #
 # --------------------------------------------------------
 
-# print(ari_scale[ari])
-# print(ari_scale[ari]['grade_level'])
-# print(ari_scale[ari]['ages'])
 print(f"""--------------------------------------------------------
 
 The ARI for {book_title} is {ari}.
