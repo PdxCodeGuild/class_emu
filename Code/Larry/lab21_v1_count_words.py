@@ -52,8 +52,8 @@ for word in clean_words:
         clean_words.remove('wwwgutenbergorg') # example (maybe unnecessary since count is low)
     # Add checks for a host of unwanted words(strings), e.g. 'youll', 'th' (from 18TH), etc.
 
-# If a word isn't in your dictionary yet, add it with a count of 1.
-# If it is, increment its count.
+# word_dict is a dictionary where the key is the word and the value is the count
+# If a word isn't in your dictionary yet, add it with a count of 1. If it is, increment its count.
 # (Based on snippet of code from lab10_v4_average_numbers.py)
 words_dict = {} # set base case (dictionary)
 for clean_word in clean_words:
@@ -66,7 +66,6 @@ for clean_word in clean_words:
             words_dict[clean_word] = 1
 
 # Print the most frequent top 10 out with their counts. You can do that with the code below.
-# word_dict is a dictionary where the key is the word and the value is the count
 words = list(words_dict.items()) # .items() returns a list of tuples
 words.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
 for i in range(min(10, len(words))):  # print the top 10 words, or all of them, whichever is smaller

@@ -47,8 +47,8 @@ pairs_list = []
 for i in range(len(clean_words)-1): # 'len(clean_words)-1' => prevent IndexError: list index out of range
     pairs_list.append((clean_words[i], clean_words[i+1])) # list of tuples: word and word-next-to-it
 
-# If a pair isn't in your dictionary yet, add it with a count of 1.
-# If it is, increment its count.
+# pairs_dict is a dictionary where the key is the word pair and the value is the count
+# If a pair isn't in your dictionary yet, add it with a count of 1. If it is, increment its count.
 # (Based on snippet of code from lab10_v4_average_numbers.py)
 pairs_dict = {} # set base case (dictionary)
 for pair in pairs_list:
@@ -62,7 +62,6 @@ for pair in pairs_list:
             pairs_dict[pair] = 1
 
 # Print the most frequent top 10 out with their counts. You can do that with the code below.
-# pairs_dict is a dictionary where the key is the word pair and the value is the count
 pairs = list(pairs_dict.items()) # .items() returns a list of tuples
 pairs.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
 for i in range(min(10, len(pairs))):  # print the top 10 pairs, or all of them, whichever is smaller
