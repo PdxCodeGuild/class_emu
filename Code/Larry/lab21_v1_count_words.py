@@ -55,7 +55,7 @@ for word in clean_words:
 # based on snippet of code from lab10_v4_average_numbers.py
 words_dict = {} # set base case (dictionary)
 for clean_word in clean_words:
-    if len(clean_word) > 2: #skips '', 1- and 2-letters words like 'a', 'an'
+    if len(clean_word) > 2: #skips words < 3 chars long, e.g. '',  like 'a', 'an'
         if clean_word in words_dict:
             # if the user enters a number that already exists, increment the count by 1
             words_dict[clean_word] += 1

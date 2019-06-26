@@ -35,12 +35,10 @@ for i in range(len(words_list)):
             words_list[i] = words_list[i].replace(letter, "") # ... remove it (replace with nothing)
     clean_words.append(words_list[i])                         # add the cleaned word to clean_words list
 
-'''
 for word in clean_words:
     if word == 'wwwgutenbergorg':
-        clean_words.remove('wwwgutenbergorg') # maybe unnecessary since count is low
+        clean_words.remove('wwwgutenbergorg') # example (maybe unnecessary since count is low)
     # Add checks for a host of unwanted words(strings), e.g. 'youll', 'th' (from 18TH), etc.
-'''
 
 list_of_word_pairs = []
 for i in range(len(clean_words)-1):
@@ -51,7 +49,8 @@ for i in range(len(clean_words)-1):
 # based on snippet of code from lab10_v4_average_numbers.py
 words_pairs_dict = {} # set base case (dictionary)
 for word_pair in list_of_word_pairs:
-    if len(word_pair[0]) > 2 and len(word_pair[1]) > 2: #skips '', 1- and 2-letters words like 'a', 'an'
+    # if len(word_pair[0]) and 2 or len(word_pair[1]) > 2: #skip pair if len of both words < 3, e.g. '', 'a', 'an'
+    if len(word_pair[0]) > 2 or len(word_pair[1]) > 2: #skip pair if len of either word < 3, e.g. '', 'a', 'an'
         if word_pair in words_pairs_dict:
             # if the user enters a number that already exists, increment the count by 1
             words_pairs_dict[word_pair] += 1

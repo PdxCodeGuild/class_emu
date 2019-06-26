@@ -39,13 +39,6 @@ for i in range(len(words_list)):
             words_list[i] = words_list[i].replace(letter, "") # ... remove it (replace with nothing)
     clean_words.append(words_list[i])                         # add the cleaned word to clean_words list
 
-'''
-for word in clean_words:
-    if word == 'wwwgutenbergorg':
-        clean_words.remove('wwwgutenbergorg') # maybe unnecessary since count is low
-    # Add checks for a host of unwanted words(strings), e.g. 'youll', 'th' (from 18TH), etc.
-'''
-
 list_of_word_pairs = []
 for i in range(len(clean_words)-1):
     list_of_word_pairs.append((clean_words[i], clean_words[i+1]))
