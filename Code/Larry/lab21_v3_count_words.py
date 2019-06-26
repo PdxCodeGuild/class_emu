@@ -42,8 +42,8 @@ pairs_list = []
 for i in range(len(clean_words)-1):
     pairs_list.append((clean_words[i], clean_words[i+1]))
 
-# If a word isn't in your dictionary yet, add it with a count of 1.
-# If it is, increment its count.
+# word_follows_myword is a dictionary where the key is the word and the value is the count
+# If a word isn't in your dictionary yet, add it with a count of 1. If it is, increment its count.
 # (Based on snippet of code from lab10_v4_average_numbers.py)
 word_follows_myword = {} # set base case (dictionary)
 for i in range(len(pairs_list)):
@@ -57,7 +57,6 @@ for i in range(len(pairs_list)):
             word_follows_myword[pairs_list[i][1]] = 1
 
 # Print the most frequent top 10 out with their counts. You can do that with the code below.
-# word_follows_myword is a dictionary where the key is the word and the value is the count
 word_follows_myword = list(word_follows_myword.items()) # .items() returns a list of tuples
 word_follows_myword.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
 for i in range(min(10, len(word_follows_myword))):  # print the top 10 words that come after my word, or all of them, whichever is smaller
