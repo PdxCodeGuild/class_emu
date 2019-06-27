@@ -23,45 +23,46 @@ contents = response.text
 #     contents = f.read()
 
 # Split into a list of words.
-words_list = contents.split() # split on whitespace
+book_words_list = contents.split() # split on whitespace
 
-# Make everything lowercase, strip punctuation
-# based on snippet of code from lab17_v2_anagram.py
+# Clean words: Make everything lowercase, strip punctuation
+# (Based on snippet of code from lab17_v2_anagram.py)
 clean_words = []
-for i in range(len(words_list)):
-    words_list[i] = words_list[i].lower()                     # convert to lowercase
-    for letter in words_list[i]:
+for i in range(len(book_words_list)):
+    book_words_list[i] = book_words_list[i].lower()    # convert to lowercase
+    for letter in book_words_list[i]:
         if letter not in string.ascii_lowercase:       # if any letter no in ascii_lowercase string ...
-            words_list[i] = words_list[i].replace(letter, "") # ... remove it (replace with nothing)
-    clean_words.append(words_list[i])                         # add the cleaned word to clean_words list
+            book_words_list[i] = book_words_list[i].replace(letter, "") # ... remove it (replace with nothing)
+    clean_words.append(book_words_list[i])             # add the cleaned word to clean_words list
 
-'''
+# Remove weird concatenations caused when stripping integers and punctuation, e.g. URLs
+# No handling for contractions, English ordinal numbers, etc.
 for word in clean_words:
     if word == 'wwwgutenbergorg':
-        clean_words.remove('wwwgutenbergorg') # maybe unnecessary since count is low
+        clean_words.remove('wwwgutenbergorg') # example (maybe unnecessary since count is low)
     # Add checks for a host of unwanted words(strings), e.g. 'youll', 'th' (from 18TH), etc.
-'''
 
-list_of_word_pairs = []
-for i in range(len(clean_words)-1):
-    list_of_word_pairs.append((clean_words[i], clean_words[i+1]))
+# Create a list of word pairs (tuples)
+pairs_list = []
+for i in range(len(clean_words)-1): # 'len(clean_words)-1' => prevent IndexError: list index out of range
+    pairs_list.append((clean_words[i], clean_words[i+1])) # list of tuples: word and word-next-to-it
 
-# * If a word_pair isn't in your dictionary yet, add it with a count of 1.
-# * If it is, increment its count.
-# based on snippet of code from lab10_v4_average_numbers.py
-words_pairs_dict = {} # set base case (dictionary)
-for word_pair in list_of_word_pairs:
-    if len(word_pair[0]) > 2 and len(word_pair[1]) > 2: #skips '', 1- and 2-letters words like 'a', 'an'
-        if word_pair in words_pairs_dict:
-            # if the user enters a number that already exists, increment the count by 1
-            words_pairs_dict[word_pair] += 1
+# pairs_dict is a dictionary where the key is the word pair and the value is the count
+# If a pair isn't in your dictionary yet, add it with a count of 1. If it is, increment its count.
+# (Based on snippet of code from lab10_v4_average_numbers.py)
+pairs_dict = {} # set base case (dictionary)
+for pair in pairs_list:
+    if len(pair[0]) > 2 and len(pair[1]) > 2: #skip pair if len of both words < 3, e.g. '', 'a', 'an'
+    # if len(pair[0]) > 2 or len(pair[1]) > 2: #skip pair if len of either word < 3, e.g. '', 'a', 'an'
+        if pair in pairs_dict:
+            # if word pair already exists in pairs_dict, increment the count by 1
+            pairs_dict[pair] += 1
         else:
-            # if word does not yet exist, set count = 1
-            words_pairs_dict[word_pair] = 1
+            # if word pair does not exist in pairs_dict, add word & set count = 1
+            pairs_dict[pair] = 1
 
 # Print the most frequent top 10 out with their counts. You can do that with the code below.
-# word_dict is a dictionary where the key is the word and the value is the count
-pairs_of_words = list(words_pairs_dict.items()) # .items() returns a list of tuples
-pairs_of_words.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
-for i in range(min(10, len(pairs_of_words))):  # print the top 10 words, or all of them, whichever is smaller
-    print(pairs_of_words[i])
+pairs = list(pairs_dict.items()) # .items() returns a list of tuples
+pairs.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
+for i in range(min(10, len(pairs))):  # print the top 10 pairs, or all of them, whichever is smaller
+    print(pairs[i])

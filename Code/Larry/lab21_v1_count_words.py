@@ -13,12 +13,12 @@ Find a book on Project Gutenberg. Download it as a UTF-8 text file.
 3. Your dictionary will have words as keys and counts as values.
     If a word isn't in your dictionary yet, add it with a count of 1.
     If it is, increment its count.
-4. Print the most frequent top 10 out with their counts. You can do that with the code below.
-# # word_dict is a dictionary where the key is the word and the value is the count
-# words = list(word_dict.items()) # .items() returns a list of tuples
-# words.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
-# for i in range(min(10, len(words))):  # print the top 10 words, or all of them, whichever is smaller
-#   print(words[i])
+4. Print the most frequent top 10 out with their counts. You can do that with the code below:
+    | # word_dict is a dictionary where the key is the word and the value is the count
+    | words = list(word_dict.items()) # .items() returns a list of tuples
+    | words.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
+    | for i in range(min(10, len(words))):  # print the top 10 words, or all of them, whichever is smaller
+    |   print(words[i])
 """
 
 import requests
@@ -33,38 +33,39 @@ contents = response.text
 #     contents = f.read()
 
 # Split into a list of words.
-words_list = contents.split() # split on whitespace
+book_words_list = contents.split() # split on whitespace
 
-# Make everything lowercase, strip punctuation
-# based on snippet of code from lab17_v2_anagram.py
+# Clean words: Make everything lowercase, strip punctuation
+# (Based on snippet of code from lab17_v2_anagram.py)
 clean_words = []
-for i in range(len(words_list)):
-    words_list[i] = words_list[i].lower()                     # convert to lowercase
-    for letter in words_list[i]:
+for i in range(len(book_words_list)):
+    book_words_list[i] = book_words_list[i].lower()    # convert to lowercase
+    for letter in book_words_list[i]:
         if letter not in string.ascii_lowercase:       # if any letter no in ascii_lowercase string ...
-            words_list[i] = words_list[i].replace(letter, "") # ... remove it (replace with nothing)
-    clean_words.append(words_list[i])                         # add the cleaned word to clean_words list
+            book_words_list[i] = book_words_list[i].replace(letter, "") # ... remove it (replace with nothing)
+    clean_words.append(book_words_list[i])             # add the cleaned word to clean_words list
 
+# Remove weird concatenations caused when stripping integers and punctuation, e.g. URLs
+# No handling for contractions, English ordinal numbers, etc.
 for word in clean_words:
     if word == 'wwwgutenbergorg':
-        clean_words.remove('wwwgutenbergorg') # maybe unnecessary since count is low
+        clean_words.remove('wwwgutenbergorg') # example (maybe unnecessary since count is low)
     # Add checks for a host of unwanted words(strings), e.g. 'youll', 'th' (from 18TH), etc.
 
-# * If a word isn't in your dictionary yet, add it with a count of 1.
-# * If it is, increment its count.
-# based on snippet of code from lab10_v4_average_numbers.py
+# word_dict is a dictionary where the key is the word and the value is the count
+# If a word isn't in your dictionary yet, add it with a count of 1. If it is, increment its count.
+# (Based on snippet of code from lab10_v4_average_numbers.py)
 words_dict = {} # set base case (dictionary)
 for clean_word in clean_words:
-    if len(clean_word) > 2: #skips '', 1- and 2-letters words like 'a', 'an'
+    if len(clean_word) > 2: #skips any words with len < 3, e.g. '', 'a', 'an'
         if clean_word in words_dict:
-            # if the user enters a number that already exists, increment the count by 1
+            # if word already exists in words_dict, increment the count by 1
             words_dict[clean_word] += 1
         else:
-            # if word does not yet exist, set count = 1
+            # if word does not exist in words_dict, add word & set count = 1
             words_dict[clean_word] = 1
 
 # Print the most frequent top 10 out with their counts. You can do that with the code below.
-# word_dict is a dictionary where the key is the word and the value is the count
 words = list(words_dict.items()) # .items() returns a list of tuples
 words.sort(key=lambda tup: tup[1], reverse=True)  # sort largest to smallest, based on count
 for i in range(min(10, len(words))):  # print the top 10 words, or all of them, whichever is smaller
