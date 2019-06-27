@@ -11,7 +11,7 @@ Allow the user to keep performing operations until they say 'done'. Use while Tr
 '''
 
 # Import operator function (to convert string to operator)
-import operator
+from operator import add, sub, mul, truediv
 
 while True:
     # User input: Ask for an operator and an operand (int, float)
@@ -22,27 +22,27 @@ while True:
 
     # check if the float ends in a .0 - round it off
     # Source: https://stackoverflow.com/questions/16995249/how-to-see-if-a-number-ends-in-0
-    if int(first_number) == first_number and isinstance(first_number, float) == True:
+    if int(first_number) == first_number and isinstance(first_number, float):
         first_number = round(first_number)
-    if int(second_number) == second_number and isinstance(second_number, float) == True:
+    if int(second_number) == second_number and isinstance(second_number, float):
         second_number = round(second_number)
 
     # Calculations
     if user_operator == "+":
         # result = first_number + second_number # operator hard-coded
-        result = operator.add(first_number,second_number) # 'add' operator called from operator()
+        result = add(first_number,second_number) # 'add' operator called from operator()
     elif user_operator == "-":
         # result = first_number - second_number # operator hard-coded
-        result = operator.sub(first_number,second_number) # 'sub' operator called from operator()
+        result = sub(first_number,second_number) # 'sub' operator called from operator()
     elif user_operator == "*":
         # result = first_number * second_number # operator hard-coded
-        result = operator.mul(first_number,second_number) # 'mul' operator called from operator()
+        result = mul(first_number,second_number) # 'mul' operator called from operator()
     else:
         # result = first_number / second_number # operator hard-coded
-        result = operator.truediv(first_number,second_number) # 'truediv' operator called from operator()
+        result = truediv(first_number,second_number) # 'truediv' operator called from operator()
 
     # Check if the float ends with in (x.0, x.00, etc). if True, round it off
-    if int(result) == result and isinstance(result, float) == True:
+    if int(result) == result and isinstance(result, float):
         result = round(result)
 
     # Print the result
