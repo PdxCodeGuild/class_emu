@@ -1,5 +1,5 @@
 # filename: lab20_v1_credit_card_validation.py
-'''
+"""
 Lab 20: Credit Card Validation
 
 Let's write a function which returns whether a string containing a credit card number is valid as a boolean.
@@ -17,7 +17,7 @@ e.g. credit_card_number = 4556737586899855
 +------------------------------------------------------+--------------------------------------+
 | Result: If that matches the check digit, the whole card number is valid.                    |
 +---------------------------------------------------------------------------------------------+
-'''
+"""
 import sys # for using sys.argv e.g. $python3 this_file.py run_tests
 
 def validate_credit_card(cc_number):
@@ -38,7 +38,7 @@ def validate_credit_card(cc_number):
         if numbers_rev[i] > 9:                   #
             numbers_rev[i] = numbers_rev[i] - 9  # Subtract nine from numbers over nine.
 
-    sum = 0                                      #
+    sum = 0
     for number in numbers_rev:                   #
         sum += number                            # Sum all values.
 
