@@ -38,7 +38,7 @@ def validate_credit_card(cc_number):
         if numbers_rev[i] > 9:                   #
             numbers_rev[i] = numbers_rev[i] - 9  # Subtract nine from numbers over nine.
 
-    sum = 0
+    sum = 0                                      #
     for number in numbers_rev:                   #
         sum += number                            # Sum all values.
 
