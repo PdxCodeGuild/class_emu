@@ -20,7 +20,7 @@ e.g. credit_card_number = 4556737586899855
 '''
 import sys # for using sys.argv e.g. $python3 this_file.py run_tests
 
-def validate_credit_card(cc_number):
+def validate_credit_card(cc_number):            #
     numbers = list(cc_number)                   # Convert the input string into a list
     check_digit = numbers.pop()                 # Slice off the last digit, aka. check digit
 
@@ -33,16 +33,15 @@ def validate_credit_card(cc_number):
         numbers[i] = numbers[i] * 2             # Double every other element in the reversed list
 
     for i in range(len(numbers)):               #
-        numbers[i] = numbers[i]                 #
         if numbers[i] > 9:                      #
             numbers[i] -= 9                     # Subtract 9 from numbers over 9
 
     total = str(sum(numbers))                   # Add all the numbers and convert to string
 
-    if check_digit == total[-1]:                # If second digit of that sum matches the check digit, ...
+    if check_digit == total[-1]:                # If ones digit of that sum matches the check digit, ...
         return True                             # ... the whole card number is valid
-    else:
-        return False
+    else:                                       # if not, ...
+        return False                            # ... the whole card number is invalid
 
 if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
     # Get user input
