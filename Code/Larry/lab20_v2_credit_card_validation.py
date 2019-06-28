@@ -1,4 +1,4 @@
-# filename: lab20_v1_credit_card_validation.py
+# filename: lab20_v2_credit_card_validation.py
 '''
 Lab 20: Credit Card Validation
 
@@ -17,6 +17,11 @@ e.g. credit_card_number = 4556737586899855
 +------------------------------------------------------+--------------------------------------+
 | Result: If that matches the check digit, the whole card number is valid.                    |
 +---------------------------------------------------------------------------------------------+
+
+V2: Added code to convert strings to int (lines 29-30);
+    replaced for loop with list.reverse() (line 32);
+    changed [1] to [-1] on line 44
+
 '''
 import sys # for using sys.argv e.g. $python3 this_file.py run_tests
 
