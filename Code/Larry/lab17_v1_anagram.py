@@ -15,7 +15,7 @@ The procedure for comparing the two strings is as follow:
 Convert each word to lower case (lower)
 Remove all the spaces from each word (replace)
 Sort the letters of each word (sorted)
-Check if the two are equa
+Check if the two are equal
 >>> enter the first word: anagram
 >>> enter the second word: nag a ram
 >>> 'anagram' and 'nag a ram' are anagrams
