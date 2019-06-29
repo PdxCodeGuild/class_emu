@@ -22,7 +22,7 @@ Check if the two are equal
 '''
 
 from string import ascii_lowercase # for utilizing the ascii_lowercase set
-from sys    import argv            # for using sys.argv e.g. $python3 this_file.py run_tests
+from sys    import argv            # for using sys.argv e.g. $python filename.py run_tests
 
 def check_anagram(user_word1, user_word2):
 
