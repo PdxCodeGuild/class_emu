@@ -59,9 +59,9 @@ if len(argv) == 1: # only execute these lines when 'run_tests' is not passed
     # Print the result of the comparsion
     result = check_anagram(user_word1, user_word2) # call the function to get the result (Boolean)
     if result:
-        print(f"\n{result}: '{user_word1}' is an anagram of '{user_word2}'\n")
+        print(f"\n{result}: '{user_word2}' is an anagram of '{user_word1}'\n")
     else:
-        print(f"\n{result}: '{user_word1}' is NOT an anagram of '{user_word2}'\n")
+        print(f"\n{result}: '{user_word2}' is NOT an anagram of '{user_word1}'\n")
 
 ###########################################################
 ### UNIT TESTS ###
