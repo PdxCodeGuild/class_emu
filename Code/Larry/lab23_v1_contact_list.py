@@ -31,10 +31,10 @@ with open('./lab23_data.csv', 'r') as file:
 # (The text in the header represents the keys, the text in the other lines represent the values)
 contacts = []
 header = lines[0].split(',')
-for i in range(1, len(lines)): # down the rows
+for i in range(1, len(lines)): # down the rows(matt)
     contact = lines[i].split(',')
     contact_dict = {}
-    for j in range(len(header)): # accross the columns
+    for j in range(len(header)): # across the columns(matt)
         contact_dict[header[j]] = contact[j]
     contacts.append(contact_dict)
 
