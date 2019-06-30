@@ -59,7 +59,7 @@ def unit_tester_1(input_output, function_name):
         actual_output = function_name(test_input)
         if expected_output != actual_output:
             failed_test_count += 1
-            failed_test_msg += f"\nTest #{test_number} - Failed\nInput: {test_input}\n==> Expected Result: {expected_output}\n==>   Actual result: {function_output}\n"
+            failed_test_msg += f"\nTest #{test_number} - Failed\nInput: {test_input}\n==> Expected Result: {expected_output}\n==>   Actual result: {actual_output}\n"
     if failed_test_count > 0:
             return failed_test_msg
     return "All tests passed."
@@ -96,7 +96,7 @@ def unit_tester_2(input_output, function_name):
         actual_output = function_name(first_string, second_string)
         if expected_output != actual_output:
             failed_test_count += 1
-            failed_test_msg += f"\nTest #{test_number} - Failed\nInput: {first_string, second_string}\n==> Expected Result: {expected_output}\n==>   Actual result: {function_output}\n"
+            failed_test_msg += f"\nTest #{test_number} - Failed\nInput: {first_string, second_string}\n==> Expected Result: {expected_output}\n==>   Actual result: {actual_output}\n"
     if failed_test_count > 0:
         return failed_test_msg
     return "All tests passed."
