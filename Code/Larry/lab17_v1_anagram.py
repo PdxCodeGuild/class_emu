@@ -116,8 +116,8 @@ if len(argv) > 1:
             (28, 'Slot machines', 'Cash lost in me', True),
             (29, 'Fourth of July', 'Joyful Fourth', True),
             (30, 'School master', 'The glassroom', False), # spaces
-            (31, 'The Morse Code', 'Here comes dots', False), # capitalization
-            (32, 'Astronomer', 'Moon $stares', False), # punctuation
+            (31, 'The Morse Code', 'Here come dots', False), # capitalization
+            (32, 'Astronomer', 'Moon stares', False), # letter mismatch
             (33, 'Angel', 'Gleans', False), # length mismatch
             (34, 'tacocat', 'tacacat', False),
             (35, 'Fourth of June', 'Joyful Fourth', False),
