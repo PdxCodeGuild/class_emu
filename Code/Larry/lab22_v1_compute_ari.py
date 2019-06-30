@@ -19,10 +19,12 @@ import string
 import re
 
 # Get the file
+response = requests.get("http://www.gutenberg.org/files/74/74-0.txt")
+book_title = "The Adventures of Tom Sawyer by Mark Twain"
 # response = requests.get("http://www.gutenberg.org/cache/epub/31168/pg31168.txt")
 # book_title = "Astounding Stories"
-response = requests.get("http://www.veryabc.cn/movie/uploads/script/Dialog-TheShawshankRedemption.txt")
-book_title = "The Shawshank Redemption"
+# response = requests.get("http://www.veryabc.cn/movie/uploads/script/Dialog-TheShawshankRedemption.txt")
+# book_title = "The Shawshank Redemption"
 contents = response.text
 
 # Open the file.
@@ -60,7 +62,7 @@ number_of_words = len(clean_words)
 char_word_avg = (number_of_characters / number_of_words) * 4.71
 
 # Get number of sentences (number_of_sentences)
-number_of_sentences = len(re.split('[\w\s][\.!\?][\w\s]', contents)) # split on . or ? or ! plus space, then get length
+number_of_sentences = len(re.split('[\w\s][\.!\?][\w\s]', contents)) # split on . or ? or ! plus space (fore & aft), then get length
 # number_of_sentences = len(contents.split(". ")) # split on period+space, then get length
 
 # word_sentences_avg = (number of words divided by number of sentences) multiplied by 0.5
