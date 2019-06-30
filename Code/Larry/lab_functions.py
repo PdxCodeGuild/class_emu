@@ -1,15 +1,15 @@
 # filename: lab_functions.py
 '''
-This file contains two functions: run_tests_1() & run_tests_2().
-    • run_tests_1() is for the Palindrome, Blackjack Advice, & Credit Card Validation unit tests.
-    • run_tests_2() is for the Anagram unit tests.
+This file contains two functions: unit_tester_1() & unit_tester_2().
+    • unit_tester_1() is for the Palindrome, Blackjack Advice, & Credit Card Validation unit tests.
+    • unit_tester_2() is for the Anagram unit tests.
     • TODO: add the input & output section(s) from the labs, if time allows.
 '''
 
 '''
-#######################################
-### RUN TESTS - One-parameter input ###
-#######################################
+###########################################
+### UNIT TESTER 1 - One-parameter input ###
+###########################################
 
 This function:
 * takes 2 parameters, (1) test number, input & expected output (list of tuples) and (2) function_name,
@@ -49,7 +49,7 @@ If any tests fail, a descriptive message is returned and printed.
 Otherwise, "All tests passed." is returned and printed.
 '''
 
-def run_tests_1(input_output, function_name):
+def unit_tester_1(input_output, function_name):
     failed_test_count = 0
     failed_test_msg = ''
     for i in range(len(input_output)):
@@ -65,9 +65,9 @@ def run_tests_1(input_output, function_name):
     return "All tests passed."
 
 '''
-#######################################
-### RUN TESTS - Two-parameter input ###
-#######################################
+###########################################
+### UNIT TESTER 2 - Two-parameter input ###
+###########################################
 
 This function:
 * takes 2 parameters, (1) test number, input & expected output (list of tuples) and (2) function_name,
@@ -85,7 +85,7 @@ If any tests fail, a descriptive message is returned and printed.
 Otherwise, "All tests passed." is returned and printed.
 '''
 
-def run_tests_2(input_output, function_name):
+def unit_tester_2(input_output, function_name):
     failed_test_count = 0
     failed_test_msg = ''
     for i in range(len(input_output)):
