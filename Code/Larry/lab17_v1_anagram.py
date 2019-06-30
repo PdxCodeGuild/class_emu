@@ -30,11 +30,11 @@ def check_anagram(user_word1, user_word2):
     user_words = [user_word1, user_word2]
     clean_words = []
     for i in range(len(user_words)):
-        user_words[i] = user_words[i].replace(" ", "").lower()    # remove spaces and convert to lowercase
-        for letter in user_words[i]:
-            if letter not in ascii_lowercase:                     # if any letter not in ascii_lowercase ...
-                user_words[i] = user_words[i].replace(letter, "") # ... remove it (replace it with nothing)
-        clean_words.append(user_words[i])                         # add the cleaned word to clean_words list
+        user_word = user_words[i].replace(" ", "").lower()      # remove spaces and convert to lowercase
+        for letter in user_word:                                # cycle through each word found by outer loop
+            if letter not in ascii_lowercase:                   # if any letter not in ascii_lowercase ...
+                user_word = user_word.replace(letter, "")       # ... remove it (replace it with nothing)
+        clean_words.append(user_word)                           # add the cleaned word to clean_words list
 
     if len(clean_words[0]) != len(clean_words[1]): # check_anagram fails if the words aren't the same length
         return False
