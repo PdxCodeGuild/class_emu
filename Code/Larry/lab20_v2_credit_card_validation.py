@@ -21,9 +21,9 @@ e.g. credit_card_number = 4556737586899855
 V2: Added code to convert strings to int (lines 29-30);
     replaced for loop with list.reverse() (line 32);
     changed [1] to [-1] on line 44
-
 '''
-import sys # for using sys.argv e.g. $python3 this_file.py run_tests
+
+from sys import argv # for using sys.argv e.g. $python filename.py run_tests
 
 def validate_credit_card(cc_number):            #
     numbers = list(cc_number)                   # Convert the input string into a list
@@ -48,7 +48,8 @@ def validate_credit_card(cc_number):            #
     else:                                       # if not, ...
         return False                            # ... the whole card number is invalid
 
-if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
+if len(argv) == 1: # only execute these lines 'run_tests' is passed
+
     # Get user input
     credit_card_number = input("\nEnter a credit card number: ") # Get input, e.g. "4556737586899855"
 
@@ -64,8 +65,8 @@ if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
 ###########################################################
 
 # Check a variety of comparison (with spaces, Capital letters, punctuation)
-if len(sys.argv) > 1:
-    if sys.argv[1] == 'run_tests':  # 1 first argument after the program name, e.g. py filename.py run_tests
+if len(argv) > 1:
+    if argv[1] == 'run_tests':  # argv[1] = first argument after the program name, e.g. py filename.py run_tests
 
         # source: https://www.getcreditcardnumbers.com/credit-card-generator
         test_data = [
@@ -101,6 +102,6 @@ if len(sys.argv) > 1:
             (30, "343771381317140", True)    # American Express
         ]
 
-        from lab_functions import run_tests_1
+        from lab_functions import unit_tester_1
 
-        print(run_tests_1(test_data, validate_credit_card))
+        print(unit_tester_1(test_data, validate_credit_card))

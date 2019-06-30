@@ -22,7 +22,7 @@ Check if the two are equal
 '''
 
 from string import ascii_lowercase # for utilizing the ascii_lowercase set
-from sys    import argv            # for using sys.argv e.g. $python3 this_file.py run_tests
+from sys    import argv            # for using sys.argv e.g. $python filename.py run_tests
 
 def check_anagram(user_word1, user_word2):
 
@@ -44,7 +44,7 @@ def check_anagram(user_word1, user_word2):
         return True                                      # ... return True
     return False                                         # else return False
 
-if len(argv) == 1: # only execute these lines when 'run_tests' is not passed
+if len(argv) == 1: # only execute these lines 'run_tests' is passed
 
     # Get user input
     while True:                                 # stay on this input prompt, ...
@@ -67,14 +67,15 @@ if len(argv) == 1: # only execute these lines when 'run_tests' is not passed
 ### UNIT TESTS ###
 ###########################################################
 
-# [PASS] N/A: "anagram" != ""   # Empty values are disallowed (see lines 52 & 56, line 115)
-# [PASS] N/A: "" != "anagram"   # Empty values are disallowed (see lines 52 & 56, line 116)
-# [PASS] N/A: "" == ""          # Empty values are disallowed (see lines 52 & 56, line 117)
+# [PASS] N/A: "anagram" != ""   # Empty values are disallowed
+# [PASS] N/A: "" != "anagram"   # Empty values are disallowed
+# [PASS] N/A: "" == ""          # Empty values are disallowed
 # [FAIL] N/A: "a1a" != "a2a"    # Characters not in ascii_lowercase are removed, including integers
 
 # Check a variety of comparison (with spaces, capital letters, punctuation, length mismatch)
 if len(argv) > 1:
-    if argv[1] == 'run_tests':  # [1] denotes 2nd argument after $ python, e.g. $ python filename.py run_tests
+    if argv[1] == 'run_tests':  # argv[1] = first argument after the program name, e.g. py filename.py run_tests
+
         test_data = [
             (1, 'anagram', 'nag a ram', True), # spaces
             (2, 'Nudedragons', 'Soundgarden', True), # capitalization
@@ -112,11 +113,11 @@ if len(argv) > 1:
             (34, 'tacocat', 'tacacat', False),
             (35, 'Fourth of June', 'Joyful Fourth', False),
             (36, 'asdf', '(fdda)', False)
-            # (37, 'anagram', '', False) # this return error: TypeError: 'tuple' object is not callable
-            # (38, '', 'anagram', False) # this return error: TypeError: 'tuple' object is not callable
-            # (39, '', '', True) # this return error: TypeError: 'tuple' object is not callable
+            # (37, 'anagram', '', False) # this returns error: TypeError: 'tuple' object is not callable
+            # (38, '', 'anagram', False) # this returns error: TypeError: 'tuple' object is not callable
+            # (39, '', '', True) # this returns error: TypeError: 'tuple' object is not callable
         ]
 
-        from lab_functions import run_tests_2
+        from lab_functions import unit_tester_2
 
-        print(run_tests_2(test_data, check_anagram))
+        print(unit_tester_2(test_data, check_anagram))

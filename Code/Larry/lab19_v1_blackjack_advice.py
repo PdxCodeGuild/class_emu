@@ -16,7 +16,8 @@ Print out the current total point value and the advice.
 # What's your third card? 3
 # 15 Hit
 '''
-import sys # for using sys.argv e.g. $python3 this_file.py run_tests
+
+from sys import argv # for using sys.argv e.g. $python filename.py run_tests
 
 def play_blackjack(cards):
 
@@ -48,7 +49,7 @@ def play_blackjack(cards):
     elif card_value_total > 21:                     # 22 - 30
         return f"{card_value_total} Already busted!"
 
-if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
+if len(argv) == 1: # only execute these lines 'run_tests' is passed
 
     # Ask the user for three playing cards & convert string to integer
     # e.g. (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K)
@@ -69,8 +70,8 @@ if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
 ###########################################################
 
 # Check a variety of comparison (with spaces, Capital letters, punctuation)
-if len(sys.argv) > 1:
-    if sys.argv[1] == 'run_tests':  # 1 first argument after the program name, e.g. py filename.py run_tests
+if len(argv) > 1:
+    if argv[1] == 'run_tests':  # argv[1] = first argument after the program name, e.g. py filename.py run_tests
 
         test_data = [
             (1, ['A', '8', '2'], '11 Hit'),            # 11
@@ -80,6 +81,6 @@ if len(sys.argv) > 1:
             (5, ['9', '7', '6'], '22 Already busted!') # 22
         ]
 
-        from lab_functions import run_tests_1
+        from lab_functions import unit_tester_1
 
-        print(run_tests_1(test_data, play_blackjack))
+        print(unit_tester_1(test_data, play_blackjack))
