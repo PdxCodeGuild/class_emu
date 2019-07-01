@@ -4,7 +4,6 @@ Lab 15: Number to Phrase - INTERACTIVE SCRIPT
 
 Convert a given number into its english representation.
 For example: 67 becomes 'sixty-seven'.
-Handle numbers from 0-99.
 
 Version 2
 Handle numbers from 100-999.

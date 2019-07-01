@@ -80,10 +80,10 @@ def get_roman_numerals(user_number):
         roman_equiv += "V" + "I" * ones
     elif five == 1:                                 # 5
         roman_equiv += "V"
-    elif 1 <= ones <= 3:                            # 3,2,1
-        roman_equiv += "I" * ones
     elif ones == 4:                                 # 4
         roman_equiv += "IV"
+    elif 1 <= ones <= 3:                            # 3,2,1
+        roman_equiv += "I" * ones
 
     return roman_equiv
 

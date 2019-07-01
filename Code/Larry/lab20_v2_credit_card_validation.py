@@ -1,5 +1,5 @@
-# filename: lab20_v1_credit_card_validation.py
-"""
+# filename: lab20_v2_credit_card_validation.py
+'''
 Lab 20: Credit Card Validation
 
 Let's write a function which returns whether a string containing a credit card number is valid as a boolean.
@@ -17,37 +17,36 @@ e.g. credit_card_number = 4556737586899855
 +------------------------------------------------------+--------------------------------------+
 | Result: If that matches the check digit, the whole card number is valid.                    |
 +---------------------------------------------------------------------------------------------+
-"""
+
+V2: Added code to convert strings to int (lines 29-30);
+    replaced for loop with list.reverse() (line 32);
+    changed [1] to [-1] on line 44
+'''
 
 from sys import argv # for using sys.argv e.g. $python filename.py run_tests
 
-def validate_credit_card(cc_number):
-    numbers = list(cc_number)                    # Convert the input string into a list of ints
-    check_digit = numbers.pop()                  # Slice off the last digit. That is the check digit.
+def validate_credit_card(cc_number):            #
+    numbers = list(cc_number)                   # Convert the input string into a list
+    check_digit = numbers.pop()                 # Slice off the last digit, aka. check digit
 
-    counter = 0                                  #
-    numbers_rev = []                             #
-    while counter < len(numbers):                #
-        numbers_rev.append(numbers[-1-counter])  # Reverse the digits.
-        counter += 1                             #
+    for i in range(len(numbers)):               #
+        numbers[i] = int(numbers[i])            # Convert list of strings to integers
 
-    for i in range(0, len(numbers_rev), 2):      #
-        numbers_rev[i] = int(numbers_rev[i]) * 2 # Double every other element in the reversed list.
+    numbers.reverse()                           # Reverse the list of numbers
 
-    for i in range(len(numbers_rev)):            #
-        numbers_rev[i] = int(numbers_rev[i])     #
-        if numbers_rev[i] > 9:                   #
-            numbers_rev[i] = numbers_rev[i] - 9  # Subtract nine from numbers over nine.
+    for i in range(0, len(numbers), 2):         #
+        numbers[i] = numbers[i] * 2             # Double every other element in the reversed list
 
-    sum = 0
-    for number in numbers_rev:                   #
-        sum += number                            # Sum all values.
+    for i in range(len(numbers)):               #
+        if numbers[i] > 9:                      #
+            numbers[i] -= 9                     # Subtract 9 from numbers over 9
 
-    sum = str(sum)                               #
-    if check_digit == sum[1]:                    # If second digit of that sum matches the check digit, ...
-        return True                              # ... the whole card number is valid.
-    else:
-        return False
+    total = str(sum(numbers))                   # Add all the numbers and convert to string
+
+    if check_digit == total[-1]:                # If ones digit of that sum matches the check digit, ...
+        return True                             # ... the whole card number is valid
+    else:                                       # if not, ...
+        return False                            # ... the whole card number is invalid
 
 if len(argv) == 1: # only execute these lines 'run_tests' is passed
 

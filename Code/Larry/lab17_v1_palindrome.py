@@ -17,15 +17,16 @@ returns False if it's not.
 >>> enter a word: palindrome
 >>> 'palindrome' is not a palindrome
 '''
-import sys # for using sys.argv e.g. $python3 this_file.py run_tests
-import string # for utilizing the ascii_lowercase set
+
+from string import ascii_lowercase # for utilizing the ascii_lowercase set
+from sys    import argv            # for using sys.argv e.g. $python filename.py run_tests
 
 def check_palindrome(user_word):
 
     # Sanitize user_word
     user_word = user_word.replace(" ", "").lower() # remove spaces and convert to lowercase letters
     for letter in user_word:
-        if letter not in string.ascii_lowercase:        # if any characters are not lowercase letters
+        if letter not in ascii_lowercase:        # if any characters are not lowercase letters
             user_word = user_word.replace(letter, "")   # replace them with nothing
 
     # Loop through each letter in the user_word
@@ -35,7 +36,7 @@ def check_palindrome(user_word):
             return False # if any mismatches are found, break out of for loop (return False)
     return True          # otherwise, return True
 
-if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
+if len(argv) == 1: # only execute these lines 'run_tests' is passed
 
     # Get user input
     user_word = input("\n[Palindrome] Enter a word: ")
@@ -52,8 +53,8 @@ if len(sys.argv) == 1: # only execute these lines when 'run_tests' is not passed
 ###########################################################
 
 # Check a variety of comparison (with spaces, Capital letters, punctuation)
-if len(sys.argv) > 1:
-    if sys.argv[1] == 'run_tests':  # 1 first argument after the program name, e.g. py filename.py run_tests
+if len(argv) > 1:
+    if argv[1] == 'run_tests':  # argv[1] = first argument after the program name, e.g. py filename.py run_tests
 
         # Source: https://www.grammarly.com/blog/16-surprisingly-funny-palindromes/
         test_data = [
@@ -76,6 +77,6 @@ if len(sys.argv) > 1:
             (17, 'racecars', False)
         ]
 
-        from lab_functions import run_tests_1
+        from lab_functions import unit_tester_1
 
-        print(run_tests_1(test_data, check_palindrome))
+        print(unit_tester_1(test_data, check_palindrome))
