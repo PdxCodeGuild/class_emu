@@ -40,7 +40,7 @@ def check_anagram(user_word1, user_word2):
         return False
 
     # Split and sort the list using the sorted() function, then compare the lists
-    return sorted(clean_words[0]) == sorted(clean_words[1]): # if both lists of letters are equal, returns True
+    return sorted(clean_words[0]) == sorted(clean_words[1]) # if both lists of letters are equal, returns True
 
 if len(argv) == 1: # only execute these lines 'run_tests' is passed
 

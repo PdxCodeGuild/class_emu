@@ -49,7 +49,7 @@ def check_anagram(user_word1, user_word2):
     letters_list2.sort()
 
     # Compare the lists
-    return letters_list1 == letters_list2:      # if both lists of letters are equal, returns True
+    return letters_list1 == letters_list2      # if both lists of letters are equal, returns True
 
 if len(argv) == 1: # only execute these lines 'run_tests' is passed
 
@@ -114,7 +114,7 @@ if len(argv) > 1:
             (28, 'Slot machines', 'Cash lost in me', True),
             (29, 'Fourth of July', 'Joyful Fourth', True),
             (30, 'School master', 'The glassroom', False), # spaces
-            (31, 'The Morse Code', 'Here come dots', False), # capitalization
+            (31, 'The Morse Code', 'Here come dots', True), # capitalization
             (32, 'Astronomer', 'Moon stares', False), # letter mismatch
             (33, 'Angel', 'Gleans', False), # length mismatch
             (34, 'tacocat', 'tacacat', False),

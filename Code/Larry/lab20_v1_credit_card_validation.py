@@ -44,10 +44,7 @@ def validate_credit_card(cc_number):
         sum += number                            # Sum all values.
 
     sum = str(sum)                               #
-    if check_digit == sum[1]:                    # If second digit of that sum matches the check digit, ...
-        return True                              # ... the whole card number is valid.
-    else:
-        return False
+    return check_digit == sum[-1]                # If 2nd digit of that sum matches the check digit, returns True
 
 if len(argv) == 1: # only execute these lines 'run_tests' is passed
 
