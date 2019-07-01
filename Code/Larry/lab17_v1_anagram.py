@@ -49,9 +49,7 @@ def check_anagram(user_word1, user_word2):
     letters_list2.sort()
 
     # Compare the lists
-    if letters_list1 == letters_list2:                   # if both lists of letters are equal, ...
-        return True                                      # ... return True
-    return False                                         # else return False
+    return letters_list1 == letters_list2:      # if both lists of letters are equal, returns True
 
 if len(argv) == 1: # only execute these lines 'run_tests' is passed
 
