@@ -19,6 +19,8 @@ Check if the two are equal
 >>> enter the first word: anagram
 >>> enter the second word: nag a ram
 >>> 'anagram' and 'nag a ram' are anagrams
+
+See: https://www.diffchecker.com/KW6LD2Ca
 '''
 
 from string import ascii_lowercase # for utilizing the ascii_lowercase set
