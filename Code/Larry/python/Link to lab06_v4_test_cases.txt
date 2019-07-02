@@ -1,0 +1,29 @@
+# Test cases for password_gen_v4.py
+
++-----------+---------------------------------------+--------------+-----------+-----+
+| Test Case | Title                                 | Sample Input | Unit Test | P/F |
++-----------+---------------------------------------+--------------+-----------+-----+
+| 1         | Letters: Input (int) within range     | 25           |           | P   |
+| 2         | Letters: Input (int) too low          | 0            |           | P   |
+| 3         | Letters: Input (int) too high         | 33           |           | P   |
+| 4         | Letters: Input (float)                | 5.5          |           | P   |
+| 5         | Letters: Input (letter)               | f            |           | P   |
+| 6         | Letters: Input (punctuation)          | %^&          |           | P   |
+| 7         | Letters: Input (blank)                |              |           | P   |
++-----------+---------------------------------------+--------------+-----------+-----+
+| 8         | Numbers: Input (int) within range     | 5            |           | P   |
+| 9         | Numbers: Input (int) too low          | 0            |           | P   |
+| 10        | Numbers: Input (int) too high         | 11           |           | P   |
+| 11        | Numbers: Input (float)                | 2.3          |           | P   |
+| 12        | Numbers: Input (letter)               | g            |           | P   |
+| 13        | Numbers: Input (punctuation)          | $#*          |           | P   |
+| 14        | Numbers: Input (blank)                |              |           | P   |
++-----------+---------------------------------------+--------------+-----------+-----+
+| 15        | Punctuation: Input (int) within range | 25           |           | P   |
+| 16        | Punctuation: Input (int) too low      | 0            |           | P   |
+| 17        | Punctuation: Input (int) too high     | 53           |           | P   |
+| 18        | Punctuation: Input (float)            | 21.8         |           | P   |
+| 19        | Punctuation: Input (letter)           | h            |           | P   |
+| 20        | Punctuation: Input (punctuation)      | !@+          |           | P   |
+| 21        | Punctuation: Input (blank)            |              |           | P   |
++-----------+---------------------------------------+--------------+-----------+-----+
