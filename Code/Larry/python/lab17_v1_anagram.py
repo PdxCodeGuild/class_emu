@@ -1,8 +1,8 @@
-# filename: lab17_v2_anagram.py
+# filename: lab17_v1_anagram.py
 '''
 Lab 17: Anagram
 
-Let's write an anagram - This version uses sorted(list) to split the words into letters AND do the sorting
+Let's write an anagram - This version uses 'for' loop to split the words AND list.sort() to do the sorting
 
 Two words are anagrams of each other if the letters of one can be rearranged to fit the other.
 e.g. anagram and nag a ram.
@@ -19,6 +19,8 @@ Check if the two are equal
 >>> enter the first word: anagram
 >>> enter the second word: nag a ram
 >>> 'anagram' and 'nag a ram' are anagrams
+
+See: https://www.diffchecker.com/KW6LD2Ca
 '''
 
 from string import ascii_lowercase # for utilizing the ascii_lowercase set
@@ -39,10 +41,17 @@ def check_anagram(user_word1, user_word2):
     if len(clean_words[0]) != len(clean_words[1]): # check_anagram fails if the words aren't the same length
         return False
 
-    # Split and sort the list using the sorted() function, then compare the lists
-    if sorted(clean_words[0]) == sorted(clean_words[1]): # if both lists of letters are equal, ...
-        return True                                      # ... return True
-    return False                                         # else return False
+    # Split each list element in string to its own list of letters
+    for i in range(len(clean_words)):
+        letters_list1 = list(clean_words[0]) # split words into a list of letters
+        letters_list2 = list(clean_words[1]) # split words into a list of letters
+
+    # Sort the list
+    letters_list1.sort()
+    letters_list2.sort()
+
+    # Compare the lists
+    return letters_list1 == letters_list2      # if both lists of letters are equal, returns True
 
 if len(argv) == 1: # only execute these lines 'run_tests' is passed
 
