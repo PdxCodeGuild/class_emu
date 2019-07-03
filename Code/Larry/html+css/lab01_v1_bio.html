@@ -1,0 +1,117 @@
+<!-- filename "lab01_v1_bio.html">
+Lab 1: Bio
+
+Write up a short bio webpage for someone famous (alive or dead) or a fictional character. Include the following:
+
+A written introduction
+A link to a Wikipedia article in that introduction
+A picture of them (or a placeholder)
+A list of places where they've lived
+A quote from them
+
+Part 2
+Center the entire content of the body
+Add / pick an existing image in one of the sections and float it
+Modify the padding and margins on your paragraphs to look better
+
+Part 3
+Pick a color scheme and modify the background, body text, and link text color.
+Change the typeface of the quote.
+Add a rounded border to the picture.
+Change the bullet points on the list of places to be a different character, like ☞.
+
+Part 4
+Peruse the complete HTML element list and try to incorporate some of them.
+-->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>3D</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <style content="text/css">
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-image: url("http://www.larrymoiola.com/bg.jpg");
+      }
+      header {
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+        color: #FFF;
+      }
+      header > * {
+       margin: 20px;
+      }
+      img {
+       border-radius:20px;
+      }
+      #title {
+       font-size:60px;
+      }
+      main {
+        max-width:950px;
+        margin:0 auto;
+        font-size:25px;
+        text-align: justify;
+      }
+      div {
+        color: #FFF;
+      }
+      th {
+        padding: 25px;
+        vertical-align: text-top;
+      }
+      td {
+        padding-left: 25px;
+      }
+      td#quote {
+        padding: 25px;
+      }
+      table tr:nth-child(odd){
+        background-color: #C0C0C0;
+      }
+      table {
+        width: 855px;
+      }
+      ul {
+        list-style:none;
+        padding: 0;
+      }
+      li:before {
+        content: "✦ "
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+    <img src="lab01_images/3d-massive-attack-photo-by-ray-ban-via-getty-images1.jpg" width="480"><br/>
+    <span id="title">Robert Del Naja</span>
+    </header>
+    <main>
+      <div>"Robert del Naja is a founding member of the band Massive Attack and remains at the group's core today. Using the tag 3D, he has been active as a graffiti artist since his teenage years. Alongside his crew The Wild Bunch, he is credited as the spiritual leader of the graffiti scene in his native city of Bristol, and his paintings blazed a trail for the urban art movement that was to follow." <i>-Wikipedia article</i>
+      </div>
+      <p>
+      <table align="center" bgcolor="white">
+        <tr cols="2">
+          <th>Link</th>
+          <td><a href="https://en.wikipedia.org/wiki/Robert_Del_Naja" target="new">Wikipedia</a> about 3D</td>
+        </tr><tr>
+          <th>Places&nbsp;lived</th>
+          <td>
+            <ul>
+              <li>Bristol</li>
+              <li>Cornwall</li>
+            </ul>
+          </td>
+        </tr><tr>
+          <th>Quote</th>
+          <td id="quote">"Painting is difficult for me because I'm colour blind. Back in the day, I had to label my spray cans with what colour they were because I couldn't tell. It's like the emperor's new clothes: [people] telling me it's great, and me pretending that's what I intended." -RDN</td>
+        </tr>
+      </table>
+      </p>
+    </main>
+  </body>
+</html>
