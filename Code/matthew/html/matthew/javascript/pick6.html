@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pick 6!</title>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <h1>Welcome to Pick 6!</h1>
+    <label for ="tickets_input">How many tickets would you like?</label>
+    <input id="tickets_input" type="number"/>
+    <button id="play_btn">Play!</button>
+    <div id="balance_div">$000</div>
+    <div id="winning_numbers_div">numbernumbernumber</div> <!--TODO reveal one at a time-->
+    <div id="match_count_div"></div>
+    <div id="ticket_number_box_div"></div>
+
+
+    <script type="text/javascript">
+      //get elements out of the DOM
+      let tickets_input = document.querySelector("#tickets_input")
+      let play_btn = document.querySelector("#play_btn")
+      let balance_div = document.querySelector("#balance_div")
+      let winning_numbers_div = document.querySelector("#winning_numbers_div")
+      let ticket_number_box_div = document.querySelector("#ticket_number_box_div")
+      let match_count_div = document.querySelector("#match_count_div")
+
+
+      const winnings = [0, 4, 7, 100, 50000, 1000000, 25000000]
+      const matches = [0, 0, 0, 0, 0, 0, 0]
+      const colors = ["white", "lightblue", "red", "yellow", "lightgreen", "green", "darkgreen"]
+      //generates a ticket with six random numbers between 0 and 99
+      function ticket_generator() {
+        let ticket = []
+        for (let i=0; i<6; ++i) {
+          let random_num = Math.floor(Math.random()*100)
+          ticket.push(random_num)
+        }
+        return ticket
+      }
+
+      //counts the number of matches between two tickets and outputs the winning amount in dollars
+      function calc_matches(ticket, winning_ticket) {
+        let match_counter = 0
+        for (let i=0; i<6; ++i) {
+          if (ticket[i] === winning_ticket[i]) {
+            match_counter++
+          }
+        }
+        return match_counter
+      }
+
+
+
+      let winning_ticket = ticket_generator()
+      let balance = 0
+      //displays winning numbers on page (TODO display)
+      winning_numbers_div.innerText = winning_ticket.join(' ')
+      //runs game based on user input and displays ticket numbers (TODO colorize ticket numbers based on matches)
+      play_btn.onclick = function() {
+        let plays_num = parseInt(tickets_input.value)
+        let counter = 0;
+        let interval = setInterval(function() {
+          counter++;
+          if (counter > plays_num) {
+            clearInterval(interval);
+            return
+          }
+          balance -= 2
+          let ticket = ticket_generator()
+          let match_counter = calc_matches(ticket, winning_ticket)
+          matches[match_counter]++
+          balance += winnings[match_counter]
+          if (match_counter > 0) {
+            let div = document.createElement("div")
+            div.style.backgroundColor = colors[match_counter]
+            div.innerText = ticket.join(' ')
+            ticket_number_box_div.insertBefore(div, ticket_number_box_div.firstChild);
+            //ticket_number_box_div.appendChild(div)
+          }
+          balance_div.innerText = "$" + balance
+          let matches_str = ''
+          for (let i=0; i<matches.length; i++) {
+            matches_str += `${i}: ${matches[i]} \n`
+          }
+          match_count_div.innerText = matches_str
+        }, 50);
+        // for (let i=0; i<plays_num; ++i) {
+        //   balance -= 2
+        //   let ticket = ticket_generator()
+        //   let payout = calc_matches(ticket, winning_ticket)
+        //   balance += payout
+        //   let div = document.createElement("div")
+        //   div.innerText = ticket.join(' ')
+        //   ticket_number_box_div.appendChild(div)
+        // }
+
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+      #repo_list > div {
+        margin: 30px;
+        display:flex;
+        flex-direction:row;
+      }
+      #repo_list > div > a {
+        margin-right:20px;
+      }
+      #repo_list > div > div {
+        display:flex;
+        flex-direction:column;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="search_text"/>
+      <button v-on:click="searchRepos">search</button>
+      <div>Total Count: [[total_count]]</div>
+      <input type="text" placeholder="filter" v-model="filter_text"/>
+      <div id="repo_list">
+        <div v-for="item in computed_items">
+          <a v-bind:href="item.user_url" target="_blank"><img v-bind:src="item.user_avatar_url" width="60px"/></a>
+          <div>
+            <div><a v-bind:href="item.url">[[item.name]]</a></div>
+            <div>[[item.description]]</div>
+            <div>Created on: [[getPrettyDate(item.created_date)]]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app', // the element to which this app corresponds
+        delimiters: ['[[', ']]'],  // swtich delimeters so django doesn't destroy our vue syntax
+        data: { // app's data, variables you can refer to inside the html element
+          search_text: 'hello vue',
+          total_count: '',
+          items: [],
+          filter_text: ''
+        },
+        methods: {
+          searchRepos: function() {
+            let url = 'https://api.github.com/search/repositories'
+            let config = {
+              params: {
+                q: this.search_text
+              }
+            }
+            axios.get(url, config).then(response => {
+              console.log(response.data)
+              let data = response.data
+              this.total_count = data.total_count
+              // this.items = response.data.items
+              this.items = []
+              for (let i=0; i<data.items.length; ++i) {
+                this.items.push({
+                  name: data.items[i].name,
+                  description: data.items[i].description,
+                  url: data.items[i].html_url,
+                  created_date: new Date(data.items[i].created_at),
+                  user_avatar_url: data.items[i].owner.avatar_url,
+                  user_url: data.items[i].owner.html_url
+                })
+              }
+            })
+
+            // axios.get(url, config).then(function(response) {
+            //   // where am I?
+            // })
+          },
+          getPrettyDate: function(datetime) {
+            let year = datetime.getFullYear()
+            let month = datetime.getMonth()+1
+            let day = datetime.getDate()
+            return `${year}/${month}/${day}`
+          }
+        },
+        computed: {
+          computed_items: function() {
+            return this.items.filter(item => {
+              return item.name.includes(this.filter_text)
+                      //|| item.description.includes(this.filter_text)
+            })
+          }
+        }
+      })
+
+
+      // let fruits = ['apple', 'avocado', 'aardvark', 'bananas', 'pears', 'cherries']
+      // let filtered_fruits = fruits.filter(function(element) {
+      //   return element[0] == 'a'
+      // })
+      // console.log(filtered_fruits)
+
+
+    </script>
+  </body>
+</html>

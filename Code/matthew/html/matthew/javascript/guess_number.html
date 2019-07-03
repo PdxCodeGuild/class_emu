@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Guess the Number</title>
+  </head>
+  <body>
+    <h1>Guess the Number!</h1>
+    <input id="inputLower" type="number"/>
+    <input id="inputUpper" type="number"/>
+    <button id="startGame">Start Game</button>
+    <div id="infoField">Choose a number</div>
+    <div id="container"></div>
+    <div id="guessNumber"></div>
+
+  <script type="text/javascript">
+    let infoField = document.querySelector("#infoField")
+    let guessNumber = document.querySelector("#guessNumber")
+    let container = document.querySelector("#container")
+    let inputLower = document.querySelector("#inputLower")
+    let inputUpper = document.querySelector("#inputUpper")
+    let startGame = document.querySelector("#startGame")
+    startGame.onclick = function() {
+      container.innerText = ''
+      let lowest = parseInt(inputLower.value)
+      let highest = parseInt(inputUpper.value)
+      let guesses = highest - lowest - 3
+      guessNumber.innerText = `Guesses remaining: ${guesses}`
+      // pick a random number
+      function randomNumber(a, b) {
+        let randomNum = a + Math.floor(Math.random()*(b - a + 1))
+        return randomNum
+      }
+      let computerChoice = randomNumber(lowest, highest)
+      let buttonArray = []
+
+      // button selection
+      for (let i=lowest; i<=highest; i++) {
+        let btn = document.createElement("button")
+        btn.innerText = i
+        // btn.style.backgroundColor = "#9297b1"
+        container.appendChild(btn)
+        buttonArray.push(btn)
+        btn.onclick = function() {
+          if (guesses == 0) {
+            return
+          }
+          this.setAttribute("disabled", "true")
+          let userGuess = this.innerText
+          if (userGuess == computerChoice) {
+            infoField.innerText = "You won!"
+            guesses = 0
+            let index = computerChoice - lowest
+            let winningButton = buttonArray[index]
+            winningButton.style.backgroundColor = "green"
+          } else {
+            guesses--
+            if (guesses == 0) {
+              infoField.innerText = "You lost."
+              let index = computerChoice - lowest
+              let winningButton = buttonArray[index]
+              winningButton.style.backgroundColor = "green"
+            } else {
+              infoField.innerText = "Try again."
+            }
+            guessNumber.innerText = `Guesses remaining: ${guesses}`
+          }
+        }
+      }
+    }
+    // decrement number of guesses remaining
+  </script>
+  </body>
+</html>

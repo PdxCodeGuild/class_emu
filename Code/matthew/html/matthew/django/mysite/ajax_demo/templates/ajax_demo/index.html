@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <input id="input_text" type="text" placeholder="text" value="some text blah blah blah"/>
+      <input id="input_favorite_animal" type="text" placeholder="favorite animal" value="sheep"/>
+      <input id="cb_hot_or_not" type="checkbox" checked/>Hot or Not<br/>
+      <button id="bt_submit">Submit</button>
+    </div>
+    <script>
+      let input_text = document.querySelector('#input_text')
+      let input_favorite_animal = document.querySelector('#input_favorite_animal')
+      let cb_hot_or_not = document.querySelector('#cb_hot_or_not')
+      let bt_submit = document.querySelector('#bt_submit')
+      bt_submit.onclick = function() {
+        let data = {
+          text: input_text.value,
+          favorite_animal: input_favorite_animal.value,
+          hot_or_not: cb_hot_or_not.checked
+        }
+        let config = {
+          headers: {
+            'X-CSRFToken': '{{ csrf_token }}'
+          }
+        }
+        axios.post('{% url 'ajax_demo:save_demo_data' %}', data, config).then(function(response) {
+          console.log(response.data)
+        })
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <style type="text/css">
+      #container {
+        display:flex;
+        flex-direction:row;
+        flex-wrap: wrap;
+      }
+      #container > div {
+        border: 1px solid black;
+        margin: 10px;
+
+
+
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg)
+        }
+        100% {
+          transform: rotate(360deg)
+        }
+      }
+
+      @keyframes wobble {
+        0% {
+          transform: translateX(0px)
+        }
+        33% {
+          transform: translateX(10px)
+        }
+        66% {
+          transform: translateX(-10px)
+        }
+        100% {
+          transform: translateX(0px)
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button id="create_square_bt">click</button>
+    <div id="container">
+    </div>
+    <script type="text/javascript">
+      let container = document.querySelector('#container')
+      let create_square_bt = document.querySelector('#create_square_bt')
+      let counter = 0
+      let highness = prompt('How high are you right now? (not at all, somewhat, very)')
+      create_square_bt.onclick = function() {
+        let div = document.createElement('div')
+        div.style.width = '100px'
+        div.style.height = '100px'
+
+        div.setAttribute('name', 'div' + counter)
+        counter++
+
+        // let r = Math.floor(Math.random()*256)
+        // let g = Math.floor(Math.random()*256)
+        // let b = Math.floor(Math.random()*256)
+        // div.style.backgroundColor = `rgb(${r},${g},${b})`
+        let hue = Math.floor(Math.random()*360)
+        div.style.backgroundColor = `hsl(${hue}, 100%, 50%)`
+
+        if (Math.random() < 0.5) {
+          div.style.animationName = 'spin'
+        } else {
+          div.style.animationName = 'wobble'
+        }
+
+        if (highness === 'not at all') {
+          alert('Well you can\'t use this then')
+          window.location = 'http://www.google.com'
+        } else if (highness === 'somewhat') {
+          div.style.animationDuration = '1s'
+        } else {
+          div.style.animationDuration = '10s'
+        }
+        // div.style.animationName = 'spin'
+        // div.style.animationDuration = ''
+        // div.style.animationIterationCount = 'infinite'
+
+
+        div.onclick = function() {
+          container.removeChild(this)
+        }
+
+
+        container.appendChild(div)
+      }
+    </script>
+  </body>
+</html>

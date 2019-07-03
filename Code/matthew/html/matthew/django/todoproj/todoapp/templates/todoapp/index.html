@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Todo Index</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'todoapp/index.css' %}" type="text/css"/>
+  </head>
+  <body>
+    <h1>{{message}}</h1>
+    <form action="{% url 'todoapp:save_todo' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="todo_text"/>
+      <button type="submit">submit</button>
+    </form>
+    {% if todos %}
+    <table>
+      {% for todo in todos %}
+      <tr>
+        <td>{{todo.text}}</td>
+        <td>
+          <form action="{% url 'todoapp:complete_todo' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="todo_id" value="{{todo.id}}"/>
+            <button type="submit">✓</button>
+          </form>
+
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+
+
+    {% if completed_todos %}
+    <ul id="completed_todos">
+      {% for todo in completed_todos %}
+      <li>{{todo.text}}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+
+  </body>
+</html>

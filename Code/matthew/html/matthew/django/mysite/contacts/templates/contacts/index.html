@@ -1,0 +1,8 @@
+
+<div>Number of contacts: {{num_contacts}}</div>
+<a href="{% url 'contacts:create_contact' %}">Create New Contact</a>
+<ol>
+  {% for contact in contacts %}
+  <li><a href="{% url 'contacts:detail' contact.id %}">{{contact.name}}</a></li>
+  {% endfor %}
+</ol>

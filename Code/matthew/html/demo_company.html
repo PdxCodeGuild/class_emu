@@ -1,0 +1,145 @@
+<!--
+Lab 3 Company Landing Page
+
+
+✓ title
+testimonials
+spa specialists
+
+✓ address
+✓ hours of operation
+
+✓ services
+  massage
+  skin care
+  hair style
+  eye brow/lash
+  nails
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Official Emu Spa</title>
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet"> 
+    <style type="text/css">
+      html, body {
+        margin:0;
+        padding:0;
+        min-height:100%;
+        width:100%;
+        box-sizing: border-box;
+      }
+      h1 {
+        margin:0;
+        text-align:center;
+        padding-top:10px;
+      }
+      body {
+        background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d0/Emus_bathing_Feb09.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: 'Questrial', sans-serif;
+        color:white;
+      }
+      main {
+        background-color: rgba(0,0,0,0.5);
+        height:100%;
+        width:600px;
+        margin: 0 auto;
+        padding:10px;
+      }
+      footer {
+        /* position:absolute;
+        top:100%;
+        left:0;
+        transform: translateY(-100%);
+        width:100%; */
+      }
+      footer > div {
+        margin: 10px;
+        text-align:center;
+      }
+      hr {
+        color:white;
+      }
+      h2 {
+        text-align:center;
+      }
+      .services {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .services > div {
+        font-size:20px;
+        margin:30px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+      }
+      .services img {
+        width:100px;
+        border: 1px solid white;
+        border-radius:50px;
+        margin:5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>The Official Emu Spa</h1>
+      <hr/>
+      <h2>Services</h2>
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam quis nulla ac consectetur. Proin consectetur hendrerit velit fermentum finibus. Donec fringilla varius sagittis. Nunc efficitur felis nec mauris placerat, consectetur maximus nisi facilisis. Pellentesque pretium facilisis turpis ut ultrices. Sed ac consectetur massa. Vestibulum laoreet, neque a volutpat condimentum, nulla lectus malesuada lectus, nec laoreet ante orci sit amet ligula. Praesent ipsum ligula, aliquet ornare facilisis id, maximus in diam. Sed vel semper urna. Pellentesque porta sapien ac placerat euismod. Suspendisse elementum magna at mi tempor, feugiat maximus dui ultricies.
+      </p>
+      <div class="services">
+        <div>
+          <img src="emu_massage.jpg"/>
+          <span>massage</span>
+        </div>
+        <div>
+          <img src="emu_skin.jpg"/>
+          <span>skin care</span>
+        </div>
+        <div>
+          <img src="emu_hair.jpg"/>
+          <span>hair style</span>
+        </div>
+        <div>
+          <img src="emu_eye.jpg"/>
+          <span>eye brow/lash</span>
+        </div>
+        <div>
+          <img src="emu_toe.jpg"/>
+          <span>nails</span>
+        </div>
+      </div>
+      
+
+      <p>
+      Nunc justo ante, gravida vel est nec, tincidunt ullamcorper leo. Sed sit amet consequat diam, non facilisis est. Duis dictum ut nunc blandit vehicula. Vestibulum commodo urna dapibus nulla eleifend, vitae pulvinar ante euismod. Morbi tincidunt nunc et enim placerat ornare. Nunc tempor lacus lacus, ut hendrerit felis sollicitudin a. Nam vestibulum congue ante, nec aliquam lectus consectetur vitae.
+      </p>
+      <p>
+      Phasellus vel hendrerit elit. Praesent sit amet nisi eu mi dapibus gravida eget vel sem. Cras iaculis vel magna at elementum. Duis vel accumsan nibh. Curabitur tempus augue nec volutpat elementum. Praesent ultricies erat arcu, luctus facilisis est tincidunt eget. Sed id massa a orci ornare interdum fringilla eget odio. Donec hendrerit sollicitudin eros non dignissim. Nulla facilisi. Nullam bibendum laoreet sapien vitae tempus. Suspendisse elementum odio quis faucibus venenatis. Donec mollis ut lorem at mattis. Vivamus consequat erat urna. Integer at lobortis ligula, eget varius nisl. Donec sed felis libero. Nunc elit ex, tristique vel elit eu, viverra scelerisque lectus.
+      </p>
+      <p>
+      Pellentesque vulputate dolor vel libero bibendum commodo. Nam vitae arcu sit amet massa convallis elementum. Vestibulum lacinia elit at nisl dictum, et pulvinar arcu euismod. Phasellus congue semper ante, vel lobortis urna. Nullam finibus sed mi vel ultricies. Curabitur sagittis nisi ante, quis ultrices elit suscipit id. Cras bibendum quam ac tortor feugiat, dapibus vehicula nunc elementum. Etiam nec sapien sed libero imperdiet porttitor ac in velit. Ut hendrerit aliquet eros et consequat. Vivamus tempor pulvinar erat, sed lobortis elit pellentesque a. Vivamus aliquam sit amet dolor iaculis placerat. Nam fringilla est sed efficitur ultrices.
+      </p>
+      <p>
+      Donec volutpat nulla libero, at blandit eros sodales consequat. Morbi rhoncus molestie aliquet. Donec et pulvinar sapien. Nullam ut vulputate risus, vel accumsan arcu. Pellentesque et dui porttitor, fermentum lacus ut, vulputate augue. Nunc neque nibh, luctus vel pulvinar a, sollicitudin nec eros. Etiam felis enim, luctus quis nunc et, placerat pharetra felis. Quisque varius magna ex, non cursus ex varius in.
+      </p>
+      <footer>
+        <hr/>
+        <div>Address: 14 Buoro Street, Coppabella, Queensland Australia 4741</div>
+        <div>Phone: (07) 4905 9859 - 9am-9pm M-F</div>
+      </footer>
+    </main>
+  </body>
+</html>

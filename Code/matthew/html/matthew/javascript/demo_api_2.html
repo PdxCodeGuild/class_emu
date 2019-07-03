@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cat API Demo</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="secrets.js"></script>
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <select id="select_breed">
+      <option value="" selected>Any</option>
+    </select>
+    <input type="checkbox" id="cb_gif"/>Gif
+    <input type="checkbox" id="cb_jpg"/>Jpg
+    <input type="checkbox" id="cb_png"/>Png
+    <button id="cat_bt">Get a random cat pic!</button><br/>
+    <img id="cat_img" src="" width="500px"/>
+    <script type="text/javascript">
+
+
+
+
+
+
+      let select_breed = document.querySelector('#select_breed')
+      let cb_gif = document.querySelector('#cb_gif')
+      let cb_jpg = document.querySelector('#cb_jpg')
+      let cb_png = document.querySelector('#cb_png')
+      let cat_bt = document.querySelector('#cat_bt')
+      let cat_img = document.querySelector('#cat_img')
+
+
+      cat_bt.onclick = function() {
+        let breed_id = select_breed.options[select_breed.selectedIndex].value
+        let url = 'https://api.thecatapi.com/v1/images/search?'
+        if (breed_id != '') {
+          url += 'breed_ids='+breed_id + '&'
+        }
+        let mime_types = []
+        if (cb_gif.checked) mime_types.push('gif')
+        if (cb_jpg.checked) mime_types.push('jpg')
+        if (cb_png.checked) mime_types.push('png')
+
+        if (mime_types.length != 0) {
+          url += 'mime_types=' + mime_types.join(',')
+        }
+        console.log(url)
+        axios.get(url).then(function (response) {
+          let data = response.data
+          if (data.length == 0) {
+            cat_img.setAttribute('src', '')
+            alert('no cat image for those parameters')
+          } else {
+            cat_img.setAttribute('src', data[0].url)
+          }
+        })
+      }
+
+      let breeds_url = 'https://api.thecatapi.com/v1/breeds/'
+      let config = {
+        headers: {
+          'x-api-key': cat_api_key
+        }
+      }
+      axios.get(breeds_url, config).then(function(response) {
+        let data = response.data
+        console.log(data)
+        for (let i=0; i<data.length; ++i) {
+          let option = document.createElement('option')
+          option.innerText = data[i].name
+          option.setAttribute('value', data[i].id)
+          select_breed.appendChild(option)
+        }
+      })
+    </script>
+
+
+
+  </body>
+</html>

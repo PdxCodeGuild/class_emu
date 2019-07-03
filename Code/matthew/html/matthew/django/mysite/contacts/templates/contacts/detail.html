@@ -1,0 +1,69 @@
+
+<style type="text/css">
+  #container {
+    display:grid;
+    grid-template-columns: auto auto;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    width: 200px;
+  }
+  #gender_grid {
+    display:grid;
+    grid-template-columns: 20px 40px;
+  }
+</style>
+<form id="container" action="{% url 'contacts:save_contact' contact.id %}" method="post">
+  {% csrf_token %}
+  <div>Name</div>
+  <div><input type="text" name="contact_name" value="{{contact.name}}"/></div>
+  <div>Age</div>
+  <div><input type="number" name="contact_age" value="{{contact.age}}"/></div>
+  <div>Gender</div>
+  <div>
+    {% comment %}
+    <select name="contact_gender_id">
+      {% for gender in genders %}
+      <option value="{{gender.id}}" {% if gender.id == contact.gender_id %}selected{% endif %}>{{gender.name}}</option>
+      {% endfor %}
+    </select>
+    {% endcomment %}
+
+    {% for gender in genders %}
+    <div id="gender_grid">
+      <input type="radio" name="contact_gender_id" value="{{gender.id}}" id="gender{{forloop.counter}}" {% if gender.id == contact.gender_id %}checked{% endif %} required/>
+      <label for="gender{{forloop.counter}}">{{gender.name}}</label>
+    </div>
+    {% endfor %}
+  </div>
+  <div>Eye Colors</div>
+  <div>
+    {% for eye_color in eye_colors %}
+    <div id="eye_color_grid">
+      <input type="checkbox" id="eye_color{{forloop.counter}}" name="eye_color_{{eye_color.id}}" {% if eye_color.checked %}checked{% endif %}/>
+      <label for="eye_color{{forloop.counter}}">{{eye_color.name}}</label>
+    </div>
+    {% endfor %}
+  </div>
+  <div>Hot or Not?</div>
+  <div>
+    <input type="checkbox" id="contact_hot_or_not" name="contact_hot_or_not" value="llama" {% if contact.hot_or_not %}checked{% endif %}/>
+    <label for="contact_hot_or_not">Hot or Not?</label>
+  </div>
+  <div>Phone Number</div>
+  <div><input type="text" name="contact_phone_number" value="{{contact.phone_number}}"/></div>
+  <div>Address</div>
+  <div><input type="text" name="contact_address" value="{{contact.address}}"/></div>
+  <div id="swap_container">
+    <button type="submit">Save</button>
+    <a href="{% url 'contacts:delete_contact' contact.id %}">Delete</a>
+  </div>
+</form>
+
+
+
+<script>
+  let interval = setInterval(function() {
+    let swap_container = document.querySelector('#swap_container')
+    swap_container.appendChild(swap_container.firstChild)
+  }, 10)
+</script>
