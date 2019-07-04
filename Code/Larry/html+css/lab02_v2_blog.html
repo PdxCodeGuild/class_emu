@@ -60,21 +60,6 @@ You may also want to use flexbox or grid, and apply responsive design.
         width: 75%;
         margin: 0 auto;
       }
-      /* Medium screens */
-      @media all and (max-width: 800px) {
-        .wrapper {
-          /* When on medium sized screens, we center it by evenly distributing empty space around items */
-          justify-content: space-around;
-        }
-      }
-      /* Small screens */
-      @media all and (max-width: 500px) {
-        .wrapper {
-          /* On small screens, we are no longer using row direction but column */
-          flex-direction: column;
-          width: 100%;
-        }
-      }
       .aside {
         width: 150px;
         text-align: right;
@@ -110,6 +95,34 @@ You may also want to use flexbox or grid, and apply responsive design.
       footer {
         font-size: 14px;
         text-align: center;
+      }
+      /* Medium screens */
+      @media all and (max-width: 800px) {
+        .wrapper {
+          /* When on medium sized screens, we center it by evenly distributing empty space around items */
+          justify-content: space-around;
+        }
+        .header {
+          background-image: url("images/farm2.jpg");
+          background-size: 100% 100%;
+        }
+        .articles {
+          font-size: 20px;
+        }
+      }
+      /* Small screens */
+      @media all and (max-width: 500px) {
+        .wrapper {
+          /* On small screens, we are no longer using row direction but column */
+          flex-direction: column;
+        }
+        .header {
+          background-image: url("images/farm2.jpg");
+          background-size: 100% 100%;
+        }
+        .articles {
+          font-size: 16px;
+        }
       }
     </style>
   </head>
