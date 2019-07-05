@@ -7,6 +7,8 @@ You can make generate fake content using Lorem Ipsum.
 
 Feel free to use a CSS Framework.
 You may also want to use flexbox or grid, and apply responsive design.
+
+v2: layout and design elements
 -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -14,7 +16,7 @@ You may also want to use flexbox or grid, and apply responsive design.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-    <title>Phaedrus Art Center</title>
+    <title>Red Cedar Farm</title>
     <script type="text/javascript">
       function show(elem1, elem2) {
         document.getElementById(elem1).style.display = "block";
@@ -60,7 +62,7 @@ You may also want to use flexbox or grid, and apply responsive design.
         width: 75%;
         margin: 0 auto;
       }
-      .aside {
+      aside {
         width: 150px;
         text-align: right;
         vertical-align: text-top;
@@ -138,7 +140,7 @@ You may also want to use flexbox or grid, and apply responsive design.
       </span>
     </nav>
     <div class="wrapper">
-      <aside class="aside">
+      <aside>
         <div id="link1" class="selected-article"><a href="javascript:show('article1','link1');javascript:hide('article2','link2');javascript:hide('article3','link3');javascript:hide('article4','link4');javascript:hide('article5','link5')">Bacon</a></div>
         <div id="link2" class="unselected-article"><a href="javascript:hide('article1','link1');javascript:show('article2','link2');javascript:hide('article3','link3');javascript:hide('article4','link4');javascript:hide('article5','link5')">Cupcake</a></div>
         <div id="link3" class="unselected-article"><a href="javascript:hide('article1','link1');javascript:hide('article2','link2');javascript:show('article3','link3');javascript:hide('article4','link4');javascript:hide('article5','link5')">Vegetable</a></div>
