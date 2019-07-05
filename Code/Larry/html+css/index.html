@@ -15,7 +15,7 @@
         width: 100%;
       }
       body {
-        background-image: url(http://www.lar-mo.com/image_cdn/DSC_0090.jpg);
+        background-image: url(http://www.lar-mo.com/images/DSC_0090.jpg);
         background-repeat: no-repeat;
         background-size: cover;
       }
@@ -37,9 +37,10 @@
         height: 267px;
       }
       .lab_solution {
+        align: center;
         display: flex;
         flex-direction: row;
-        margin: 20px 0 0 0;
+        margin: 20px 0 0 0; /* this is spacing between rows */
         padding: 10px;
       }
       .title_description {
@@ -53,13 +54,16 @@
         padding: 0;
         width: 350px;
       }
+      .title_description > * {
+        margin: auto;
+      }
       h1 {
         color: #F9F9F9;
         margin: 0;
         padding: 15px;
       }
       article {
-        padding-left: 15px;
+        padding: 0 15px 15px;
       }
       a:link, a:visited {
         color: #FFF;
@@ -82,41 +86,37 @@
     </style>
   </head>
   <body>
-    <header><h1>HTML + CSS labs</h1></header>
+    <header><h1>&lt;/&gt; HTML + CSS labs</h1></header>
     <div class="wrapper">
       <div class="lab_solution">
         <div class="title_description">
-          <p>
+          <div>
             <h1>Lab 03: Company</h1>
             <article><a href="mob_programming/demo_company.html" target="_blank">This page was created on July 3, 2019<br/>during a mob programming exercise.</a></article>
-          </p>
+          </div>
         </div>
-        <div><a href="mob_programming/demo_company.html" target="_blank"><img src="http://www.lar-mo.com/image_cdn/company.png"/></a></div>
+        <div><a href="mob_programming/demo_company.html" target="_blank"><img src="http://www.lar-mo.com/images/company.png"/></a></div>
       </div>
       <div class="lab_solution">
         <div class="title_description">
           <div>
-            <p>
-              <h1>Lab 02: Blog</h1>
-              <article><a href="lab02_v3_blog.html" target="_blank">v3: minor revision of Blog page</a></article>
-              <article><a href="lab02_v2_blog.html" target="_blank">v2: major revision of Blog page</a></article>
-              <article><a href="lab02_v1_blog.html" target="_blank">v1: first draft of Blog page (barebones)</a></article>
-            </>
+            <h1>Lab 02: Blog</h1>
+            <article><a href="lab02_v3_blog.html" target="_blank">v3: minor revision of Blog page</a></article>
+            <article><a href="lab02_v2_blog.html" target="_blank">v2: major revision of Blog page</a></article>
+            <article><a href="lab02_v1_blog.html" target="_blank">v1: first draft of Blog page (barebones)</a></article>
           </div>
         </div>
-        <div><a href="lab02_v3_blog.html" target="_blank"><img src="http://www.lar-mo.com/image_cdn/blog.png"/></a></div>
+        <div><a href="lab02_v3_blog.html" target="_blank"><img src="http://www.lar-mo.com/images/blog3.png"/></a></div>
       </div>
       <div class="lab_solution">
         <div class="title_description">
           <div>
-            <p>
-              <h1>Lab 01: Biography</h1>
-              <article><a href="lab01_v2_bio.html" target="_blank">v2: rounded table corners, new quote</a></article>
-              <article><a href="lab01_v1_bio.html" target="_blank">v1: first draft of Bio page</a></article>
-            </p>
+            <h1>Lab 01: Biography</h1>
+            <article><a href="lab01_v2_bio.html" target="_blank">v2: rounded table corners, new quote</a></article>
+            <article><a href="lab01_v1_bio.html" target="_blank">v1: first draft of Bio page</a></article>
           </div>
         </div>
-        <div><a href="lab01_v2_bio.html" target="_blank"><img src="http://www.lar-mo.com/image_cdn/bio.png"/></a></div>
+        <div><a href="lab01_v2_bio.html" target="_blank"><img src="http://www.lar-mo.com/images/bio.png"/></a></div>
       </div>
     </div>
   </body>
