@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML + CSS labs</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <style type="text/css">
+      html, body {
+        box-sizing: border-box;
+        font-family: 'Raleway', sans-serif;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+      }
+      body {
+        background-image: url(images/DSC_0090.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      header {
+        background-color: rgba(128, 128, 128, 0.7);
+        color: #C0C0C0;
+        padding-left: 15px;
+      }
+      .wrapper {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+      }
+      .wrapper img {
+        border: 1px solid white;
+        border-radius: 20px;
+        margin: 5px;
+        /* width: 425px; */
+        height: 267px;
+      }
+      .lab_solution {
+        display: flex;
+        flex-direction: row;
+        margin: 20px 0 0 0;
+      }
+      .title_description {
+        /* align-items: justify; */
+        background-color: rgba(128, 128, 128, 0.7);
+        border-radius: 20px;
+        color: #F9F9F9;
+        display: flex;
+        flex-direction: column;
+        height: 267px;
+        margin: 5px;
+        padding: 0;
+        width: 350px;
+      }
+      h1 {
+        color: #F9F9F9;
+        margin: 0;
+        padding: 15px;
+      }
+      .title_card {
+        color: #F9F9F9;
+        margin: 0;
+      }
+      article {
+        padding-left: 15px;
+      }
+      a:link, a:visited {
+        color: #FFF;
+        text-decoration: underline;
+      }
+      a:hover, a:active {
+        color: #FFF;
+        text-decoration: none;
+      }
+      /* Medium screens */
+      @media all and (max-width: 800px) {
+        .lab_solution {
+          /* When on medium sized screens, we center it by evenly distributing empty space around items */
+          justify-content: space-around;
+        }
+      }
+      /* Small screens */
+      @media all and (max-width: 500px) {
+        .lab_solution {
+          /* On small screens, we are no longer using row direction but column */
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header><h1>HTML + CSS labs</h1></header>
+    <div class="wrapper">
+      <div class="lab_solution">
+        <div class="title_description">
+          <p>
+            <h1>Lab 03: Company</h1>
+            <article><a href="mob_programming/demo_company.html" target="new">This page was created on July 3, 2019<br>Authors: James, Larry, Matt</a></article>
+          </p>
+        </div>
+        <div><a href="mob_programming/demo_company.html" target="new"><img src="images/company.png"/></a></div>
+      </div>
+      <div class="lab_solution">
+        <div class="title_description">
+          <div>
+            <p>
+              <h1>Lab 02: Blog</h1>
+              <article><a href="lab02_v1_blog.html" target="new">v1: first draft of Blog page (layout, no style)</a></article>
+              <article><a href="lab02_v2_blog.html" target="new">v2: revision of Blog page (styling, images)</a></article>
+              <article><a name="v3">v3</a>: improvements TBD</article>
+              <!-- <article><a href="lab02_v3_blog.html" target="new">v3</a>: improvements TBD</article> -->
+            </>
+          </div>
+        </div>
+        <div><a href="lab02_v2_blog.html" target="new"><img src="images/blog.png"/></a></div>
+      </div>
+      <div class="lab_solution">
+        <div class="title_description">
+          <div>
+            <p>
+              <h1>Lab 01: Biography</h1>
+              <article><a href="lab01_v1_bio.html" target="new">v1: first draft of Bio page</a></article>
+              <article><a href="lab01_v2_bio.html" target="new">v2: rounded table corners, new quote</a></article>
+            </p>
+          </div>
+        </div>
+        <div><a href="lab01_v2_bio.html" target="new"><img src="images/bio.png"/></a></div>
+      </div>
+    </div>
+  </body>
+</html>
