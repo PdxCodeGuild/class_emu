@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML + CSS labs</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <style type="text/css">
@@ -56,10 +57,6 @@
         margin: 0;
         padding: 15px;
       }
-      .title_card {
-        color: #F9F9F9;
-        margin: 0;
-      }
       article {
         padding-left: 15px;
       }
@@ -71,17 +68,13 @@
         color: #FFF;
         text-decoration: none;
       }
-      /* Medium screens */
       @media all and (max-width: 800px) {
         .lab_solution {
-          /* When on medium sized screens, we center it by evenly distributing empty space around items */
           justify-content: space-around;
         }
       }
-      /* Small screens */
       @media all and (max-width: 500px) {
         .lab_solution {
-          /* On small screens, we are no longer using row direction but column */
           flex-direction: column;
         }
       }
@@ -104,12 +97,13 @@
           <div>
             <p>
               <h1>Lab 02: Blog</h1>
-              <article><a href="lab02_v2_blog.html" target="new">v2: revision of Blog page (styling, images)</a></article>
-              <article><a href="lab02_v1_blog.html" target="new">v1: first draft of Blog page (layout, no style)</a></article>
+              <article><a href="lab02_v3_blog.html" target="new">v3: minor revision of Blog page</a></article>
+              <article><a href="lab02_v2_blog.html" target="new">v2: major revision of Blog page</a></article>
+              <article><a href="lab02_v1_blog.html" target="new">v1: first draft of Blog page (barebones)</a></article>
             </>
           </div>
         </div>
-        <div><a href="lab02_v2_blog.html" target="new"><img src="http://www.lar-mo.com/image_cdn/blog.png"/></a></div>
+        <div><a href="lab02_v3_blog.html" target="new"><img src="http://www.lar-mo.com/image_cdn/blog.png"/></a></div>
       </div>
       <div class="lab_solution">
         <div class="title_description">
