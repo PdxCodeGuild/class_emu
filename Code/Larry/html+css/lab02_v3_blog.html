@@ -28,7 +28,11 @@ v3: simplify JavaScript function and calls
       }
     </script>
     <style content="text/css">
+      html {
+        margin-left: calc(100vw - 100%);
+      }
       html, body {
+        background-attachment: fixed;
         background-image: url("http://www.lar-mo.com/images/96045.jpg");
         background-size: 100%;
         box-sizing: border-box;
@@ -38,9 +42,12 @@ v3: simplify JavaScript function and calls
         padding:0;
         width:100%;
       }
+      /* body {
+        overflow-y: scroll;
+      } */
       header {
         background-image: url("http://www.lar-mo.com/images/farm2.jpg");
-        background-size: 100%;
+        background-repeat: round;
         padding: 50px;
       }
       header > h1 {
@@ -64,6 +71,7 @@ v3: simplify JavaScript function and calls
         -webkit-box-shadow: 3px 3px 5px 0 #222;
       }
       .wrapper {
+        align-self: center;
         display: flex;
         box-sizing: border-box;
         margin: 0 auto;
@@ -72,7 +80,7 @@ v3: simplify JavaScript function and calls
       aside {
         position: relative;
         text-align: center;
-        vertical-align: text-top;
+        /* vertical-align: text-top; */
         width: 150px;
         z-index: 2;
       }
@@ -114,10 +122,6 @@ v3: simplify JavaScript function and calls
           /* When on medium sized screens, we center it by evenly distributing empty space around items */
           justify-content: space-around;
         }
-        .header {
-          background-image: url("http://www.lar-mo.com/images /farm2.jpg");
-          background-size: 100%;
-        }
         .articles {
           font-size: 20px;
         }
@@ -128,9 +132,20 @@ v3: simplify JavaScript function and calls
           /* On small screens, we are no longer using row direction but column */
           flex-direction: column;
         }
-        .header {
-          background-image: url("http://www.lar-mo.com/images/farm2.jpg");
-          background-size: 100%;
+        header > h1 {
+          font-size: 24px;
+        }
+        .navigation {
+          font-size: 18px;
+        }
+        .wrapper {
+          align-items: center;
+        }
+        .wrapper > aside {
+          align-self: flex-start;
+        }
+        .selected-article, .unselected-article {
+          font-size: 16px;
         }
         .articles {
           font-size: 16px;
