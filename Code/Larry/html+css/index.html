@@ -15,6 +15,7 @@
         width: 100%;
       }
       body {
+        background-attachment: fixed;
         background-image: url(http://www.lar-mo.com/images/DSC_0090.jpg);
         background-repeat: no-repeat;
         background-size: cover;
@@ -22,7 +23,9 @@
       header {
         background-color: rgba(128, 128, 128, 0.7);
         color: #C0C0C0;
-        /* padding-left: 15px; */
+        /* position: -webkit-sticky; /* Safari */
+        /* position: sticky; */
+        top: 0;
       }
       .wrapper {
         align-items: center;
