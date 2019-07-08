@@ -104,12 +104,12 @@ def delete_user():
         contacts.remove(current_user)              # Option 2: Use 'list.remove(value)' method
         return "User deleted."
 
-def print_one_contact(updated_record):
+def print_one_contact(user):
     print(f"""
 +------+-----+-------+----------------+
 | name | age | email | favorite color |
 +------+-----+-------+----------------+
-| {updated_record['name']} | {updated_record['age']} | {updated_record['email']} | {updated_record['favorite color']} |
+| {user['name']} | {user['age']} | {user['email']} | {user['favorite color']} |
 +------+-----+-------+----------------+
 """)
 
