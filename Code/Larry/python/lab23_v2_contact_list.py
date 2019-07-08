@@ -2,17 +2,10 @@
 """
 Lab 23: Contact List
 
-Version 2
-Implement a CRUD REPL
+Goal: Build a program to manage a list of contacts, using a CSV "comma-separated values" file.
 
-### Create a record ###
-* Ask the user for each attribute, add a new contact to your contact list with the attributes that the user entered.
-### Retrieve a record ###
-* Ask the user for the contact's name, find the user with the given name, and display their information
-## Update a record ###
-* Ask the user for the contact's name, then for which attribute of the user they'd like to update and the value of the attribute they'd like to set.
-### Delete a record ###
-* Ask the user for the contact's name, remove the contact with the given name from the contact list.
+Version 1: Open the CSV, convert the lines of text into a list of dictionaries, one dictionary for each user.
+Version 2: Implement a CRUD REPL
 """
 
 # Use Python open the CSV
@@ -64,7 +57,6 @@ def is_user_valid(prompt_text):
             print("That user doesn't exist.")
             continue
         return get_user(name_lookup)
-
 
 def lookup_user():
     prompt_text = "Enter the name of the user you want to lookup: "
@@ -127,24 +119,28 @@ def print_contacts():
 ## Where the functions are called
 ##############################################################################
 
-operation = input("Type an operation: (showall)(lookup)(add)(update)(delete): ").lower()
-valid_operations = ['showall', 'lookup', 'add', 'update', 'delete']
-while True:
-    if operation not in valid_operations:
-        print("That is not one of the choices.")
-        continue
-    break
-if operation == "showall":
-    print_contacts()
-elif operation == "lookup":
-    print_one_contact(lookup_user())
-elif operation == "add":
-    create_user()
-    print_contacts()                        # prints new contact list in an ascii table
-elif operation == "update":
-    print_one_contact(update_user())
-elif operation == "delete":
-    delete_status = delete_user()
-    print(f"{delete_status}")               # prints "Operation aborted." or deletes user
-    if delete_status == "User deleted.":
-        print_contacts()                    # prints full contact list in an ascii table
+def main():
+    operation = input("Type an operation: (showall)(lookup)(add)(update)(delete): ").lower()
+    valid_operations = ['showall', 'lookup', 'add', 'update', 'delete']
+    while True:
+        if operation not in valid_operations:
+            print("That is not one of the choices.")
+            continue
+        break
+    if operation == "showall":
+        print_contacts()
+    elif operation == "lookup":
+        print_one_contact(lookup_user())
+    elif operation == "add":
+        create_user()
+        print_contacts()                        # prints new contact list in an ascii table
+    elif operation == "update":
+        print_one_contact(update_user())
+    elif operation == "delete":
+        delete_status = delete_user()
+        print(f"{delete_status}")               # prints "Operation aborted." or deletes user
+        if delete_status == "User deleted.":
+            print_contacts()                    # prints full contact list in an ascii table
+
+if __name__ == "__main__":
+    main()
