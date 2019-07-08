@@ -46,61 +46,61 @@ def create_user():
 ### Retrieve a record ###
 # Ask the user for the contact's name, find the user with the given name, and display their information
 def get_user(name):
-    for i in range(len(contacts)):
-        if contacts[i]['name'] == name:
-            user_record = contacts[i]
-            return user_record
+    for i in range(len(contacts)):                   # loop through each contact record
+        if contacts[i]['name'] == name:              # if name matches a record with the name
+            full_record = contacts[i]                # grab the whole contact (dictionary)
+            return full_record                       # return the full record
 
 def is_user_valid(prompt_text):
-    while True:
-        name_lookup = input(prompt_text).lower()
-        if get_user(name_lookup) == None:
-            print("That user doesn't exist.")
-            continue
-        return get_user(name_lookup)
+    while True:                                      # start infinite loop
+        name_lookup = input(prompt_text).lower()     # prompt user for input
+        if get_user(name_lookup) == None:            # if get_user doesn't find any matches
+            print("That user doesn't exist.")        # print error msg
+            continue                                 # loop back to top
+        return get_user(name_lookup)                 # otherwise, return the full record
 
 def lookup_user():
     prompt_text = "Enter the name of the user you want to lookup: "
-    return is_user_valid(prompt_text)
+    return is_user_valid(prompt_text)                # submit prompt_text to is_user_valid, return the result
 
 ### Update a record ###
 # Ask the user for the contact's name, then for which attribute of the user they'd like to update and the value of the attribute they'd like to set.
 def update_user():
     prompt_text = "Enter the name of the user you want to update: "
-    current_user = is_user_valid(prompt_text)
+    current_user = is_user_valid(prompt_text)        # fetch and return valid user's full record
 
     while True:
         attribute = input("Enter the field you want to update: (age) (email) (favorite color): ").lower()
         choices = ['age', 'email', 'favorite color']
-        if attribute not in choices:
-            print("That is not one of the choices.")
-            continue
+        if attribute not in choices:                 # ensure only valid attributes are entered
+            print("That is not one of the choices.") #
+            continue                                 #
         break
 
     current_value = current_user[attribute]
     print(f"{current_user['name'].title()}'s {attribute} is currently set to {current_value}.")
     while True:
-        new_value = input("Enter the new value: ")
-        if len(new_value) == 0:
-            print("New value cannot be blank.")
-            continue
-        break
-    current_user[attribute] = new_value
-    return current_user
+        new_value = input("Enter the new value: ")   # ensure something is entered
+        if len(new_value) == 0:                      #
+            print("New value cannot be blank.")      #
+            continue                                 #
+        break                                        #
+    current_user[attribute] = new_value              # then, update attribute for current_user
+    return current_user                              # return current_user's full record
 
 ### Delete a record ###
 # Ask the user for the contact's name, remove the contact with the given name from the contact list.
 def delete_user():
     prompt_text = "Enter the name of the user you want to delete: "
-    current_user = is_user_valid(prompt_text)
+    current_user = is_user_valid(prompt_text)        # fetch and return valid user's full record
 
     answer = input(f"Delete User: Are you sure? (yes)(no): ").lower()
-    if answer != "yes":
-        return "Operation aborted."
+    if answer != "yes":                              # give user a chance to abort
+        return "Operation aborted."                  # print a abort succeeded msg
     else:
-        # row_index = contacts.index(current_user) # Option 1: Get index of dictionary to be deleted
-        # del contacts[row_index]                  #           Use 'del list[index]' method
-        contacts.remove(current_user)              # Option 2: Use 'list.remove(value)' method
+        # row_index = contacts.index(current_user)   # Option 1: Get index of dictionary to be deleted
+        # del contacts[row_index]                    #           Use 'del list[index]' method
+        contacts.remove(current_user)                # Option 2: Use 'list.remove(value)' method
         return "User deleted."
 
 def print_one_contact(user):
@@ -126,18 +126,17 @@ def print_contacts():
         """)
 
 def write_changes():
-    f = open('./lab23_data.csv', 'w')
-    csv_header = ','.join(header)
-    f.write(f"{csv_header}\r\n")
-    for i in range(len(contacts)):
-        contact= list(contacts[i].values())
-        csv_row = ','.join(contact)
-        f.write(f"{csv_row}\r\n")
-    f.close()
+    f = open('./lab23_data.csv', 'w')               # open the .csv file for writing (w)
+    csv_header = ','.join(header)                   # convert header (list) to comma-separated string
+    f.write(f"{csv_header}\r\n")                    # write the header row
+    for i in range(len(contacts)):                  # loop through the elements in contacts list
+        t_contact = list(contacts[i].values())      # convert dictionary to list and set temporary variable (t_contact)
+        csv_row = ','.join(contact)                 # convert contact (list) to comma-separated string
+        f.write(f"{csv_row}\r\n")                   # write the contact row
+    f.close()                                       # close the .csv file from writing
 
 def try_again(prompt_text):
-    if input(prompt_text).lower() == "no":
-        return True
+    return input(prompt_text).lower() == "no"       # if user types 'no', returns True
 
 ##############################################################################
 ## Where the functions are called
@@ -147,31 +146,31 @@ def main():
     while True:
         operation = input("Type an operation: (showall)(lookup)(add)(update)(delete), (done): ").lower()
         valid_operations = ['showall', 'lookup', 'add', 'update', 'delete', 'done']
-        if operation not in valid_operations:
-            print("That is not one of the choices.")
-            continue
+        if operation not in valid_operations:       # ensure only valid operations are entered
+            print("That is not one of the choices.")#
+            continue                                #
         if operation == "showall":
-            print_contacts()
+            print_contacts()                        # prints all contacts
         elif operation == "lookup":
-            print_one_contact(lookup_user())
+            print_one_contact(lookup_user())        # prints selected contact
         elif operation == "add":
-            create_user()
+            create_user()                           # create a new contact
             print_contacts()                        # prints new contact list in an ascii table
-            write_changes()
+            write_changes()                         # commits the changes to the .csv file
         elif operation == "update":
-            print_one_contact(update_user())
-            write_changes()
+            print_one_contact(update_user())        # prints updated contact in an ascii table
+            write_changes()                         # commits the changes to the .csv file
         elif operation == "delete":
-            delete_status = delete_user()
-            print(f"{delete_status}")               # prints "Operation aborted." or deletes user
+            delete_status = delete_user()           # calls delete_user(), which may delete contact, and sets delete_status
+            print(f"{delete_status}")               # prints "Operation aborted."
             if delete_status == "User deleted.":
                 print_contacts()                    # prints full contact list in an ascii table
-            write_changes()
+            write_changes()                         # commits the changes to the .csv file
         elif operation == "done":
-            break
+            break                                   # break out of while loop
 
         if try_again("Do you want to try again? (yes)(no): "):
-            break
+            break                                   # break if answer was 'no'
 
 if __name__ == "__main__":
     main()
