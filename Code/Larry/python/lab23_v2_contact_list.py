@@ -140,11 +140,11 @@ elif operation == "lookup":
     print_one_contact(lookup_user())
 elif operation == "add":
     create_user()
-    print_contacts()                    # prints new contact list in an ascii table
+    print_contacts()                        # prints new contact list in an ascii table
 elif operation == "update":
     print_one_contact(update_user())
 elif operation == "delete":
     delete_status = delete_user()
-    print(f"{delete_status}")                # prints "Operation aborted." or deletes user
+    print(f"{delete_status}")               # prints "Operation aborted." or deletes user
     if delete_status == "User deleted.":
-        print_contacts()                # prints full contact list in an ascii table
+        print_contacts()                    # prints full contact list in an ascii table
