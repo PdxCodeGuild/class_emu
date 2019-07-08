@@ -106,21 +106,21 @@ def delete_user():
 
 def print_one_contact(user):
     print(f"""
-+------+-----+-------+----------------+
-| name | age | email | favorite color |
-+------+-----+-------+----------------+
-| {user['name']} | {user['age']} | {user['email']} | {user['favorite color']} |
-+------+-----+-------+----------------+
+        +------+-----+-------+----------------+
+        | name | age | email | favorite color |
+        +------+-----+-------+----------------+
+        | {user['name']} | {user['age']} | {user['email']} | {user['favorite color']} |
+        +------+-----+-------+----------------+
 """)
 
 def print_contacts():
     print(f"""
-+------+-----+-------+----------------+
-| name | age | email | favorite color |
-+------+-----+-------+----------------+""")
+        +------+-----+-------+----------------+
+        | name | age | email | favorite color |
+        +------+-----+-------+----------------+""")
     for i in range(len(contacts)):
-        print(f"""| {contacts[i]['name']} | {contacts[i]['age']}  | {contacts[i]['email']} | {contacts[i]['favorite color']} | """)
-    print(f"""+------+-----+-------+----------------+
+        print(f"""        | {contacts[i]['name']} | {contacts[i]['age']} | {contacts[i]['email']} | {contacts[i]['favorite color']} | """)
+    print(f"""        +------+-----+-------+----------------+
 """)
 
 ##############################################################################
