@@ -41,8 +41,7 @@ prompt_text = "Do you want to try again? (yes)(no): "
 '''
 
 def try_again(prompt_text):
-    if input(prompt_text).lower() == "no":
-        return True
+    return input(prompt_text).lower() == "no"
 
 '''
 #################

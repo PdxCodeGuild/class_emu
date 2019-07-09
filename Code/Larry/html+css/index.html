@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&lt;/&gt; HTML + CSS labs</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <style type="text/css">
+      html, body {
+        box-sizing: border-box;
+        font-family: 'Raleway', sans-serif;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+      }
+      body {
+        background-attachment: fixed;
+        background-image: url(http://www.lar-mo.com/images/index_bg_img.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      header {
+        background-color: rgba(128, 128, 128, 0.7);
+        color: #C0C0C0;
+        top: 0;
+      }
+      .wrapper {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 20px;
+        padding: 20px;
+      }
+      .wrapper img {
+        border-radius: 20px;
+        margin: 5px;
+        height: 267px;
+      }
+      .lab_solution {
+        align: center;
+        display: flex;
+        flex-direction: row;
+        margin: 20px 0 0 0; /* this is spacing between rows */
+        padding: 10px;
+      }
+      .title_description {
+        background-color: rgba(128, 128, 128, 0.8);
+        border-radius: 20px;
+        color: #F9F9F9;
+        display: flex;
+        flex-direction: column;
+        height: 267px;
+        justify-content: center;
+        margin: 5px;
+      }
+      h1 {
+        color: #F9F9F9;
+        margin: 0;
+        padding: 15px;
+      }
+      h2 {
+        color: #F9F9F9;
+        margin: 0;
+        padding: 0 15px 15px;
+      }
+      article {
+        padding: 0 15px 15px;
+      }
+      a:link, a:visited {
+        color: #FFF;
+        text-decoration: underline;
+      }
+      a:hover, a:active {
+        color: #FFF;
+        text-decoration: none;
+      }
+      @media all and (max-width: 800px) {
+        .lab_solution {
+          justify-content: space-around;
+        }
+        .wrapper {
+          padding: 0;
+        }
+        .wrapper img {
+          width: auto;
+        }
+        .title_description {
+          width: 150px;
+        }
+        .title_description > article {
+          display: none;
+        }
+        h1 {
+          font-size: 1.8em;
+        }
+      }
+      @media all and (max-width: 575px) {
+        .title_description {
+          width: 100px;
+        }
+        h1 {
+          font-size: 1.4em;
+        }
+        h2 {
+          font-size: 0.9em;
+        }
+      }
+      @media all and (max-width: 500px) {
+        .lab_solution {
+          flex-direction: column;
+        }
+        .wrapper img {
+          height: 175px;
+        }
+        .title_description {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header><h1>&lt;/&gt; HTML + CSS labs</h1></header>
+    <div class="wrapper">
+      <div class="lab_solution">
+        <div class="title_description">
+          <h2>Lab 03: Company</h2>
+          <article><a href="mob_programming/demo_company.html" target="_blank">This page was created on July 3, 2019<br/>during a mob programming exercise.</a></article>
+        </div>
+        <div><a href="mob_programming/demo_company.html" target="_blank"><img src="http://www.lar-mo.com/images/company.png"/></a></div>
+      </div>
+      <div class="lab_solution">
+        <div class="title_description">
+          <h2>Lab 02: Blog</h2>
+          <article><a href="lab02_v4_blog.html" target="_blank">v4: adding images and more to Blog page</a></article>
+          <article><a href="lab02_v3_blog.html" target="_blank">v3: minor revision of Blog page</a></article>
+          <article><a href="lab02_v2_blog.html" target="_blank">v2: major revision of Blog page</a></article>
+          <article><a href="lab02_v1_blog.html" target="_blank">v1: first draft of Blog page (barebones)</a></article>
+        </div>
+        <div><a href="lab02_v4_blog.html" target="_blank"><img src="http://www.lar-mo.com/images/blog4.png"/></a></div>
+      </div>
+      <div class="lab_solution">
+        <div class="title_description">
+          <h2>Lab 01: Biography</h2>
+          <article><a href="lab01_v2_bio.html" target="_blank">v2: rounded table corners, new quote</a></article>
+          <article><a href="lab01_v1_bio.html" target="_blank">v1: first draft of Bio page</a></article>
+        </div>
+        <div><a href="lab01_v2_bio.html" target="_blank"><img src="http://www.lar-mo.com/images/bio.png"/></a></div>
+      </div>
+    </div>
+  </body>
+</html>
