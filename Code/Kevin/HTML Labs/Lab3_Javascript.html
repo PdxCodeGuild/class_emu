@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab3_Javascript</title>
+    <script>
+            let grade = prompt("Input a grade and I will tell you it's associated letter grade: ");
+            var userGradeNum = grade;
+            
+            if (userGradeNum >= 90 && userGradeNum <=100)
+                alert(userGradeNum + " is equal to an A. Good Job!");
+            else if(userGradeNum >= 80 ||userGradeNum <= 89)
+                alert(userGradeNum + " is equal to an B. Nice Work!");
+            else if(userGradeNum >= 70 || userGradeNum <= 79)
+                alert(userGradeNum + " is equal to an C. Keep it Up!");
+            else if(userGradeNum >= 60 || userGradeNum <= 69)
+                alert(userGradeNum + " is equal to an D. Maybe Next Time!");
+            
+            function is_plus(grade_num){
+                if (grade_num % 10 > 5)
+
+                    letter_grade = '+'
+                else if (grade_num % 10 == 5)
+                    letter_grade = ' '
+            else{
+                letter_grade = '-'   
+                return letter_grade  
+                }        
+            }
+        //    var letter_grade = is_plus(userGradeNum);
+        //    alert(letter_grade);
+           
+    </script>
+</head>
+
+<body>
+<p>Lab 3 to Lab3_Javascript</p>
+
+
+</body>
+</html>
