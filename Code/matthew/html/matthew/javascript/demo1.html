@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/voca/1.4.0/voca.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    let text = 'hello world!\nline 2'
+    // alert(text[2])
+    // alert(text.charAt(2))
+    // alert(text.charCodeAt(2))
+    // alert(text.indexOf('world'))
+    // console.log(text.split(/\s/))
+    // console.log(text.split(/[ \n\t\r]/))
+
+    function opposite(a, b) {
+      if ((a < 0 && b < 0) || (a > 0 && b > 0)) {
+        return false
+      }
+      return true
+
+      // or in one line
+      // return (a < 0 && b > 0) || (a > 0 && b < 0)
+    }
+
+    // alert(opposite(10, -1)) // true
+    // alert(opposite(10, 1)) // true
+
+    // iterate over elements
+    // [1, 2, 3].forEach(function(char) {
+    //   alert(char)
+    // })
+
+
+
+    function multiply_letters(str, times) {
+      let r = ''
+      for (let i=0; i<str.length; ++i) {
+        for (let j=0; j<times; ++j) {
+          r += str[i]
+        }
+      }
+      return r
+    }
+
+    // alert(multiply_letters('hello', 3)) // hhheeellllllooo
+
+
+    function find_pair(nums, target) {
+      for (let i=0; i<nums.length; ++i) {
+        for (let j=i+1; j<nums.length; ++j) {
+          if (nums[i] + nums[j] === target) {
+            return [nums[i], nums[j]]
+            // return {
+            //   first_num: nums[i],
+            //   second_num: nums[j]
+            // }
+          }
+        }
+      }
+      return null
+    }
+    //alert(find_pair([5, 6, 2, 3], 7))
+
+
+
+    alert('hello'.repeat(5))
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>

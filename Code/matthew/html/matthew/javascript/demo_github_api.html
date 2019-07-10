@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <ul id="repo_list">
+    </ul>
+    <script>
+
+      // function callme() {
+      //   alert('hello world!')
+      // }
+      // setTimeout(callme, 3000)
+      //
+      // setTimeout(function() {
+      //   alert('hello world!')
+      // }, 3000)
+
+
+      // let url = 'api.something.com?a=b&c=d&e=f'
+      // axios.get(url).then(function(response) {
+      //   console.log(response.data)
+      // })
+      //
+      // let url = 'api.something.com'
+      // let config = {
+      //   params: {
+      //     a: 'b',
+      //     c: 'd',
+      //     e: 'f'
+      //   }
+      // }
+      // axios.get(url, config).then(function(response) {
+      //   console.log(response.data)
+      // })
+
+
+      let repo_list = document.querySelector('#repo_list')
+
+
+      let url = 'https://api.github.com/search/repositories?q=hello+world'
+      let data = null
+      axios.get(url).then(function(response) {
+        data = response.data
+        processData(data)
+        for (let i=0; i<data.items.length; ++i) {
+          let li = document.createElement('li')
+          li.innerText = data.items[i].name + ': ' + data.items[i].description
+          repo_list.appendChild(li)
+        }
+      })
+
+
+      function processData(data) {
+
+      }
+
+
+
+      let add = function(a, b) {
+        return a + b
+      }
+      function add(a, b) {
+        return a + b
+      }
+      let add = (a, b) => {
+        return a + b
+      }
+
+
+
+
+    </script>
+  </body>
+</html>

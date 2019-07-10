@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hangman</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style type="text/css">
+      #blanks {
+        font-size: 20px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttons"></div>
+    <img id="gallows" src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Hangman-0.png"/>
+    <div id="blanks"></div>
+    <div id="guesses"></div>
+    <script type="text/javascript">
+      let buttons = document.querySelector("#buttons")
+      let gallows = document.querySelector("#gallows")
+      let blanks = document.querySelector("#blanks")
+      let guesses = document.querySelector("#guesses")
+      let guess_counter = 0
+      let word = ''
+      let underscores = []
+      let gallows_images = ['https://upload.wikimedia.org/wikipedia/commons/8/8b/Hangman-0.png', 'https://upload.wikimedia.org/wikipedia/commons/3/30/Hangman-1.png','https://upload.wikimedia.org/wikipedia/commons/7/70/Hangman-2.png','https://upload.wikimedia.org/wikipedia/commons/9/97/Hangman-3.png','https://upload.wikimedia.org/wikipedia/commons/2/27/Hangman-4.png','https://upload.wikimedia.org/wikipedia/commons/6/6b/Hangman-5.png','https://upload.wikimedia.org/wikipedia/commons/d/d6/Hangman-6.png']
+
+      function update_display() {
+        gallows.setAttribute("src", gallows_images[guess_counter])
+        blanks.innerText = underscores.join(" ")
+        guesses.innerText = `${guess_counter}/${gallows_images.length - 1} attempts`
+      }
+
+      function guess_letter(letter) {
+
+        // check if the letter is in the word
+        // if not, decrement the guess_counter, tell the user?
+        // otterwise, replace the corresponding underscores with the guessed letter
+        if (word.indexOf(letter) == -1) {
+          guess_counter++
+          update_display()
+          if (guess_counter == gallows_images.length -1){
+            alert(`YOU LOSE! The word was ${word}`)
+            start_game()
+          }
+          return
+        }
+        for (let i = 0; i < word.length; i++){
+          if(letter == word[i]){
+            underscores[i] = letter
+          }
+        }
+        update_display()
+        if (underscores.join("") == word) {
+          alert("YOU WIN!")
+          start_game()
+        }
+      }
+      function start_game() {
+        buttons.innerText = ""
+        guess_counter = 0
+
+        let word_index = Math.floor(Math.random()*words.length)
+        word = words[word_index]
+        console.log(word)
+
+        let alphabet_string = 'abcdefghijklmnopqrstuvwxyz'
+        for (let i=0; i < alphabet_string.length; i++) {
+          let button = document.createElement('button')
+          button.innerText = alphabet_string[i]
+          button.onclick = function() {
+            let letter = button.innerText
+            guess_letter(letter)
+            button.setAttribute('disabled', "schtolteheim reinbauch III")
+          }
+          buttons.appendChild(button)
+        }
+
+        underscores = []
+        for (let i=0; i < word.length; i++){
+          underscores.push("_")
+        }
+
+        update_display()
+
+      }
+
+      let word_url = 'https://raw.githubusercontent.com/PdxCodeGuild/class_sheep/master/1%20Python/data/english.txt'
+      axios.get(word_url).then(function (response) {
+         let word_array = response.data.split('\n')
+         let good_words = []
+         for (let i=0; i<word_array.length; i++) {
+           if (word_array[i].length > 6 && word_array[i].length < 11){
+             good_words.push(word_array[i])
+           }
+         } words = good_words
+         start_game()
+      })
+    </script>
+  </body>
+</html>

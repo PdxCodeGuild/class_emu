@@ -1,0 +1,154 @@
+<!-- filename: lab02_v1_blog.html
+Lab 2: Blog
+
+Let's make the template of a blog with a title, top-nav and multiple posts.
+Use the semantic elements header, nav, section, and footer.
+You can make generate fake content using Lorem Ipsum.
+
+Feel free to use a CSS Framework.
+You may also want to use flexbox or grid, and apply responsive design.
+
+v1: basic layout, no styling
+-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Cedar Farm</title>
+    <script type="text/javascript">
+      function show(elem1, elem2) {
+        document.getElementById(elem1).style.display = "block";
+        document.getElementById(elem2).style.background = "#C0C0C0";
+      }
+      function hide(elem1, elem2) {
+        document.getElementById(elem1).style.display = "none";
+        document.getElementById(elem2).style.background = "#A0A0A0";
+      }
+    </script>
+    <style content="text/css">
+      html, body {
+        margin:0;
+        padding:0;
+        min-height:100%;
+        width:100%;
+        box-sizing: border-box;
+      }
+      .wrapper {
+        display: flex;
+        /* width: 1024px; */
+        width: 75%;
+        margin: 0 auto;
+      }
+      /* Medium screens */
+      @media all and (max-width: 800px) {
+        .wrapper {
+          /* When on medium sized screens, we center it by evenly distributing empty space around items */
+          justify-content: space-around;
+        }
+      }
+      /* Small screens */
+      @media all and (max-width: 500px) {
+        .wrapper {
+          /* On small screens, we are no longer using row direction but column */
+          flex-direction: column;
+          width: 100%;
+        }
+      }
+      .header {
+        /* foo: bar; */
+      }
+      .navigation {
+        background: lightblue;
+        text-align: center;
+      }
+      aside {
+        width: 150px;
+        /* margin-top: 20px; */
+        text-align: right;
+        vertical-align: text-top;
+        /* border: 3px solid #333; */
+      }
+      .articles {
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+        /* border: 3px solid #000; */
+      }
+      h3 {
+        margin-top: 0;
+      }
+      .selected-article {
+        background: #C0C0C0; /* lighter grey */
+        text-align: center;
+        padding: 10px;
+      }
+      .unselected-article {
+        background: #A0A0A0; /* darker grey */
+        text-align: center;
+        padding: 10px;
+      }
+      .hidden {
+        display: none;
+      }
+      .unhidden {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+
+      <header class="header">
+        <h1>this is the header</h1>
+      </header>
+
+      <nav class="navigation">
+        <span>
+          <a href="#">Home</a> |
+          <a href="#">Articles</a> |
+          <a href="#">Topics</a>
+        </span>
+      </nav>
+      <div class="wrapper">
+        <aside>
+          <div id="link1" class="selected-article"><a href="javascript:show('article1','link1');javascript:hide('article2','link2');javascript:hide('article3','link3');javascript:hide('article4','link4');javascript:hide('article5','link5')">Link to article 1</a></div>
+          <div id="link2" class="unselected-article"><a href="javascript:hide('article1','link1');javascript:show('article2','link2');javascript:hide('article3','link3');javascript:hide('article4','link4');javascript:hide('article5','link5')">Link to article 2</a></div>
+          <div id="link3" class="unselected-article"><a href="javascript:hide('article1','link1');javascript:hide('article2','link2');javascript:show('article3','link3');javascript:hide('article4','link4');javascript:hide('article5','link5')">Link to article 3</a></div>
+          <div id="link4" class="unselected-article"><a href="javascript:hide('article1','link1');javascript:hide('article2','link2');javascript:hide('article3','link3');javascript:show('article4','link4');javascript:hide('article5','link5')">Link to article 4</a></div>
+          <div id="link5" class="unselected-article"><a href="javascript:hide('article1','link1');javascript:hide('article2','link2');javascript:hide('article3','link3');javascript:hide('article4','link4');javascript:show('article5','link5')">Link to article 5</a></div>
+        </aside>
+        <div class="articles">
+          <article id="article1" class="unhidden">
+            <h3>Bacon lorem ipsum</h3>
+            <p>Bacon ipsum dolor amet ground round shoulder short ribs turducken pastrami drumstick sausage. Short ribs buffalo chuck ball tip, ribeye hamburger beef frankfurter pastrami. Bresaola flank ball tip salami brisket ribeye kevin sausage pancetta frankfurter. Swine brisket venison, fatback tenderloin picanha tail shoulder boudin leberkas.</p>
+            <p>Capicola tri-tip chicken brisket sausage chuck. Shankle bacon meatloaf chuck. Doner cupim ribeye ham corned beef strip steak pork loin. Cow leberkas sausage drumstick, salami pork chop tongue frankfurter t-bone.</p>
+            <p>Spare ribs leberkas andouille landjaeger sirloin. Brisket hamburger drumstick sirloin jerky turducken kevin bacon beef shoulder. Capicola shoulder jerky, boudin corned beef porchetta pork tongue beef rump. Short ribs andouille shankle boudin rump porchetta jerky. Ribeye brisket kevin hamburger shank alcatra chicken tongue meatball beef pig ham kielbasa picanha pork chop. Ball tip meatball short loin, doner cow biltong alcatra.</p>
+          </article>
+          <article id="article2" class="hidden">
+            <h3>Cupcake lorem ipsum</h3>
+            <p>Cotton candy chupa chups gummies. Pie oat cake topping powder. Tootsie roll chocolate bar chocolate lollipop. Soufflé sesame snaps tiramisu. Lollipop brownie lemon drops powder. Candy jelly topping pudding. Tiramisu jelly beans gingerbread cupcake sweet brownie lemon drops. Liquorice jujubes apple pie marshmallow halvah cheesecake croissant tart biscuit. Chocolate danish croissant candy icing chocolate cake chupa chups wafer jelly. Icing cookie tootsie roll. Sweet roll bonbon apple pie candy tart lollipop apple pie gingerbread. Gummies tootsie roll jelly beans donut macaroon.</p>
+            <p>Sweet roll lollipop icing carrot cake pudding caramels lollipop. Cotton candy chocolate topping tart carrot cake donut. Sugar plum soufflé chocolate bar toffee pie gingerbread candy. Dessert toffee candy donut gummies liquorice tart powder muffin. Candy carrot cake cotton candy icing jelly beans bonbon tootsie roll chocolate cake jelly-o. Tootsie roll sugar plum toffee tootsie roll cotton candy danish icing. Croissant gummi bears pastry. Bear claw cake caramels. Lollipop bear claw oat cake lemon drops pudding tiramisu. Tart gummi bears toffee oat cake pie. Pie pie carrot cake lemon drops jelly-o dessert. Carrot cake oat cake cotton candy donut lollipop jujubes macaroon. Donut gummi bears marshmallow oat cake. Gummies bear claw icing muffin fruitcake.</p>
+            <p>Donut jelly cupcake sugar plum biscuit cake topping chocolate bar macaroon. Cake cake cheesecake tootsie roll tootsie roll caramels chocolate chocolate bar lemon drops. Marshmallow halvah ice cream muffin candy cake gingerbread. Biscuit croissant tiramisu cake jelly beans icing fruitcake. Icing cupcake carrot cake liquorice cake. Chocolate bar biscuit gummies cake jelly-o cheesecake tootsie roll. Cake pie cake carrot cake topping jujubes carrot cake chocolate bar. Gingerbread powder cake chocolate cake caramels jelly beans. Gummi bears lemon drops carrot cake sesame snaps pudding danish jelly beans carrot cake. Tiramisu pie chupa chups. Gingerbread donut donut lollipop. Marshmallow jujubes gummies croissant liquorice jelly beans wafer danish cotton candy. Bonbon gummies tootsie roll sweet roll pie gummi bears powder lollipop cake. Pastry jujubes cake gingerbread macaroon dessert soufflé topping ice cream.</p>
+          </article>
+          <article id="article3" class="hidden">
+            <h3>Vegetable lorem ipsum</h3>
+            <p>Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.</p>
+            <p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jícama salsify.</p>
+            <p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard. </p>
+          </article>
+          <article id="article4" class="hidden">
+            <h3>Firefly lorem ipsum</h3>
+            <p>The Operative: That girl will rain destruction down on you and your ship. She is an albatross, Captain.  Capt. Malcolm Reynolds: Way I remember it, albatross was a ship's good luck, 'til some idiot killed it.  Capt. Malcolm Reynolds: [to Inara] Yes, I've read a poem. Try not to faint.</p>
+            <p>Mr. Universe: You guys always bring me the very best violence. Capt. Malcolm Reynolds: It should have been me that got hit. Shepherd Book: The thought... had crossed my mind. Capt. Malcolm Reynolds: Ah, hell, Shepherd, I ain't looking for help from on high. That's a long wait for a train don't come. Shepherd Book: Why when I talk about belief, why do you always assume I'm talking about God? [seeing a whole fleet of Reaver ships coming at him] The Operative: Target the Reavers. Target the Reavers! Target everyone! Somebody fire! Shepherd Book: [dying] I killed the ship that killed us. Not very Christian. Capt. Malcolm Reynolds: You did what was right. Shepherd Book: Coming from you that means - almost nothing. [grin]</p>
+            <p>Shepherd Book: When I talk about belief, why do you always assume I'm talking about God? Capt. Malcolm Reynolds: Doctor, I'm takin' your sister under my protection here. If anything happens to her, anything at all, I swear to you, I will get very choked up. Honestly, there could be tears. Kaylee Frye: Have faith, Captain! Capt. Malcolm Reynolds: Not today. The Operative: It's worse than you know. Capt. Malcolm Reynolds: It usually is. Jayne Cobb: Shepherd Book once said to me, "If you can't do something smart, do something right."</p>
+          </article>
+          <article id="article5" class="hidden">
+            <h3>Pirate lorem ipsum</h3>
+            <p>Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.</p>
+            <p>Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.</p>
+            <p>Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot Shiver me timbers gangplank crack Jennys tea cup ballast Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas boatswain schooner gaff booty Jack Tar transom spirits.</p>
+          </article>
+        </div>
+      </div>
+  </body>
+</html>

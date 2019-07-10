@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Quiz</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+
+    </style>
+    <script type="text/javascript">
+      let quiz = {
+        title: 'JavaScript Quiz',
+        questions: [{
+          text: 'How do you increment a number in JavaScript?',
+          answers: [{
+            text: 'i = i + 1',
+            correct: false
+          },{
+            text: 'i += 1',
+            correct: false
+          },{
+            text: 'i++',
+            correct: false
+          },{
+            text: '++i',
+            correct: false
+          },{
+            text: 'i -= -1',
+            correct: false
+          },{
+            text: 'all of the above',
+            correct: true
+          }]
+        },{
+          text: 'In what order are the parts of a for loop?',
+          answers: [{
+            text: 'initialization, condition, increment',
+            correct: true
+          },{
+            text: 'condition, initialization, increment',
+            correct: false
+          },{
+            text: 'initialization, increment, condition',
+            correct: false
+          },{
+            text: 'condition, initialization, increment',
+            correct: false
+          }]
+        },{
+          text: 'What\'s the difference between == and ===?',
+          answers: [{
+            text: 'nothing',
+            correct: false
+          },{
+            text: '== coerces types, === does not',
+            correct: true
+          },{
+            text: '=== coerces types, == does not',
+            correct: false
+          }]
+        }]
+      }
+    </script>
+  </head>
+  <body>
+    <h1 id="title_header"></h1>
+    <div id="question_div"></div>
+    <div id="answer_div">
+      <!-- <div>
+        <input type="radio" name="fruit" value="0" checked><span>Apples</span>
+      </div>
+      <div>
+        <input type="radio" name="fruit" value="0" checked><span>Apples</span>
+      </div>
+
+      <input type="radio" name="fruit" value="0" checked><span>Apples</span><br>
+      <input type="radio" name="fruit" value="1"><span>Bananas</span><br>
+      <input type="radio" name="fruit" value="2"><span>Pears</span> -->
+
+    </div>
+    <button id="submit_answer_btn">submit</button>
+    <pre id="feedback_div"></pre>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+      let title_header = document.querySelector("#title_header")
+      let question_div = document.querySelector("#question_div")
+      let answer_div = document.querySelector("#answer_div")
+      let feedback_div = document.querySelector("#feedback_div")
+      let submit_answer_btn = document.querySelector("#submit_answer_btn")
+
+      // using the data structure below, make a quiz
+      // show the quiz title and first question with radio buttons
+      // add a button for going to the next question
+      // keep track of the user's score
+
+      function loadQuestion(question){
+
+        question_div.innerHTML = question.text
+        let answers = question.answers
+        answer_div.innerHTML = ""
+        for (let i=0; i<answers.length; i++){
+          let button = document.createElement("input")
+          button.setAttribute("type", "radio")
+          button.setAttribute("name", "questionsanswersbuttonscelerypigeons")
+          // button.setAttribute("value", i)
+          button.setAttribute("value", answers[i].correct)
+          if (i==0){
+            button.setAttribute("checked", "questioelerypigeons")
+          }
+          let span = document.createElement("span")
+          span.innerText = answers[i].text
+          let br = document.createElement("br")
+          answer_div.appendChild(button)
+          answer_div.appendChild(span)
+          answer_div.appendChild(br)
+        }
+      }
+
+      console.log(quiz)
+      //console.log(quiz.questions[0].answers[0])
+      title_header.innerHTML = quiz.title
+      let question_number = 0
+      let score = 0
+      loadQuestion(quiz.questions[0])
+
+      submit_answer_btn.onclick = function(){
+        let correctQuery = document.querySelector('input[name="questionsanswersbuttonscelerypigeons"]:checked').value
+
+
+        if (correctQuery == "true"){
+          alert("Correct!")
+          score++
+          console.log(quiz.questions[question_number])
+          // feedback_div.innerText = "Correct!"
+        } else{
+
+          console.log(quiz.questions[question_number])
+          let answers = quiz.questions[question_number].answers
+          for (let i=0; i<answers.length; i++){
+            if (answers[i].correct == true){
+              alert("Incorrect; the correct answer is: "+ answers[i].text )
+            }
+          }
+          // feedback_div.innerText =  "Incorrect!"
+        }
+        question_number++
+        if (question_number >= quiz.questions.length){
+          alert(`Quiz complete. Your final score is ${score} out of ${quiz.questions.length}`)
+          feedback_div.innerText = `
+                                /\\___
+                     @@@@@@@@@@@  O  \\
+                  @@@@@@@@@@@@@@@____/
+                 @@@@@@@@@@@@@@@@
+                 @ @@@@@@@@@@@@
+                    ||      ||
+                    ~~      ~~`
+          submit_answer_btn.setAttribute("disabled", "sheep")
+
+          if (score == quiz.questions.length) {
+            setInterval(function() {
+              feedback_div.style.color = `hsl(${Math.floor(Math.random()*360)},100%,50%)`
+            }, 100)
+          }
+        }else{
+          loadQuestion(quiz.questions[question_number])
+        }
+
+      }
+
+
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>

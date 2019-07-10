@@ -38,11 +38,7 @@ for i in range(1, len(lines)): # down the rows(matt)
         contact_dict[header[j]] = contact[j]
     contacts.append(contact_dict)
 
-# Once you've processed the file, your list of contacts will look something like this...
-# contacts = [
-#     {'name':'matthew', 'favorite fruit':'blackberries', 'favorite color':'orange'},
-#     {'name':'sam', 'favorite fruit':'pineapple' ...}
-# ]
+# Once you've processed the file, print the results (raw list of tuples)
 print(contacts)
 '''
     [

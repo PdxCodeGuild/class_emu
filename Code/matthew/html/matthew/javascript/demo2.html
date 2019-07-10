@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <script type="text/javascript">
+    // let my_array = [1, 2, 'hello', [4, 5]]
+    let fruits = ['apples', 'bananas', 'pears']
+    fruits.push('cherries')
+    let element = fruits.pop()
+    console.log(element)
+    console.log(fruits)
+
+
+
+    let nums = [['c', 1], ['a', 3], ['b', 2]]
+    nums.sort(function(a, b) {
+      if (a[1] < b[1]) {
+        return -1
+      } else if (a[1] > b[1]) {
+        return 1
+      }
+      return 0
+    })
+    // nums.sort()
+    //console.log(nums)
+
+
+
+
+    // let text = 'hello world'
+    // for (let i=0, c=''; c = text.charAt(i); ++i) {
+    //   alert(c)
+    // }
+
+
+
+    let obj = {
+      key: 'value'
+    }
+    obj['key'] = 'value'
+    obj.key = 'value'
+    console.log(obj)
+
+
+    // a if condition else b
+    // condition? a: b
+
+
+
+    function perform_operation(arr, f) {
+      for (let i=0; i<arr.length; ++i) {
+        arr[i] = f(arr[i]);
+      }
+    }
+
+    let nums = [1, 2, 3];
+    perform_operation(nums, function(x) {
+      return x*x;
+    });
+    alert(nums); // [1, 4, 9]
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>

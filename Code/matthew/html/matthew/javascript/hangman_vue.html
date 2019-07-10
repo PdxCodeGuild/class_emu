@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hangman</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style type="text/css">
+      #blanks {
+        font-size: 20px;
+        padding: 5px;
+      }
+      #blanks > span {
+        margin: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="buttons">
+        <button v-for="letter in alphabet" v-on:click="guessLetter(letter)" :disabled="guessed_letters.includes(letter)">{{letter}}</button>
+      </div>
+      <img id="gallows" v-bind:src="gallows_images[guesses]"/>
+      <div id="blanks">
+        <span v-for="underscore in underscores">{{underscore}}</span>
+      </div>
+      <div id="guesses">{{guesses}}/{{gallows_images.length-1}} guesses</div>
+    </div>
+    <script type="text/javascript">
+      let app = new Vue({
+        el: '#app',
+        data: {
+          alphabet: 'abcdefghijklmnopqrstuvwxyz',
+          gallows_images:  ['https://upload.wikimedia.org/wikipedia/commons/8/8b/Hangman-0.png',
+                            'https://upload.wikimedia.org/wikipedia/commons/3/30/Hangman-1.png',
+                            'https://upload.wikimedia.org/wikipedia/commons/7/70/Hangman-2.png',
+                            'https://upload.wikimedia.org/wikipedia/commons/9/97/Hangman-3.png',
+                            'https://upload.wikimedia.org/wikipedia/commons/2/27/Hangman-4.png',
+                            'https://upload.wikimedia.org/wikipedia/commons/6/6b/Hangman-5.png',
+                            'https://upload.wikimedia.org/wikipedia/commons/d/d6/Hangman-6.png'],
+          guesses: 0,
+          word: '',
+          underscores: [],
+          guessed_letters = []
+        },
+        methods: {
+          start_game() {
+            app.word = app.words[Math.floor(Math.random()*app.words.length)]
+            app.underscores = []
+            for (let i=0; i<app.word.length; ++i) {
+              app.underscores.push('_')
+            }
+            this.guesses = 0
+            this.guessed_letters = []
+          },
+          guessLetter(letter) {
+            guessed_letters.push(letter)
+            if (!this.word.includes(letter)) {
+              this.guesses++
+              if (this.guesses == this.gallow_images.length-1) {
+                alert('You Lose! The word was ' + this.word)
+                this.start_game()
+              }
+              return
+            }
+            for (let i=0; i<this.word.length; ++i) {
+              if (this.word[i] == letter) {
+                this.underscores[i] = letter
+              }
+            }
+            if (this.underscores.join('') == this.word) {
+              alert('You Win!')
+              this.start_game()
+            }
+          }
+        },
+        created: function() {
+          let word_url = 'https://raw.githubusercontent.com/PdxCodeGuild/class_sheep/master/1%20Python/data/english.txt'
+          let app = this
+          axios.get(word_url).then(function (response) {
+             let word_array = response.data.split('\n')
+             let good_words = []
+             for (let i=0; i<word_array.length; i++) {
+               if (word_array[i].length > 6 && word_array[i].length < 11){
+                 good_words.push(word_array[i])
+               }
+             }
+             app.words = good_words
+             app.start_game()
+          })
+        }
+      })
+    </script>
+  </body>
+</html>

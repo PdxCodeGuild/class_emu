@@ -1,0 +1,60 @@
+<!-- <html>
+  <head>
+    <script type="text/javascript">
+      let input = prompt("Please enter a word").toLowerCase()
+      let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+      let rotalphabet = 'nopqrstuvwxyzabcdefghijklm'
+      let outWord = ''
+      for (let i = 0; i<input.length; ++i){
+        let index = alphabet.indexOf(input[i])
+        outWord += rotalphabet[index]
+      }
+      alert(outWord)
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html> -->
+
+<html>
+  <head>
+    <script type="text/javascript">
+      let input = prompt("Please enter a word")
+      let rotate = parseInt(prompt("Please enter amount to rotate by"))
+      let lowerAlphabet = 'abcdefghijklmnopqrstuvwxyz'
+      let upperAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      let outWord = ''
+      for (let i = 0; i<input.length; ++i){
+        let index = lowerAlphabet.indexOf(input[i])
+        if (index === -1) {
+          index = upperAlphabet.indexOf(input[i])
+          if (index === -1) {
+            outWord += input[i]
+          } else {
+            index += rotate
+            index %= upperAlphabet.length
+            outWord += upperAlphabet[index]
+          }
+        } else {
+          index += rotate
+          index %= lowerAlphabet.length
+          outWord += lowerAlphabet[index]
+        }
+      }
+      alert(outWord)
+
+
+      // alternative to index %= alphabet.length
+      // while (index > alphabet.length) {
+      //   index -= alphabet.length
+      // }
+
+
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

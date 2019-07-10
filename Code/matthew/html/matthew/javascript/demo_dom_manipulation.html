@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <style>
+      #mydiv {
+        background-color:green;
+        width:100px;
+        height:100px;
+      }
+      #myimg {
+        width:100px;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="text_input" type="text" placeholder="enter your name"/>
+    <button id="bt_say_hello">click</button>
+    <br/><br/><br/><br/><br/><br/>
+    <img id="myimg"/>
+    <div id="mydiv"></div>
+    <ul id="mylist"></ul>
+    <script type="text/javascript">
+
+
+      let text_input = document.querySelector('#text_input')
+      let bt_say_hello = document.querySelector('#bt_say_hello')
+
+      // bt_say_hello.onclick = function() {
+      //   alert('hi')
+      // }
+      bt_say_hello.addEventListener('click', function() {
+        let name = text_input.value
+        alert('Hello ' + name + '!')
+        //text_input.value = ''
+        if (text_input.hasAttribute('disabled')) {
+          text_input.removeAttribute('disabled')
+        } else {
+          text_input.setAttribute('disabled', '')
+        }
+
+      })
+
+
+
+
+
+
+
+
+      //let mydiv = document.getElementById('mydiv')
+      let mydiv = document.querySelector('#mydiv')
+      //mydiv.name = 'mike'
+      mydiv.setAttribute('name', 'mike')
+      mydiv.style.backgroundColor = 'blue'
+      mydiv.style.width = '200px'
+      mydiv.innerHTML = '<b>hello world!</b>'
+
+      let myimg = document.querySelector('#myimg')
+      myimg.setAttribute('src', 'https://baselang.com/wp-content/uploads/2016/06/this1-01.jpg')
+
+
+      let mylist = document.querySelector('#mylist')
+
+      // let content = ''
+      // for (let i=0; i<100; ++i) {
+      //   content += '<li>' + i + '</li>'
+      // }
+      // mylist.innerHTML = content
+
+
+      for (let i=0; i<100; ++i) {
+        let li = document.createElement('li')
+        li.innerText = i
+        mylist.appendChild(li)
+      }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>

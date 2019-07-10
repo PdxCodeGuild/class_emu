@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <style type="text/css">
+      * {
+        transition: all ease 0.5s;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background-color:LightSkyBlue;
+      }
+      .white_box {
+        background-color:white;
+        border-radius:4px;
+        filter: drop-shadow(0px 5px 4px grey);
+        margin:10px;
+        padding: 4px;
+      }
+      header {
+        text-align:center;
+      }
+      nav {
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+
+      }
+      nav > span {
+        margin: 10px;
+        border: 1px solid black;
+        padding: 4px;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        border-radius: 4px;
+
+      }
+      nav > span:hover {
+        background-color:LightSkyBlue;
+        color:white;
+      }
+
+      #container {
+        display:flex;
+        flex-direction:row;
+      }
+
+      aside {
+        width:15%;
+      }
+
+      #article_div {
+        width: 85%;
+      }
+
+      @media (max-width:800px) {
+        #container {
+          flex-direction:column;
+        }
+        #article_div {
+          width: 100%;
+        }
+      }
+
+
+
+
+
+
+      p {
+        margin-top:0;
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+    <header class="white_box">
+      <h1>My Blog!!!</h1>
+    </header>
+    <nav class="white_box">
+      <span>Home</span>
+      <span>About</span>
+      <span>Contact</span>
+    </nav>
+    <div id="container">
+      <aside class="white_box">
+        <div>Section 1</div>
+        <div>Section 2</div>
+        <div>Section 3</div>
+        <div>Section 4</div>
+        <div>Section 5</div>
+      </aside>
+      <div id="article_div">
+        <article class="white_box">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut luctus nisl. Mauris gravida placerat porta. Vestibulum id magna maximus, vehicula nulla et, scelerisque ipsum. Integer cursus malesuada erat non feugiat. Praesent condimentum diam arcu, quis lobortis ex pharetra vel. Praesent erat purus, eleifend ut nisl sit amet, tincidunt vestibulum augue. Sed dapibus nulla quis ex aliquam viverra. Quisque mauris lorem, vehicula eu erat ac, semper ullamcorper risus. Nam ultricies, felis vel placerat accumsan, orci dui facilisis lorem, ut euismod massa nisi sit amet urna. Donec id nulla sit amet nibh pulvinar tristique. Sed vitae vehicula tellus. Curabitur tempus cursus iaculis.</p>
+
+          <p>                                Nullam pellentesque mauris at nunc ullamcorper eleifend. Fusce sollicitudin urna at leo mollis vulputate. Phasellus rhoncus eu nisi non ornare. Nulla ac quam sed odio posuere egestas. Suspendisse mollis ultrices enim, sit amet condimentum felis fringilla ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ac tellus ut purus gravida imperdiet id eu metus. Etiam euismod odio ipsum, nec eleifend urna vehicula non. Etiam vitae dui congue metus gravida sagittis. Nam aliquet, neque nec bibendum mollis, quam lorem tincidunt tellus, non vulputate dui nunc vel est. Vivamus eu laoreet urna, sed hendrerit ex.</p>
+        </article>
+        <article class="white_box">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut luctus nisl. Mauris gravida placerat porta. Vestibulum id magna maximus, vehicula nulla et, scelerisque ipsum. Integer cursus malesuada erat non feugiat. Praesent condimentum diam arcu, quis lobortis ex pharetra vel. Praesent erat purus, eleifend ut nisl sit amet, tincidunt vestibulum augue. Sed dapibus nulla quis ex aliquam viverra. Quisque mauris lorem, vehicula eu erat ac, semper ullamcorper risus. Nam ultricies, felis vel placerat accumsan, orci dui facilisis lorem, ut euismod massa nisi sit amet urna. Donec id nulla sit amet nibh pulvinar tristique. Sed vitae vehicula tellus. Curabitur tempus cursus iaculis.</p>
+
+          <p>                                Nullam pellentesque mauris at nunc ullamcorper eleifend. Fusce sollicitudin urna at leo mollis vulputate. Phasellus rhoncus eu nisi non ornare. Nulla ac quam sed odio posuere egestas. Suspendisse mollis ultrices enim, sit amet condimentum felis fringilla ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ac tellus ut purus gravida imperdiet id eu metus. Etiam euismod odio ipsum, nec eleifend urna vehicula non. Etiam vitae dui congue metus gravida sagittis. Nam aliquet, neque nec bibendum mollis, quam lorem tincidunt tellus, non vulputate dui nunc vel est. Vivamus eu laoreet urna, sed hendrerit ex.</p>
+        </article>
+        <article class="white_box">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut luctus nisl. Mauris gravida placerat porta. Vestibulum id magna maximus, vehicula nulla et, scelerisque ipsum. Integer cursus malesuada erat non feugiat. Praesent condimentum diam arcu, quis lobortis ex pharetra vel. Praesent erat purus, eleifend ut nisl sit amet, tincidunt vestibulum augue. Sed dapibus nulla quis ex aliquam viverra. Quisque mauris lorem, vehicula eu erat ac, semper ullamcorper risus. Nam ultricies, felis vel placerat accumsan, orci dui facilisis lorem, ut euismod massa nisi sit amet urna. Donec id nulla sit amet nibh pulvinar tristique. Sed vitae vehicula tellus. Curabitur tempus cursus iaculis.</p>
+
+          <p>                                Nullam pellentesque mauris at nunc ullamcorper eleifend. Fusce sollicitudin urna at leo mollis vulputate. Phasellus rhoncus eu nisi non ornare. Nulla ac quam sed odio posuere egestas. Suspendisse mollis ultrices enim, sit amet condimentum felis fringilla ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ac tellus ut purus gravida imperdiet id eu metus. Etiam euismod odio ipsum, nec eleifend urna vehicula non. Etiam vitae dui congue metus gravida sagittis. Nam aliquet, neque nec bibendum mollis, quam lorem tincidunt tellus, non vulputate dui nunc vel est. Vivamus eu laoreet urna, sed hendrerit ex.</p>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

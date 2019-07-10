@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Todo</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style type="text/css">
+
+    </style>
+  </head>
+  <body>
+    <h1>Todo</h1>
+    <input type="text" id="todo_text_input"/>
+    <button id="add_item_bt">add item</button>
+    <ul id="todo_list">
+    </ul>
+    <script type="text/javascript">
+      let todo_list = document.querySelector('#todo_list')
+      let todo_text_input = document.querySelector('#todo_text_input')
+      let add_item_bt = document.querySelector('#add_item_bt')
+
+      function get_todos() {
+        axios.get('{% url 'todoajax:get_todos' %}').then(function(response) {
+          todos = response.data.todos
+          todo_list.innerHTML = ''
+          for (let i=0; i<todos.length; ++i) {
+            let li = document.createElement('li')
+            li.innerText = todos[i].text
+            todo_list.appendChild(li)
+          }
+        })
+      }
+
+      get_todos()
+
+      add_item_bt.onclick = function() {
+        let data = {
+          todo_text: todo_text_input.value
+        }
+        let config = {
+          headers: {
+            'X-CSRFToken': '{{ csrf_token }}'
+          }
+        }
+        axios.post('{% url 'todoajax:save_todo' %}', data, config).then(function(response) {
+          console.log(response.data)
+          get_todos()
+        })
+      }
+
+
+
+    </script>
+  </body>
+</html>

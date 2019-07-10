@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <script type="text/javascript">
+
+
+      let rps = ['rock', 'paper', 'scissors']
+      let random_index = Math.floor(Math.random()*rps.length)
+      let computer_choice = rps[random_index]
+
+      // for (let i=0; i<10; ++i) {
+      //   let x = Math.random()
+      //   console.log(x)
+      //   console.log(x*3)
+      //   console.log(Math.floor(x*3))
+      //   console.log()
+      // }
+
+      let human_choice = null
+      while (true) {
+        human_choice = prompt('Rock, paper, or scissors?').toLowerCase()
+        if (human_choice === 'rock' || human_choice === 'paper' || human_choice === 'scissors') {
+          break
+        } else {
+          alert('Invalid choice!')
+        }
+      }
+
+      alert('The computer chose ' + computer_choice)
+
+
+      // alert(typeof human_choice)
+      // alert(typeof computer_choice)
+
+      if (human_choice === computer_choice) {
+        alert('Tie!')
+      } else if (human_choice === 'rock' && computer_choice === 'paper') {
+        alert('Computer wins!')
+      } else if (human_choice === 'rock' && computer_choice === 'scissors') {
+        alert('Human wins!')
+      } else if (human_choice === 'paper' && computer_choice === 'rock') {
+        alert('Human wins!')
+      } else if (human_choice === 'paper' && computer_choice === 'scissors') {
+        alert('Computer wins!')
+      } else if (human_choice === 'scissors' && computer_choice === 'rock') {
+        alert('Computer wins!')
+      } else if (human_choice === 'scissors' && computer_choice === 'paper') {
+        alert('Human wins!')
+      }
+    </script>
+
+
+  </head>
+  <body>
+  </body>
+</html>

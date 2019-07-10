@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan" rel="stylesheet">
+    <style>
+      /* WHOLE PAGE */
+      * {
+        transition: all ease 0.5s;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Baloo Chettan', cursive;
+      }
+
+      /* HEADER */
+      header {
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+        justify-content: center;
+      }
+      header img {
+        width: 100px;
+      }
+      h1 {
+        font-size: 100px;
+        margin: 0;
+      }
+      nav {
+        display:flex;
+        flex-direction:row;
+        justify-content: space-evenly;
+      }
+      nav > span {
+        user-select: none;
+        -moz-user-select: none;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+      }
+      nav > span:hover {
+        border: 1px solid black;
+        transform: translateY(-2px);
+      }
+
+      /* MAIN IMAGE */
+      #salon_img {
+        display:block;
+        width: 75%;
+        margin: 0 auto;
+      }
+
+
+
+
+      /* STYLISTS */
+
+      #stylists {
+        display:flex;
+        flex-direction:column;
+        width: 400px;
+        margin: 40px;
+      }
+      #stylists > div {
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+        margin: 10px;
+      }
+      #stylists img {
+        margin-right: 10px;
+        min-width: 100px;
+        max-width: 100px;
+      }
+
+      img {
+        border: 1px solid grey;
+      }
+      #salon_container {
+        position:relative;
+      }
+      #salon_text {
+        color:white;
+        position: absolute;
+        font-size:30px;
+        left: 50%;
+        top: 10px;
+        transform:translateX(-50%);
+        z-index: 1;
+
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+      }
+
+
+
+
+
+      blockquote {
+        /* font-family: Georgia, serif; */
+        font-size: 18px;
+        font-style: italic;
+        width: 500px;
+        margin: 0.25em 0;
+        padding: 0.35em 40px;
+        line-height: 1.45;
+        position: relative;
+        color: #383838;
+      }
+
+      blockquote:before {
+        display: block;
+        padding-left: 10px;
+        content: "\201C";
+        font-size: 80px;
+        position: absolute;
+        left: -20px;
+        top: -20px;
+        color: #7a7a7a;
+      }
+
+      blockquote cite {
+        color: #999999;
+        font-size: 14px;
+        display: block;
+        margin-top: 5px;
+      }
+
+      blockquote cite:before {
+        content: "\2014 \2009";
+      }
+
+      #stylists_quote {
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+      }
+
+      #testimonials {
+        display:flex;
+        flex-direction:column;
+        margin: 40px;
+      }
+
+
+      h3 {
+        margin: 0;
+      }
+
+      #create_appointment {
+        width:75%;
+        margin: 0 auto;
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+        justify-content:center;
+      }
+
+      #create_appointment > * {
+        margin: 10px;
+      }
+
+
+
+
+      footer {
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="sheep_pics/logo.jpg"/>
+      <h1>Baaarber</h1>
+    </header>
+    <hr/>
+    <!-- Services | Meet our Stylists | About -->
+    <nav>
+      <span>Services</span>
+      <span>Meet Our Stylists</span>
+      <span>About</span>
+    </nav>
+    <hr/>
+    <main>
+      <div id="salon_container">
+        <img id="salon_img" src="sheep_pics/salon.png"/>
+        <div id="salon_text">Visit our beautiful 4-acre salon</div>
+      </div>
+      <div id="stylists_quote">
+        <section id="stylists">
+          <h2>Meet Our Stylists</h2>
+          <div>
+            <img src="sheep_pics/stylist1.jpg"/>
+            <span><h3>Melbaaaa</h3>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</span>
+          </div>
+          <div>
+            <img src="sheep_pics/stylist2.jpg"/>
+            <span><h3>Baaaartholomew</h3>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</span>
+          </div>
+          <div>
+            <img src="sheep_pics/stylist3.jpg"/>
+            <span><h3>George</h3>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</span>
+          </div>
+        </section>
+
+        <div id="testimonials">
+          <h2>Testimonials</h2>
+          <section>
+            <blockquote>
+            Baaaa baaaa bleet baaa baaaaaa baa baaaaaa baa ba! Baa baa baaaa!
+            <cite>Baaabaara</cite>
+            </blockquote>
+          </section>
+
+          <section>
+            <blockquote>
+            Baaaa baaaa bleet baaa baaaaaa baa baaaaaa baa ba! Baa baa baaaa!
+            <cite>Baaab</cite>
+            </blockquote>
+          </section>
+          <section>
+            <blockquote>
+            Baaaa baaaa bleet baaa baaaaaa baa baaaaaa baa ba! Baa baa baaaa!
+            <cite>Baaab</cite>
+            </blockquote>
+          </section>
+        </div>
+      </div>
+
+      <section id="create_appointment">
+        <h2>Book Your Appointment!</h2>
+        <select>
+          <option selected disabled>Pick Your Stylist</option>
+          <option>Melbaaaa</option>
+          <option>Baaaartholomew</option>
+          <option>George</option>
+        </select>
+        <input type="date"/>
+        <input type="time"/>
+        <button>Submit</button>
+      </section>
+
+
+
+    </main>
+    <footer>
+      <hr/>
+      <div>🐑🐑🐑🐑🐑🐏🐏🐏🐏🐏</div>
+      24 Baa Baa Blackstreet, Haveyouanywool, OR<br/>
+      (329) 842-0341<br/>
+      © Class Sheep 2019
+    </footer>
+  </body>
+</html>

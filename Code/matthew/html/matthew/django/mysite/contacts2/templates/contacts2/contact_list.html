@@ -1,0 +1,5 @@
+
+<a href="{% url 'contacts2:create' %}">Create New</a><br/><br/>
+{% for contact in contact_list %}
+<a href="{% url 'contacts2:edit' contact.id %}">{{contact.name}}</a><br/>
+{% endfor %}

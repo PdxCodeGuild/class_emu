@@ -1,0 +1,7 @@
+<form action="{% url 'contacts2:edit' form.instance.id %}" method="post">
+  {% csrf_token %}
+  <table>
+  {{form}}
+  </table>
+  <button type="submit">save</button>
+</form>

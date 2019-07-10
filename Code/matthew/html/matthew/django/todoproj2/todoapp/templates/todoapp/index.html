@@ -1,0 +1,35 @@
+
+{% extends 'todoapp/base.html' %}
+
+{% block title %}Todo List Manager{% endblock %}
+
+
+{% block content %}
+<style type="text/css">
+  form {
+    margin:0;
+  }
+</style>
+<form action="{% url 'todoapp:create_list' %}" method="post">
+  {% csrf_token %}
+
+  <input type="text" name="todo_list_name"/>
+  <button type="submit">create list</button>
+</form>
+<table>
+{% for todo_list in todo_lists %}
+  <tr>
+    <td><a href="{% url 'todoapp:detail' todo_list.id %}">{{todo_list.name}}</a></td>
+    <td>
+      <!-- <form action="{% url 'todoapp:delete_list' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="todo_list_id" value="{{todo_list.id}}"/>
+        <button type="submit">X</button>
+      </form> -->
+      <!-- <a href="{% url 'todoapp:delete_list2' todo_list.id %}">X</a> -->
+      <a href="{% url 'todoapp:delete_list3' %}?todo_list_id={{todo_list.id}}">X</a>
+    </td>
+  </tr>
+{% endfor %}
+</table>
+{% endblock %}

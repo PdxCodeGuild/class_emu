@@ -1,0 +1,50 @@
+
+<style type="text/css">
+  #container {
+    display:grid;
+    grid-template-columns: auto auto;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    width: 200px;
+  }
+  #gender_grid {
+    display:grid;
+    grid-template-columns: 20px 40px;
+  }
+</style>
+<form id="container" action="{% url 'contacts:save_new_contact' %}" method="post">
+  {% csrf_token %}
+  <div>Name</div>
+  <div><input type="text" name="contact_name" value=""/></div>
+  <div>Age</div>
+  <div><input type="number" name="contact_age" value=""/></div>
+  <div>Gender</div>
+  <div>
+
+    {% for gender in genders %}
+    <div id="gender_grid">
+      <input type="radio" name="contact_gender_id" value="{{gender.id}}" id="gender{{forloop.counter}}" required/>
+      <label for="gender{{forloop.counter}}">{{gender.name}}</label>
+    </div>
+    {% endfor %}
+  </div>
+  <div>Eye Colors</div>
+  <div>
+    {% for eye_color in eye_colors %}
+    <div id="eye_color_grid">
+      <input type="checkbox" id="eye_color{{forloop.counter}}" name="eye_color_{{eye_color.id}}"/>
+      <label for="eye_color{{forloop.counter}}">{{eye_color.name}}</label>
+    </div>
+    {% endfor %}
+  </div>
+  <div>Hot or Not?</div>
+  <div>
+    <input type="checkbox" id="contact_hot_or_not" name="contact_hot_or_not" value="llama"/>
+    <label for="contact_hot_or_not">Hot or Not?</label>
+  </div>
+  <div>Phone Number</div>
+  <div><input type="text" name="contact_phone_number"/></div>
+  <div>Address</div>
+  <div><input type="text" name="contact_address"/></div>
+  <button type="submit">Save</button>
+</form>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classes Demo</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="cnv" width="500" height="500"></canvas>
+    <script type="text/javascript">
+
+
+      // polymorphism - inheritance, treat child classes in a generic manner
+      // encapsulation - hiding member variables behind methods
+      // 
+
+
+      class Shape {
+        constructor(cx, cy, color) {
+          this.cx = cx
+          this.cy = cy
+          this.color = color
+        }
+        randomizeColor() {
+          let hue = Math.random()*360
+          this.color = `hsl(${hue},100%,50%)`
+        }
+        draw(ctx) {
+          alert('draw on shape not implemented')
+        }
+      }
+
+      class Rectangle extends Shape {
+        constructor(cx, cy, color, width, height) {
+          super(cx, cy, color)
+          this.width = width
+          this.height = height
+        }
+        draw(ctx) {
+          ctx.fillStyle = this.color
+          ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height)
+        }
+      }
+
+      class Circle extends Shape {
+        constructor(cx, cy, color, radius) {
+          super(cx, cy, color)
+          this.radius = radius
+        }
+        draw(ctx) {
+          ctx.fillStyle = this.color
+          ctx.beginPath()
+          ctx.arc(this.cx, this.cy, this.radius, 0, Math.PI*2)
+          ctx.fill()
+        }
+      }
+
+
+      class ShapeSet {
+        constructor(n_shapes) {
+          this.shapes = []
+          for (let i=0; i<100; ++i) {
+            let cx = Math.random()*cnv.width
+            let cy = Math.random()*cnv.height
+            // let hue = Math.random()*360
+            // let color = `hsl(${hue},100%,50%)`
+            let color = 'blue'
+            if (Math.random() < 0.5) {
+              this.shapes.push(new Rectangle(cx, cy, color, 50, 50))
+            } else {
+              this.shapes.push(new Circle(cx, cy, color, 25))
+            }
+          }
+        }
+        draw(ctx) {
+          for (let i=0; i<this.shapes.length; ++i) {
+            this.shapes[i].draw(ctx)
+          }
+        }
+        randomizeColors() {
+          for (let i=0; i<this.shapes.length; ++i) {
+            this.shapes[i].randomizeColor()
+          }
+        }
+      }
+
+
+      let cnv = document.querySelector('#cnv')
+      let ctx = cnv.getContext('2d')
+
+      // let rectangle = new Rectangle(100, 100, 'red', 50, 50)
+      // rectangle.draw(ctx)
+      //
+      // let circle = new Circle(250, 250, 'blue', 10)
+      // circle.draw(ctx)
+
+
+      let shape_set = new ShapeSet(100)
+      shape_set.draw(ctx)
+
+      //shape_set.shapes[0].cx
+
+      setInterval(function() {
+        shape_set.randomizeColors()
+        shape_set.draw(ctx)
+      }, 1000)
+
+
+
+
+
+    </script>
+  </body>
+</html>

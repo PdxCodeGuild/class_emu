@@ -1,0 +1,19 @@
+
+
+<h1>Register</h1>
+<form action="{% url 'users:register_user' %}" method="post">
+  {% csrf_token %}
+  <input type="text" name="username" placeholder="username"/>
+  <input type="text" name="email" placeholder="email address"/>
+  <input type="password" name="password" placeholder="password"/>
+  <button type="submit">Register</button>
+</form>
+
+
+<h1>Login</h1>
+<form action="{% url 'users:login_user' %}" method="post">
+  {% csrf_token %}
+  <input type="text" name="username" placeholder="username"/>
+  <input type="password" name="password" placeholder="password"/>
+  <button type="submit">Login</button>
+</form>

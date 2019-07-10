@@ -1,0 +1,11 @@
+
+
+<h1>Welcome, {{user.username}}</h1>
+
+<a href="{% url 'users:logout_user' %}">Logout</a>
+
+<ul>
+  {% for book in books %}
+  <li>{{book.title}}</li>
+  {% endfor %}
+</ul>

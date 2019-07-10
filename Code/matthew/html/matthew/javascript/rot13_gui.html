@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <style>
+      input {
+        font-size:40px;
+      }
+      #output_div {
+        font-size:100px;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="text_input" type="text" placeholder="enter some text to encode"/>
+    <input id="rot_input" type="number" value="13" placeholder="enter the rotation amount"/>
+    <button id="encrypt_bt">encrypt</button>
+    <div id="output_div">blahblahblahblah output goes here</div>
+
+    <script type="text/javascript">
+
+      let text_input = document.querySelector('#text_input')
+      let rot_input = document.querySelector('#rot_input')
+      let encrypt_bt = document.querySelector('#encrypt_bt')
+      let output_div = document.querySelector('#output_div')
+
+
+
+
+      function rotN(input, rotate) {
+        let lowerAlphabet = 'abcdefghijklmnopqrstuvwxyz'
+        let upperAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        let outWord = ''
+        for (let i = 0; i<input.length; ++i){
+          let index = lowerAlphabet.indexOf(input[i])
+          if (index === -1) {
+            index = upperAlphabet.indexOf(input[i])
+            if (index === -1) {
+              outWord += input[i]
+            } else {
+              index += rotate
+              index %= upperAlphabet.length
+              outWord += upperAlphabet[index]
+            }
+          } else {
+            index += rotate
+            index %= lowerAlphabet.length
+            outWord += lowerAlphabet[index]
+          }
+        }
+        return outWord
+      }
+
+      encrypt_bt.onclick = function() {
+        let text = text_input.value
+        let rot = parseInt(rot_input.value)
+        let outWord = rotN(text, rot)
+        output_div.innerText = outWord
+      }
+
+    </script>
+
+  </body>
+</html>

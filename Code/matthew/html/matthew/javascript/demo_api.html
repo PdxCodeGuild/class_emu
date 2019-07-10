@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cat API Demo</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style type="text/css">
+
+    </style>
+  </head>
+  <body>
+    <button id="cat_bt">Get a random cat pic!</button><br/>
+    <img id="cat_img" src=""/>
+    <script type="text/javascript">
+      let cat_bt = document.querySelector('#cat_bt')
+      let cat_img = document.querySelector('#cat_img')
+      cat_bt.onclick = function() {
+        let url = 'https://api.thecatapi.com/v1/images/search'
+        axios.get(url).then(function (response) {
+          console.log(response.data)
+          let data = response.data
+          cat_img.setAttribute('src', data[0].url)
+        })
+      }
+    </script>
+
+
+
+  </body>
+</html>

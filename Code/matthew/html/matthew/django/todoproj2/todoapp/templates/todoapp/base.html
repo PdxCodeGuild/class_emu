@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guess the Number</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      footer {
+        position:absolute;
+        bottom:10px;
+        text-align:center;
+        width:100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{% block title %}{% endblock %}</h1>
+    <hr/>
+    {% block content %}{% endblock %}
+    <footer>© class sheep 2019</footer>
+  </body>
+</html>
