@@ -28,11 +28,11 @@ while True:
         # then, print the result: letter grade
             if 90 <= numeric_grade <= 100:
                 print(f"You entered {numeric_grade}. That's an A. Great job!")
-            elif 80 <= numeric_grade <= 90:
+            elif 80 <= numeric_grade < 90:
                 print(f"You entered {numeric_grade}. That's a B. Good job!")
-            elif 70 <= numeric_grade <= 80:
+            elif 70 <= numeric_grade < 80:
                 print(f"You entered {numeric_grade}. That's a C. Not bad!")
-            elif 60 <= numeric_grade <= 70:
+            elif 60 <= numeric_grade < 70:
                 print(f"You entered {numeric_grade}. That's a D. Umm, did you study?!")
             else:
                 print(f"You entered {numeric_grade}. That's an F. D'oh!")
