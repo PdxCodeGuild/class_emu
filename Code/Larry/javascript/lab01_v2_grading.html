@@ -1,0 +1,45 @@
+<!-- JavaScript lab - filename: lab01_v2_grading.py -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JS lab 01: Grading - v2</title>
+    <script src="lab01_function.js"></script>
+    <style type="text/css" media="screen">
+      #question {
+        padding: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Lab 3: Grading</h1>
+      <h3>Let's convert a number grade to a letter grade, using if and elif statements and comparisons.</h3>
+    </div>
+    <div><u>Instructions</u>:</div>
+    <div>
+      <ol>
+        <li>Have the user enter a number representing the grade (0-100)</li>
+        <li>Convert the number grade to a letter grade</li>
+        <li>
+          <span>Numeric Ranges:</span>
+          <ul>
+            <li>90-100: A</li>
+            <li>80-89: B</li>
+            <li>70-79: C</li>
+            <li>60-69: D</li>
+            <li>0-59: F</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <span><b>v2: moves js to external file; takes input from text box (instead of prompt())</b>
+    <hr/>
+    <div id="question">
+      <span>Enter a number between 0 and 100: <input type="text" id="user_number"/>
+      <button onclick="runGradingLab()">Run the lab</button>
+      </span>
+    </div>
+  </body>
+</html>
