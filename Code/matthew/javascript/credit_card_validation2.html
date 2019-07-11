@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input id="input_cc" type="text" placeholder="credit card number" value="4556737586899855"/>
+    <button id="button_validate">validate</button>
+    <span id="span_output"></span>
+    <script>
+      let input_cc = document.querySelector('#input_cc')
+      let button_validate = document.querySelector('#button_validate')
+      let span_output = document.querySelector('#span_output')
+      
+      button_validate.onclick = function() {
+        
+        let cc = input_cc.value
+        
+        cc = cc.split('')
+        
+        // Convert the input string into a list of ints
+        // convert each string to a number
+        for (let i=0; i<cc.length; ++i) {
+          cc[i] = parseInt(cc[i])
+        }
+        
+        // Slice off the last digit. That is the check digit.
+        // console.log(cc[cc.length-1])
+        let check_digit = cc.pop()
+        
+        // Reverse the digits.
+        cc.reverse()
+        
+        // Double every other element in the reversed list.
+        for (let i=0; i<cc.length; i+=2) {
+          cc[i] *= 2
+        }
+        
+        // Subtract nine from numbers over nine.
+        for (let i=0; i<cc.length; ++i) {
+          if (cc[i] > 9) {
+            cc[i] -= 9
+          }
+        }
+        
+        // Sum all values.
+        let total = 0
+        for (let i=0; i<cc.length; ++i) {
+          total += cc[i]
+        }
+        
+        // Take the second digit of that sum.
+        let second_digit = total % 10
+        
+        // If that matches the check digit, the whole card number is valid.
+        if (second_digit === check_digit) {
+          span_output.innerText = 'valid'
+        } else {
+          span_output.innerText = 'invalid'
+        }
+      }
+      
+    </script>
+  </body>
+</html>
