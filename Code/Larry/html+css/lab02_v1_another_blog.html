@@ -1,0 +1,233 @@
+<!-- JavaScript lab - filename: lab01_v2_grading.py -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style type="text/css">
+      html, body {
+        box-sizing: border-box;
+        color: #FFF;
+        font-family: 'Open Sans', sans-serif;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+      }
+      a {
+        color: #FFF;
+        text-decoration: none;
+      }
+      body {
+        background: linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url(http://lar-mo.com/images/DSC_0090.jpg);
+        background-size: cover;
+        min-height: 100%;
+      }
+      header {
+        background-color: rgb(255,140,0);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+      .logo_social_urs {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px 0 10px;
+        width: 65vw;
+      }
+      #page_logo {
+        width: 75px;
+      }
+      #follow_social {
+        background-color: rgb(255,255,255);
+x        border-radius: 40px;
+        color: rgba(255,140,0,0.99);
+        font-size: 10px;
+        padding: 5px;
+        text-decoration: none;
+      }
+      #facebook {
+        vertical-align: middle;
+        width: 20px;
+      }
+      #twitter {
+        vertical-align: middle;
+        width: 20px;
+      }
+      #urs > * {
+        text-decoration: none;
+      }
+      .nav_search {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 0 20px;
+        width: 65vw;
+      }
+      /* .nav_search > * {
+        padding:
+      } */
+      nav > a {
+        padding: 10px;
+      }
+      #searchbox {
+        font-size: 1em;
+        height: 30px;
+        width: 300px;
+      }
+      /* input[type=search] {
+        height: 30px;
+        width: 300px;
+        font-size: 1em;
+      } */
+      #searchbox:focus {
+        background-color: rgb(255,255,153);
+      }
+      summary {
+        align-items: center;
+        background-color: rgba(255,255,255,0.99);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        max-width: 100%;
+        padding: 10px 0;
+        width: 100%;
+      }
+      summary > * {
+        padding: 10px;
+      }
+      summary > div > img {
+        border: 1px solid #FFF;
+        border-radius:40px;
+        width: 80px;
+      }
+      .author_article_info {
+        color: #333;
+        font-size: 12px;
+      }
+      .author_article_info :first-child {
+        padding-bottom: 3px;
+      }
+      #follow_me {
+        background-color: rgba(255,255,255,0.99);
+        border: 1px solid #777;
+        border-radius: 40px;
+        color: #333;
+        font-size: 10px;
+        padding: 5px;
+        text-decoration: none;
+        vertical-align: top;
+      }
+      article {
+        align-items: flex-start;
+        background-color: rgba(255,255,255,0.9);
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto 20px;
+        padding: 20px;
+        width: 65vw;
+      }
+      .hero {
+        width: 100%;
+      }
+      footer {
+        align-items: center;
+        background-color: rgba(255,140,0, 0.5);
+        display: flex;
+        flex-direction: column;
+        height: 40px;
+        justify-content: space-around;
+        padding: 10px;
+        width: auto;
+      }
+      footer > div > span {
+        font-size: 12px;
+      }
+      /* Medium screens */
+      @media all and (max-width: 800px) {
+        #searchbox {
+          font-size: 0.8em;
+          height: 20px;
+          width: 170px;
+        }
+        .logo_social_urs, .nav_search {
+          width: 65vw;
+        }
+      }
+      /* Small screens */
+      @media all and (max-width: 500px) {
+        #searchbox {
+          font-size: 0.65em;
+          height: 10px;
+          width: 140px;
+        }
+        .logo_social_urs, .nav_search {
+          width: 65vw;
+        }
+        .nav_search {
+
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo_social_urs">
+        <span><img id="page_logo" src="http://lar-mo.com/images/larrymoiola_circle_logo.png"/></span>
+        <span>
+            <a id="follow_social" href="#">&nbsp;&nbsp;follow&nbsp;&nbsp;</a>
+            <a href="#"><img id="facebook" src="http://lar-mo.com/images/facebook-icon.png"/></a>
+            <a href="#"><img id="twitter" src="http://lar-mo.com/images/twitter-icon.png"/></a>
+        </span>
+        <span id="urs"><a href="#">sign in</a> | <a href="#">register</a></span>
+      </div>
+      <div class="nav_search">
+        <div>
+          <nav>
+            <a href="#">Home</a>
+            <a href="#">Articles</a>
+            <a href="#">Topics</a>
+            <a href="#">FAQs</a>
+          </nav>
+        </div>
+        <span>Search: <input id="searchbox" type="text" placeholder="topic, keyword, author ..."/ value=""></span>
+      </div>
+    </header>
+    <summary>
+      <div>
+        <img src="http://lar-mo.com/images/larry_glasses.jpg"/>
+      </div>
+      <div class="author_article_info">
+        <div><b>Larry Moiola</b>&nbsp;<a id="follow_me" href="#">&nbsp;&nbsp;follow&nbsp;&nbsp;</a></div>
+        <div>Photographer, software developer in-training</div>
+        <div>3 days ago, 1 min read</div>
+      </div>
+    </summary>
+    <article>
+      <div>
+        <img class="hero" src="http://lar-mo.com/images/cupcakes.jpg"/>
+      </div>
+      <div class="articles">
+        <div id="article1">
+          <p>Cotton candy chupa chups gummies. Pie oat cake topping powder. Tootsie roll chocolate bar chocolate lollipop. Soufflé sesame snaps tiramisu. Lollipop brownie lemon drops powder. Candy jelly topping pudding. Tiramisu jelly beans gingerbread cupcake sweet brownie lemon drops. Liquorice jujubes apple pie marshmallow halvah cheesecake croissant tart biscuit. Chocolate danish croissant candy icing chocolate cake chupa chups wafer jelly. Icing cookie tootsie roll. Sweet roll bonbon apple pie candy tart lollipop apple pie gingerbread. Gummies tootsie roll jelly beans donut macaroon.</p>
+          <p>Sweet roll lollipop icing carrot cake pudding caramels lollipop. Cotton candy chocolate topping tart carrot cake donut. Sugar plum soufflé chocolate bar toffee pie gingerbread candy. Dessert toffee candy donut gummies liquorice tart powder muffin. Candy carrot cake cotton candy icing jelly beans bonbon tootsie roll chocolate cake jelly-o. Tootsie roll sugar plum toffee tootsie roll cotton candy danish icing. Croissant gummi bears pastry. Bear claw cake caramels. Lollipop bear claw oat cake lemon drops pudding tiramisu. Tart gummi bears toffee oat cake pie. Pie pie carrot cake lemon drops jelly-o dessert. Carrot cake oat cake cotton candy donut lollipop jujubes macaroon. Donut gummi bears marshmallow oat cake. Gummies bear claw icing muffin fruitcake.</p>
+          <p>Donut jelly cupcake sugar plum biscuit cake topping chocolate bar macaroon. Cake cake cheesecake tootsie roll tootsie roll caramels chocolate chocolate bar lemon drops. Marshmallow halvah ice cream muffin candy cake gingerbread. Biscuit croissant tiramisu cake jelly beans icing fruitcake. Icing cupcake carrot cake liquorice cake. Chocolate bar biscuit gummies cake jelly-o cheesecake tootsie roll. Cake pie cake carrot cake topping jujubes carrot cake chocolate bar. Gingerbread powder cake chocolate cake caramels jelly beans. Gummi bears lemon drops carrot cake sesame snaps pudding danish jelly beans carrot cake. Tiramisu pie chupa chups. Gingerbread donut donut lollipop. Marshmallow jujubes gummies croissant liquorice jelly beans wafer danish cotton candy. Bonbon gummies tootsie roll sweet roll pie gummi bears powder lollipop cake. Pastry jujubes cake gingerbread macaroon dessert soufflé topping ice cream.</p>
+          <p>Caramels chocolate sweet brownie biscuit brownie gingerbread oat cake. Candy canes gingerbread dragée cake. Croissant cake marzipan cake. Candy canes liquorice halvah jelly beans danish wafer. Toffee lollipop brownie jelly beans jujubes candy. Bonbon halvah jelly-o carrot cake lollipop danish toffee. Sweet roll pastry candy canes ice cream topping lollipop. Gummies jujubes halvah toffee. Chocolate cake gummies sweet liquorice. Tiramisu bear claw chocolate pie. Lollipop pie chocolate lollipop jujubes cake danish muffin pie. Sugar plum dragée oat cake. Bear claw sweet roll chocolate bar cotton candy lemon drops marzipan gummi bears.</p>
+        </div>
+      </div>
+    </article>
+    <footer>
+      <div><span><a href="#">Home</a> | <a href="#">Articles</a> | <a href="#">Topics</a></span></div>
+      <div><span>© 2019 lar-mo.io | <a href="#">About</a> | <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a></span></div>
+    </footer>
+  </body>
+</html>

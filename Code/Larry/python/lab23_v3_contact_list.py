@@ -36,6 +36,7 @@ for i in range(1, len(lines)): # down the rows(matt)
 
 ### Create a record ###
 # Ask the user for each attribute, add a new contact to your contact list with the attributes that the user entered.
+# Note: This code does not prevent blank input.
 def create_user():
     name = input("Enter your name: ").lower()
     age = input("Enter your age: ").lower()
@@ -81,7 +82,8 @@ def update_user():
     print(f"{current_user['name'].title()}'s {attribute} is currently set to {current_value}.")
     while True:
         new_value = input("Enter the new value: ")   # ensure something is entered
-        if len(new_value) == 0:                      #
+        stripped_new_value = new_value.strip()       # (string whitespace)
+        if len(stripped_new_value) == 0:             #
             print("New value cannot be blank.")      #
             continue                                 #
         break                                        #
@@ -131,8 +133,8 @@ def write_changes():
     f.write(f"{csv_header}\r\n")                    # write the header row
     for i in range(len(contacts)):                  # loop through the elements in contacts list
         t_contact = list(contacts[i].values())      # convert dictionary to list and set temporary variable (t_contact)
-        csv_row = ','.join(contact)                 # convert contact (list) to comma-separated string
-        f.write(f"{csv_row}\r\n")                   # write the contact row
+        t_csv_row = ','.join(t_contact)             # convert contact (list) to comma-separated string
+        f.write(f"{t_csv_row}\r\n")                 # write the contact row
     f.close()                                       # close the .csv file from writing
 
 def try_again(prompt_text):
