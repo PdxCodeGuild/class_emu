@@ -80,15 +80,13 @@ x        border-radius: 40px;
       #searchbox {
         font-size: 1em;
         height: 30px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
         width: 300px;
       }
-      /* input[type=search] {
-        height: 30px;
-        width: 300px;
-        font-size: 1em;
-      } */
       #searchbox:focus {
         background-color: rgb(255,255,153);
+        width: 500px;
       }
       summary {
         align-items: center;
@@ -199,7 +197,7 @@ x        border-radius: 40px;
             <a href="#">FAQs</a>
           </nav>
         </div>
-        <span>Search: <input id="searchbox" type="text" placeholder="topic, keyword, author ..."/ value=""></span>
+        <span>Search: <input id="searchbox" type="text" placeholder="topic, keyword, author ..."/></span>
       </div>
     </header>
     <summary>
