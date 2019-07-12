@@ -1,4 +1,4 @@
-<!-- JavaScript lab lab03_v1_blackjack_advice.html -->
+<!-- JavaScript lab lab03_v2_blackjack_advice.html -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -9,7 +9,7 @@
       ul#custom {
         list-style: none;
       }
-      #card0, #card1, #card2 {
+      #cards_pulldowns > select {
         margin: 10px;
         font-size: 22px;
       }
@@ -45,24 +45,6 @@
         padding: 10px;
       }
     </style>
-    <script type="text/javascript">
-    window.onload = function buildCardsSelect() {
-      let selects_array = ['first_card', 'second_card', 'third_card']
-      for (let i=0;i<3;i++) {
-        let spacer = document.querySelector('#spacer')
-        let cards_pulldowns = document.querySelector('#cards_pulldowns')
-        let select_card = document.createElement('select')
-        select_card.id = "card"+i;
-        let cards = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-        cards_pulldowns.appendChild(select_card)
-        for (let j=0; j<cards.length; j++) {
-          let option = document.createElement('option')
-          option.text = option.value = cards[j]
-        select_card.add(option, -1)
-        }
-      }
-    }
-    </script>
   </head>
   <body>
     <div>
@@ -96,7 +78,7 @@
       </p>
     </div>
     <div id="version_info">
-      <span><b>v1: recreate Python blackjack advice lab 19 v1</b></span>
+      <span><b>v2: reorganizing code with Matt's help</b></span>
     </div>
     <hr/>
     <div class="input_output">
@@ -109,9 +91,25 @@
     <script type="text/javascript">
       let btn_show_cards = document.querySelector('#btn_show_cards')
       let blackjack_advice = document.querySelector('#blackjack_advice')
+      let spacer = document.querySelector('#spacer')
+      let cards_pulldowns = document.querySelector('#cards_pulldowns')
+
+      let selects_array = []
+      for (let i=0;i<3;i++) {
+        let select_card = document.createElement('select')
+        selects_array.push(select_card)
+        let cards = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+        cards_pulldowns.appendChild(select_card)
+        for (let j=0; j<cards.length; j++) {
+          let option = document.createElement('option')
+          option.text = option.value = cards[j]
+          select_card.add(option, -1)
+        }
+      }
+
       btn_show_cards.onclick = function() {
         card_value_total = 0
-        cards = [card0.value, card1.value, card2.value] // this works because the browser knows about the element ids
+        cards = [selects_array[0].value, selects_array[1].value, selects_array[2].value]
         for (let i=0;i<3;i++) {
           if (['J','Q','K'].includes(cards[i])) {
               card_value = 10
@@ -122,6 +120,7 @@
           }
           card_value_total += card_value
         }
+
         if (isNaN(card_value_total)) {
           blackjack_advice.innerText = "You didn't select three cards."
         } else if (card_value_total < 17) {
