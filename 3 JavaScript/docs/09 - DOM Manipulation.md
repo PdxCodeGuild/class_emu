@@ -29,7 +29,7 @@ The following code demonstrates how each of these are used:
     console.log(bs.length); // 3
     let cs = document.getElementsByName('adiv');
     console.log(cs.length); // 2
-    let d = document.quertSelector('#mydiv');
+    let d = document.querySelector('#mydiv');
     let es = document.querySelectorAll('.myclass');
     console.log(es.length); // 2
 </script>
