@@ -157,7 +157,7 @@
         let expected_output = test_data_properties[1]
         let actual_result = evalGrade(function_input)
         if (actual_result != expected_output) {
-          console.log(`Fail -- expected: ${expected_output} : actual: ${actual_result}`)
+          console.log(`${i} Fail -- expected: ${expected_output} : actual: ${actual_result}`)
           ++test_fail_count
         }
       }
