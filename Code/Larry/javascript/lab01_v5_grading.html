@@ -88,11 +88,9 @@
       }
 
       function evalGrade(user_number) {
-        //console.log('------> ' + user_number)
         if (user_number === '') {
             return 'blank'
         } else if (isNaN(user_number)) {
-            span_result.innerText = 'You didn\'t enter a number.'
             return 'NaN'
         } else {
             for (let i=0;i<Object.keys(data_matrix).length;++i) {
@@ -124,43 +122,45 @@
         let result = evalGrade(user_number)
         if (result === 'blank') {
             span_result.innerText = 'You didn\'t enter anything.'
+        } else if (result === 'NaN') {
+          span_result.innerText = 'You didn\'t enter a number.'
         }
       }
 
-// /* Hide this line ( e.g. Atom: cmd+/) to run the tests; check console
+/* Hide this line ( e.g. Atom: cmd+/) to run the tests; check console
       // ### UNIT TESTS ### //
       let input_expected_out = [
-        ['','blank'],
-        ['letters','NaN'],
-        ['101','tooHigh'],
-        ['-1','tooLow'],
-        ['100','A'],
-        ['95','A'],
-        ['90','A'],
-        ['89','B'],
-        ['85','B'],
-        ['80','B'],
-        ['79','C'],
-        ['75','C'],
-        ['70','C'],
-        ['69','D'],
-        ['65','D'],
-        ['60','D'],
-        ['59','F'],
-        ['55','F'],
-        ['1','F'],
-        ['0','F'],
-        [0,'blank']    // the number 0 is a falsey statement
+        [1,'','blank'],
+        [2,'letters','NaN'],
+        [3,'101','tooHigh'],
+        [4,'-1','tooLow'],
+        [5,'100','A'],
+        [6,'95','A'],
+        [7,'90','A'],
+        [8,'89','B'],
+        [9,'85','B'],
+        [10,'80','B'],
+        [11,'79','C'],
+        [12,'75','C'],
+        [13,'70','C'],
+        [14,'69','D'],
+        [15,'65','D'],
+        [16,'60','D'],
+        [17,'59','F'],
+        [18,'55','F'],
+        [19,'1','F'],
+        [20,'0','F'],
       ]
       let test_fail_count = 0
-      for (let i=0;i<0/*input_expected_out.length*/;++i) {
+      for (let i=0;i<input_expected_out.length;++i) {
         let test_data_properties = input_expected_out[i]
-        let function_input = test_data_properties[0]
-        let expected_output = test_data_properties[1]
+        let test_case_num = test_data_properties[0]
+        let function_input = test_data_properties[1]
+        let expected_output = test_data_properties[2]
         let actual_result = evalGrade(function_input)
         span_result.innerText = ''
         if (actual_result != expected_output) {
-          console.log(`${i} Fail -- expected: ${expected_output} : actual: ${actual_result}`)
+          console.log(`${test_case_num} Fail -- expected: ${expected_output} : actual: ${actual_result}`)
           ++test_fail_count
         }
       }
