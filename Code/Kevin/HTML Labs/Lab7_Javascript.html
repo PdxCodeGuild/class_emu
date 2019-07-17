@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Lab 7 Javascript</title>
+    <style>
+    
+    #output_div{
+        color: red;
+    }
+
+
+    #selection, #cpu_move, #winner{
+        font-weight: bold;
+    }
+    .dropbtn{
+        background-color: black;
+        color: yellow;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;    
+    }
+    
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+
+    </style>
+
+
+</head>
+
+<body>
+    <p>Lab 7 to Javascript</p>
+    <div>
+        
+        
+        <span id="selection">Selections:</span>
+        <select id="dropdown">
+            <option value="Rock">Rock</option>
+            <option value="Paper">Paper</option>
+            <option value="Scissors">Scissors</option>  
+        </select>
+        <button id="submit">Make move</button>
+    </div>
+    
+
+    <span id="cpu_move">CPU move:</span>
+    <span id="output_div">None</span>
+    <p id="winner">Winner:</p>
+    <span id="who_won"></span>
+
+
+
+    <script>
+        
+        var choices = ["Rock", "Paper", "Scissors"]
+        function choose(choices){
+            var index = Math.floor(Math.random()* choices.length);
+            return choices[index]
+        }
+        
+        alert("Welcome to Rock, Paper, Scissors!!");
+        let player_choice = document.querySelector('#dropdown');
+        let output_div = document.querySelector('#output_div');
+        let submit = document.querySelector('#submit');
+        let who_won = document.querySelector('#who_won');
+
+
+        submit.onclick = function() {
+            let selection = player_choice.value;
+            var cpu_choice = choose(choices)
+            output_div.innerText = cpu_choice; 
+
+            if(player_choice.value == "Rock"){
+                if(output_div.innerText == 'Scissors')
+                    who_won.innerText = "The CPU chose Scissors: You Win!"
+                else if ( output_div.innerText == 'Paper')
+                    who_won.innerText = "The CPU chose Paper: You Lose!"
+                else
+                    who_won.innerText = "The CPU chose Rock: Tie Game!"
+            }
+            else if(player_choice.value == "Paper"){
+                if(output_div.innerText == 'Scissors')
+                    who_won.innerText = "The CPU chose Scissors: You Lose!"
+                else if ( output_div.innerText == 'Paper')
+                    who_won.innerText = "The CPU chose Paper: Tie Game!"
+                else
+                    who_won.innerText = "The CPU chose Rock: You Win!"
+            }
+
+            else if(player_choice.value == "Scissors"){
+                if(output_div.innerText == 'Scissors')
+                    who_won.innerText = "The CPU chose Scissors: Tie Game!"
+                else if ( output_div.innerText == 'Paper')
+                    who_won.innerText = "The CPU chose Paper: You Win!"
+                else
+                    who_won.innerText = "The CPU chose Rock: You Lose!"
+            }
+        }
+
+       
+        
+        
+
+
+        
+    </script>
+</body>
+
+
+
+
+
+</html>

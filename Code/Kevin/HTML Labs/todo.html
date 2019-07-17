@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+</head>
+
+
+
+<body>
+
+    <div>
+        <p>Lab 4 To Do List!</p>
+    </div>
+
+    <h2>To Do List:</h2>
+
+    <div id="todoForm">
+        <p>Do this:</p>
+        <input type="text" id="text_input">
+        <input type="button" id="btn" value="Add">
+        <output name="submitted_value"></output>
+    </div>
+
+    <ul id="DaList">
+
+    </ul>
+    <script>
+        let text_input = document.querySelector("#text_input")
+        let btn = document.querySelector('#btn')
+        btn.onclick = function() {
+            addtoList()
+        }
+        function addtoList(){
+            let listElement = document.createElement("li");
+            listElement.innerText = text_input.value;
+            document.querySelector("#DaList").appendChild(listElement);
+            document.querySelector("#text_input").value = "";
+            let checkbox = document.createElement("INPUT");
+            checkbox.setAttribute("type", "checkbox");
+            listElement.appendChild(checkbox);
+            checkbox.onclick = function(){
+                strikeThrough();
+                
+            }
+            
+        }
+        
+
+        function strikeThrough(){
+            
+        }
+    </script>
+        
+
+</body>
+
+
+
+
+
+
+
+</html>

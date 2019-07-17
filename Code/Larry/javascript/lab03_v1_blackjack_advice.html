@@ -1,0 +1,137 @@
+<!-- JavaScript lab lab03_v1_blackjack_advice.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS lab 03: Blackjack Advice - v1</title>
+    <style media="screen" type="text/css">
+      ul#custom {
+        list-style: none;
+      }
+      #card0, #card1, #card2 {
+        margin: 10px;
+        font-size: 22px;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      .input_output {
+        font-size: 24px;
+        padding: 15px 0;
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        vertical-align: middle;
+      }
+      #btn_show_cards {
+        background-color: #C0C0C0;
+        border: 1px solid #333;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        font-size: 24px;
+        margin: auto;
+        padding: auto;
+        text-decoration: none;
+        vertical-align: middle;
+      }
+      #btn_show_cards:active{
+        box-shadow: none;
+      }
+      btn_show_cards: {
+        outline: 0;
+      }
+      #blackjack_advice {
+        font-size: 24px;
+        padding: 10px;
+      }
+    </style>
+    <script type="text/javascript">
+    window.onload = function buildCardsSelect() {
+      for (let i=0;i<3;i++) {
+        let cards_pulldowns = document.querySelector('#cards_pulldowns')
+        let select_card = document.createElement('select')
+        select_card.id = "card"+i;
+        let cards = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+        cards_pulldowns.appendChild(select_card)
+        for (let j=0; j<cards.length; j++) {
+          let option = document.createElement('option')
+          option.text = option.value = cards[j]
+        select_card.add(option, -1)
+        }
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>JS lab 03: Blackjack Advice</h1>
+      <h3>Let's write a python program to give basic blackjack playing advice during a game by asking the player for cards.</h3>
+    <div>
+      <ol>
+        <li>First, ask the user for three playing cards (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, or K).</li>
+        <li>Then, figure out the point value of each card individually.</li>
+        <li>Number cards are worth their number, all face cards are worth 10.</li>
+        <li>At this point, assume aces are worth 1.</li>
+      </ol>
+    </div>
+    <div>Use the following rules to determine the advice:
+      <ul>
+        <li>Less than 17, advise to "Hit"</li>
+        <li>Greater than or equal to 17, but less than 21, advise to "Stay"</li>
+        <li>Exactly 21, advise "Blackjack!"</li>
+        <li>Over 21, advise "Already Busted"</li>
+      </ul>
+    </div>
+    <div>Print out the current total point value and the advice.</div>
+    <div>
+      <p>
+        <ul id="custom">
+          <li># What's your first card? Q</li>
+          <li># What's your second card? 2</li>
+          <li># What's your third card? 3</li>
+          <li># 15 Hit</li>
+        </ul>
+      </p>
+    </div>
+    <div id="version_info">
+      <span><b>v1: recreate Python blackjack advice lab 19 v1</b></span>
+    </div>
+    <hr/>
+    <div class="input_output">
+      <span>Select one card from each pulldown:
+        <span id="cards_pulldowns"></span>
+        <button id="btn_show_cards">Evaluate cards</button>
+      </span>
+      <div id="blackjack_advice"></div>
+    </div>
+    <script type="text/javascript">
+      let btn_show_cards = document.querySelector('#btn_show_cards')
+      let blackjack_advice = document.querySelector('#blackjack_advice')
+      btn_show_cards.onclick = function() {
+        card_value_total = 0
+        cards = [card0.value, card1.value, card2.value] // this works because the browser knows about the element ids
+        for (let i=0;i<3;i++) {
+          if (['J','Q','K'].includes(cards[i])) {
+              card_value = 10
+          } else if (cards[i] == 'A') {
+              card_value = 1
+          } else {
+              card_value = parseInt(cards[i])
+          }
+          card_value_total += card_value
+        }
+        if (isNaN(card_value_total)) {
+          blackjack_advice.innerText = "You didn't select three cards."
+        } else if (card_value_total < 17) {
+          blackjack_advice.innerText = "That's " + card_value_total + ". Hit"
+        } else if (card_value_total >= 17 && card_value_total < 21) {
+          blackjack_advice.innerText = "That's " + card_value_total + ". Stay!"
+        } else if (card_value_total == 21) {
+          blackjack_advice.innerText = "That's " + card_value_total + ". Blackjack!"
+        } else {
+          blackjack_advice.innerText = "That's " + card_value_total + ". You already busted!"
+        }
+      }
+    </script>
+  </body>
+</html>
