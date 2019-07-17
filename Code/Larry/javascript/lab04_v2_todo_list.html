@@ -11,6 +11,7 @@
         box-sizing: border-box;
         height: 100%;
         margin: 0;
+        min-height: 100%;
         padding: 0;
         width: 100%;
       }
@@ -82,7 +83,7 @@
         flex-direction: row;
         justify-content: space-between;
         margin: 5px auto;
-        width: 50%;
+        width: 65%;
       }
       .task > * {
         font-size: 125%;
@@ -107,7 +108,7 @@
       <div><u>Removed</u> items should disappear entirely.<br/><u>Completed</u> items should appear at the bottom (or in a separate list) with a line through them.
       </div>
       <div id="version_info">
-        <span><b>v2: first version of JS todo list lab</b></span>
+        <span><b>v1: static layout, no functionality</b></span>
       </div>
     </div>
     <div id="desktop">
@@ -117,84 +118,64 @@
             <input id="inputNewTask" type="text" placeholder="type something..."/>
             <button id="addTaskBtn">Add a Task</button>
           </h1>
-          <div id="pendingTaskRows">
-          <!-- <div class="task">
+          <div class="task">
             <span>
               <input type="checkbox"/>
               <span>Do the dishes</span>
             </span>
             <button>Delete</button>
-          </div> -->
+          </div>
+          <div class="task">
+            <span>
+              <input type="checkbox"/>
+              <span>Mow the lawn</span>
+            </span>
+            <button>Delete</button>
+          </div>
+          <div class="task">
+            <span>
+              <input type="checkbox"/>
+              <span>Sweep the patio</span>
+            </span>
+            <button>Delete</button>
+          </div>
+          <div class="task">
+            <span>
+              <input type="checkbox"/>
+              <span>Do the laundry</span>
+            </span>
+            <button>Delete</button>
+          </div>
+          <div class="task">
+            <span>
+              <input type="checkbox"/>
+              <span>Organize the closet</span>
+            </span>
+            <button>Delete</button>
           </div>
         </div>
         <hr/>
         <div>
           <h1>Completed Tasks</h1>
-          <div id="completedTaskRows">
-          <!-- <div class="task">
+          <div class="task">
             <span>
               <input type="checkbox" checked/>
               <span><strike>Make the bed</strike></span>
             </span>
             <button>Delete</button>
-          </div> -->
+          </div>
+          <div class="task">
+            <span>
+              <input type="checkbox" checked/>
+              <span><strike>Organize the closet</strike></span>
+            </span>
+            <button>Delete</button>
           </div>
         </div>
       </div> <!-- paper div end -->
     </div> <!-- desktop div end -->
     <script type="text/javascript">
-
-        let inputNewTask = document.querySelector('#inputNewTask')
-        let addTaskBtn = document.querySelector('#addTaskBtn')
-        let pendingTaskRows = document.querySelector('#pendingTaskRows')
-        let completedTaskRows = document.querySelector('#completedTaskRows')
-
-        addTaskBtn.onclick = function() {
-          let newTaskValue = inputNewTask.value
-          if (newTaskValue != '') {
-            let div_task = document.createElement('div')
-            div_task.setAttribute('class', 'task')
-            pendingTaskRows.appendChild(div_task)
-
-            let span = document.createElement('span')
-            div_task.appendChild(span)
-
-            let input = document.createElement('input')
-            input.setAttribute('type', 'checkbox')
-            input.onclick = function() {
-              if (input.checked == true) {
-                pendingTaskRows.removeChild(div_task)
-                completedTaskRows.appendChild(div_task)
-              } else {
-                completedTaskRows.removeChild(div_task)
-                pendingTaskRows.appendChild(div_task)
-              }
-            }
-            span.appendChild(input)
-
-            let span_text = document.createElement('span')
-            span_text.innerText = newTaskValue
-            span.appendChild(span_text)
-
-            let deleteBtn = document.createElement('button')
-            deleteBtn.innerText = 'Delete'
-            deleteBtn.onclick = function() {
-              if (pendingTaskRows.contains(div_task)) {
-                pendingTaskRows.removeChild(div_task)
-              } else {
-                completedTaskRows.removeChild(div_task)
-              }
-            }
-            div_task.appendChild(deleteBtn)
-            inputNewTask.value = ''
-          }
-        }
-        inputNewTask.addEventListener("keydown", function (event) {
-            if (event.keyCode === 13) {
-                addTaskBtn.click()
-            }
-        })
-
+      // code goes here
     </script>
   </body>
 </html>
