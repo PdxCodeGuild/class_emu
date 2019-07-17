@@ -189,7 +189,7 @@
         }
         window.onload = populateTasksFromLocalStorage
 
-        function addNewTask(newTaskValue) {
+        function addNewTask(newTaskValue, completed) {
           if (newTaskValue != '') {
             let div_task = document.createElement('div')
             div_task.setAttribute('class', 'task')
@@ -242,8 +242,9 @@
 
           let input = document.createElement('input')
           input.setAttribute('type', 'checkbox')
+          input.setAttribute('checked', null)
           input.onclick = function() {
-            if (input.checked == true) {
+            if (input.checked == false) {
               completedTaskRows.removeChild(div_task)
               pendingTaskRows.appendChild(div_task)
               span_text.style.textDecoration = 'none'
@@ -258,6 +259,7 @@
           let span_text = document.createElement('span')
           span_text.setAttribute('class', 'span_text')
           span_text.innerText = newTaskValue
+          span_text.style.textDecoration = 'line-through'
           span.appendChild(span_text)
 
           let deleteBtn = document.createElement('button')
