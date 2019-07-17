@@ -1,0 +1,200 @@
+<!-- JavaScript lab lab04_v1_todo_list.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 04: Todo List - v1</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      body {
+        margin-top: 2px;
+        font-family: 'Nunito Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        padding: 0 8px 0;
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > h1 {
+        margin: 0;
+        padding-top: 18.720px;
+      }
+      #desktop {
+        background-image: url(https://lar-mo.com/images/virtual_desk.jpg);
+        min-height: 100%;
+        min-width: 1024px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+      }
+      #paper {
+        background-color: #FFFF99;
+        padding: 25px;
+        margin: 25px auto;
+        text-align: left;
+        width: 800px;
+        height:inherit;
+        box-shadow: 10px 10px 5px rgba(0, 0, 0, .5);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content:flex-start;
+        /* background-image:url("data:image/gif;base64,R0lGODlhFgAsAJEAAP////n8/ePv9gAAACH5BAAHAP8ALAAAAAAWACwAAAInhI+py+0Po5y02ouz3rz7D4biSJbmiabqyrZuFsTyTNeBgOf6zgsFADs="); */
+      }
+      #paper > div {
+        padding: 10px;
+        border: 1px solid red;
+        height: 50%;
+      }
+      #paper > div > h1 {
+        margin: 3px 3px 25px;
+      }
+      input[type=text] {
+        font-size: 65%;
+        margin-left: 50px;
+        width: 365px;
+      }
+      #addTaskBtn {
+        font-size: 65%;
+        margin-left: 10px;
+      }
+      .task {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 5px auto;
+        width: 50%;
+      }
+      .task > * {
+        font-size: 125%;
+      }
+      input[type=checkbox] {
+        font-size: 125%;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 04: Todo List</h1>
+      <h3>Let's make a simple todo-list which supports the following operations:</h3>
+      <div>
+        <ul>
+          <li>add an item to the list</li>
+          <li>remove an item from the list</li>
+          <li>mark an item as completed</li>
+        </ul>
+      </div>
+      <div><u>Removed</u> items should disappear entirely.<br/><u>Completed</u> items should appear at the bottom (or in a separate list) with a line through them.
+      </div>
+      <div id="version_info">
+        <span><b>v2: first version of JS todo list lab</b></span>
+      </div>
+    </div>
+    <div id="desktop">
+      <div id="paper">
+        <div>
+          <h1>Pending Tasks
+            <input id="inputNewTask" type="text" placeholder="type something..."/>
+            <button id="addTaskBtn">Add a Task</button>
+          </h1>
+          <div id="pendingTaskRows">
+          <!-- <div class="task">
+            <span>
+              <input type="checkbox"/>
+              <span>Do the dishes</span>
+            </span>
+            <button>Delete</button>
+          </div> -->
+          </div>
+        </div>
+        <hr/>
+        <div>
+          <h1>Completed Tasks</h1>
+          <div id="completedTaskRows">
+          <!-- <div class="task">
+            <span>
+              <input type="checkbox" checked/>
+              <span><strike>Make the bed</strike></span>
+            </span>
+            <button>Delete</button>
+          </div> -->
+          </div>
+        </div>
+      </div> <!-- paper div end -->
+    </div> <!-- desktop div end -->
+    <script type="text/javascript">
+
+        let inputNewTask = document.querySelector('#inputNewTask')
+        let addTaskBtn = document.querySelector('#addTaskBtn')
+        let pendingTaskRows = document.querySelector('#pendingTaskRows')
+        let completedTaskRows = document.querySelector('#completedTaskRows')
+
+        addTaskBtn.onclick = function() {
+          let newTaskValue = inputNewTask.value
+          if (newTaskValue != '') {
+            let div_task = document.createElement('div')
+            div_task.setAttribute('class', 'task')
+            pendingTaskRows.appendChild(div_task)
+
+            let span = document.createElement('span')
+            div_task.appendChild(span)
+
+            let input = document.createElement('input')
+            input.setAttribute('type', 'checkbox')
+            input.onclick = function() {
+              if (input.checked == true) {
+                pendingTaskRows.removeChild(div_task)
+                completedTaskRows.appendChild(div_task)
+              } else {
+                completedTaskRows.removeChild(div_task)
+                pendingTaskRows.appendChild(div_task)
+              }
+            }
+            span.appendChild(input)
+
+            let span_text = document.createElement('span')
+            span_text.innerText = newTaskValue
+            span.appendChild(span_text)
+
+            let deleteBtn = document.createElement('button')
+            deleteBtn.innerText = 'Delete'
+            deleteBtn.onclick = function() {
+              if (pendingTaskRows.contains(div_task)) {
+                pendingTaskRows.removeChild(div_task)
+              } else {
+                completedTaskRows.removeChild(div_task)
+              }
+            }
+            div_task.appendChild(deleteBtn)
+            inputNewTask.value = ''
+          }
+        }
+        inputNewTask.addEventListener("keydown", function (event) {
+            if (event.keyCode === 13) {
+                addTaskBtn.click()
+            }
+        })
+
+    </script>
+  </body>
+</html>
