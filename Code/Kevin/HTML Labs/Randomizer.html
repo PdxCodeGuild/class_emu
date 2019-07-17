@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+
+
+<body>
+<p>Lab 5 - Page Randomizer</p>
+<input type="button" id = "randomize" value="Randomize" >    
+
+
+<script>
+    function choose(choices){
+        var index = Math.floor(Math.random()* choices.length);
+        return choices[index]
+    }
+    
+    let urls = ["http://www.google.com", "http://www.ign.com", "http://www.espn.com", "http://www.watchcartoononline.io", "http://www.xbox.com", "http://www.playstation.com"]
+    let rand_btn = document.querySelector("#randomize");
+    rand_btn.onclick = function(){
+        let page_selection = choose(urls)
+        window.location = page_selection;
+    }    
+    
+        
+    
+        
+</script>
+</body>
+</html>
