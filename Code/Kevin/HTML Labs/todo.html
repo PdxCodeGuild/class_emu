@@ -2,9 +2,6 @@
 <html lang="en">
 <head>
 
-
-
-
 </head>
 
 
@@ -23,8 +20,14 @@
         <input type="button" id="btn" value="Add">
         <output name="submitted_value"></output>
     </div>
-
+    <h2>Da List:</h2>
     <ul id="DaList">
+    
+    
+
+    </ul><br>
+    <h2>Completed List:</h2>
+    <ul id ="CompletedList">
 
     </ul>
     <script>
@@ -33,24 +36,37 @@
         btn.onclick = function() {
             addtoList()
         }
+        
+        
         function addtoList(){
             let listElement = document.createElement("li");
             listElement.innerText = text_input.value;
-            document.querySelector("#DaList").appendChild(listElement);
-            document.querySelector("#text_input").value = "";
+            text_input.value = "";
+            
             let checkbox = document.createElement("INPUT");
             checkbox.setAttribute("type", "checkbox");
             listElement.appendChild(checkbox);
-            checkbox.onclick = function(){
-                strikeThrough();
+           
+            document.querySelector("#DaList").appendChild(listElement);
+            
+            checkbox.onclick = function(element) {
                 
+               strikeThrough(listElement);
+                    
             }
             
         }
         
 
-        function strikeThrough(){
-            
+        function strikeThrough(listElement){
+            if (listElement.style.textDecoration == 'line-through') {   
+                listElement.style.textDecoration = 'none';
+                document.querySelector("#DaList").appendChild(listElement);
+            } else {
+                listElement.style.textDecoration = 'line-through';
+                document.querySelector("#CompletedList").appendChild(listElement);
+            }
+        
         }
     </script>
         
