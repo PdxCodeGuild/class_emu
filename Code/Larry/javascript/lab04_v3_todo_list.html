@@ -1,4 +1,4 @@
-<!-- JavaScript lab lab04_v1_todo_list.html -->
+<!-- JavaScript lab lab04_v3_todo_list.html -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -35,7 +35,7 @@
         top: 40px;
         left: 40px;
       }
-      #getTasksBtn {
+      #reloadTasksBtn {
         position: absolute;
         top: 60px;
         left: 40px;
@@ -120,7 +120,7 @@
     </div>
     <div id="desktop">
       <div><button id="saveTasksBtn">Save</button></div>
-      <div><button id="getTasksBtn">Get</button></div>
+      <div><button id="reloadTasksBtn">Get</button></div>
       <div id="paper">
         <div>
           <h1>Pending Tasks
@@ -154,16 +154,42 @@
     </div> <!-- desktop div end -->
     <script type="text/javascript">
 
+        let pTasksFromLocalStorage = document.querySelector('#pTasksFromLocalStorage')
         let inputNewTask = document.querySelector('#inputNewTask')
         let addTaskBtn = document.querySelector('#addTaskBtn')
         let pendingTaskRows = document.querySelector('#pendingTaskRows')
         let completedTaskRows = document.querySelector('#completedTaskRows')
         let saveTasksBtn = document.querySelector('#saveTasksBtn')
-        let getTasksBtn = document.querySelector('#getTasksBtn')
+        let reloadTasksBtn = document.querySelector('#reloadTasksBtn')
 
-        addTaskBtn.onclick = function() {
-          let newTaskValue = inputNewTask.value
-          // console.log(newTaskValue)
+        function getPendingTasksFromLocalStorage() {
+          let allPendingTasks_lsjson = localStorage.getItem('allPendingTasks')
+          let allPendingTasks_lsobj = JSON.parse(allPendingTasks_lsjson)
+          return allPendingTasks_lsobj
+        }
+        function getCompletedTasksFromLocalStorage() {
+          let allCompletedTasks_lsjson = localStorage.getItem('allCompletedTasks')
+          let allCompletedTasks_lsobj = JSON.parse(allCompletedTasks_lsjson)
+          return allCompletedTasks_lsobj
+        }
+
+        function populateTasksFromLocalStorage() {
+          let savedPendingTasks = getPendingTasksFromLocalStorage()
+          console.log(savedPendingTasks)
+          let savedCompletedTasks = getCompletedTasksFromLocalStorage()
+          console.log(savedCompletedTasks)
+
+          for (let i=0; i<savedPendingTasks.length; ++i) {
+            addNewTask(savedPendingTasks[i])
+          }
+
+          for (let i=0; i<savedCompletedTasks.length; ++i) {
+            addCompletedTask(savedCompletedTasks[i])
+          }
+        }
+        window.onload = populateTasksFromLocalStorage
+
+        function addNewTask(newTaskValue) {
           if (newTaskValue != '') {
             let div_task = document.createElement('div')
             div_task.setAttribute('class', 'task')
@@ -206,32 +232,78 @@
           }
         }
 
+        function addCompletedTask(newTaskValue) {
+          let div_task = document.createElement('div')
+          div_task.setAttribute('class', 'task')
+          completedTaskRows.appendChild(div_task)
+
+          let span = document.createElement('span')
+          div_task.appendChild(span)
+
+          let input = document.createElement('input')
+          input.setAttribute('type', 'checkbox')
+          input.onclick = function() {
+            if (input.checked == true) {
+              completedTaskRows.removeChild(div_task)
+              pendingTaskRows.appendChild(div_task)
+              span_text.style.textDecoration = 'none'
+            } else {
+              pendingTaskRows.removeChild(div_task)
+              completedTaskRows.appendChild(div_task)
+              span_text.style.textDecoration = 'line-through'
+            }
+          }
+          span.appendChild(input)
+
+          let span_text = document.createElement('span')
+          span_text.setAttribute('class', 'span_text')
+          span_text.innerText = newTaskValue
+          span.appendChild(span_text)
+
+          let deleteBtn = document.createElement('button')
+          deleteBtn.innerText = 'Delete'
+          deleteBtn.onclick = function() {
+            if (pendingTaskRows.contains(div_task)) {
+              pendingTaskRows.removeChild(div_task)
+            } else {
+              completedTaskRows.removeChild(div_task)
+            }
+          }
+          div_task.appendChild(deleteBtn)
+          inputNewTask.value = ''
+        }
+
+        addTaskBtn.onclick = function() {
+          addNewTask(inputNewTask.value)
+
+        }
+
         inputNewTask.addEventListener("keydown", function (event) {
           if (event.keyCode === 13) {
               addTaskBtn.click()
           }
         })
 
-        saveTasksBtn.onclick = function() {
-          let x = document.getElementById('pendingTaskRows').querySelectorAll(".span_text")
-          let y = [].slice.call(x)
-          let z = y.map(function(e) { return e.innerText; }).join(",")
+        function saveTasksToLocalStorage() {
+          let w = document.querySelectorAll("#pendingTaskRows .span_text")
+          let x = [].slice.call(w)
+          let y = x.map(function(e) { return e.innerText; })
+          let z = JSON.stringify(y)
           localStorage.setItem('allPendingTasks', z)
-          console.log(z)
 
-          let a = document.getElementById('completedTaskRows').querySelectorAll(".span_text")
+          let a = document.querySelectorAll("#completedTaskRows .span_text")
           let b = [].slice.call(a)
-          let c = b.map(function(e) { return e.innerText; }).join(",")
-          localStorage.setItem('allCompletedTasks', c)
-          console.log(c)
+          let c = b.map(function(e) { return e.innerText; })
+          let d = JSON.stringify(c)
+          localStorage.setItem('allCompletedTasks', d)
+        }
+        saveTasksBtn.onclick = saveTasksToLocalStorage
+        reloadTasksBtn.onclick = function() {
+          getPendingTasksFromLocalStorage()
+          getCompletedTasksFromLocalStorage()
+          // warn user that reload will wipe out any changes
         }
 
-        getTasksBtn.onclick = function() {
-          let getAllPendingTasks = localStorage.getItem('allPendingTasks').split(',')
-          let getAllCompletedTasks = localStorage.getItem('allCompletedTasks').split(',')
-          console.log(getAllPendingTasks)
-          console.log(getAllCompletedTasks)
-        }
     </script>
   </body>
 </html>
