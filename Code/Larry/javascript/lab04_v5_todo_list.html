@@ -1,10 +1,10 @@
-<!-- JavaScript lab lab04_v3_todo_list.html -->
+<!-- JavaScript lab lab04_v5_todo_list.html -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Lab 04: Todo List - v3</title>
+    <title>JS Lab 04: Todo List - v5</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
     <style media="screen" type="text/css">
       html, body {
@@ -77,6 +77,10 @@
       #paper > div > h1 {
         margin: 3px 3px 25px;
       }
+      hr {
+        color: #FFFF99;
+        height: 0.00001px;
+      }
       input[type=text] {
         font-size: 65%;
         margin-left: 50px;
@@ -115,12 +119,10 @@
       <div><u>Removed</u> items should disappear entirely.<br/><u>Completed</u> items should appear at the bottom (or in a separate list) with a line through them.
       </div>
       <div id="version_info">
-        <span><b>v3: adding Save (copy tasks to localStorage) and Retrieve (populate from localStorage) features </b></span>
+        <span><b>v5: replaced <kbd>[].slice.call</kbd> with <kbd>Array.from()</kbd></</b></span>
       </div>
     </div>
     <div id="desktop">
-      <div><button id="saveTasksBtn">Save</button></div>
-      <div><button id="reloadTasksBtn">Get</button></div>
       <div id="paper">
         <div>
           <h1>Pending Tasks
@@ -158,8 +160,6 @@
         let addTaskBtn = document.querySelector('#addTaskBtn')
         let pendingTaskRows = document.querySelector('#pendingTaskRows')
         let completedTaskRows = document.querySelector('#completedTaskRows')
-        let saveTasksBtn = document.querySelector('#saveTasksBtn')
-        let reloadTasksBtn = document.querySelector('#reloadTasksBtn')
 
         function getPendingTasksFromLocalStorage() {
           let allPendingTasks_lsjson = localStorage.getItem('allPendingTasks')
@@ -174,16 +174,18 @@
 
         function populateTasksFromLocalStorage() {
           let savedPendingTasks = getPendingTasksFromLocalStorage()
-          console.log(savedPendingTasks)
           let savedCompletedTasks = getCompletedTasksFromLocalStorage()
-          console.log(savedCompletedTasks)
 
-          for (let i=0; i<savedPendingTasks.length; ++i) {
-            addNewTask(savedPendingTasks[i])
+          if (savedPendingTasks !== null) {
+            for (let i=0; i<savedPendingTasks.length; ++i) {
+              addNewTask(savedPendingTasks[i])
+            }
           }
 
-          for (let i=0; i<savedCompletedTasks.length; ++i) {
-            addCompletedTask(savedCompletedTasks[i])
+          if (savedCompletedTasks !== null) {
+            for (let i=0; i<savedCompletedTasks.length; ++i) {
+              addCompletedTask(savedCompletedTasks[i])
+            }
           }
         }
         window.onload = populateTasksFromLocalStorage
@@ -209,6 +211,7 @@
                 pendingTaskRows.appendChild(div_task)
                 span_text.style.textDecoration = 'none'
               }
+            saveTasksToLocalStorage()
             }
             span.appendChild(input)
 
@@ -225,6 +228,7 @@
               } else {
                 completedTaskRows.removeChild(div_task)
               }
+            saveTasksToLocalStorage()
             }
             div_task.appendChild(deleteBtn)
             inputNewTask.value = ''
@@ -252,6 +256,7 @@
               completedTaskRows.appendChild(div_task)
               span_text.style.textDecoration = 'line-through'
             }
+          saveTasksToLocalStorage()
           }
           span.appendChild(input)
 
@@ -269,6 +274,7 @@
             } else {
               completedTaskRows.removeChild(div_task)
             }
+          saveTasksToLocalStorage()
           }
           div_task.appendChild(deleteBtn)
           inputNewTask.value = ''
@@ -276,7 +282,7 @@
 
         addTaskBtn.onclick = function() {
           addNewTask(inputNewTask.value)
-
+          saveTasksToLocalStorage()
         }
 
         inputNewTask.addEventListener("keydown", function (event) {
@@ -287,22 +293,19 @@
 
         function saveTasksToLocalStorage() {
           let w = document.querySelectorAll("#pendingTaskRows .span_text")
-          let x = [].slice.call(w)
+          let x = Array.from(w)
           let y = x.map(function(e) { return e.innerText; })
           let z = JSON.stringify(y)
           localStorage.setItem('allPendingTasks', z)
 
           let a = document.querySelectorAll("#completedTaskRows .span_text")
-          let b = [].slice.call(a)
+            console.log(a)
+          let b = Array.from(a)
           let c = b.map(function(e) { return e.innerText; })
+            console.log(c)
           let d = JSON.stringify(c)
+            console.log("stringified: " + d)
           localStorage.setItem('allCompletedTasks', d)
-        }
-        saveTasksBtn.onclick = saveTasksToLocalStorage
-        reloadTasksBtn.onclick = function() {
-          getPendingTasksFromLocalStorage()
-          getCompletedTasksFromLocalStorage()
-          // warn user that reload will wipe out any changes
         }
 
     </script>
