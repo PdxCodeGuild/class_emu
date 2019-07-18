@@ -299,12 +299,9 @@
           localStorage.setItem('allPendingTasks', z)
 
           let a = document.querySelectorAll("#completedTaskRows .span_text")
-            console.log(a)
           let b = Array.from(a)
           let c = b.map(function(e) { return e.innerText; })
-            console.log(c)
           let d = JSON.stringify(c)
-            console.log("stringified: " + d)
           localStorage.setItem('allCompletedTasks', d)
         }
 
