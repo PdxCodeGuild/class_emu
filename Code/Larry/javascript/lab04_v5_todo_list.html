@@ -178,46 +178,69 @@
 
           if (savedPendingTasks !== null) {
             for (let i=0; i<savedPendingTasks.length; ++i) {
-              addNewTask(savedPendingTasks[i])
+              addTask(savedPendingTasks[i])
             }
           }
 
           if (savedCompletedTasks !== null) {
             for (let i=0; i<savedCompletedTasks.length; ++i) {
-              addCompletedTask(savedCompletedTasks[i])
+              addTask(savedCompletedTasks[i], true)
             }
           }
         }
         window.onload = populateTasksFromLocalStorage
 
-        function addNewTask(newTaskValue, completed) {
-          if (newTaskValue != '') {
+        function addTask(taskDetail, completed) {
+          if (taskDetail != '') {
             let div_task = document.createElement('div')
             div_task.setAttribute('class', 'task')
-            pendingTaskRows.appendChild(div_task)
+            if (completed == null) {
+              pendingTaskRows.appendChild(div_task)
+            } else {
+              completedTaskRows.appendChild(div_task)
+            }
 
             let span = document.createElement('span')
             div_task.appendChild(span)
 
             let input = document.createElement('input')
             input.setAttribute('type', 'checkbox')
-            input.onclick = function() {
-              if (input.checked == true) {
-                pendingTaskRows.removeChild(div_task)
-                completedTaskRows.appendChild(div_task)
-                span_text.style.textDecoration = 'line-through'
+              if (completed == null) {
+                input.onclick = function() {
+                  if (input.checked == true) {
+                    pendingTaskRows.removeChild(div_task)
+                    completedTaskRows.appendChild(div_task)
+                    span_text.style.textDecoration = 'line-through'
+                  } else {
+                    completedTaskRows.removeChild(div_task)
+                    pendingTaskRows.appendChild(div_task)
+                    span_text.style.textDecoration = 'none'
+                  }
+                saveTasksToLocalStorage()
+                }
               } else {
-                completedTaskRows.removeChild(div_task)
-                pendingTaskRows.appendChild(div_task)
-                span_text.style.textDecoration = 'none'
+                input.setAttribute('checked', null)
+                input.onclick = function() {
+                  if (input.checked == false) {
+                    completedTaskRows.removeChild(div_task)
+                    pendingTaskRows.appendChild(div_task)
+                    span_text.style.textDecoration = 'none'
+                  } else {
+                    pendingTaskRows.removeChild(div_task)
+                    completedTaskRows.appendChild(div_task)
+                    span_text.style.textDecoration = 'line-through'
+                  }
+                saveTasksToLocalStorage()
+                }
               }
-            saveTasksToLocalStorage()
-            }
             span.appendChild(input)
 
             let span_text = document.createElement('span')
             span_text.setAttribute('class', 'span_text')
-            span_text.innerText = newTaskValue
+            span_text.innerText = taskDetail
+            if (completed != null) {
+              span_text.style.textDecoration = 'line-through'
+            }
             span.appendChild(span_text)
 
             let deleteBtn = document.createElement('button')
@@ -235,53 +258,8 @@
           }
         }
 
-        function addCompletedTask(newTaskValue) {
-          let div_task = document.createElement('div')
-          div_task.setAttribute('class', 'task')
-          completedTaskRows.appendChild(div_task)
-
-          let span = document.createElement('span')
-          div_task.appendChild(span)
-
-          let input = document.createElement('input')
-          input.setAttribute('type', 'checkbox')
-          input.setAttribute('checked', null)
-          input.onclick = function() {
-            if (input.checked == false) {
-              completedTaskRows.removeChild(div_task)
-              pendingTaskRows.appendChild(div_task)
-              span_text.style.textDecoration = 'none'
-            } else {
-              pendingTaskRows.removeChild(div_task)
-              completedTaskRows.appendChild(div_task)
-              span_text.style.textDecoration = 'line-through'
-            }
-          saveTasksToLocalStorage()
-          }
-          span.appendChild(input)
-
-          let span_text = document.createElement('span')
-          span_text.setAttribute('class', 'span_text')
-          span_text.innerText = newTaskValue
-          span_text.style.textDecoration = 'line-through'
-          span.appendChild(span_text)
-
-          let deleteBtn = document.createElement('button')
-          deleteBtn.innerText = 'Delete'
-          deleteBtn.onclick = function() {
-            if (pendingTaskRows.contains(div_task)) {
-              pendingTaskRows.removeChild(div_task)
-            } else {
-              completedTaskRows.removeChild(div_task)
-            }
-          saveTasksToLocalStorage()
-          }
-          div_task.appendChild(deleteBtn)
-          inputNewTask.value = ''
-        }
-
         addTaskBtn.onclick = function() {
-          addNewTask(inputNewTask.value)
+          addTask(inputNewTask.value)
           saveTasksToLocalStorage()
         }
 
