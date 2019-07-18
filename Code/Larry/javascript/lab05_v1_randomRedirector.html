@@ -1,0 +1,137 @@
+<!-- JavaScript lab lab04_v5_todo_list.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 04: Todo List - v5</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        background-color: #C0C0C0;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+      }
+      body {
+        margin-top: 2px;
+        font-family: 'Open Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > * {
+        margin: 0 8px 0;
+        padding-top: 18.720px;
+      }
+      .monospace {
+        font-family: 'Roboto Mono', monospace;
+        color: blue;
+      }
+      #container {
+        background-color: rgba(255,255,255,0.5);
+        height: 100%;
+        margin: 0;
+        padding: 10px;
+        width: 100%;
+      }
+      #code {
+        /* font-family: 'Roboto Mono', monospace; */
+      }
+      button {
+        font-size: 24px;
+        padding: 15px 32px;
+        margin: 25px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 05: Random Redirector</h1>
+      <div>Create a page which randomly redirectly to another.<br>Create an array of urls (as strings), and randomly pick one using <span class="monospace">Math.random()</span>.<br>Then redirect to the page using <span class="monospace">window.location</span>.
+      </div>
+      <div id="version_info">
+        <span><b>v1: first iteration of Random Redirector</b></span>
+      </div>
+    </div>
+    <div id="container">
+      <button id="bt_randomURL">click me to redirect to another page</button>
+      <div id="code">
+        <pre>
+          &lt;script type="text/javascript"&gt;
+          // GOAL: Create a page which randomly redirectly to another.
+
+          // Get elements out of the DOM
+          let container = document.querySelector('#container')
+          let bt_randomURL = document.querySelector('#bt_randomURL')
+
+          // Define an array of urls (as strings)
+          let arr_urls = [
+            "https://google.com",
+            "https://linux.org",
+            "https://atom.io",
+            "https://python.org/",
+            "https://pdxcodeguild.com",
+            "https://vuejs.org",
+            "https://www.w3schools.com/",
+            "https://json.org/",
+            "https://developer.mozilla.org",
+            "https://zenfolio.com/‎"
+          ]
+
+          // Randomly pick one using `Math.random()`
+          x = Math.floor(Math.random()*arr_urls.length)
+
+          // Redirect to the page using `window.location`.
+          bt_randomURL.onclick = function() {
+              window.location.href = arr_urls[x]
+          }
+          &lt;/script&gt;
+        </pre>
+      </div> <!-- code div end -->
+    </div> <!-- container div end -->
+    <script type="text/javascript">
+    // GOAL: Create a page which randomly redirectly to another.
+
+    // Get elements out of the DOM
+    let container = document.querySelector('#container')
+    let bt_randomURL = document.querySelector('#bt_randomURL')
+
+    // Define an array of urls (as strings)
+    let arr_urls = [
+      "https://google.com",
+      "https://linux.org",
+      "https://atom.io",
+      "https://python.org/",
+      "https://pdxcodeguild.com",
+      "https://vuejs.org",
+      "https://www.w3schools.com/",
+      "https://json.org/",
+      "https://developer.mozilla.org",
+      "https://zenfolio.com/‎"
+    ]
+
+    // Randomly pick one using `Math.random()`
+    x = Math.floor(Math.random()*arr_urls.length)
+
+    // Redirect to the page using `window.location`.
+    bt_randomURL.onclick = function() {
+        window.location.href = arr_urls[x]
+    }
+
+    // Testing Math.random()
+    // for (let i=0;i<10;++i) {
+    //   x = Math.floor(Math.random()*arr_urls.length)
+    //   console.log(x)
+    // }
+
+    </script>
+  </body>
+</html>
