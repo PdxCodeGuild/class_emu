@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+    
+    #display{
+        background-color: black;
+        height: 50px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+    }
+    
+    
+    </style>
+
+</head>
+<body>
+    <p>Lab 6: Clocks</p>
+
+    <input type="text" id="display" name = "display" readonly >
+</body>
+
+
+<script>
+function addZero(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+function clock()
+{
+    let date = new Date();
+let time = date.toTimeString();
+let hours = addZero(String(date.getHours()));
+let minutes = addZero(String(date.getMinutes()));
+let seconds = addZero(String(date.getSeconds()));
+let divide = ":"
+let fulltime = hours.concat(divide,minutes,divide,seconds);
+let display = document.querySelector("#display");
+display.value = fulltime;
+//document.querySelector("#display2").innerHTML = fulltime;
+}
+
+let myVar = setInterval(clock, 1000);
+</script>
+
+
+</html>
