@@ -175,9 +175,7 @@
 
         function populateTasksFromLocalStorage() {
           let savedPendingTasks = getPendingTasksFromLocalStorage()
-          // console.log(savedPendingTasks)
           let savedCompletedTasks = getCompletedTasksFromLocalStorage()
-          // console.log(savedCompletedTasks)
 
           if (savedPendingTasks !== null) {
             for (let i=0; i<savedPendingTasks.length; ++i) {
