@@ -1,10 +1,10 @@
-<!-- JavaScript lab lab04_v2_todo_list.html -->
+<!-- JavaScript lab lab04_v3_todo_list.html -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Lab 04: Todo List - v2</title>
+    <title>JS Lab 04: Todo List - v3</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
     <style media="screen" type="text/css">
       html, body {
@@ -29,6 +29,16 @@
       #lab_instructions > * {
         margin: 0 8px 0;
         padding-top: 18.720px;
+      }
+      #saveTasksBtn {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+      }
+      #reloadTasksBtn {
+        position: absolute;
+        top: 60px;
+        left: 40px;
       }
       #desktop {
         background-image: url(https://lar-mo.com/images/virtual_desk.jpg);
@@ -57,7 +67,7 @@
         flex-direction: column;
         align-items: stretch;
         justify-content:flex-start;
-        background-image:url("data:image/gif;base64,R0lGODlhFgAsAJEAAP////n8/ePv9gAAACH5BAAHAP8ALAAAAAAWACwAAAInhI+py+0Po5y02ouz3rz7D4biSJbmiabqyrZuFsTyTNeBgOf6zgsFADs=");
+        /* background-image:url("data:image/gif;base64,R0lGODlhFgAsAJEAAP////n8/ePv9gAAACH5BAAHAP8ALAAAAAAWACwAAAInhI+py+0Po5y02ouz3rz7D4biSJbmiabqyrZuFsTyTNeBgOf6zgsFADs="); */
       }
       #paper > div {
         padding: 10px;
@@ -66,6 +76,10 @@
       }
       #paper > div > h1 {
         margin: 3px 3px 25px;
+      }
+      hr {
+        color: #FFFF99;
+        height: 0.00001px;
       }
       input[type=text] {
         font-size: 65%;
@@ -105,7 +119,7 @@
       <div><u>Removed</u> items should disappear entirely.<br/><u>Completed</u> items should appear at the bottom (or in a separate list) with a line through them.
       </div>
       <div id="version_info">
-        <span><b>v2: first iteration of the JS lab 04: todo list</b></span>
+        <span><b>v4: adding Save feature to all button clicks</b></span>
       </div>
     </div>
     <div id="desktop">
@@ -142,13 +156,44 @@
     </div> <!-- desktop div end -->
     <script type="text/javascript">
 
+        let pTasksFromLocalStorage = document.querySelector('#pTasksFromLocalStorage')
         let inputNewTask = document.querySelector('#inputNewTask')
         let addTaskBtn = document.querySelector('#addTaskBtn')
         let pendingTaskRows = document.querySelector('#pendingTaskRows')
         let completedTaskRows = document.querySelector('#completedTaskRows')
 
-        addTaskBtn.onclick = function() {
-          let newTaskValue = inputNewTask.value
+        function getPendingTasksFromLocalStorage() {
+          let allPendingTasks_lsjson = localStorage.getItem('allPendingTasks')
+          let allPendingTasks_lsobj = JSON.parse(allPendingTasks_lsjson)
+          return allPendingTasks_lsobj
+        }
+        function getCompletedTasksFromLocalStorage() {
+          let allCompletedTasks_lsjson = localStorage.getItem('allCompletedTasks')
+          let allCompletedTasks_lsobj = JSON.parse(allCompletedTasks_lsjson)
+          return allCompletedTasks_lsobj
+        }
+
+        function populateTasksFromLocalStorage() {
+          let savedPendingTasks = getPendingTasksFromLocalStorage()
+          // console.log(savedPendingTasks)
+          let savedCompletedTasks = getCompletedTasksFromLocalStorage()
+          // console.log(savedCompletedTasks)
+
+          if (savedPendingTasks !== null) {
+            for (let i=0; i<savedPendingTasks.length; ++i) {
+              addNewTask(savedPendingTasks[i])
+            }
+          }
+
+          if (savedCompletedTasks !== null) {
+            for (let i=0; i<savedCompletedTasks.length; ++i) {
+              addCompletedTask(savedCompletedTasks[i])
+            }
+          }
+        }
+        window.onload = populateTasksFromLocalStorage
+
+        function addNewTask(newTaskValue, completed) {
           if (newTaskValue != '') {
             let div_task = document.createElement('div')
             div_task.setAttribute('class', 'task')
@@ -163,14 +208,18 @@
               if (input.checked == true) {
                 pendingTaskRows.removeChild(div_task)
                 completedTaskRows.appendChild(div_task)
+                span_text.style.textDecoration = 'line-through'
               } else {
                 completedTaskRows.removeChild(div_task)
                 pendingTaskRows.appendChild(div_task)
+                span_text.style.textDecoration = 'none'
               }
+            saveTasksToLocalStorage()
             }
             span.appendChild(input)
 
             let span_text = document.createElement('span')
+            span_text.setAttribute('class', 'span_text')
             span_text.innerText = newTaskValue
             span.appendChild(span_text)
 
@@ -182,17 +231,83 @@
               } else {
                 completedTaskRows.removeChild(div_task)
               }
+            saveTasksToLocalStorage()
             }
             div_task.appendChild(deleteBtn)
             inputNewTask.value = ''
           }
         }
 
-        inputNewTask.addEventListener("keydown", function (event) {
-            if (event.keyCode === 13) {
-                addTaskBtn.click()
+        function addCompletedTask(newTaskValue) {
+          let div_task = document.createElement('div')
+          div_task.setAttribute('class', 'task')
+          completedTaskRows.appendChild(div_task)
+
+          let span = document.createElement('span')
+          div_task.appendChild(span)
+
+          let input = document.createElement('input')
+          input.setAttribute('type', 'checkbox')
+          input.setAttribute('checked', null)
+          input.onclick = function() {
+            if (input.checked == false) {
+              completedTaskRows.removeChild(div_task)
+              pendingTaskRows.appendChild(div_task)
+              span_text.style.textDecoration = 'none'
+            } else {
+              pendingTaskRows.removeChild(div_task)
+              completedTaskRows.appendChild(div_task)
+              span_text.style.textDecoration = 'line-through'
             }
+          saveTasksToLocalStorage()
+          }
+          span.appendChild(input)
+
+          let span_text = document.createElement('span')
+          span_text.setAttribute('class', 'span_text')
+          span_text.innerText = newTaskValue
+          span_text.style.textDecoration = 'line-through'
+          span.appendChild(span_text)
+
+          let deleteBtn = document.createElement('button')
+          deleteBtn.innerText = 'Delete'
+          deleteBtn.onclick = function() {
+            if (pendingTaskRows.contains(div_task)) {
+              pendingTaskRows.removeChild(div_task)
+            } else {
+              completedTaskRows.removeChild(div_task)
+            }
+          saveTasksToLocalStorage()
+          }
+          div_task.appendChild(deleteBtn)
+          inputNewTask.value = ''
+        }
+
+        addTaskBtn.onclick = function() {
+          addNewTask(inputNewTask.value)
+          saveTasksToLocalStorage()
+        }
+
+        inputNewTask.addEventListener("keydown", function (event) {
+          if (event.keyCode === 13) {
+              addTaskBtn.click()
+          }
         })
+
+        function saveTasksToLocalStorage() {
+          let w = document.querySelectorAll("#pendingTaskRows .span_text")
+          let x = [].slice.call(w)
+          let y = x.map(function(e) { return e.innerText; })
+          let z = JSON.stringify(y)
+          localStorage.setItem('allPendingTasks', z)
+
+          let a = document.querySelectorAll("#completedTaskRows .span_text")
+          let b = [].slice.call(a)
+          let c = b.map(function(e) { return e.innerText; })
+          let d = JSON.stringify(c)
+          localStorage.setItem('allCompletedTasks', d)
+        }
+
     </script>
   </body>
 </html>
