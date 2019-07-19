@@ -214,6 +214,7 @@
         }
         bt_clear.onclick = function() {
           clearInterval(stopwatch)
+          bt_stop.setAttribute('disabled','true')
           sw_display.innerText = '00:00:00.000'
           curr_time.setHours(0,0,0,0)
           laps.innerText = ''
