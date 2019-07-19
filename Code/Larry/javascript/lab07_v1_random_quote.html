@@ -16,7 +16,6 @@
         min-height: 100%;
         padding: 0;
         width: 100%;
-        font-weight:
       }
       body {
         font-family: 'Open Sans', sans-serif;
@@ -52,12 +51,12 @@
       }
       #qotd_header {
         font-size: 65px;
-        font-weight: 500;
+        font-weight: 700;
       }
       #qotd_display {
         background-color: rgba(128,255,128,0.5);
         font-size: 40px;
-        font-weight: 300;
+        font-weight: 400;
         margin-top: 10px;
         padding: 10px;
         text-align: center;
@@ -70,14 +69,6 @@
       }
       ul {
         padding: 0;
-      }
-      #laps {
-        font-weight: bold;
-        margin: 25px auto 5px;
-      }
-      #lap_times {
-        list-style-type: none;
-        margin: 0;
       }
     </style>
   </head>
@@ -109,20 +100,21 @@
             let bt_reset = document.querySelector('#bt_reset')
             let url = 'https://favqs.com/api/qotd'
 
-            bt_getQotd.onclick = function () {
+            function fetchQotd() {
               axios.get(url)
               .then(function (response) {
                 let data = response.data
-                console.log(data)
-                  let qotd_body = data.quote.body
-                  let qotd_author = data.quote.author
-                  let qotd_url = data.quote.url
-                  qotd_display.style.fontSize = '18px'
-                  qotd_display.style.textAlign = 'justify'
-                  qotd_display.innerText = '"' + qotd_body + '"\n---\nAuthor: ' + qotd_author + '\nURL: ' + qotd_url
+                let qotd_body = data.quote.body
+                let qotd_author = data.quote.author
+                let qotd_url = data.quote.url
+                qotd_display.style.fontSize = '18px'
+                qotd_display.style.textAlign = 'justify'
+                qotd_display.innerText = '"' + qotd_body + '"\n---\nAuthor: ' + qotd_author + '\nURL: ' + qotd_url
               })
             }
 
+            bt_getQotd.onclick = fetchQotd
+            
             bt_reset.onclick = function() {
               qotd_display.style.fontSize = '40px'
               qotd_display.style.textAlign = 'center'
@@ -138,19 +130,20 @@
       let bt_reset = document.querySelector('#bt_reset')
       let url = 'https://favqs.com/api/qotd'
 
-      bt_getQotd.onclick = function () {
+      function fetchQotd() {
         axios.get(url)
         .then(function (response) {
           let data = response.data
-          console.log(data)
-            let qotd_body = data.quote.body
-            let qotd_author = data.quote.author
-            let qotd_url = data.quote.url
-            qotd_display.style.fontSize = '18px'
-            qotd_display.style.textAlign = 'justify'
-            qotd_display.innerText = '"' + qotd_body + '"\n---\nAuthor: ' + qotd_author + '\nURL: ' + qotd_url
+          let qotd_body = data.quote.body
+          let qotd_author = data.quote.author
+          let qotd_url = data.quote.url
+          qotd_display.style.fontSize = '18px'
+          qotd_display.style.textAlign = 'justify'
+          qotd_display.innerText = '"' + qotd_body + '"\n---\nAuthor: ' + qotd_author + '\nURL: ' + qotd_url
         })
       }
+
+      bt_getQotd.onclick = fetchQotd
 
       bt_reset.onclick = function() {
         qotd_display.style.fontSize = '40px'
