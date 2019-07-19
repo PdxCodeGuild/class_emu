@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      #container {
+        width:600px;
+      }
+      #container > a {
+        margin:2px;
+        display:inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="input_text"></textarea>
+    <br/>
+    <button id="btn">visualize</button>
+    <div id="container">
+    </div>
+    <script>
+      let input_text = document.querySelector('#input_text')
+      let btn = document.querySelector('#btn')
+      let container = document.querySelector('#container')
+      
+      btn.onclick = function() {
+        let text = input_text.value
+        let words = text.split(' ')
+        
+        for (let i=0; i<words.length; ++i) {
+          let a = document.createElement('a')
+          a.setAttribute('href', 'https://www.google.com/search?q=' + words[i])
+          a.setAttribute('target', '_blank')
+          a.innerText = words[i]
+          container.appendChild(a)
+        }
+      }
+      
+      
+    </script>
+  </body>
+</html>

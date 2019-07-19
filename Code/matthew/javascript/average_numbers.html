@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+      input[type="number"] {
+        width:60px;
+        margin:10px;
+      }
+    </style>
+  </head>
+  <body>
+    <span id="container">
+      <button id="bt_add">+</button>
+    </span>
+    
+    <button id="bt_average">calculate</button>
+    <span id="span_output"></span>
+    <script type="text/javascript">
+      
+      let container = document.querySelector('#container')
+      let bt_add = document.querySelector('#bt_add')
+      let bt_average = document.querySelector('#bt_average')
+      let span_output = document.querySelector('#span_output')
+      
+      let inputs = []
+      function addInput() {
+        let input = document.createElement('input')
+        input.setAttribute('type', 'number')
+        input.value = 0
+        container.appendChild(input)
+        inputs.push(input)
+      }
+      
+      bt_add.onclick = addInput
+      bt_add.onclick = function() {
+        addInput()
+      }
+      
+      bt_average.onclick = function() {
+        
+        let inputs = document.querySelectorAll('#container > input[type="number"]')
+        
+        let nums = []
+        for (let i=0; i<inputs.length; ++i) {
+          nums.push(parseInt(inputs[i].value))
+        }
+        nums = [1, 1, 2, 1, 3, 4]
+        
+        // let total = 0
+        // for (let i=0; i<inputs.length; ++i) {
+        //   total += parseInt(inputs[i].value)
+        // }
+        
+        let average = 0
+        for (let i=0; i<nums.length; ++i) {
+          average += nums[i]
+        }
+        average /= nums.length
+        
+        nums.sort()
+        let median = nums[Math.floor(nums.length/2)]
+        
+        // nums        = [1, 1, 2, 3, 4, 4, 5]
+        // unique_nums = [1, 2, 3, 4, 5]
+        // counts      = [2, 1, 1, 2, 1]
+        
+        unique_nums = []
+        counts = []
+        for (let i=0; i<nums.length; ++i) {
+          let index = unique_nums.indexOf(nums[i])
+          if (index >= 0) {
+            counts[index] += 1
+          } else {
+            unique_nums.push(nums[i])
+            counts.push(1)
+          }
+        }
+        
+        // console.log(unique_nums)
+        // console.log(counts)
+        let max = Math.max(...counts)
+        console.log(max)
+        let index = counts.indexOf(max)
+        let mode = unique_nums[index]
+        
+        span_output.innerText = 'Average: ' + average
+                                + ' Median: ' + median
+                                + ' Mode: ' + mode + ' (' + max + ')'
+      }
+      
+    </script>
+  </body>
+</html>
