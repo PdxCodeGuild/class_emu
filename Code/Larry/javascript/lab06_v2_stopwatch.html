@@ -1,0 +1,234 @@
+<!-- JavaScript lab: lab06_v2_stopwatch.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 06: Stopwatch</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        background-color: #C0C0C0;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+        font-weight:
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > * {
+        margin: 0 8px 0;
+        padding-top: 18.720px;
+      }
+      .monospace {
+        font-family: 'Roboto Mono', monospace;
+        color: blue;
+      }
+      #container {
+        background-color: rgba(255,255,255,0.5);
+        height: 100%;
+        margin: 0;
+        padding: 10px auto;
+        width: 100%;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+      #sw_display {
+        background-color: rgba(128,255,128,0.5);
+        font-size: 40px;
+        font-weight: 300;
+        height: 55px;
+        margin-top: 10px;
+        text-align: center;
+        width: 50%;
+      }
+      button {
+        font-size: 24px;
+        padding: 15px 32px;
+        margin: 25px 10px auto;
+      }
+      ul {
+        padding: 0;
+      }
+      #laps {
+        font-weight: bold;
+        margin: 25px auto 5px;
+      }
+      #lap_times {
+        list-style-type: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 06: Stopwatch</h1>
+      <div>Next make a stopwatch. Start with a button that says 'start'. You can then create a <span class="monospace">date</span> to keep track of the time, and use <span class="monospace">setHours(0,0,0,0)</span>. This function will set the date's time to 0 hours, 0 minutes, 0 seconds, and 0 milliseconds. Then set an interval to add 1 to the seconds of that date every second, and show the time in an html element. Add a 'lap' button which takes takes the current time and shows it in a separate list. E.g.
+        <ul>
+          <li>Lap 1: 00:01:03</li>
+          <li>Lap 2: 00:02:34</li>
+          <li>Lap 3: 00:04:21</li>
+        </ul>
+      </div>
+      <div id="version_info">
+        <span><b>v2: first iteration of JS stopwatch</b></span>
+      </div>
+    </div>
+    <div id="container">
+        <div class="flex">
+          <span id="sw_display">00:00:00.000</span>
+        </div>
+        <div class="flex">
+          <span>
+            <button id="bt_start">Start</button>
+            <button id="bt_lap">Lap</button>
+            <button id="bt_stop">Stop</button>
+            <button id="bt_clear">Clear</button>
+          </span>
+        </div>
+        <div class="flex">
+          <div id="laps"></div>
+          <ul id="lap_times"></ul>
+        </div>
+        <div id="code">
+          <pre>
+            &lt;script type="text/javascript"&gt;
+            let sw_display = document.querySelector('#sw_display')
+            let bt_start = document.querySelector('#bt_start')
+            let bt_lap = document.querySelector('#bt_lap')
+            let bt_stop = document.querySelector('#bt_stop')
+            let bt_clear = document.querySelector('#bt_clear')
+            let laps = document.querySelector('#laps')
+            let lap_times = document.querySelector('#lap_times')
+            let counter = 0
+
+            let curr_time = new Date()
+            curr_time.setHours(0,0,0,0)
+
+            function getBaseTime() {
+              let hours = curr_time.getHours()
+              hours = hours < 10 ? '0'+hours : hours
+              let minutes = curr_time.getMinutes()
+              minutes = minutes < 10 ? '0'+minutes : minutes
+              let seconds = curr_time.getSeconds()
+              seconds = seconds < 10 ? '0'+seconds : seconds
+              let milliseconds = curr_time.getMilliseconds()
+              if (milliseconds < 10) {
+                milliseconds = '00'+milliseconds
+              } else if (milliseconds < 100) {
+                milliseconds = '0'+milliseconds
+              }
+              sw_display.innerText = hours + ':' + minutes + ':' + seconds + '.' + milliseconds
+              milliseconds = curr_time.setMilliseconds(curr_time.getMilliseconds() + 10)
+            }
+
+            function startCounter() {
+              let stopwatch = setInterval(function() {
+                getBaseTime()
+              }, 10)
+
+              bt_stop.onclick = function() {
+                clearInterval(stopwatch)
+              }
+              bt_clear.onclick = function() {
+                if (typeof stopwatch != 'undefined') {
+                  clearInterval(stopwatch)
+                }
+                sw_display.innerText = '00:00:00.000'
+                curr_time.setHours(0,0,0,0)
+                laps.innerText = ''
+                lap_times.innerHTML = ''
+                counter = 0
+              }
+            }
+
+            bt_start.onclick = startCounter
+
+            bt_lap.onclick = function() {
+              let li = document.createElement('li')
+              counter++
+              li.innerText = "Lap " + counter + ": " + sw_display.innerText
+              lap_times.appendChild(li)
+            }
+            &lt;/script&gt;
+          </pre>
+        </div> <!-- code div end -->
+    </div> <!-- container div end -->
+    <script type="text/javascript">
+      let sw_display = document.querySelector('#sw_display')
+      let bt_start = document.querySelector('#bt_start')
+      let bt_lap = document.querySelector('#bt_lap')
+      let bt_stop = document.querySelector('#bt_stop')
+      let bt_clear = document.querySelector('#bt_clear')
+      let laps = document.querySelector('#laps')
+      let lap_times = document.querySelector('#lap_times')
+      let counter = 0
+
+      let curr_time = new Date()
+      curr_time.setHours(0,0,0,0)
+
+      function getBaseTime() {
+        let hours = curr_time.getHours()
+        hours = hours < 10 ? '0'+hours : hours
+        let minutes = curr_time.getMinutes()
+        minutes = minutes < 10 ? '0'+minutes : minutes
+        let seconds = curr_time.getSeconds()
+        seconds = seconds < 10 ? '0'+seconds : seconds
+        let milliseconds = curr_time.getMilliseconds()
+        if (milliseconds < 10) {
+          milliseconds = '00'+milliseconds
+        } else if (milliseconds < 100) {
+          milliseconds = '0'+milliseconds
+        }
+        sw_display.innerText = hours + ':' + minutes + ':' + seconds + '.' + milliseconds
+        milliseconds = curr_time.setMilliseconds(curr_time.getMilliseconds() + 10)
+      }
+
+      function startCounter() {
+        let stopwatch = setInterval(function() {
+          getBaseTime()
+        }, 10)
+
+        bt_stop.onclick = function() {
+          clearInterval(stopwatch)
+        }
+        bt_clear.onclick = function() {
+          if (typeof stopwatch != 'undefined') {
+            clearInterval(stopwatch)
+          }
+          sw_display.innerText = '00:00:00.000'
+          curr_time.setHours(0,0,0,0)
+          laps.innerText = ''
+          lap_times.innerHTML = ''
+          counter = 0
+        }
+      }
+
+      bt_start.onclick = startCounter
+
+      bt_lap.onclick = function() {
+        let li = document.createElement('li')
+        counter++
+        li.innerText = "Lap " + counter + ": " + sw_display.innerText
+        lap_times.appendChild(li)
+      }
+
+    </script>
+  </body>
+</html>
