@@ -1,0 +1,162 @@
+<!-- JavaScript lab: lab07_v1_random_quote.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 07: Random Quote</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        background-color: #C0C0C0;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+        font-weight:
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > * {
+        margin: 0 8px 0;
+        padding-top: 18.720px;
+      }
+      .monospace {
+        font-family: 'Roboto Mono', monospace;
+        color: blue;
+      }
+      #container {
+        background-color: rgba(255,255,255,0.5);
+        height: 100%;
+        margin: 0;
+        padding: 10px auto;
+        width: 100%;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+      #qotd_header {
+        font-size: 65px;
+        font-weight: 500;
+      }
+      #qotd_display {
+        background-color: rgba(128,255,128,0.5);
+        font-size: 40px;
+        font-weight: 300;
+        margin-top: 10px;
+        padding: 10px;
+        text-align: center;
+        width: 50%;
+      }
+      button {
+        font-size: 24px;
+        padding: 15px 32px;
+        margin: 25px 10px auto;
+      }
+      ul {
+        padding: 0;
+      }
+      #laps {
+        font-weight: bold;
+        margin: 25px auto 5px;
+      }
+      #lap_times {
+        list-style-type: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 07: Random Quote</h1>
+      <div>Use the <span class="monospace">favqs.com api</span> to show a random quote. To start, use <span class="monospace">https://favqs.com/api/qotd</span> to GET a quote, then display it on the page.
+      </div>
+      <div id="version_info">
+        <span><b>v1: first iteration of JS random quote</b></span>
+      </div>
+    </div>
+    <div id="container">
+        <div class="flex">
+          <div id="qotd_header">Quote of the Day</div>
+          <span id="qotd_display">"There is no spoon."<br/>-Spoon Boy</span>
+        </div>
+        <div class="flex">
+          <span>
+            <button id="bt_getQotd">Fetch another quote</button>
+            <button id="bt_reset">Reset</button>
+          </span>
+        </div>
+        <div id="code">
+          <pre>
+            &lt;script type="text/javascript"&gt;
+            let qotd_display = document.querySelector('#qotd_display')
+            let bt_getQotd = document.querySelector('#bt_getQotd')
+            let bt_reset = document.querySelector('#bt_reset')
+            let url = 'https://favqs.com/api/qotd'
+
+            bt_getQotd.onclick = function () {
+              axios.get(url)
+              .then(function (response) {
+                let data = response.data
+                console.log(data)
+                  let qotd_body = data.quote.body
+                  let qotd_author = data.quote.author
+                  let qotd_url = data.quote.url
+                  qotd_display.style.fontSize = '18px'
+                  qotd_display.style.textAlign = 'justify'
+                  qotd_display.innerText = '"' + qotd_body + '"\n---\nAuthor: ' + qotd_author + '\nURL: ' + qotd_url
+              })
+            }
+
+            bt_reset.onclick = function() {
+              qotd_display.style.fontSize = '40px'
+              qotd_display.style.textAlign = 'center'
+              qotd_display.innerText = '"There is no spoon."\n-Spoon Boy'
+            }
+            &lt;/script&gt;
+          </pre>
+        </div> <!-- code div end -->
+    </div> <!-- container div end -->
+    <script type="text/javascript">
+      let qotd_display = document.querySelector('#qotd_display')
+      let bt_getQotd = document.querySelector('#bt_getQotd')
+      let bt_reset = document.querySelector('#bt_reset')
+      let url = 'https://favqs.com/api/qotd'
+
+      bt_getQotd.onclick = function () {
+        axios.get(url)
+        .then(function (response) {
+          let data = response.data
+          console.log(data)
+            let qotd_body = data.quote.body
+            let qotd_author = data.quote.author
+            let qotd_url = data.quote.url
+            qotd_display.style.fontSize = '18px'
+            qotd_display.style.textAlign = 'justify'
+            qotd_display.innerText = '"' + qotd_body + '"\n---\nAuthor: ' + qotd_author + '\nURL: ' + qotd_url
+        })
+      }
+
+      bt_reset.onclick = function() {
+        qotd_display.style.fontSize = '40px'
+        qotd_display.style.textAlign = 'center'
+        qotd_display.innerText = '"There is no spoon."\n-Spoon Boy'
+      }
+    </script>
+  </body>
+</html>
