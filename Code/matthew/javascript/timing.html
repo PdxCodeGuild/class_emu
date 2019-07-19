@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button id="bt_start">start</button>
+    <button id="bt_resume">resume</button>
+    <button id="bt_stop">stop</button>
+    <span id="span_output"></span>
+    <script type="text/javascript">
+    
+      let bt_start = document.querySelector('#bt_start')
+      let bt_resume = document.querySelector('#bt_resume')
+      let bt_stop = document.querySelector('#bt_stop')
+      let span_output = document.querySelector('#span_output')
+      
+      let interval = null
+      let counter = 0
+      
+      function startInterval() {
+        interval = setInterval(function() {
+            counter += 1
+            span_output.innerText = counter + '/10'
+            if (counter >= 10) {
+                clearInterval(interval);
+            }
+        }, 1000);
+      }
+      
+      
+      bt_start.onclick = function() {
+        counter = 0
+        startInterval()
+      }
+      bt_resume.onclick = function() {
+        startInterval()
+      }
+      bt_stop.onclick = function() {
+        clearInterval(interval)
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style media="screen">
+      #container > * {
+        margin:10px;
+      }
+      #todo_items input {
+        margin:4px;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div id="container">
+      <input id="todo_text" type="text" placeholder="new todo item"/><button id="bt_create" class="btn btn-primary">add</button>
+    </div>
+    <ul id="todo_items">
+    </ul>
+    <script type="text/javascript">
+      let todo_text = document.querySelector('#todo_text')
+      let todo_items = document.querySelector('#todo_items')
+      let bt_create = document.querySelector('#bt_create')
+      
+      //let counter = 0
+      
+      // let data = {
+      //   todos: [{
+      //     text: 'wash the car',
+      //     completed: false
+      //   },{
+      //     text: 'eat some food',
+      //     completed: true
+      //   },{
+      //     text: 'do the dishes',
+      //     completed: false
+      //   }]
+      // }
+      //console.log(JSON.stringify(data))
+      
+      function saveData() {
+        let data = {todos:[]}
+        let todo_lis = document.querySelectorAll('#todo_items > li')
+        for (let i=0; i<todo_lis.length; ++i) {
+          let text = todo_lis[i].innerText
+          let completed = todo_lis[i].style.textDecoration == 'line-through'
+          data.todos.push({
+            text: text,
+            completed: completed
+          })
+        }
+        localStorage.setItem('data', JSON.stringify(data))
+      }
+      function loadData() {
+        let json = localStorage.getItem('data')
+        if (json != null) {
+          let data = JSON.parse(json)
+          for (let i=0; i<data.todos.length; ++i) {
+            addTodo(data.todos[i].text, data.todos[i].completed)
+          }
+        }
+      }
+      
+      function addTodo(text, completed) {
+        
+        let li = document.createElement('li')
+        li.innerText = text
+        
+        let checkbox = document.createElement('input')
+        checkbox.setAttribute('type', 'checkbox')
+        
+        if (completed) {
+          li.style.textDecoration = 'line-through'
+          checkbox.setAttribute('checked', 'checked')
+        }
+        
+        checkbox.onclick = function() {
+          //let id = this.dataset.id
+          //let li = document.querySelector('#li_' + id)
+          if (li.style.textDecoration == 'line-through') {
+            li.style.textDecoration = 'none'
+            todo_items.insertBefore(li, todo_items.firstChild)
+          } else {
+            li.style.textDecoration = 'line-through'
+            todo_items.appendChild(li)
+          }
+          saveData()
+        }
+        
+        li.appendChild(checkbox)
+        
+        todo_items.appendChild(li)
+      }
+      
+      bt_create.onclick = function() {
+        let text = todo_text.value
+        addTodo(text, false)
+        saveData()
+      }
+      
+      loadData()
+      
+      
+      // for (let i=0; i<10; ++i) {
+      //   todo_text.value = i
+      //   bt_create.onclick()
+      // }
+      
+    </script>
+  </body>
+</html>
+

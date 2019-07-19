@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="api_key.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let url = 'https://favqs.com/api/quotes/'
+      let config = {
+        params: {
+          filter: 'funny',
+          type: 'tag'
+        },
+        headers: {
+          'Authorization': 'Token token="'+favqs_api_key+'"'
+        }
+      }
+      axios.get(url, config)
+      .then(function (response) {
+        let data = response.data
+        console.log(data)
+        // set inner text
+        console.log(data.quotes[0].body)
+      })
+      
+      
+    </script>
+  </body>
+</html>

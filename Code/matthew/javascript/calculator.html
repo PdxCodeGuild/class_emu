@@ -1,0 +1,96 @@
+<!--
+the user will hit number buttons (0-9, .)
+then hit an operator key (+-*/^)
+then hit more number buttons
+then hit equals
+-->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+      #container {
+        display:grid;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
+        width:240px;
+        height:300px;
+        justify-items: center;
+        align-items: center;
+        margin:10px;
+        padding:10px;
+        box-shadow: 5px 5px 5px lightgrey;
+        border: 1px solid skyblue;
+        border-radius:5px;
+      }
+      #input_field {
+        grid-column: 2 / 5;
+        font-size:16px;
+        height:40px;
+        width:160px;
+      }
+      #container > button {
+        width:50px;
+        height:50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <button id="bt_clear">C</button><input id="input_field" type="text"/>
+    </div>
+    <script type="text/javascript">
+      
+      let first_operand = null
+      let operator = null
+      
+      
+      let container = document.querySelector('#container')
+      let bt_clear = document.querySelector('#bt_clear')
+      let input_field = document.querySelector('#input_field')
+      
+      bt_clear.onclick = function() {
+        input_field.value = ''
+      }
+      
+      let button_labels = '789+456-123/0.=*'
+      for (let i=0; i<16; ++i) {
+        let button = document.createElement('button')
+        button.innerText = button_labels[i]
+        button.onclick = function() {
+          // alert(button.innerText)
+          let char = button.innerText
+          if ('0123456789.'.includes(char)) {
+            input_field.value += char
+          } else if ('+-*/^'.includes(char)) {
+            first_operand = input_field.value
+            operator = char
+            input_field.value = ''
+          } else if (char == '=') {
+            
+            first_operand = parseInt(first_operand)
+            let second_operand = parseInt(input_field.value)
+            let result = null
+            if (operator === '+') {
+               result = first_operand + second_operand
+            } else if (operator === '-') {
+               result = first_operand - second_operand
+            } else if (operator === '*') {
+               result = first_operand * second_operand
+            } else if (operator === '/') {
+               result = first_operand / second_operand
+            }
+            input_field.value = result
+          } else {
+            console.log('something went wrong')
+          }
+        }
+        
+        
+        container.appendChild(button)
+      }
+    </script>
+  </body>
+</html>
