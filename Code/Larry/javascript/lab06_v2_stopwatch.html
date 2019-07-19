@@ -147,9 +147,7 @@
                 clearInterval(stopwatch)
               }
               bt_clear.onclick = function() {
-                if (typeof stopwatch != 'undefined') {
-                  clearInterval(stopwatch)
-                }
+                clearInterval(stopwatch)
                 sw_display.innerText = '00:00:00.000'
                 curr_time.setHours(0,0,0,0)
                 laps.innerText = ''
@@ -209,9 +207,7 @@
           clearInterval(stopwatch)
         }
         bt_clear.onclick = function() {
-          if (typeof stopwatch != 'undefined') {
-            clearInterval(stopwatch)
-          }
+          clearInterval(stopwatch)
           sw_display.innerText = '00:00:00.000'
           curr_time.setHours(0,0,0,0)
           laps.innerText = ''
