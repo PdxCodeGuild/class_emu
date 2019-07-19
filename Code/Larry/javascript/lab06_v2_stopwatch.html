@@ -113,6 +113,7 @@
             let bt_start = document.querySelector('#bt_start')
             let bt_lap = document.querySelector('#bt_lap')
             let bt_stop = document.querySelector('#bt_stop')
+            bt_stop.setAttribute('disabled','true')
             let bt_clear = document.querySelector('#bt_clear')
             let laps = document.querySelector('#laps')
             let lap_times = document.querySelector('#lap_times')
@@ -141,10 +142,12 @@
             function startCounter() {
               let stopwatch = setInterval(function() {
                 getBaseTime()
+                bt_stop.removeAttribute('disabled')
               }, 10)
 
               bt_stop.onclick = function() {
                 clearInterval(stopwatch)
+                bt_stop.setAttribute('disabled','true')
               }
               bt_clear.onclick = function() {
                 clearInterval(stopwatch)
@@ -173,6 +176,7 @@
       let bt_start = document.querySelector('#bt_start')
       let bt_lap = document.querySelector('#bt_lap')
       let bt_stop = document.querySelector('#bt_stop')
+      bt_stop.setAttribute('disabled','true')
       let bt_clear = document.querySelector('#bt_clear')
       let laps = document.querySelector('#laps')
       let lap_times = document.querySelector('#lap_times')
@@ -201,10 +205,12 @@
       function startCounter() {
         let stopwatch = setInterval(function() {
           getBaseTime()
+          bt_stop.removeAttribute('disabled')
         }, 10)
 
         bt_stop.onclick = function() {
           clearInterval(stopwatch)
+          bt_stop.setAttribute('disabled','true')
         }
         bt_clear.onclick = function() {
           clearInterval(stopwatch)
