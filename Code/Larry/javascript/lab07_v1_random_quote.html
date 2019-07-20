@@ -78,7 +78,7 @@
       <div>Use the <span class="monospace">favqs.com api</span> to show a random quote. To start, use <span class="monospace">https://favqs.com/api/qotd</span> to GET a quote, then display it on the page.
       </div>
       <div id="version_info">
-        <span><b>v1: first iteration of JS random quote</b></span>
+        <span><b>v1: first iteration of JS Get Quote (QOTD from simple public API; uses axios)</b></span>
       </div>
     </div>
     <div id="container">
@@ -94,6 +94,8 @@
         </div>
         <div id="code">
           <pre>
+            Axios (from &lt;head&gt;): &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"&gt;&lt;/script&gt;
+
             &lt;script type="text/javascript"&gt;
             let qotd_display = document.querySelector('#qotd_display')
             let bt_getQotd = document.querySelector('#bt_getQotd')
@@ -114,7 +116,7 @@
             }
 
             bt_getQotd.onclick = fetchQotd
-            
+
             bt_reset.onclick = function() {
               qotd_display.style.fontSize = '40px'
               qotd_display.style.textAlign = 'center'
