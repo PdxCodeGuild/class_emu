@@ -109,12 +109,15 @@
         <div id="code">
           <pre>
             &lt;script type="text/javascript"&gt;
+            // get elements out of the DOM
             let sw_display = document.querySelector('#sw_display')
             let bt_start = document.querySelector('#bt_start')
             let bt_lap = document.querySelector('#bt_lap')
+            bt_lap.setAttribute('disabled','true')
             let bt_stop = document.querySelector('#bt_stop')
             bt_stop.setAttribute('disabled','true')
             let bt_clear = document.querySelector('#bt_clear')
+            bt_clear.setAttribute('disabled','true')
             let laps = document.querySelector('#laps')
             let lap_times = document.querySelector('#lap_times')
             let counter = 0
@@ -135,22 +138,31 @@
               } else if (milliseconds < 100) {
                 milliseconds = '0'+milliseconds
               }
+              // display hh:mm:ss.mss in div innerText
               sw_display.innerText = hours + ':' + minutes + ':' + seconds + '.' + milliseconds
+              // increment the hundredths place of milliseconds
               milliseconds = curr_time.setMilliseconds(curr_time.getMilliseconds() + 10)
             }
 
             function startCounter() {
               let stopwatch = setInterval(function() {
                 getBaseTime()
+                bt_lap.removeAttribute('disabled')
                 bt_stop.removeAttribute('disabled')
+                bt_clear.removeAttribute('disabled')
               }, 10)
 
+              // STOP BUTTON
               bt_stop.onclick = function() {
                 clearInterval(stopwatch)
                 bt_stop.setAttribute('disabled','true')
               }
+              // CLEAR BUTTON
               bt_clear.onclick = function() {
                 clearInterval(stopwatch)
+                bt_lap.setAttribute('disabled','true')
+                bt_stop.setAttribute('disabled','true')
+                bt_clear.setAttribute('disabled','true')
                 sw_display.innerText = '00:00:00.000'
                 curr_time.setHours(0,0,0,0)
                 laps.innerText = ''
@@ -159,8 +171,10 @@
               }
             }
 
+            // START BUTTON
             bt_start.onclick = startCounter
 
+            // LAP BUTTON
             bt_lap.onclick = function() {
               let li = document.createElement('li')
               counter++
@@ -172,64 +186,78 @@
         </div> <!-- code div end -->
     </div> <!-- container div end -->
     <script type="text/javascript">
+
+      // get elements out of the DOM
       let sw_display = document.querySelector('#sw_display')
       let bt_start = document.querySelector('#bt_start')
       let bt_lap = document.querySelector('#bt_lap')
+      bt_lap.setAttribute('disabled','true')               // disable Lap button by default
       let bt_stop = document.querySelector('#bt_stop')
-      bt_stop.setAttribute('disabled','true')
+      bt_stop.setAttribute('disabled','true')              // disable Stop button by default
       let bt_clear = document.querySelector('#bt_clear')
+      bt_clear.setAttribute('disabled','true')             // disable Clear button by default
       let laps = document.querySelector('#laps')
       let lap_times = document.querySelector('#lap_times')
-      let counter = 0
+      let counter = 0                                      // initialize counter (for lap numbers)
 
-      let curr_time = new Date()
-      curr_time.setHours(0,0,0,0)
+      let curr_time = new Date()                           // initialize Date() function
+      curr_time.setHours(0,0,0,0)                          // set hrs, mins, secs, ms to 0s
 
       function getBaseTime() {
-        let hours = curr_time.getHours()
-        hours = hours < 10 ? '0'+hours : hours
-        let minutes = curr_time.getMinutes()
-        minutes = minutes < 10 ? '0'+minutes : minutes
-        let seconds = curr_time.getSeconds()
-        seconds = seconds < 10 ? '0'+seconds : seconds
-        let milliseconds = curr_time.getMilliseconds()
-        if (milliseconds < 10) {
-          milliseconds = '00'+milliseconds
-        } else if (milliseconds < 100) {
-          milliseconds = '0'+milliseconds
+        let hours = curr_time.getHours()                   // assign current hour to 'hours'
+        hours = hours < 10 ? '0'+hours : hours             // padding for hours < 10
+        let minutes = curr_time.getMinutes()               // assign current mins to 'minutes'
+        minutes = minutes < 10 ? '0'+minutes : minutes     // padding for minutes < 10
+        let seconds = curr_time.getSeconds()               // assign current secs to 'seconds'
+        seconds = seconds < 10 ? '0'+seconds : seconds     // padding for seconds < 10
+        let milliseconds = curr_time.getMilliseconds()     // assign current ms to 'milliseconds'
+        if (milliseconds < 10) {                           // padding for 1-digit milliseconds
+          milliseconds = '00'+milliseconds                 // add 00 to ms
+        } else if (milliseconds < 100) {                   // padding for 2-digit milliseconds
+          milliseconds = '0'+milliseconds                  // add 0 to ms
         }
+        // display hh:mm:ss.mss in div innerText
         sw_display.innerText = hours + ':' + minutes + ':' + seconds + '.' + milliseconds
+        // increment the hundredths place of milliseconds
         milliseconds = curr_time.setMilliseconds(curr_time.getMilliseconds() + 10)
       }
 
       function startCounter() {
-        let stopwatch = setInterval(function() {
-          getBaseTime()
-          bt_stop.removeAttribute('disabled')
-        }, 10)
+        let stopwatch = setInterval(function() {           // initilize setInterval
+          getBaseTime()                                    // execute getBaseTime()
+          bt_lap.removeAttribute('disabled')               // set Lap button to 'active' (remove 'disabled')
+          bt_stop.removeAttribute('disabled')              // set Stop button to 'active' (remove 'disabled')
+          bt_clear.removeAttribute('disabled')             // set Clear button to 'active' (remove 'disabled')
+        }, 10)                                             // repeat every 10 milliseconds
 
-        bt_stop.onclick = function() {
-          clearInterval(stopwatch)
-          bt_stop.setAttribute('disabled','true')
-        }
-        bt_clear.onclick = function() {
-          clearInterval(stopwatch)
-          bt_stop.setAttribute('disabled','true')
-          sw_display.innerText = '00:00:00.000'
-          curr_time.setHours(0,0,0,0)
-          laps.innerText = ''
-          lap_times.innerHTML = ''
-          counter = 0
-        }
-      }
+        // STOP BUTTON
+        bt_stop.onclick = function() {                     // listen for Stop button clicks
+          clearInterval(stopwatch)                         // halt the stopwatch
+          bt_stop.setAttribute('disabled','true')          // set Stop button to 'inactive' (add 'disabled')
+        }                                                  //
+        // CLEAR BUTTON
+        bt_clear.onclick = function() {                    // listen for Clear button clicks
+          clearInterval(stopwatch)                         // halt the stopwatch
+          bt_lap.setAttribute('disabled','true')           // set Lap button to 'inactive' (add 'disabled')
+          bt_stop.setAttribute('disabled','true')          // set Stop button to 'inactive' (add 'disabled')
+          bt_clear.setAttribute('disabled','true')         // set Clear button to 'inactive' (add 'disabled')
+          sw_display.innerText = '00:00:00.000'            // reset display to zeros
+          curr_time.setHours(0,0,0,0)                      // reset date to zeros
+          laps.innerText = ''                              // remove Lap Times label
+          lap_times.innerHTML = ''                         // remove lap times (list items)
+          counter = 0                                      // reset counter
+        }                                                  //
+      }                                                    //
 
-      bt_start.onclick = startCounter
+      // START BUTTON
+      bt_start.onclick = startCounter                      // listen for Start button clicks, exec function
 
-      bt_lap.onclick = function() {
-        let li = document.createElement('li')
-        counter++
-        li.innerText = "Lap " + counter + ": " + sw_display.innerText
-        lap_times.appendChild(li)
+      // LAP BUTTON
+      bt_lap.onclick = function() {                        // listen for Lap button clicks
+        let li = document.createElement('li')              // create list item
+        counter++                                          // increment the lap counter
+        li.innerText = "Lap " + counter + ": " + sw_display.innerText // update li innerText with lap time
+        lap_times.appendChild(li)                          // add li to the page
       }
 
     </script>
