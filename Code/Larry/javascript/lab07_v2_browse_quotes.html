@@ -176,15 +176,13 @@
                   let quote = data.quotes[i]
                   let div_quote = document.createElement('div')
                   div_quote.style.padding = "10px"
-                  let quote_body = ''
-                  let quote_author = ''
                   if (quote.body == undefined) {
                     let index = Math.floor(Math.random()*quote.lines.length)
-                    quote_body = quote.lines[index].body
-                    quote_author = quote.lines[index].author
+                    var quote_body = quote.lines[index].body
+                    var quote_author = quote.lines[index].author
                   } else {
-                    quote_body = quote.body
-                    quote_author = quote.author
+                    var quote_body = quote.body
+                    var quote_author = quote.author
                   }
                   let quote_url = quote.url
                   div_quote.style.fontSize = '18px'
@@ -319,15 +317,13 @@
             let quote = data.quotes[i]                                // grab them one by one
             let div_quote = document.createElement('div')             // create new div for each
             div_quote.style.padding = "10px"                          // pad new div
-            let quote_body = ''                                       // set placeholder var
-            let quote_author = ''                                     // set placeholder var
             if (quote.body == undefined) {                            // if body is not found
               let index = Math.floor(Math.random()*quote.lines.length)// pick randomly from quotes.lines[n]
-              quote_body = quote.lines[index].body                    // assign quote.lines[n].body to var
-              quote_author = quote.lines[index].author                // assign quote.lines[n].author to var
+              var quote_body = quote.lines[index].body                // assign quote.lines[n].body to var
+              var quote_author = quote.lines[index].author            // assign quote.lines[n].author to var
             } else {
-              quote_body = quote.body                                 // assign quotes[i].body to var
-              quote_author = quote.author                             // assign quote author to var
+              var quote_body = quote.body                             // assign quotes[i].body to var
+              var quote_author = quote.author                         // assign quote author to var
             }
             let quote_url = quote.url                                 // assign quote url to var
             div_quote.style.fontSize = '18px'                         // set div fontSize
