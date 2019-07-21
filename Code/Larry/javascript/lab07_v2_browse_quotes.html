@@ -252,53 +252,53 @@
         </div> <!-- code div end -->
     </div> <!-- container div end -->
     <script type="text/javascript">
-      let sl_tags = document.querySelector('#sl_tags')                // get elements out of the DOM
-      let bt_search = document.querySelector('#bt_search')            //
-      let bt_refresh = document.querySelector('#bt_refresh')          //
-      let bt_reset = document.querySelector('#bt_reset')              //
-      let quotes_display = document.querySelector('#quotes_display')  //
-      let quotes_url = 'https://favqs.com/api/quotes/'                // set vars for axios calls below
-      let typeahead_url = 'https://favqs.com/api/typeahead'           //
-      let click_counter = 0                                           // set start values ...
-      let seconds_elapsed = 0                                         // ...
+      let sl_tags = document.querySelector('#sl_tags')                  // get elements out of the DOM
+      let bt_search = document.querySelector('#bt_search')              //
+      let bt_refresh = document.querySelector('#bt_refresh')            //
+      let bt_reset = document.querySelector('#bt_reset')                //
+      let quotes_display = document.querySelector('#quotes_display')    //
+      let quotes_url = 'https://favqs.com/api/quotes/'                  // set vars for axios calls below
+      let typeahead_url = 'https://favqs.com/api/typeahead'             //
+      let click_counter = 0                                             // set start values ...
+      let seconds_elapsed = 0                                           //
 
       window.onload = fetchTags
 
-      function fetchTags() {                                          // get tags for filtering
-        let config = {                                                //
-          headers: {                                                  //
-            'Authorization': 'Token token="'+favqs_api_key+'"'        // ...
-          }                                                           //
-        }
-        axios.get(typeahead_url, config)                              // call axios with 2 params
-        .then(function (response) {                                   // do scripty stuff below
-          let data = response.data // this takes 1-2 secs: check documentation to set limit (< total=500)
-          let tags = data.tags                                        // target subsection 'tags'
-          let arr_tags = []                                           // init storage variable
-          for (let i=0;i<10;++i) {                                    // loop 10xs
-            let random_index = Math.floor(Math.random()*tags.length)  // get random number 0-550
-            arr_tags.push(tags[random_index].name)                    // add random 10 tags to array
-          }
-          for (let j=0;j<arr_tags.length;++j) {                       // loops through items in array
-            let option = document.createElement('option')             // create 'option'
-            option.setAttribute("value",arr_tags[j])                  // set value to tag name
-            option.innerText = arr_tags[j]                            // set innerText to tag name
-            sl_tags.appendChild(option)                               // add new option to select
-          }                                                           //
-        })                                                            //
-      }                                                               //
+      function fetchTags() {                                            // get tags for filtering
+        let config = {                                                  //
+          headers: {                                                    //
+            'Authorization': 'Token token="'+favqs_api_key+'"'          //
+          }                                                             //
+        }                                                               //
+        axios.get(typeahead_url, config)                                // call axios with 2 params
+        .then(function (response) {                                     // do scripty stuff below
+          let data = response.data // this takes 1-2 secs: check documentation to set limit
+          let tags = data.tags                                          // target subsection 'tags'
+          let arr_tags = []                                             // init storage variable
+          for (let i=0;i<10;++i) {                                      // loop 10xs
+            let random_index = Math.floor(Math.random()*tags.length)    // get random number 0-550
+            arr_tags.push(tags[random_index].name)                      // add random 10 tags to array
+          }                                                             //
+          for (let j=0;j<arr_tags.length;++j) {                         // loops through items in array
+            let option = document.createElement('option')               // create 'option'
+            option.setAttribute("value",arr_tags[j])                    // set value to tag name
+            option.innerText = arr_tags[j]                              // set innerText to tag name
+            sl_tags.appendChild(option)                                 // add new option to select
+          }                                                             //
+        })                                                              //
+      }                                                                 //
 
-      function fetchQuote() {                                         // call quotes API
-        let opt_tag = sl_tags.value                                   //
-        let config = {                                                // ...
-          params: {
-            filter: opt_tag,                                          // pass value of input box
-            type: 'tag'                                               // pass type=tag
-          },
-          headers: {                                                  //
-            'Authorization': 'Token token="'+favqs_api_key+'"'        // pass the api key
-          }
-        }
+      function fetchQuote() {                                           // call quotes API
+        let opt_tag = sl_tags.value                                     //
+        let config = {                                                  //
+          params: {                                                     //
+            filter: opt_tag,                                            // pass value of input box
+            type: 'tag'                                                 // pass type=tag
+          },                                                            //
+          headers: {                                                    //
+            'Authorization': 'Token token="'+favqs_api_key+'"'          // pass the api key
+          }                                                             //
+        }                                                               //
 
         /*
           axios.get(url, config) // this allows you to send headers and parameters (above)
@@ -308,41 +308,41 @@
           }
         */
 
-        axios.get(quotes_url, config)                                 // continue 'get quotes'
-        .then(function (response) {                                   // then do the cool stuff
-          let data = response.data                                    // get data from api response
-          quotes_display.innerText = ''                               // remove default quote
-          quotes_display.style.padding = '0'                          // remove default padding
-          for (let i=0;i<data.quotes.length;++i) {                    // loop thru quotes in api resp
-            let quote = data.quotes[i]                                // grab them one by one
-            let div_quote = document.createElement('div')             // create new div for each
-            div_quote.style.padding = "10px"                          // pad new div
-            if (quote.body == undefined) {                            // if body is not found
-              let index = Math.floor(Math.random()*quote.lines.length)// pick randomly from quotes.lines[n]
-              var quote_body = quote.lines[index].body                // assign quote.lines[n].body to var
-              var quote_author = quote.lines[index].author            // assign quote.lines[n].author to var
-            } else {
-              var quote_body = quote.body                             // assign quotes[i].body to var
-              var quote_author = quote.author                         // assign quote author to var
-            }
-            let quote_url = quote.url                                 // assign quote url to var
-            div_quote.style.fontSize = '18px'                         // set div fontSize
-            div_quote.style.textAlign = 'justify'                     // set div alignment
-            if (i % 2 == 1) {                                         // if i is an odd number
+        axios.get(quotes_url, config)                                   // CONTINUE fetchQuotes() function
+        .then(function (response) {                                     // then do the cool stuff
+          let data = response.data                                      // get data from api response
+          quotes_display.innerText = ''                                 // remove default quote
+          quotes_display.style.padding = '0'                            // remove default padding
+          for (let i=0;i<data.quotes.length;++i) {                      // loop thru quotes in api resp
+            let quote = data.quotes[i]                                  // grab them one by one
+            let div_quote = document.createElement('div')               // create new div for each
+            div_quote.style.padding = "10px"                            // pad new div
+            if (quote.body == undefined) {                              // if body is not found
+              let index = Math.floor(Math.random()*quote.lines.length)  // pick randomly from quotes.lines[n]
+              var quote_body = quote.lines[index].body                  // assign quote.lines[n].body to var
+              var quote_author = quote.lines[index].author              // assign quote.lines[n].author to var
+            } else {                                                    //
+              var quote_body = quote.body                               // assign quotes[i].body to var
+              var quote_author = quote.author                           // assign quote author to var
+            }                                                           //
+            let quote_url = quote.url                                   // assign quote url to var
+            div_quote.style.fontSize = '18px'                           // set div fontSize
+            div_quote.style.textAlign = 'justify'                       // set div alignment
+            if (i % 2 == 1) {                                           // if i is an odd number
               div_quote.style.backgroundColor = 'rgba(255,255,255,0.5)' // set to a lighter bg color
-            }
-            div_quote.innerText = '"' + quote_body + '"\n---\nAuthor: ' + quote_author + '\nURL: ' + quote_url                                                 // set innerText of div
-            quotes_display.appendChild(div_quote)                     // add div to the page
+            }                                                           //
+            div_quote.innerText = '"' + quote_body + '"\n---\nAuthor: ' + quote_author + '\nURL: ' + quote_url                                                   // set innerText of div
+            quotes_display.appendChild(div_quote)                       // add div to the page
           }
         })
-      }                                                               // ... end of 'get quotes'
+      }                                                                 // ... end of 'get quotes'
 
       // let curr_time = new Date()                 // this isn't working, always returns 0
       // curr_time.setSeconds(0)                    // this isn't working, always returns 0
 
       function startCounter() {
         let stopwatch = setInterval(function() {
-          // let seconds = curr_time.getSeconds()   // this isn't working, always returns 0
+          // let seconds = curr_time.getSeconds()   // *** this isn't working, always returns 0 ***
           seconds_elapsed++                             // increment the seconds counter every cycle
           if (seconds_elapsed == 5) {                   // if 5-sec have elapsed
             seconds_elapsed = 0                         // (a) reset seconds counter
@@ -355,7 +355,7 @@
       function throttleClicks(clicks) {                 // limit user-init API calls
         if (clicks < 5) {                               // only allow 5 clicks in 5-sec period
           refreshTags()                                 // refresh the 'tags' pulldown
-        } else {
+        } else {                                        //
           quotes_display.innerText = 'Whoa! You\'re clicking too fast' // show 'speed' warning ...
           setTimeout(function() {                       // ... for 1 second
             quotes_display.innerText = '"There is no spoon."\n-Spoon Boy\n(The Matrix, 1999)'
