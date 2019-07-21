@@ -127,31 +127,31 @@
         </div> <!-- code div end -->
     </div> <!-- container div end -->
     <script type="text/javascript">
-      let qotd_display = document.querySelector('#qotd_display')
-      let bt_getQotd = document.querySelector('#bt_getQotd')
-      let bt_reset = document.querySelector('#bt_reset')
-      let url = 'https://favqs.com/api/qotd'
+      let qotd_display = document.querySelector('#qotd_display')    // get elements out of DOM
+      let bt_getQotd = document.querySelector('#bt_getQotd')        //
+      let bt_reset = document.querySelector('#bt_reset')            //
+      let url = 'https://favqs.com/api/qotd'                        // set URL for QOTD api
 
-      function fetchQotd() {
-        axios.get(url)
-        .then(function (response) {
-          let data = response.data
-          let qotd_body = data.quote.body
-          let qotd_author = data.quote.author
-          let qotd_url = data.quote.url
-          qotd_display.style.fontSize = '18px'
-          qotd_display.style.textAlign = 'justify'
+      function fetchQotd() {                                        // fetch the QOTD
+        axios.get(url)                                              // exec axios
+        .then(function (response) {                                 // do cool stuff with api resp
+          let data = response.data                                  // assign data of api resp to var
+          let qotd_body = data.quote.body                           // assign quote body to var
+          let qotd_author = data.quote.author                       // assign quote author to var
+          let qotd_url = data.quote.url                             // assign quote url to var
+          qotd_display.style.fontSize = '18px'                      // set display font size
+          qotd_display.style.textAlign = 'justify'                  // set display text alignment
           qotd_display.innerText = '"' + qotd_body + '"\n---\nAuthor: ' + qotd_author + '\nURL: ' + qotd_url
-        })
+        })                                                          // output result to display
       }
 
-      bt_getQotd.onclick = fetchQotd
-
-      bt_reset.onclick = function() {
-        qotd_display.style.fontSize = '40px'
-        qotd_display.style.textAlign = 'center'
+      bt_getQotd.onclick = fetchQotd                                // listen for Get Quote button clicks
+                                                                    // execute fetchQotd function
+      bt_reset.onclick = function() {                               // listen for Reset button clicks
+        qotd_display.style.fontSize = '40px'                        // set default display font size
+        qotd_display.style.textAlign = 'center'                     // set default display text alignment
         qotd_display.innerText = '"There is no spoon."\n-Spoon Boy\n(The Matrix, 1999)'
-      }
+      }                                                             // set default innerText
     </script>
   </body>
 </html>
