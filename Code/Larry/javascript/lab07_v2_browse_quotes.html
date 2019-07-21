@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Lab 07: Browse Quotes</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="api_keys.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
     <style media="screen" type="text/css">
@@ -289,6 +289,15 @@
             'Authorization': 'Token token="'+favqs_api_key+'"'
           }
         }
+
+        /*
+          axios.get(url, config) // this allows you to send headers and parameters (above)
+          .then(function (response) {
+                                // do stuff with the data returned
+                                // e.g. let data = response.data
+          }
+        */
+
         axios.get(quotes_url, config)
         .then(function (response) {
           let data = response.data
