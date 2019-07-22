@@ -95,7 +95,7 @@
         </div>
         <div class="flex">
           <input type="text" v-model="user_time" class="input_time" v-on:input="realtime">
-          <select class="sl_times" v-model="user_unit">
+          <select class="sl_times" v-model="user_unit" v-on:change="reset">
             <option v-for="time_unit in time_units" :value="time_unit.value">{{ time_unit.text }}</option>
           </select>
         </div>
@@ -159,7 +159,7 @@
           start: function() {
             let t_user_time = this.user_time
             if (t_user_time == null) {
-
+              // not sure what check for yet TBD
             } else {
               if (this.inprog == 0) {
                 t_user_time = t_user_time < 10 ? '0'+t_user_time : t_user_time
@@ -178,15 +178,27 @@
                   console.log('something else happened')
                 }
                 this.user_time = ''
-                // this.startTimer()
                 this.stopwatch = setInterval(() => {           // initilize setInterval
                   this.getBaseTime()                               // execute getBaseTime()
+                  if (this.ct_display == '00:00:00.000') {
+                    clearInterval(this.stopwatch)
+                    app.ct_display = "Time's up"
+                    setTimeout(() => {
+                      this.reset()
+                    }, 2000)
+                  }
                 }, 10)
                 this.inprog = 1
               } else {
-                // this.startTimer()
                 this.stopwatch = setInterval(() => {           // initilize setInterval
                   this.getBaseTime()                               // execute getBaseTime()
+                  if (this.ct_display == '00:00:00.000') {
+                    clearInterval(this.stopwatch)
+                    app.ct_display = "Time's up"
+                    setTimeout(() => {
+                      this.reset()
+                    }, 2000)
+                  }
                 }, 10)
                 this.inprog = 1
               }
