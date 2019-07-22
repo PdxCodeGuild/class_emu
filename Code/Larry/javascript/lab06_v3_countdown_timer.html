@@ -120,10 +120,11 @@
         data: {
           ct_display: '00:00:00.000',
           user_time: null,
-          user_unit: null,
+          user_unit: null,                              // set to 'secs' to show this by default
           backgroundColor: null,
           time_units: [
-            {value: null, text: 'unit of time'},
+            {value: null, text: 'unit of time'},        // if 'secs' is set on line 123, remove this line
+                                                        // this allows to do some input validation
             {value: 'secs', text: 'seconds'},
             {value: 'mins', text: 'minutes'},
             {value: 'hrs', text: 'hours'}
@@ -162,7 +163,7 @@
             } else {
               if (this.inprog == 0) {
                 t_user_time = t_user_time < 10 ? '0'+t_user_time : t_user_time
-                if (this.user_unit == null) {
+                if (this.user_unit == null) {                   // see line 123,126-127
                   console.log('user unit is not selected')
                   this.user_time = ''
                   // feature request: change backgroundColor
