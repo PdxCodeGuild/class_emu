@@ -176,13 +176,15 @@
                   let quote = data.quotes[i]
                   let div_quote = document.createElement('div')
                   div_quote.style.padding = "10px"
+                  let quote_body = null
+                  let quote_author = null
                   if (quote.body == undefined) {
                     let index = Math.floor(Math.random()*quote.lines.length)
-                    var quote_body = quote.lines[index].body
-                    var quote_author = quote.lines[index].author
+                    quote_body = quote.lines[index].body
+                    quote_author = quote.lines[index].author
                   } else {
-                    var quote_body = quote.body
-                    var quote_author = quote.author
+                    quote_body = quote.body
+                    quote_author = quote.author
                   }
                   let quote_url = quote.url
                   div_quote.style.fontSize = '18px'
@@ -236,13 +238,13 @@
             }
 
             bt_refesh.onclick = function() {
-              throttleClicks(click_counter)
               click_counter++
+              throttleClicks(click_counter)
             }
 
             bt_reset.onclick = function() {
-              throttleClicks(click_counter)
               click_counter++
+              throttleClicks(click_counter)
               if (click_counter &lt; 5) {
                 quotes_display.innerText = '"There is no spoon."\n-Spoon Boy\n(The Matrix, 1999)'
               }
@@ -317,13 +319,15 @@
             let quote = data.quotes[i]                                  // grab them one by one
             let div_quote = document.createElement('div')               // create new div for each
             div_quote.style.padding = "10px"                            // pad new div
+            let quote_body = null                                       // initialize quote_body
+            let quote_author = null                                     // initialize quote_author
             if (quote.body == undefined) {                              // if body is not found
               let index = Math.floor(Math.random()*quote.lines.length)  // pick randomly from quotes.lines[n]
-              var quote_body = quote.lines[index].body                  // assign quote.lines[n].body to var
-              var quote_author = quote.lines[index].author              // assign quote.lines[n].author to var
+              quote_body = quote.lines[index].body                      // assign quote.lines[n].body to var
+              quote_author = quote.lines[index].author                  // assign quote.lines[n].author to var
             } else {                                                    //
-              var quote_body = quote.body                               // assign quotes[i].body to var
-              var quote_author = quote.author                           // assign quote author to var
+              quote_body = quote.body                                   // assign quotes[i].body to var
+              quote_author = quote.author                               // assign quote author to var
             }                                                           //
             let quote_url = quote.url                                   // assign quote url to var
             div_quote.style.fontSize = '18px'                           // set div fontSize
@@ -381,13 +385,13 @@
       }                                                 //
 
       bt_refesh.onclick = function() {                  // listen for Refresh button clicks
-        throttleClicks(click_counter)                   // exec throttleClicks => refreshTags & startCounter
         click_counter++                                 // increment the click counter
+        throttleClicks(click_counter)                   // exec throttleClicks => refreshTags & startCounter
       }                                                 //
 
       bt_reset.onclick = function() {                   // listen for Reset button clicks
-        throttleClicks(click_counter)                   // exec throttleClicks => refreshTags & startCounter
         click_counter++                                 // increment the click counter
+        throttleClicks(click_counter)                   // exec throttleClicks => refreshTags & startCounter
         if (click_counter < 5) {                        // if < 5 clicks, display default innerText
           quotes_display.innerText = '"There is no spoon."\n-Spoon Boy\n(The Matrix, 1999)'
         }                                               // otherwise, let throttleClicks show error (1 sec)
