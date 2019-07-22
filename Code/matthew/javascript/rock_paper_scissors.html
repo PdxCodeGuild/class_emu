@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style media="screen" type="text/css">
+      .flex {
+        display: flex;
+        flex-direction: row; 
+      }
+      .flex img {
+        width: 175px;
+      }
+      .flip_image img {
+        transform: scaleX(-1);
+      }
+      .flex > div {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        width: 200px;
+      }
+      .visible {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Rock Paper Scissors &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>{{ winning_text }}</u></h1>
+      <div class="flex">
+        <div>
+          <h2>Human {{ human_score }}</h2>
+          <img src="rock.png" :class="{visible: human_choice == 0}" @click="human_bt_click(0)"/>
+          <img src="paper.png" :class="{visible: human_choice == 1}" @click="human_bt_click(1)"/>
+          <img src="scissors.png" :class="{visible: human_choice == 2}" @click="human_bt_click(2)"/>
+        </div>
+        <div>
+          <img src="rock.png" v-show="human_choice == 0" />
+          <img src="paper.png" v-show="human_choice == 1" />
+          <img src="scissors.png" v-show="human_choice == 2" />
+        </div>
+        <div class="flip_image">
+          <img src="rock.png" v-show="computer_choice == 0" />
+          <img src="paper.png" v-show="computer_choice == 1" />
+          <img src="scissors.png" v-show="computer_choice == 2" />
+        </div>
+        <div class="flip_image">
+          <h2>Computer {{ computer_score }}</h2>
+          <img src="rock.png" :class="{visible: computer_choice == 0}" />
+          <img src="paper.png" :class="{visible: computer_choice == 1}" />
+          <img src="scissors.png" :class="{visible: computer_choice == 2}" />
+        </div>
+      </div> <!-- end of 'flex' -->
+    </div> <!-- end of 'app' -->
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          human_choice: -1,
+          computer_choice: -1,
+          winning_text: "",
+          human_score: 0,
+          computer_score: 0
+        },
+        methods: {
+          human_bt_click: function(id) {
+            this.human_choice = id
+            this.computer_choice = Math.floor(Math.random()*3)
+            if (this.human_choice == this.computer_choice) {
+              this.winning_text = "It's a tie!"
+            } else if ((this.human_choice + 1)%3 == this.computer_choice) {
+              this.winning_text = "Computer wins :("
+              this.computer_score++
+            } else {
+              this.winning_text = "Human wins!"
+              this.human_score++
+            }
+            setTimeout(() => {
+              this.human_choice = -1
+              this.computer_choice = -1
+              this.winning_text = ''
+            }, 1000)
+          } // end of human_bt_click
+        } // end of methods
+      }) // end of Vue
+    </script>
+  </body>
+</html>

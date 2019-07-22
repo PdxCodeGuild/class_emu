@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <style type="text/css">
+      #container {
+        display:flex;
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:center;
+        
+      }
+      #container img {
+        margin:10px;
+        width:100px;
+      }
+      
+      #div_pagination {
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+      }
+      #div_pagination > * {
+        margin:10px;
+      }
+    </style>
+  </head>
+  <body>
+    <select id="select_breed">
+      <option value="">Any</option>
+    </select>
+    <button id="bt_get_images">Get Images</button>
+    <div id="container"></div>
+    <div id="div_pagination" style="display:none">
+      <button id="bt_prev_page">&lt;</button>
+      <span id="span_page">0</span>
+      <button id="bt_next_page">&gt;</button>
+    </div>
+    <script type="text/javascript">
+    
+      function clearElement(element) {
+        while (element.firstChild) {
+          element.removeChild(element.firstChild)
+        }
+      }
+    
+      let select_breed = document.querySelector('#select_breed')
+      let bt_get_images = document.querySelector('#bt_get_images')
+      let container = document.querySelector('#container')
+      
+      let bt_prev_page = document.querySelector('#bt_prev_page')
+      let span_page = document.querySelector('#span_page')
+      let bt_next_page = document.querySelector('#bt_next_page')
+      
+      let page = 0
+      
+      bt_prev_page.onclick = function() {
+        page -= 1
+        if (page < 0) {
+          page = 0
+        }
+        span_page.innerText = page
+        getImages()
+      }
+      
+      bt_next_page.onclick = function() {
+        page += 1
+        span_page.innerText = page
+        getImages()
+      }
+      
+      // get cat images from the api
+      function getImages() {
+        clearElement(container)
+        
+        div_pagination.style.display = ''
+        let breed_id = select_breed.value
+        let images_url = 'https://api.thecatapi.com/v1/images/search?order=ASC&limit=20&page='+page
+        if (breed_id != '') {
+          images_url += '&breed_id=' + breed_id
+        }
+        //images_url = 'https://api.thecatapi.com/v1/images/search?limit=9&mime_types=&order=Asc&size=small&page=0&sub_id=demo-b3262c'
+        //console.log(images_url)
+        axios.get(images_url).then(function(response) {
+          
+          let data = response.data
+          console.log(response)
+          for (let i=0; i<data.length; ++i) {
+            let a = document.createElement('a')
+            a.setAttribute('href', data[i].url)
+            a.setAttribute('target', '_blank')
+            
+            let img = document.createElement('img')
+            img.setAttribute('src', data[i].url)
+            
+            a.appendChild(img)
+            container.appendChild(a)
+          }
+        })
+      }
+    
+      // get a list of cat breeds, build up the drop-down list
+      let breed_url = 'https://api.thecatapi.com/v1/breeds/'
+      axios.get(breed_url).then(function(response) {
+        let data = response.data
+        // console.log(data)
+        for (let i=0; i<data.length; ++i) {
+          let option = document.createElement('option')
+          option.setAttribute('value', data[i].id)
+          option.innerText = data[i].name
+          select_breed.appendChild(option)
+        }
+      })
+      
+      bt_get_images.onclick = function() {
+        page = 0
+        span_page.innerText = '0'
+        getImages()
+      }
+    </script>
+  </body>
+</html>
