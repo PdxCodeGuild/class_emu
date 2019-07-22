@@ -121,9 +121,10 @@
           ct_display: '00:00:00.000',
           user_time: null,
           user_unit: null,
+          backgroundColor: null,
           time_units: [
             {value: null, text: 'unit of time'},
-            {value: 'sec', text: 'seconds'},
+            {value: 'secs', text: 'seconds'},
             {value: 'mins', text: 'minutes'},
             {value: 'hrs', text: 'hours'}
           ],
@@ -132,7 +133,8 @@
           seconds: null,
           milliseconds: null,
           curr_time: curr_time,
-          stopwatch: null
+          stopwatch: null,
+          inprog: 0
         }, // end of 'data'
         methods: {
           getBaseTime: function() {
@@ -152,34 +154,89 @@
             this.ct_display = this.hours + ':' + this.minutes + ':' + this.seconds + '.' + this.milliseconds
             // increment the hundredths place of milliseconds
             this.milliseconds = this.curr_time.setMilliseconds(this.curr_time.getMilliseconds() - 10)
-            // this.curr_time.setSeconds(this.user_time)
           }, // end of 'getBaseTime'
           start: function() {
-            let _this = this // *** WHAT THE HECK IS THIS? *** You can't call function inside setInterval()?
-            this.curr_time.setHours(0,0,this.user_time,0)
-            this.stopwatch = setInterval(function() {           // initilize setInterval
-              _this.getBaseTime()                               // execute getBaseTime()
-            }, 10)
-            this.user_time = ''
+            let ref = this // *** WHAT THE HECK IS THIS? *** You can't call function inside setInterval()?
+            let t_user_time = this.user_time
+            if (t_user_time == null) {
+
+            } else {
+              if (this.inprog == 0) {
+                t_user_time = t_user_time < 10 ? '0'+t_user_time : t_user_time
+                if (this.user_unit == null) {
+                  console.log('user unit is not selected')
+                  this.user_time = ''
+                  // feature request: change backgroundColor
+                  // user_unit.style.backgroundColor = rgba(255,0,0,0.5)
+                } else if (this.user_unit == 'secs') {
+                  this.curr_time.setHours(0,0,this.user_time,0)
+                } else if (this.user_unit == 'mins') {
+                  this.curr_time.setHours(0,this.user_time,0,0)
+                } else if (this.user_unit == 'hrs') {
+                  this.curr_time.setHours(this.user_time,0,0,0)
+                } else {
+                  console.log('something else happened')
+                }
+                this.user_time = ''
+                // this.startTimer()
+                this.stopwatch = setInterval(function() {           // initilize setInterval
+                  ref.getBaseTime()                               // execute getBaseTime()
+                }, 10)
+                this.inprog = 1
+              } else {
+                // this.startTimer()
+                this.stopwatch = setInterval(function() {           // initilize setInterval
+                  ref.getBaseTime()                               // execute getBaseTime()
+                }, 10)
+                this.inprog = 1
+              }
+              // ***** feature request: disable Start button *****
+            }
           }, // end of 'start'
+          startTimer: function() {
+            this.stopwatch = setInterval(function() {           // initilize setInterval
+              ref.getBaseTime()                               // execute getBaseTime()
+            }, 10)
+            this.inprog = 1
+          },
           stop: function() {
             clearInterval(this.stopwatch)
-          }, // end of 'reset'
+          }, // end of 'stop'
           reset: function() {
             this.curr_time.setHours(0,0,0,0)
             this.ct_display = '00:00:00.000'
             this.user_time = ''
             clearInterval(this.stopwatch)
+            this.inprog = 0
           }, // end of 'reset'
           realtime: function() {
+            let t_user_time = this.user_time
+            t_user_time = t_user_time < 10 ? '0'+t_user_time : t_user_time
             if (this.user_unit == null) {
-              this.user.unit.style
+              console.log('user unit is not selected')
+              this.user_time = ''
+              // change backgroundColor
+              // something like: user_unit.style.backgroundColor = rgba(255,0,0,0.5)
+            } else if (this.user_unit == 'secs') {
+              console.log('user unit is secs')
+              this.ct_display = '00:00:'+t_user_time+'.000'
+            } else if (this.user_unit == 'mins') {
+              console.log('user unit is mins')
+              this.ct_display = '00:'+t_user_time+':00.000'
+            } else if (this.user_unit == 'hrs') {
+              console.log('user unit is hrs')
+              this.ct_display = t_user_time+':00:00.000'
+            } else {
+              console.log('something else happened')
             }
-            alert(this.user_unit)
-            // if (this.user_unit = )
-            this.ct_display = '00:00:'+this.user_time+'.000'
-          }
-        } // end of 'methods'
+          } // end of 'realtime'
+        }, // end of 'methods'
+        computed: {
+          isDisabled() {
+            // you can check your form is filled or not here.
+            // return yourCondition == true
+          },
+        } // end of 'computed'
       }) // end of vue 'app'
     </script>
   </body>
