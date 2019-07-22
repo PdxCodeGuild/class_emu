@@ -369,6 +369,11 @@
 
       function refreshTags() {                          // refresh tags pulldown with 10 new options
         sl_tags.innerHTML = '<option value=""> pick a category </option>' // clear old options
+        /*
+        while (element.firstChild) {                    // better way to reset sl_tags
+        	element.removeChild(element.firstChild)       //
+        }                                               //
+        */
         fetchTags()                                     // hit the typeahead API
         if (click_counter == 1) {                       // start the 5-sec counter on first click
           startCounter()                                //
