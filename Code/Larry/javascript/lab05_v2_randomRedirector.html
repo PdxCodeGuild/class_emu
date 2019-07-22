@@ -105,7 +105,7 @@
           // Randomly pick one using `Math.random()`
           x = Math.floor(Math.random()*arr_urls.length)
 
-          // v2: Using JavaScript's timing events show a 5-second countdown to the user.
+          // v2: Using JavaScript's timing events show a countdown to the user.
           // When the countdown is finished, redirect to a random page.
           bt_randomURL.onclick = function() {
             let delay_time_sec = parseInt(input_seconds.value)
@@ -150,20 +150,20 @@
     // Randomly pick one using `Math.random()`
     x = Math.floor(Math.random()*arr_urls.length)
 
-    // v2: Using JavaScript's timing events show a 5-second countdown to the user.
+    // v2: Using JavaScript's timing events show a countdown to the user.
     // When the countdown is finished, redirect to a random page.
-    bt_randomURL.onclick = function() {
-      let delay_time_sec = parseInt(input_seconds.value)
-      let delay_time_ms = delay_time_sec*1000
-      let timeout = null
-      timeout = setTimeout(function() {
-        window.location.href = arr_urls[x]
-      }, delay_time_ms)
-      let countdown_secs = null
-      countdown_secs = setInterval(function() {
-        countdown_clock.innerText = delay_time_sec
-        delay_time_sec--
-      }, 1000)
+    bt_randomURL.onclick = function() {                  // listen for button clicks
+      let delay_time_sec = parseInt(input_seconds.value) // convert input string to integer
+      let delay_time_ms = delay_time_sec*1000            // multiply by 1000 to get ms (used in setTimeout)
+      let timeout = null                                 // initialize timeout variable
+      timeout = setTimeout(function() {                  // inititalize the setTimeout func (aka "do once")
+        window.location.href = arr_urls[x]               // use the random number from line 151 as index ..
+      }, delay_time_ms)                                  // .. for the arr_urls array to get random URL
+      let countdown_secs = null                          // initialize countdown seconds variable
+      countdown_secs = setInterval(function() {          // initialize setInterval func (aka "do repeatedly")
+        countdown_clock.innerText = delay_time_sec       // set (or change) innerText to input value ..
+        delay_time_sec--                                 // .. the, decrement input value by 1
+      }, 1000)                                           // .. repeat once per second (or 1000ms)
     }
 
     </script>

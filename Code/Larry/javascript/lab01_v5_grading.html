@@ -73,57 +73,57 @@
     <div class="question_answer"><span><u>Result</u>: </span><span id="span_result"></span></div>
 
     <script type="text/javascript">
-      let input_user_number = document.querySelector('#input_user_number')
-      let button_run = document.querySelector('#button_run')
-      let span_result = document.querySelector('#span_result')
+      let input_user_number = document.querySelector('#input_user_number') // get elements out of DOM
+      let button_run = document.querySelector('#button_run')               //
+      let span_result = document.querySelector('#span_result')             //
 
-      let data_matrix = {
-        0:[90,101,'You got an A! Great job!!','A'],
-        1:[80,90,'You got a B! Good job!','B'],
-        2:[70,80,'You got a C. Not bad.','C'],
-        3:[60,70,'You got a D. Did you study?','D'],
-        4:[0,60,'That\'s an F. D\'oh!','F'],
+      let data_matrix = {                           // data for evalGrade() function
+        0:[90,101,'You got an A! Great job!!','A'], //
+        1:[80,90,'You got a B! Good job!','B'],     //
+        2:[70,80,'You got a C. Not bad.','C'],      //
+        3:[60,70,'You got a D. Did you study?','D'],//
+        4:[0,60,'That\'s an F. D\'oh!','F'],        //
         5:[Number.NEGATIVE_INFINITY,0,'That number is less than zero!','tooLow'],
         6:[101,Number.POSITIVE_INFINITY,'That number is too high!','tooHigh']
-      }
+      }                                             // Note: should not use object like a dictionary :(
 
-      function evalGrade(user_number) {
-        if (user_number === '') {
-            return 'blank'
-        } else if (isNaN(user_number)) {
-            return 'NaN'
+      function evalGrade(user_number) {             // handle input validation use cases
+        if (user_number === '') {                   // if input field is blank ...
+            return 'blank'                          // ... return blank (see button_run.onclick)
+        } else if (isNaN(user_number)) {            // another input validation use case
+            return 'NaN'                            // if input field contains non-numeric characters
         } else {
-            for (let i=0;i<Object.keys(data_matrix).length;++i) {
-              let t_input_array = data_matrix[i]
-              let t_input_lower = t_input_array[0]
-              let t_input_upper = t_input_array[1]
-              let t_output_msg = t_input_array[2]
-              let t_return_value = t_input_array[3]
-                  if (user_number >= t_input_lower && user_number < t_input_upper) {
-                      span_result.innerText = t_output_msg
-                      if (i < 5) {
-                        document.querySelector('#input_user_number').value = ''
-                      }
-                      return t_return_value
+            for (let i=0;i<Object.keys(data_matrix).length;++i) { // cycle thru each "row" in data_matrix
+              let t_input_array = data_matrix[i]    // assign obj element to temp var
+              let t_input_lower = t_input_array[0]  // assign 1st value in array to temp lower bound var
+              let t_input_upper = t_input_array[1]  // assign 2nd value in array to temp upper bound var
+              let t_output_msg = t_input_array[2]   // assign 3rd value in array to temp msg var
+              let t_return_value = t_input_array[3] // assign 4th value in array to temp expected res var
+                  if (user_number >= t_input_lower && user_number < t_input_upper) { // use boundary vars
+                      span_result.innerText = t_output_msg  // set innerText that corresponds to range
+                      if (i < 5) {                  // if data is 0-4 (As, Bs, Cs, Ds, Fs)
+                        document.querySelector('#input_user_number').value = '' // set input field to ''
+                      }                             //
+                      return t_return_value         // return expected result, *only used for UNIT TESTS
                   }
             }
         }
       }
 
       // Execute evalGrade() when the user presses a key on the keyboard
-      input_user_number.addEventListener("keydown", function (event) {
-          if (event.keyCode === 13) {
-              button_run.click()
+      input_user_number.addEventListener("keydown", function (event) { // listen for  key presses
+          if (event.keyCode === 13) {                                 // '13' is the Enter/Return key
+              button_run.click()                                      // emulate button click
           }
       })
       // Get value from text input field and submit it to the evalGrade()
-      button_run.onclick = function() {
-        let user_number = input_user_number.value
-        let result = evalGrade(user_number)
-        if (result === 'blank') {
-            span_result.innerText = 'You didn\'t enter anything.'
-        } else if (result === 'NaN') {
-            span_result.innerText = 'You didn\'t enter a number.'
+      button_run.onclick = function() {                               // listen for button clicks
+        let user_number = input_user_number.value                     // assign input field value to var
+        let result = evalGrade(user_number)                           // execute evalGrade(input value)
+        if (result === 'blank') {                                     // input validation, part 2 (line 92)
+            span_result.innerText = 'You didn\'t enter anything.'     // display error msg
+        } else if (result === 'NaN') {                                // input validation, part 2 (line 94)
+            span_result.innerText = 'You didn\'t enter a number.'     // display error msg
         }
       }
 

@@ -89,47 +89,47 @@
       <div id="blackjack_advice"></div>
     </div>
     <script type="text/javascript">
-      let btn_show_cards = document.querySelector('#btn_show_cards')
-      let blackjack_advice = document.querySelector('#blackjack_advice')
-      let cards_pulldowns = document.querySelector('#cards_pulldowns')
+      let btn_show_cards = document.querySelector('#btn_show_cards')      //
+      let blackjack_advice = document.querySelector('#blackjack_advice')  // get elements out of DOM
+      let cards_pulldowns = document.querySelector('#cards_pulldowns')    //
 
-      let selects_array = []
-      for (let i=0;i<3;i++) {
-        let select_card = document.createElement('select')
-        selects_array.push(select_card)
-        let cards = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-        cards_pulldowns.appendChild(select_card)
-        for (let j=0; j<cards.length; j++) {
-          let option = document.createElement('option')
-          option.text = option.value = cards[j]
-          select_card.add(option, -1)
+      let selects_array = []                                      // init array
+      for (let i=0;i<3;i++) {                                     // loop 3xs
+        let select_card = document.createElement('select')        // create a 'select'
+        selects_array.push(select_card)                           // add 'select' element to array
+        cards_pulldowns.appendChild(select_card)                  // add 'select' to the page
+        let cards = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] // 'cards' array
+        for (let j=0; j<cards.length; j++) {                      // loops through all cards in array
+          let option = document.createElement('option')           // create a new element: option
+          option.text = option.value = cards[j]                   // set 'option' text & value to cards[j]
+          select_card.add(option, -1)                             // add the 'option' to 'select'
         }
       }
 
-      btn_show_cards.onclick = function() {
-        card_value_total = 0
-        cards = [selects_array[0].value, selects_array[1].value, selects_array[2].value]
-        for (let i=0;i<3;i++) {
-          if (['J','Q','K'].includes(cards[i])) {
-              card_value = 10
-          } else if (cards[i] == 'A') {
-              card_value = 1
+      btn_show_cards.onclick = function() {                       // listen for button clicks
+        card_value_total = 0                                      // init 'total' variable
+        cards = [selects_array[0].value, selects_array[1].value, selects_array[2].value] // user's choices
+        for (let i=0;i<3;i++) {                                   // loop through 3x for all three choices
+          if (['J','Q','K'].includes(cards[i])) {                 // if it's a face card, ...
+              card_value = 10                                     // ... value=10
+          } else if (cards[i] == 'A') {                           // if it's an Ace, ...
+              card_value = 1                                      // this version: Aces are always worth '1'
           } else {
-              card_value = parseInt(cards[i])
+              card_value = parseInt(cards[i])                     // if it's a number card, convert to integer
           }
-          card_value_total += card_value
+          card_value_total += card_value                          // add value of card to running total
         }
 
-        if (isNaN(card_value_total)) {
-          blackjack_advice.innerText = "You didn't select three cards."
-        } else if (card_value_total < 17) {
-          blackjack_advice.innerText = "That's " + card_value_total + ". Hit"
-        } else if (card_value_total >= 17 && card_value_total < 21) {
-          blackjack_advice.innerText = "That's " + card_value_total + ". Stay!"
-        } else if (card_value_total == 21) {
-          blackjack_advice.innerText = "That's " + card_value_total + ". Blackjack!"
-        } else {
-          blackjack_advice.innerText = "That's " + card_value_total + ". You already busted!"
+        if (isNaN(card_value_total)) {                                       // if user selected <3 cards,..
+          blackjack_advice.innerText = "You didn't select three cards."      // .. display error message
+        } else if (card_value_total < 17) {                                  // if total < 17,..
+          blackjack_advice.innerText = "That's " + card_value_total + ". Hit"// .. display total & 'Hit'
+        } else if (card_value_total >= 17 && card_value_total < 21) {        // if 17 < total < 21,..
+          blackjack_advice.innerText = "That's " + card_value_total + ". Stay!" // .. display total & 'Stay'
+        } else if (card_value_total == 21) {                                 // if total == 21,..
+          blackjack_advice.innerText = "That's " + card_value_total + ". Blackjack!" // .. Blackjack!
+        } else {                                                             //
+          blackjack_advice.innerText = "That's " + card_value_total + ". You already busted!" // >21 = Bust!
         }
       }
     </script>

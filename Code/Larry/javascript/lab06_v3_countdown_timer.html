@@ -1,0 +1,255 @@
+<!-- JavaScript lab: lab06_v3_countdown_timer.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 06: Countdown Timer</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        background-color: #C0C0C0;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+        font-weight:
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > * {
+        margin: 0 8px 0;
+        padding-top: 18.720px;
+      }
+      .monospace {
+        font-family: 'Roboto Mono', monospace;
+        color: blue;
+      }
+      #app {
+        background-color: rgba(255,255,255,0.5);
+        height: 100%;
+        margin: 0;
+        padding: 10px auto;
+        width: 100%;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+      }
+      .ct_display {
+        background-color: rgba(128,255,128,0.5);
+        font-size: 40px;
+        font-weight: 300;
+        height: 55px;
+        margin: 10px auto 20px;
+        text-align: center;
+        width: 50%;
+      }
+      .input_time {
+        font-size: 40px;
+        width: 300px;
+        direction: rtl;
+      }
+      .sl_times {
+        font-size: 24px;
+        padding: 15px 32px;
+        height: calc(1.1em + 24px);
+        margin: 18px;
+      }
+      button {
+        font-size: 24px;
+        padding: 15px 32px;
+        margin: 25px 10px auto;
+      }
+      ul {
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 06: Countdown Timer</h1>
+      <div>Next make a countdown timer. The countdown timer should have a text input for the time, and a drop-down list for the units (seconds, minutes, hours). Set an interval which will start a <span class="monospace">date</span> at the given time, and decrement the seconds each second. The countdown timer should alert the user when it's finished (using an <span class="monospace">alert("time's up")</span> or changing the background color, etc).
+      </div>
+      <div id="version_info">
+        <span><b>v1: first iteration of Countdown Timer using vue.js</b></span>
+      </div>
+    </div>
+    <div id="app">
+        <div class="flex">
+          <span class="ct_display">{{ ct_display }}</span>
+        </div>
+        <div class="flex">
+          <input type="text" v-model="user_time" class="input_time" v-on:input="realtime">
+          <select class="sl_times" v-model="user_unit" v-on:change="reset">
+            <option v-for="time_unit in time_units" :value="time_unit.value">{{ time_unit.text }}</option>
+          </select>
+        </div>
+        <div class="flex">
+          <button v-on:click="start">Start</button>
+          <button v-on:click="stop">Stop</button>
+          <button v-on:click="reset">Reset</button>
+        </div>
+        <div id="code">
+          <pre>
+            &lt;script type="text/javascript"&gt;
+            <!-- codes goes here -->
+            &lt;/script&gt;
+          </pre>
+        </div> <!-- code div end -->
+    </div> <!-- container div end -->
+    <script type="text/javascript">
+      var curr_time = new Date()
+      curr_time.setHours(0,0,0,0) // set hrs, mins, secs, ms to 0s
+      var app = new Vue({
+        el: '#app',
+        data: {
+          ct_display: '00:00:00.000',
+          user_time: null,
+          user_unit: null,                              // set to 'secs' to show this by default
+          backgroundColor: null,
+          time_units: [
+            {value: null, text: 'unit of time'},        // if 'secs' is set on line 123, remove this line
+                                                        // this allows to do some input validation
+            {value: 'secs', text: 'seconds'},
+            {value: 'mins', text: 'minutes'},
+            {value: 'hrs', text: 'hours'}
+          ],
+          hours: null,
+          minutes: null,
+          seconds: null,
+          milliseconds: null,
+          curr_time: curr_time,
+          stopwatch: null,
+          inprog: 0
+        }, // end of 'data'
+        methods: {
+          getBaseTime: function() {
+            this.hours = this.curr_time.getHours()                      // assign current hour to 'hours'
+            this.hours = this.hours < 10 ? '0'+this.hours : this.hours  // padding for hours < 10
+            this.minutes = this.curr_time.getMinutes()                  // assign current mins to 'minutes'
+            this.minutes = this.minutes < 10 ? '0'+this.minutes : this.minutes // padding for minutes < 10
+            this.seconds = this.curr_time.getSeconds()                  // assign current secs to 'seconds'
+            this.seconds = this.seconds < 10 ? '0'+this.seconds : this.seconds // padding for seconds < 10
+            this.milliseconds = this.curr_time.getMilliseconds()        // assign current ms to 'milliseconds'
+            if (this.milliseconds < 10) {                               // padding for 1-digit milliseconds
+              this.milliseconds = '00'+this.milliseconds                // add 00 to ms
+            } else if (this.milliseconds < 100) {                       // padding for 2-digit milliseconds
+              this.milliseconds = '0'+this.milliseconds                 // add 0 to ms
+            }
+            // display hh:mm:ss.mss in div innerText
+            this.ct_display = this.hours + ':' + this.minutes + ':' + this.seconds + '.' + this.milliseconds
+            // increment the hundredths place of milliseconds
+            this.milliseconds = this.curr_time.setMilliseconds(this.curr_time.getMilliseconds() - 10)
+          }, // end of 'getBaseTime'
+          start: function() {
+            let t_user_time = this.user_time
+            if (t_user_time == null) {
+              // not sure what check for yet TBD
+            } else {
+              if (this.inprog == 0) {
+                t_user_time = t_user_time < 10 ? '0'+t_user_time : t_user_time
+                if (this.user_unit == null) {                   // see line 123,126-127
+                  console.log('user unit is not selected')
+                  this.user_time = ''
+                  // feature request: change backgroundColor
+                  // user_unit.style.backgroundColor = rgba(255,0,0,0.5)
+                } else if (this.user_unit == 'secs') {
+                  this.curr_time.setHours(0,0,this.user_time,0)
+                } else if (this.user_unit == 'mins') {
+                  this.curr_time.setHours(0,this.user_time,0,0)
+                } else if (this.user_unit == 'hrs') {
+                  this.curr_time.setHours(this.user_time,0,0,0)
+                } else {
+                  console.log('something else happened')
+                }
+                this.user_time = ''
+                this.stopwatch = setInterval(() => {           // initilize setInterval
+                  this.getBaseTime()                               // execute getBaseTime()
+                  if (this.ct_display == '00:00:00.000') {
+                    clearInterval(this.stopwatch)
+                    app.ct_display = "Time's up"
+                    setTimeout(() => {
+                      this.reset()
+                    }, 2000)
+                  }
+                }, 10)
+                this.inprog = 1
+              } else {
+                this.stopwatch = setInterval(() => {           // initilize setInterval
+                  this.getBaseTime()                               // execute getBaseTime()
+                  if (this.ct_display == '00:00:00.000') {
+                    clearInterval(this.stopwatch)
+                    app.ct_display = "Time's up"
+                    setTimeout(() => {
+                      this.reset()
+                    }, 2000)
+                  }
+                }, 10)
+                this.inprog = 1
+              }
+              // ***** feature request: disable Start button *****
+            }
+          }, // end of 'start'
+          startTimer: function() {
+            this.stopwatch = setInterval(() => {           // initilize setInterval
+              this.getBaseTime()                               // execute getBaseTime()
+            }, 10)
+            this.inprog = 1
+          },
+          stop: function() {
+            clearInterval(this.stopwatch)
+          }, // end of 'stop'
+          reset: function() {
+            this.curr_time.setHours(0,0,0,0)
+            this.ct_display = '00:00:00.000'
+            this.user_time = ''
+            clearInterval(this.stopwatch)
+            this.inprog = 0
+          }, // end of 'reset'
+          realtime: function() {
+            let t_user_time = this.user_time
+            t_user_time = t_user_time < 10 ? '0'+t_user_time : t_user_time
+            if (this.user_unit == null) {
+              console.log('user unit is not selected')
+              this.user_time = ''
+              // change backgroundColor
+              // something like: user_unit.style.backgroundColor = rgba(255,0,0,0.5)
+            } else if (this.user_unit == 'secs') {
+              console.log('user unit is secs')
+              this.ct_display = '00:00:'+t_user_time+'.000'
+            } else if (this.user_unit == 'mins') {
+              console.log('user unit is mins')
+              this.ct_display = '00:'+t_user_time+':00.000'
+            } else if (this.user_unit == 'hrs') {
+              console.log('user unit is hrs')
+              this.ct_display = t_user_time+':00:00.000'
+            } else {
+              console.log('something else happened')
+            }
+          } // end of 'realtime'
+        }, // end of 'methods'
+        computed: {
+          isDisabled() {
+            // you can check your form is filled or not here.
+            // return yourCondition == true
+          },
+        } // end of 'computed'
+      }) // end of vue 'app'
+    </script>
+  </body>
+</html>
