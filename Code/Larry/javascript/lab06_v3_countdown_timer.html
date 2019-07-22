@@ -95,7 +95,7 @@
         </div>
         <div class="flex">
           <input type="text" v-model="user_time" class="input_time" v-on:input="realtime">
-          <select v-bind:class="{sl_times: time_units}" v-model="user_unit">
+          <select class="sl_times" v-model="user_unit">
             <option v-for="time_unit in time_units" :value="time_unit.value">{{ time_unit.text }}</option>
           </select>
         </div>
@@ -156,7 +156,6 @@
             this.milliseconds = this.curr_time.setMilliseconds(this.curr_time.getMilliseconds() - 10)
           }, // end of 'getBaseTime'
           start: function() {
-            let ref = this // *** WHAT THE HECK IS THIS? *** You can't call function inside setInterval()?
             let t_user_time = this.user_time
             if (t_user_time == null) {
 
@@ -179,14 +178,14 @@
                 }
                 this.user_time = ''
                 // this.startTimer()
-                this.stopwatch = setInterval(function() {           // initilize setInterval
-                  ref.getBaseTime()                               // execute getBaseTime()
+                this.stopwatch = setInterval(() => {           // initilize setInterval
+                  this.getBaseTime()                               // execute getBaseTime()
                 }, 10)
                 this.inprog = 1
               } else {
                 // this.startTimer()
-                this.stopwatch = setInterval(function() {           // initilize setInterval
-                  ref.getBaseTime()                               // execute getBaseTime()
+                this.stopwatch = setInterval(() => {           // initilize setInterval
+                  this.getBaseTime()                               // execute getBaseTime()
                 }, 10)
                 this.inprog = 1
               }
@@ -194,8 +193,8 @@
             }
           }, // end of 'start'
           startTimer: function() {
-            this.stopwatch = setInterval(function() {           // initilize setInterval
-              ref.getBaseTime()                               // execute getBaseTime()
+            this.stopwatch = setInterval(() => {           // initilize setInterval
+              this.getBaseTime()                               // execute getBaseTime()
             }, 10)
             this.inprog = 1
           },
