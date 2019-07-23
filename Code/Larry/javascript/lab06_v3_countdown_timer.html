@@ -318,27 +318,31 @@
             }
           }, // end of 'start'
           startTimer: function() {
-            audio = new Audio('https://lar-mo.com/mp3s/' + this.user_sound + '.mp3')
+            this.audio = new Audio('https://lar-mo.com/mp3s/' + this.user_sound + '.mp3')
             this.stopwatch = setInterval(() => {
               this.getBaseTime()
               if (this.ct_display == '00:00:00.000') {
                 clearInterval(this.stopwatch)
                 app.ct_display = "Time's up"
-                setTimeout(() => {
-                  this.reset()
-                }, 2000)
+                // setTimeout(() => {
+                //   this.reset()
+                // }, 2000)
                 this.playAudio()
               }
             }, 10)
             this.inprog++
           }, // end of 'startTimer'
           playAudio: function() {
-            audio.play()
+            this.audio.play()
           }, // end of 'playAudio'
+          stopAudio: function() {
+            this.audio.pause() // .play() will resume from .pause() position
+          },
           stop: function() {
             clearInterval(this.stopwatch)
             this.bt_start = true
             this.bt_stop = false
+            this.stopAudio()
           }, // end of 'stop'
           reset: function() {
             this.curr_time.setHours(0,0,0,0)
@@ -348,6 +352,7 @@
             this.inprog = 0
             this.bt_start = true
             this.bt_stop = false
+            this.stopAudio()
           }, // end of 'reset'
           realtime: function() {
             let t_user_time = this.user_time
