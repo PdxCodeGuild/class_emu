@@ -99,7 +99,7 @@
             <option v-for="time_unit in time_units" :value="time_unit.value">{{ time_unit.text }}</option>
           </select>
           <select class="sl_times" v-model="user_sound">
-            <option v-for="sound in sounds" :value="sound.value">{{ sound.text }}</option>
+            <option v-for="sound in sounds" :value="sound">{{ sound }}</option>
           </select>
         </div>
         <div class="flex">
@@ -132,11 +132,7 @@
                   {value: 'hrs', text: 'hours'}
                 ],
                 user_sound: 'birds',
-                sounds: [
-                  {value: 'birds', text: 'birds'},
-                  {value: 'chime', text: 'chime'},
-                  {value: 'alarm', text: 'alarm'}
-                ],
+                sounds: ['birds', 'chime', 'alarm'],
                 curr_time: curr_time,
                 inprog: 0,
                 bt_start: true,
@@ -267,11 +263,7 @@
             {value: 'hrs', text: 'hours'}
           ],
           user_sound: 'birds',
-          sounds: [
-            {value: 'birds', text: 'birds'},
-            {value: 'chime', text: 'chime'},
-            {value: 'alarm', text: 'alarm'}
-          ],
+          sounds: ['birds', 'chime', 'alarm'],
           curr_time: curr_time,
           inprog: 0,
           bt_start: true,
