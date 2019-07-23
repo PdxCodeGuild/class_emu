@@ -1,0 +1,111 @@
+<!-- JavaScript lab: lab08_v2_any_api.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 07: Random Quote</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        background-color: #C0C0C0;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+        font-weight:
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > * {
+        margin: 0 8px 0;
+        padding-top: 18.720px;
+      }
+      .monospace, a {
+        font-family: 'Roboto Mono', monospace;
+        color: blue;
+      }
+      #container {
+        background-color: rgba(255,255,255,0.5);
+        height: 100%;
+        margin: 0;
+        padding: 10px auto;
+        width: 100%;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+      #header {
+        font-size: 65px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 08: Any API</h1>
+      <div>Use <span class="monospace"><a href="http://localhost:8081/api/contacts" target="_blank">http://localhost:8081/api/contacts</a></span> to GET contact information, then display it on the page.
+      </div>
+      <div id="version_info">
+        <span><b>v2: second iteration of JS Any API lab - Contacts</b></span>
+      </div>
+    </div>
+    <div id="container">
+      <div class="flex">
+        <div id="header">Any API</div>
+        <div id="contacts"></div>
+      </div>
+        <div id="code">
+          <pre>
+            &lt;script type="text/javascript"&gt;
+            <!-- code goes here -->
+            &lt;/script&gt;
+          </pre>
+        </div> <!-- code div end -->
+    </div> <!-- container div end -->
+    <script type="text/javascript">
+      // code goes here
+      let url = 'http://localhost:8081/api/contacts'
+      let contacts = document.querySelector("#contacts")
+      axios.get(url)
+      .then(function (response) {
+        let data = response.data.data
+        // console.log(data)
+        for (let i=0;i<data.length;++i) {
+          // console.log(data[i].name)
+          let name = data[i].name
+          let email = data[i].email
+          let phone = data[i].phone
+          let contact_label = document.createElement('span')
+          contact_label.innerHTML = "<b>" + name + "</b>"
+          contacts.appendChild(contact_label)
+          let ul = document.createElement('ul')
+          contacts.appendChild(ul)
+          let li_email = document.createElement('li')
+          li_email.innerText = email
+          ul.appendChild(li_email)
+          let li_phone = document.createElement('li')
+          li_phone.innerText = phone
+          ul.appendChild(li_phone)
+        }
+      })
+    </script>
+  </body>
+</html>
