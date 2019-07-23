@@ -68,7 +68,7 @@
         font-size: 24px;
         padding: 15px 32px;
         height: calc(1.1em + 24px);
-        margin: 18px;
+        margin: 18px 0 18px 18px;
       }
       button {
         font-size: 24px;
@@ -98,6 +98,9 @@
           <select class="sl_times" v-model="user_unit" v-on:change="reset">
             <option v-for="time_unit in time_units" :value="time_unit.value">{{ time_unit.text }}</option>
           </select>
+          <select class="sl_times" v-model="user_sound">
+            <option v-for="sound in sounds" :value="sound.value">{{ sound.text }}</option>
+          </select>
         </div>
         <div class="flex">
           <button v-on:click="start" :disabled="isDisabled_start">Start</button>
@@ -115,122 +118,7 @@
             Note: this the development version since this is only a demonstration
 
             &lt;script type="text/javascript"&gt;
-            var curr_time = new Date()
-            curr_time.setHours(0,0,0,0)
-            var app = new Vue({
-              el: '#app',
-              data: {
-                ct_display: '00:00:00.000',
-                user_time: null,
-                user_unit: 'secs',
-                time_units: [
-                  {value: 'secs', text: 'seconds'},
-                  {value: 'mins', text: 'minutes'},
-                  {value: 'hrs', text: 'hours'}
-                ],
-                curr_time: curr_time,
-                inprog: 0,
-                bt_start: true,
-                bt_stop: false
-              }, // end of 'data'
-              methods: {
-                getBaseTime: function() {
-                  this.hours = this.curr_time.getHours()
-                  this.hours = this.hours < 10 ? '0'+this.hours : this.hours
-                  this.minutes = this.curr_time.getMinutes()
-                  this.minutes = this.minutes < 10 ? '0'+this.minutes : this.minutes
-                  this.seconds = this.curr_time.getSeconds()
-                  this.seconds = this.seconds < 10 ? '0'+this.seconds : this.seconds
-                  this.milliseconds = this.curr_time.getMilliseconds()
-                  if (this.milliseconds < 10) {
-                    this.milliseconds = '00'+this.milliseconds
-                  } else if (this.milliseconds < 100) {
-                    this.milliseconds = '0'+this.milliseconds
-                  }
-                  this.ct_display = this.hours + ':' + this.minutes + ':' + this.seconds + '.' + this.milliseconds
-                  this.milliseconds = this.curr_time.setMilliseconds(this.curr_time.getMilliseconds() - 10)
-                }, // end of 'getBaseTime'
-                start: function() {
-                  let t_user_time = this.user_time
-                  if (this.user_time == null) {
-                    this.ct_display = 'Please enter a number'
-                    setTimeout(() => {
-                      this.reset()
-                    }, 2000)
-                  } else {
-                    if (this.inprog == 0) {
-                      t_user_time = t_user_time < 10 ? '0'+t_user_time : t_user_time
-                      if (this.user_unit == 'secs') {
-                        this.curr_time.setHours(0,0,this.user_time,0)
-                      } else if (this.user_unit == 'mins') {
-                        this.curr_time.setHours(0,this.user_time,0,0)
-                      } else if (this.user_unit == 'hrs') {
-                        this.curr_time.setHours(this.user_time,0,0,0)
-                      } else {
-                        console.log('something else happened')
-                      }
-                      this.user_time = ''
-                      this.startTimer()
-                    } else {
-                      this.startTimer()
-                    }
-                    this.bt_start = false
-                    this.bt_stop = true
-                  }
-                }, // end of 'start'
-                startTimer: function() {
-                  this.stopwatch = setInterval(() => {
-                    this.getBaseTime()
-                    if (this.ct_display == '00:00:00.000') {
-                      clearInterval(this.stopwatch)
-                      app.ct_display = "Time's up"
-                      setTimeout(() => {
-                        this.reset()
-                      }, 2000)
-                    }
-                  }, 10)
-                  this.inprog++
-                }, // end of 'startTimer'
-                stop: function() {
-                  clearInterval(this.stopwatch)
-                  this.bt_start = true
-                  this.bt_stop = false
-                }, // end of 'stop'
-                reset: function() {
-                  this.curr_time.setHours(0,0,0,0)
-                  this.ct_display = '00:00:00.000'
-                  this.user_time = null
-                  clearInterval(this.stopwatch)
-                  this.inprog = 0
-                  this.bt_start = true
-                  this.bt_stop = false
-                }, // end of 'reset'
-                realtime: function() {
-                  let t_user_time = this.user_time
-                  t_user_time = t_user_time < 10 ? '0'+t_user_time : t_user_time
-                  if (this.user_unit == 'secs') {
-                    console.log('user unit is secs')
-                    this.ct_display = '00:00:'+t_user_time+'.000'
-                  } else if (this.user_unit == 'mins') {
-                    console.log('user unit is mins')
-                    this.ct_display = '00:'+t_user_time+':00.000'
-                  } else if (this.user_unit == 'hrs') {
-                    console.log('user unit is hrs')
-                    this.ct_display = t_user_time+':00:00.000'
-                  } else {
-                    console.log('something else happened')
-                  }
-                } // end of 'realtime'
-              }, // end of 'methods'
-              computed: {
-                isDisabled_start: function() {
-                  return !this.bt_start
-                },
-                isDisabled_stop: function() {
-                  return !this.bt_stop
-                }
-              } // end of 'computed'
-            }) // end of vue 'app'
+              <!-- code goes here -->
             &lt;/script&gt;
           </pre>
         </div> <!-- code div end -->
@@ -249,10 +137,17 @@
             {value: 'mins', text: 'minutes'},
             {value: 'hrs', text: 'hours'}
           ],
+          user_sound: 'birds',
+          sounds: [
+            {value: 'birds', text: 'birds'},
+            {value: 'chime', text: 'chime'},
+            {value: 'alarm', text: 'alarm'}
+          ],
           curr_time: curr_time,
           inprog: 0,
           bt_start: true,
-          bt_stop: false
+          bt_stop: false,
+          audio: null
         }, // end of 'data'
         methods: {
           getBaseTime: function() {
@@ -310,10 +205,18 @@
                 setTimeout(() => {
                   this.reset()
                 }, 2000)
+                this.playAudio(this.user_sound)
+                // alert(this.user_sound)
+                // audio = new Audio('mp3s/chime.mp3')
+                // audio.play()
               }
             }, 10)
             this.inprog++
           }, // end of 'startTimer'
+          playAudio: function(type) {
+            audio = new Audio('https://lar-mo.com/mp3s/' + type + '.mp3')
+            audio.play()
+          }, // end of 'playAudio'
           stop: function() {
             clearInterval(this.stopwatch)
             this.bt_start = true
@@ -327,6 +230,7 @@
             this.inprog = 0
             this.bt_start = true
             this.bt_stop = false
+            this.audio.pause()
           }, // end of 'reset'
           realtime: function() {
             let t_user_time = this.user_time
