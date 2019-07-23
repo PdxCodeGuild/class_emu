@@ -197,6 +197,7 @@
             }
           }, // end of 'start'
           startTimer: function() {
+            audio = new Audio('https://lar-mo.com/mp3s/' + this.user_sound + '.mp3')
             this.stopwatch = setInterval(() => {
               this.getBaseTime()
               if (this.ct_display == '00:00:00.000') {
@@ -214,7 +215,7 @@
             this.inprog++
           }, // end of 'startTimer'
           playAudio: function(type) {
-            audio = new Audio('https://lar-mo.com/mp3s/' + type + '.mp3')
+            // audio = new Audio('https://lar-mo.com/mp3s/' + type + '.mp3')
             audio.play()
           }, // end of 'playAudio'
           stop: function() {
@@ -230,7 +231,6 @@
             this.inprog = 0
             this.bt_start = true
             this.bt_stop = false
-            this.audio.pause()
           }, // end of 'reset'
           realtime: function() {
             let t_user_time = this.user_time
