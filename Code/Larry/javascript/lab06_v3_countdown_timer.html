@@ -206,16 +206,12 @@
                 setTimeout(() => {
                   this.reset()
                 }, 2000)
-                this.playAudio(this.user_sound)
-                // alert(this.user_sound)
-                // audio = new Audio('mp3s/chime.mp3')
-                // audio.play()
+                this.playAudio()
               }
             }, 10)
             this.inprog++
           }, // end of 'startTimer'
-          playAudio: function(type) {
-            // audio = new Audio('https://lar-mo.com/mp3s/' + type + '.mp3')
+          playAudio: function() {
             audio.play()
           }, // end of 'playAudio'
           stop: function() {
