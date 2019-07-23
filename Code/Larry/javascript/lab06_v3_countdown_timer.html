@@ -170,34 +170,27 @@
                         console.log('something else happened')
                       }
                       this.user_time = ''
-                      this.stopwatch = setInterval(() => {
-                        this.getBaseTime()
-                        if (this.ct_display == '00:00:00.000') {
-                          clearInterval(this.stopwatch)
-                          app.ct_display = "Time's up"
-                          setTimeout(() => {
-                            this.reset()
-                          }, 2000)
-                        }
-                      }, 10)
-                      this.inprog++
+                      this.startTimer()
                     } else {
-                      this.stopwatch = setInterval(() => {
-                        this.getBaseTime()
-                        if (this.ct_display == '00:00:00.000') {
-                          clearInterval(this.stopwatch)
-                          app.ct_display = "Time's up"
-                          setTimeout(() => {
-                            this.reset()
-                          }, 2000)
-                        }
-                      }, 10)
-                      this.inprog++
+                      this.startTimer()
                     }
                     this.bt_start = false
                     this.bt_stop = true
                   }
                 }, // end of 'start'
+                startTimer: function() {
+                  this.stopwatch = setInterval(() => {
+                    this.getBaseTime()
+                    if (this.ct_display == '00:00:00.000') {
+                      clearInterval(this.stopwatch)
+                      app.ct_display = "Time's up"
+                      setTimeout(() => {
+                        this.reset()
+                      }, 2000)
+                    }
+                  }, 10)
+                  this.inprog++
+                }, // end of 'startTimer'
                 stop: function() {
                   clearInterval(this.stopwatch)
                   this.bt_start = true
@@ -300,34 +293,27 @@
                   console.log('something else happened')
                 }
                 this.user_time = ''
-                this.stopwatch = setInterval(() => {
-                  this.getBaseTime()
-                  if (this.ct_display == '00:00:00.000') {
-                    clearInterval(this.stopwatch)
-                    app.ct_display = "Time's up"
-                    setTimeout(() => {
-                      this.reset()
-                    }, 2000)
-                  }
-                }, 10)
-                this.inprog++
+                this.startTimer()
               } else {
-                this.stopwatch = setInterval(() => {
-                  this.getBaseTime()
-                  if (this.ct_display == '00:00:00.000') {
-                    clearInterval(this.stopwatch)
-                    app.ct_display = "Time's up"
-                    setTimeout(() => {
-                      this.reset()
-                    }, 2000)
-                  }
-                }, 10)
-                this.inprog++
+                this.startTimer()
               }
               this.bt_start = false
               this.bt_stop = true
             }
           }, // end of 'start'
+          startTimer: function() {
+            this.stopwatch = setInterval(() => {
+              this.getBaseTime()
+              if (this.ct_display == '00:00:00.000') {
+                clearInterval(this.stopwatch)
+                app.ct_display = "Time's up"
+                setTimeout(() => {
+                  this.reset()
+                }, 2000)
+              }
+            }, 10)
+            this.inprog++
+          }, // end of 'startTimer'
           stop: function() {
             clearInterval(this.stopwatch)
             this.bt_start = true
