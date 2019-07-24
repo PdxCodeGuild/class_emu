@@ -193,6 +193,7 @@
                     if (this.ct_display == '00:00:00.000') {
                       clearInterval(this.stopwatch)
                       app.ct_display = "Time's up"
+                      this.bt_stop = false
                       setTimeout(() => {
                         this.reset()
                       }, 2000)
@@ -324,9 +325,7 @@
               if (this.ct_display == '00:00:00.000') {
                 clearInterval(this.stopwatch)
                 app.ct_display = "Time's up"
-                // setTimeout(() => {
-                //   this.reset()
-                // }, 2000)
+                this.bt_stop = false
                 this.playAudio()
               }
             }, 10)
@@ -336,7 +335,7 @@
             this.audio.play()
           }, // end of 'playAudio'
           stopAudio: function() {
-            this.audio.pause() // .play() will resume from .pause() position
+            this.audio.pause()
           },
           stop: function() {
             clearInterval(this.stopwatch)
