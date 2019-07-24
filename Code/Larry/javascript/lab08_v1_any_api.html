@@ -90,8 +90,8 @@
       let config = {
         params: {
           method: 'flickr.urls.lookupUser',
-          api_key: flickr_api_key,
           url: 'https://www.flickr.com/photos/'+flickr_username,
+          api_key: flickr_api_key,
           format: 'json',
           nojsoncallback: 1
         }, // end of 'params'
@@ -107,8 +107,8 @@
       let config = {
         params: {
           method: 'flickr.people.getPublicPhotos',
-          api_key: flickr_api_key,
           user_id: user_id,
+          api_key: flickr_api_key,
           format: 'json',
           nojsoncallback: 1
         }, // end of 'params'
@@ -128,8 +128,8 @@
       let config = {
         params: {
           method: 'flickr.photos.getSizes',
-          api_key: flickr_api_key,
           photo_id: photo_id,
+          api_key: flickr_api_key,
           format: 'json',
           nojsoncallback: 1
         }, // end of 'params'
