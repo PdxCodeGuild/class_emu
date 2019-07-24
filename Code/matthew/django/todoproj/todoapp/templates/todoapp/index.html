@@ -2,13 +2,18 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>{{ title }}</title>
   </head>
   <body>
     <h1>{{ title }}</h1>
+    <form action="/todoapp/addtodo/" method="post">
+      {% csrf_token %}
+      <input type="text" name="todo_text" required/>
+      <button type="submit">add</button>
+    </form>
     <ul>
-      {% for fruit in fruits %}
-      <li>{{ fruit }}</li>
+      {% for todo in todos %}
+      <li>{{ todo.text }}</li>
       {% endfor %}
     </ul>
   </body>
