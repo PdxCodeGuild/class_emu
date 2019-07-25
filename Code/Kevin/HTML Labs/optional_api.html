@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        #picture_section{
+            border: 4px solid black;
+            padding: 2px;
+            width: 55%;
+            
+        }
+
+        #picture_section > img{
+            padding: 2px;
+        }
+
+        h2, h3{
+            display: inline;
+            color: red;
+        }
+
+        #heading_name, #genre_name{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="text" name="artist" id="Artist_name" placeholder = "Artist name" >
+    <input type="button" name="art_btn" id="Art_btn" value = "Search" /><br>
+    <h3>Artist: </h3>
+    <span id="heading_name"></span>
+    <h3>Genre:</h3>
+    <span id="genre_name"></span>
+    <div id="picture_section">
+       
+    </div>
+    
+</div>
+
+<script src="optional_api.js"></script>
+</body>
+</html>
