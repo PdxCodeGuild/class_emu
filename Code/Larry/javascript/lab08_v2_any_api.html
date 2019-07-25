@@ -56,6 +56,19 @@
         font-weight: 700;
         margin-bottom: 15px;
       }
+      .col_header > input {
+        background-color: rgba(100,100,100,0.4);
+      }
+      .databoxes > input, .new_contact > input, .col_header > input {
+        font-size: 21px;
+        padding: 20px;
+        color: #000;
+      }
+      .databoxes > button, .new_contact > button {
+        font-size: 16px;
+        padding: 16px;
+        margin-left: 15px;
+      }
     </style>
   </head>
   <body>
@@ -67,47 +80,154 @@
       </div>
       <div id="version_info">
         <span><b>v2: second iteration of JS Any API lab - Contacts API</b></span>
-      </div>
-    </div>
+      </div> <!-- end of 'version_info'-->
+    </div> <!-- end of 'lab_instructions'-->
     <div id="container">
       <div class="flex">
         <div id="header">Any API</div>
-        <div id="contacts"></div>
-      </div>
+        <div id="contacts">
+          <div id="howto">Double-click to edit</div>
+          <div class="col_header">
+            <input disabled value="Name"/><input disabled value="Email"/><input disabled value="Phone"/>
+          </div>
+          <div class="new_contact">
+            <input id="name" placeholder="enter a name"/><input id="email" placeholder="enter an email"/><input id="phone" placeholder="enter a phone number"/><button id="save_new_contact">New &nbsp;Contact&nbsp;</button>
+          </div>
+        </div> <!-- end of 'contacts'-->
         <div id="code">
           <pre>
             &lt;script type="text/javascript"&gt;
             <!-- code goes here -->
             &lt;/script&gt;
           </pre>
-        </div> <!-- code div end -->
-    </div> <!-- container div end -->
+        </div> <!-- end of 'code' -->
+      </div> <!-- end of 'flex' -->
+    </div> <!-- end of 'container' -->
     <script type="text/javascript">
       // code goes here
       let url = 'http://localhost:8081/api/contacts'
       let contacts = document.querySelector("#contacts")
+      let save_new_contact = document.querySelector('#save_new_contact')
+      let name = document.querySelector('#name')
+      let email = document.querySelector('#email')
+      let phone = document.querySelector('#phone')
+      let user_id = null
+
       axios.get(url)
       .then(function (response) {
-        let data = response.data.data
-        // console.log(data)
+
+        var data = response.data.data
+
         for (let i=0;i<data.length;++i) {
-          // console.log(data[i].name)
+          user_id = data[i]._id
           let name = data[i].name
           let email = data[i].email
           let phone = data[i].phone
-          let contact_label = document.createElement('span')
-          contact_label.innerHTML = "<b>" + name + "</b>"
-          contacts.appendChild(contact_label)
-          let ul = document.createElement('ul')
-          contacts.appendChild(ul)
-          let li_email = document.createElement('li')
-          li_email.innerText = email
-          ul.appendChild(li_email)
-          let li_phone = document.createElement('li')
-          li_phone.innerText = phone
-          ul.appendChild(li_phone)
+
+          let div_contact = document.createElement('div')
+          div_contact.setAttribute('class','databoxes')
+          contacts.appendChild(div_contact)
+
+          let input_name = document.createElement('input')
+          input_name.setAttribute('type','text')
+          input_name.setAttribute('value',name)
+          input_name.setAttribute('readonly',null)
+          div_contact.appendChild(input_name)
+
+          let input_email = document.createElement('input')
+          input_email.setAttribute('type','text')
+          input_email.setAttribute('value',email)
+          input_email.setAttribute('readonly',null)
+          div_contact.appendChild(input_email)
+
+          let input_phone = document.createElement('input')
+          input_phone.setAttribute('type','text')
+          input_phone.setAttribute('value',phone)
+          input_phone.setAttribute('readonly',null)
+          div_contact.appendChild(input_phone)
+
+          let button_save = document.createElement('button')
+          button_save.innerText = "Save Changes"
+          button_save.setAttribute('value',user_id)
+          div_contact.appendChild(button_save)
+
+          // listeners
+
+          input_name.ondblclick = function() {
+            input_name.removeAttribute('readonly')
+            input_name.style.backgroundColor = "#CFFFB9"
+          }
+          input_email.ondblclick = function() {
+            input_email.removeAttribute('readonly')
+            input_email.style.backgroundColor = "#CFFFB9"
+          }
+          input_phone.ondblclick = function() {
+            input_phone.removeAttribute('readonly')
+            input_phone.style.backgroundColor = "#CFFFB9"
+          }
+          button_save.onclick = function() {
+            console.log('user_id: ' + button_save.value)
+            input_name.setAttribute('readonly',null)
+            input_name.style.backgroundColor = "#FFF"
+            input_email.setAttribute('readonly',null)
+            input_email.style.backgroundColor = "#FFF"
+            input_phone.setAttribute('readonly',null)
+            input_phone.style.backgroundColor = "#FFF"
+            name = input_name.value
+            email = input_email.value
+            phone = input_phone.value
+            console.log(name)
+            console.log(email)
+            console.log(phone)
+          }
         }
       })
+      .catch((error) => {
+        if (error.response) {
+
+          let error_message = document.createElement('span')
+          error_message.innerHTML = "<h1>" + error.message + " - Response</h1>"
+          contacts.appendChild(error_message)
+
+        } else if (error.request) {
+          let error_message = document.createElement('span')
+          error_message.innerHTML = "<h1>" + error.message + " - Request</h1><h3 align=\"center\">API seems to be down.</h3>"
+          contacts.appendChild(error_message)
+
+        } else {
+          let error_message = document.createElement('span')
+          error_message.innerHTML = "<h1>" + error.message + " - Other</h1><h3 align=\"center\">Something went wrong.</h3>"
+          contacts.appendChild(error_message)
+        }
+        // console.log(error.config)
+      })
+
+      save_new_contact.onclick = function() {
+        console.log(name.value, email.value, phone.value)
+        var postData = {
+          name: name.value,
+          email: email.value,
+          phone: phone.value
+        };
+        let config = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              'Access-Control-Allow-Origin': '*'
+          }
+        }
+        axios.post(url, postData, config)
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          alert("New contact was saved!")
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err)
+        })
+        name.value = ''
+        email.value = ''
+        phone.value = ''
+      } // end of 'save_new_contact.onclick'
+
     </script>
   </body>
 </html>
