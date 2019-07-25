@@ -1,0 +1,406 @@
+<!-- JavaScript lab: lab07_v2_browse_quotes.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 07: Browse Quotes</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="api_keys.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        background-color: #C0C0C0;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+        font-weight:
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > * {
+        margin: 0 8px 0;
+        padding-top: 18.720px;
+      }
+      .monospace {
+        font-family: 'Roboto Mono', monospace;
+        color: blue;
+      }
+      #container {
+        background-color: rgba(255,255,255,0.5);
+        height: 100%;
+        margin: 0;
+        padding: 10px auto;
+        width: 100%;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+      #quote_header {
+        font-size: 65px;
+        font-weight: 700;
+      }
+      #quotes_display {
+        background-color: rgba(128,255,128,0.5);
+        font-size: 40px;
+        font-weight: 400;
+        margin-top: 10px;
+        padding: 10px;
+        text-align: center;
+        width: 50%;
+      }
+      #tags_label {
+        font-size: 24px;
+      }
+      select {
+        font-size: 24px;
+        padding: 15px 32px;
+        margin: 25px 10px auto;
+      }
+      button {
+        font-size: 24px;
+        padding: auto 32px;
+        margin: 25px 10px auto;
+      }
+      ul {
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 07: Browse Quotes</h1>
+      <div>
+        <p>The API also supports browsing quotes. You can use the <span class="monospace">page</span> and <span class="monospace">filter</span> parameters to get a bunch of quotes. You can add page buttons and/or a text <span class="monospace">input</span> field and <span class="monospace">button</span> for filtering.</p>
+        <p><span class="monospace">"https://favqs.com/api/quotes?page="+page_id+"&filter=" + text.</span></p>
+        <p>Then you can show those quotes in a list.Note that if the text has spaces or special characters will have to encode the parameters using <span class="monospace">encodeURIComponent</span> which takes a string and returns a new encoded string.</p>
+      </div>
+      <div id="version_info">
+        <span><b>v2: second iteration of JS Get Quotes - Browse quotes (from public API which requires API key)</b></span>
+      </div>
+    </div>
+    <div id="container">
+      <div class="flex">
+        <div id="quote_header">Browse Quotes</div>
+        <span>
+          <span id="tags_label">Tags:</span>
+          <select id="sl_tags">
+            <option value=""> pick a category </option>
+            <option value="airplane">airplane</option>
+          </select>
+          <button id="bt_search">Search</button> •
+          <button id="bt_refesh">Refresh List</button>
+          <button id="bt_reset">Reset</button>
+        </span>
+      </div>
+        <div class="flex">
+          <span id="quotes_display">"There is no spoon."<br/>-Spoon Boy<br/>(The Matrix, 1999)</span>
+        </div>
+        <div id="code">
+          <pre>
+            ##################
+            # UNDER THE HOOD #
+            ##################
+
+            Axios (from &lt;head&gt;): &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"&gt;&lt;/script&gt;
+
+            &lt;script type="text/javascript"&gt;
+            let sl_tags = document.querySelector('#sl_tags')
+            let bt_search = document.querySelector('#bt_search')
+            let bt_refresh = document.querySelector('#bt_refresh')
+            let bt_reset = document.querySelector('#bt_reset')
+            let quotes_display = document.querySelector('#quotes_display')
+            let quotes_url = 'https://favqs.com/api/quotes/'
+            let typeahead_url = 'https://favqs.com/api/typeahead'
+            let click_counter = 0
+            let seconds_elapsed = 0
+
+            window.onload = fetchTags
+
+            function fetchTags() {
+              let config = {
+                headers: {
+                  'Authorization': 'Token token="'+favqs_api_key+'"'
+                }
+              }
+              axios.get(typeahead_url, config)
+              .then(function (response) {
+                let data = response.data // this takes 1-2 secs: check documentation to set limit (< total=500)
+                let tags = data.tags
+                let arr_tags = []
+                for (let i=0;i&lt;10;++i) {
+                  let random_index = Math.floor(Math.random()*tags.length)
+                  arr_tags.push(tags[random_index].name)
+                }
+                for (let j=0;j&lt;arr_tags.length;++j) {
+                  let option = document.createElement('option')
+                  option.setAttribute("value",arr_tags[j])
+                  option.innerText = arr_tags[j]
+                  sl_tags.appendChild(option)
+                }
+              })
+            }
+
+            function fetchQuote() {
+              let opt_tag = sl_tags.value
+              let config = {
+                params: {
+                  filter: opt_tag,
+                  type: 'tag'
+                },
+                headers: {
+                  'Authorization': 'Token token="'+favqs_api_key+'"'
+                }
+              }
+              axios.get(quotes_url, config)
+              .then(function (response) {
+                let data = response.data
+                quotes_display.innerText = ''
+                quotes_display.style.padding = '0'
+                for (let i=0;i&lt;data.quotes.length;++i) {
+                  let quote = data.quotes[i]
+                  let div_quote = document.createElement('div')
+                  div_quote.style.padding = "10px"
+                  let quote_body = null
+                  let quote_author = null
+                  if (quote.body == undefined) {
+                    let index = Math.floor(Math.random()*quote.lines.length)
+                    quote_body = quote.lines[index].body
+                    quote_author = quote.lines[index].author
+                  } else {
+                    quote_body = quote.body
+                    quote_author = quote.author
+                  }
+                  let quote_url = quote.url
+                  div_quote.style.fontSize = '18px'
+                  div_quote.style.textAlign = 'justify'
+                  if (i % 2 != 0) {
+                    div_quote.style.backgroundColor = 'rgba(255,255,255,0.5)'
+                  }
+                  div_quote.innerText = '"' + quote_body + '"\n---\nAuthor: ' + quote_author + '\nURL: ' + quote_url
+                  quotes_display.appendChild(div_quote)
+                }
+              })
+            }
+
+            function startCounter() {
+              let stopwatch = setInterval(function() {
+                seconds_elapsed++
+                if (seconds_elapsed == 5) {
+                  seconds_elapsed = 0
+                  click_counter = 0
+                  clearInterval(stopwatch)
+                }
+              }, 1000)
+            }
+
+            function throttleClicks(clicks) {
+              if (clicks &lt; 5) {
+                refreshTags()
+              } else {
+                quotes_display.innerText = 'Whoa! You\'re clicking too fast'
+                setTimeout(function() {
+                  quotes_display.innerText = '"There is no spoon."\n-Spoon Boy\n(The Matrix, 1999)'
+                }, 1000)
+              }
+            }
+
+            function refreshTags() {
+              sl_tags.innerHTML = '&lt;option&gt; pick a category &lt;/option&gt;'
+              fetchTags()
+              if (click_counter == 1) {
+                startCounter()
+              }
+            }
+
+            bt_search.onclick = function() {
+              if (sl_tags.value == '') {
+                  sl_tags.style.backgroundColor = "rgba(255,0,0,0.4)"
+              } else {
+                sl_tags.style.backgroundColor = ""
+                fetchQuote()
+              }
+            }
+
+            bt_refesh.onclick = function() {
+              click_counter++
+              throttleClicks(click_counter)
+            }
+
+            bt_reset.onclick = function() {
+              click_counter++
+              throttleClicks(click_counter)
+              if (click_counter &lt; 5) {
+                quotes_display.innerText = '"There is no spoon."\n-Spoon Boy\n(The Matrix, 1999)'
+              }
+            }
+            &lt;/script&gt;
+          </pre>
+        </div> <!-- code div end -->
+    </div> <!-- container div end -->
+    <script type="text/javascript">
+      let sl_tags = document.querySelector('#sl_tags')                  // get elements out of the DOM
+      let bt_search = document.querySelector('#bt_search')              //
+      let bt_refresh = document.querySelector('#bt_refresh')            //
+      let bt_reset = document.querySelector('#bt_reset')                //
+      let quotes_display = document.querySelector('#quotes_display')    //
+      let quotes_url = 'https://favqs.com/api/quotes/'                  // set vars for axios calls below
+      let typeahead_url = 'https://favqs.com/api/typeahead'             //
+      let click_counter = 0                                             // set start values ...
+      let seconds_elapsed = 0                                           //
+
+      window.onload = fetchTags
+
+      function fetchTags() {                                            // get tags for filtering
+        let config = {                                                  //
+          headers: {                                                    //
+            'Authorization': 'Token token="'+favqs_api_key+'"'          //
+          }                                                             //
+        }                                                               //
+        axios.get(typeahead_url, config)                                // call axios with 2 params
+        .then(function (response) {                                     // do scripty stuff below
+          let data = response.data // this takes 1-2 secs: check documentation to set limit
+          let tags = data.tags                                          // target subsection 'tags'
+          let arr_tags = []                                             // init storage variable
+          for (let i=0;i<10;++i) {                                      // loop 10xs
+            let random_index = Math.floor(Math.random()*tags.length)    // get random number 0-550
+            arr_tags.push(tags[random_index].name)                      // add random 10 tags to array
+          }                                                             //
+          for (let j=0;j<arr_tags.length;++j) {                         // loops through items in array
+            let option = document.createElement('option')               // create 'option'
+            option.setAttribute("value",arr_tags[j])                    // set value to tag name
+            option.innerText = arr_tags[j]                              // set innerText to tag name
+            sl_tags.appendChild(option)                                 // add new option to select
+          }                                                             //
+        })                                                              //
+      }                                                                 //
+
+      function fetchQuote() {                                           // call quotes API
+        let opt_tag = sl_tags.value                                     //
+        let config = {                                                  //
+          params: {                                                     //
+            filter: opt_tag,                                            // pass value of input box
+            type: 'tag'                                                 // pass type=tag
+          },                                                            //
+          headers: {                                                    //
+            'Authorization': 'Token token="'+favqs_api_key+'"'          // pass the api key
+          }                                                             //
+        }                                                               //
+
+        /*
+          axios.get(url, config) // this allows you to send headers and parameters (above)
+          .then(function (response) {
+                                // do stuff with the data returned
+                                // e.g. let data = response.data
+          }
+        */
+
+        axios.get(quotes_url, config)                                   // CONTINUE fetchQuotes() function
+        .then(function (response) {                                     // then do the cool stuff
+          let data = response.data                                      // get data from api response
+          quotes_display.innerText = ''                                 // remove default quote
+          quotes_display.style.padding = '0'                            // remove default padding
+          for (let i=0;i<data.quotes.length;++i) {                      // loop thru quotes in api resp
+            let quote = data.quotes[i]                                  // grab them one by one
+            let div_quote = document.createElement('div')               // create new div for each
+            div_quote.style.padding = "10px"                            // pad new div
+            let quote_body = null                                       // initialize quote_body
+            let quote_author = null                                     // initialize quote_author
+            if (quote.body == undefined) {                              // if body is not found
+              let index = Math.floor(Math.random()*quote.lines.length)  // pick randomly from quotes.lines[n]
+              quote_body = quote.lines[index].body                      // assign quote.lines[n].body to var
+              quote_author = quote.lines[index].author                  // assign quote.lines[n].author to var
+            } else {                                                    //
+              quote_body = quote.body                                   // assign quotes[i].body to var
+              quote_author = quote.author                               // assign quote author to var
+            }                                                           //
+            let quote_url = quote.url                                   // assign quote url to var
+            div_quote.style.fontSize = '18px'                           // set div fontSize
+            div_quote.style.textAlign = 'justify'                       // set div alignment
+            if (i % 2 == 1) {                                           // if i is an odd number
+              div_quote.style.backgroundColor = 'rgba(255,255,255,0.5)' // set to a lighter bg color
+            }                                                           //
+            div_quote.innerText = '"' + quote_body + '"\n---\nAuthor: ' + quote_author + '\nURL: ' + quote_url                                                   // set innerText of div
+            quotes_display.appendChild(div_quote)                       // add div to the page
+          }
+        })
+      }                                                                 // ... end of 'get quotes'
+
+      // let curr_time = new Date()                 // this isn't working, always returns 0
+      // curr_time.setSeconds(0)                    // this isn't working, always returns 0
+
+      function startCounter() {
+        let stopwatch = setInterval(function() {
+          // let seconds = curr_time.getSeconds()   // *** this isn't working, always returns 0 ***
+          seconds_elapsed++                             // increment the seconds counter every cycle
+          if (seconds_elapsed == 5) {                   // if 5-sec have elapsed
+            seconds_elapsed = 0                         // (a) reset seconds counter
+            click_counter = 0                           // (b) reset click counter
+            clearInterval(stopwatch)                    // (c) stop the timer
+          }
+        }, 1000)                                        // cycle every second
+      }
+
+      function throttleClicks(clicks) {                 // limit user-init API calls
+        if (clicks < 5) {                               // only allow 5 clicks in 5-sec period
+          refreshTags()                                 // refresh the 'tags' pulldown
+        } else {                                        //
+          quotes_display.innerText = 'Whoa! You\'re clicking too fast' // show 'speed' warning ...
+          setTimeout(function() {                       // ... for 1 second
+            quotes_display.innerText = '"There is no spoon."\n-Spoon Boy\n(The Matrix, 1999)'
+          }, 1000)                                      // then, set display to default
+        }                                               //
+      }                                                 //
+
+      function refreshTags() {                          // refresh tags pulldown with 10 new options
+        sl_tags.innerHTML = '<option value=""> pick a category </option>' // clear old options
+        /*
+        while (element.firstChild) {                    // better way to reset sl_tags
+        	element.removeChild(element.firstChild)       //
+        }                                               //
+        */
+        fetchTags()                                     // hit the typeahead API
+        if (click_counter == 1) {                       // start the 5-sec counter on first click
+          startCounter()                                //
+        }                                               //
+      }
+
+      bt_search.onclick = function() {                  // listen for Search button clicks
+        if (sl_tags.value == '') {                      // disregard click if no tag is selected
+            sl_tags.style.backgroundColor = "rgba(255,0,0,0.4)" // set pulldown to red to indicate problem
+        } else {                                        //
+          sl_tags.style.backgroundColor = ""            // clear default background color
+          fetchQuote()                                  // fetch quotes with user's choice from pulldown
+        }                                               //
+      }                                                 //
+
+      bt_refesh.onclick = function() {                  // listen for Refresh button clicks
+        click_counter++                                 // increment the click counter
+        throttleClicks(click_counter)                   // exec throttleClicks => refreshTags & startCounter
+      }                                                 //
+
+      bt_reset.onclick = function() {                   // listen for Reset button clicks
+        click_counter++                                 // increment the click counter
+        throttleClicks(click_counter)                   // exec throttleClicks => refreshTags & startCounter
+        if (click_counter < 5) {                        // if < 5 clicks, display default innerText
+          quotes_display.innerText = '"There is no spoon."\n-Spoon Boy\n(The Matrix, 1999)'
+        }                                               // otherwise, let throttleClicks show error (1 sec)
+      }                                                 //
+    </script>
+  </body>
+</html>

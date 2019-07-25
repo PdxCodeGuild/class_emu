@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!-- <select>
+      <option value="ft">feet</option>
+      <option value="mi">miles</option>
+      <option value="m">meters</option>
+      <option value="km">kilometers</option>
+      <option value="yd">yards</option>
+      <option value="in">inches</option>
+    </select> -->
+    <input id="input_distance" type="number"/>
+    <select id="from_units"></select>
+    <select id="to_units"></select>
+    <button id="btn">convert</button>
+    <div id="output_div"></div>
+    <script>
+      
+      
+      // let text = 'hello'
+      // function myfunc() {
+      //   alert(text)
+      // }
+      // myfunc()
+      
+      function buildDDL(select, units) {
+        for (let i=0; i<units.length; ++i) {
+          let option = document.createElement('option')
+          option.innerText = units[i].text
+          option.setAttribute('value', i)
+          select.appendChild(option)
+        }
+      }
+    
+      let ddl_from_units = document.querySelector('#from_units')
+      let ddl_to_units =   document.querySelector('#to_units')
+      let input_distance = document.querySelector('#input_distance')
+      let btn =            document.querySelector('#btn')
+      let output_div =     document.querySelector('#output_div')
+      
+      let units = [{
+        text: 'feet',
+        short: 'ft',
+        factor: 0.3048
+      },{
+        text: 'miles',
+        short: 'mi',
+        factor: 1609.34
+      },{
+        text: 'meters',
+        short: 'm',
+        factor: 1.0
+      },{
+        text: 'kilometers',
+        short: 'km',
+        factor: 1000
+      },{
+        text: 'yards',
+        short: 'yd',
+        factor: 0.9144
+      },{
+        text: 'inches',
+        short: 'in',
+        factor: 0.0254
+      }]
+      
+      buildDDL(ddl_from_units, units)
+      buildDDL(ddl_to_units, units)
+      
+      btn.onclick = function() {
+        let distance = input_distance.value
+        let from_units = units[ddl_from_units.value]
+        let to_units = units[ddl_to_units.value]
+        let new_distance = distance*from_units.factor/to_units.factor
+        output_div.innerText = `${distance} ${from_units.short} = ${new_distance} ${to_units.short}`
+      }
+
+    </script>
+  </body>
+</html>

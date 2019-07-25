@@ -1,0 +1,233 @@
+<!-- JavaScript lab: lab08_v2_any_api.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 07: Random Quote</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        background-color: #C0C0C0;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+        font-weight:
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > * {
+        margin: 0 8px 0;
+        padding-top: 18.720px;
+      }
+      .monospace, a {
+        font-family: 'Roboto Mono', monospace;
+        color: blue;
+      }
+      #container {
+        background-color: rgba(255,255,255,0.5);
+        height: 100%;
+        margin: 0;
+        padding: 10px auto;
+        width: 100%;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+      #header {
+        font-size: 65px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .col_header > input {
+        background-color: rgba(100,100,100,0.4);
+      }
+      .databoxes > input, .new_contact > input, .col_header > input {
+        font-size: 21px;
+        padding: 20px;
+        color: #000;
+      }
+      .databoxes > button, .new_contact > button {
+        font-size: 16px;
+        padding: 16px;
+        margin-left: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 08: Any API</h1>
+      <div>
+        <p>Use <span class="monospace"><a href="http://localhost:8081/api/contacts" target="_blank">http://localhost:8081/api/contacts</a></span> to GET contact information, then display it on the page.</p>
+        <p>-- Restful CRUD API built with Node.js, Express and MongoDB</p>
+      </div>
+      <div id="version_info">
+        <span><b>v2: second iteration of JS Any API lab - Contacts API</b></span>
+      </div> <!-- end of 'version_info'-->
+    </div> <!-- end of 'lab_instructions'-->
+    <div id="container">
+      <div class="flex">
+        <div id="header">Any API</div>
+        <div id="contacts">
+          <div id="howto">Double-click to edit</div>
+          <div class="col_header">
+            <input disabled value="Name"/><input disabled value="Email"/><input disabled value="Phone"/>
+          </div>
+          <div class="new_contact">
+            <input id="name" placeholder="enter a name"/><input id="email" placeholder="enter an email"/><input id="phone" placeholder="enter a phone number"/><button id="save_new_contact">New &nbsp;Contact&nbsp;</button>
+          </div>
+        </div> <!-- end of 'contacts'-->
+        <div id="code">
+          <pre>
+            &lt;script type="text/javascript"&gt;
+            <!-- code goes here -->
+            &lt;/script&gt;
+          </pre>
+        </div> <!-- end of 'code' -->
+      </div> <!-- end of 'flex' -->
+    </div> <!-- end of 'container' -->
+    <script type="text/javascript">
+      // code goes here
+      let url = 'http://localhost:8081/api/contacts'
+      let contacts = document.querySelector("#contacts")
+      let save_new_contact = document.querySelector('#save_new_contact')
+      let name = document.querySelector('#name')
+      let email = document.querySelector('#email')
+      let phone = document.querySelector('#phone')
+      let user_id = null
+
+      axios.get(url)
+      .then(function (response) {
+
+        var data = response.data.data
+
+        for (let i=0;i<data.length;++i) {
+          user_id = data[i]._id
+          let name = data[i].name
+          let email = data[i].email
+          let phone = data[i].phone
+
+          let div_contact = document.createElement('div')
+          div_contact.setAttribute('class','databoxes')
+          contacts.appendChild(div_contact)
+
+          let input_name = document.createElement('input')
+          input_name.setAttribute('type','text')
+          input_name.setAttribute('value',name)
+          input_name.setAttribute('readonly',null)
+          div_contact.appendChild(input_name)
+
+          let input_email = document.createElement('input')
+          input_email.setAttribute('type','text')
+          input_email.setAttribute('value',email)
+          input_email.setAttribute('readonly',null)
+          div_contact.appendChild(input_email)
+
+          let input_phone = document.createElement('input')
+          input_phone.setAttribute('type','text')
+          input_phone.setAttribute('value',phone)
+          input_phone.setAttribute('readonly',null)
+          div_contact.appendChild(input_phone)
+
+          let button_save = document.createElement('button')
+          button_save.innerText = "Save Changes"
+          button_save.setAttribute('value',user_id)
+          div_contact.appendChild(button_save)
+
+          // listeners
+
+          input_name.ondblclick = function() {
+            input_name.removeAttribute('readonly')
+            input_name.style.backgroundColor = "#CFFFB9"
+          }
+          input_email.ondblclick = function() {
+            input_email.removeAttribute('readonly')
+            input_email.style.backgroundColor = "#CFFFB9"
+          }
+          input_phone.ondblclick = function() {
+            input_phone.removeAttribute('readonly')
+            input_phone.style.backgroundColor = "#CFFFB9"
+          }
+          button_save.onclick = function() {
+            console.log('user_id: ' + button_save.value)
+            input_name.setAttribute('readonly',null)
+            input_name.style.backgroundColor = "#FFF"
+            input_email.setAttribute('readonly',null)
+            input_email.style.backgroundColor = "#FFF"
+            input_phone.setAttribute('readonly',null)
+            input_phone.style.backgroundColor = "#FFF"
+            name = input_name.value
+            email = input_email.value
+            phone = input_phone.value
+            console.log(name)
+            console.log(email)
+            console.log(phone)
+          }
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+
+          let error_message = document.createElement('span')
+          error_message.innerHTML = "<h1>" + error.message + " - Response</h1>"
+          contacts.appendChild(error_message)
+
+        } else if (error.request) {
+          let error_message = document.createElement('span')
+          error_message.innerHTML = "<h1>" + error.message + " - Request</h1><h3 align=\"center\">API seems to be down.</h3>"
+          contacts.appendChild(error_message)
+
+        } else {
+          let error_message = document.createElement('span')
+          error_message.innerHTML = "<h1>" + error.message + " - Other</h1><h3 align=\"center\">Something went wrong.</h3>"
+          contacts.appendChild(error_message)
+        }
+        // console.log(error.config)
+      })
+
+      save_new_contact.onclick = function() {
+        console.log(name.value, email.value, phone.value)
+        var postData = {
+          name: name.value,
+          email: email.value,
+          phone: phone.value
+        };
+        let config = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              'Access-Control-Allow-Origin': '*'
+          }
+        }
+        axios.post(url, postData, config)
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          alert("New contact was saved!")
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err)
+        })
+        name.value = ''
+        email.value = ''
+        phone.value = ''
+      } // end of 'save_new_contact.onclick'
+
+    </script>
+  </body>
+</html>

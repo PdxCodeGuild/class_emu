@@ -156,131 +156,134 @@
     </div> <!-- desktop div end -->
     <script type="text/javascript">
 
-        let inputNewTask = document.querySelector('#inputNewTask')
-        let addTaskBtn = document.querySelector('#addTaskBtn')
-        let pendingTaskRows = document.querySelector('#pendingTaskRows')
-        let completedTaskRows = document.querySelector('#completedTaskRows')
+        let inputNewTask = document.querySelector('#inputNewTask')                 //
+        let addTaskBtn = document.querySelector('#addTaskBtn')                     // get all elems from DOM
+        let pendingTaskRows = document.querySelector('#pendingTaskRows')           //
+        let completedTaskRows = document.querySelector('#completedTaskRows')       //
 
-        function getPendingTasksFromLocalStorage() {
-          let allPendingTasks_lsjson = localStorage.getItem('allPendingTasks')
-          let allPendingTasks_lsobj = JSON.parse(allPendingTasks_lsjson)
-          return allPendingTasks_lsobj
+        function getPendingTasksFromLocalStorage() {                               // load 'pending' tasks
+          let allPendingTasks_lsjson = localStorage.getItem('allPendingTasks')     // from localStorage(json)
+          let allPendingTasks_lsobj = JSON.parse(allPendingTasks_lsjson)           // convert json-> an obj
+          return allPendingTasks_lsobj                                             // return to func() caller
         }
-        function getCompletedTasksFromLocalStorage() {
-          let allCompletedTasks_lsjson = localStorage.getItem('allCompletedTasks')
-          let allCompletedTasks_lsobj = JSON.parse(allCompletedTasks_lsjson)
-          return allCompletedTasks_lsobj
+        function getCompletedTasksFromLocalStorage() {                             // load 'completed' tasks
+          let allCompletedTasks_lsjson = localStorage.getItem('allCompletedTasks') // from localStorage(json)
+          let allCompletedTasks_lsobj = JSON.parse(allCompletedTasks_lsjson)       // convert json-> an obj
+          return allCompletedTasks_lsobj                                           // return to func() caller
         }
 
-        function populateTasksFromLocalStorage() {
-          let savedPendingTasks = getPendingTasksFromLocalStorage()
-          let savedCompletedTasks = getCompletedTasksFromLocalStorage()
+        function populateTasksFromLocalStorage() {                        //
+          let savedPendingTasks = getPendingTasksFromLocalStorage()       // run func() to get data
+          let savedCompletedTasks = getCompletedTasksFromLocalStorage()   //
 
-          if (savedPendingTasks !== null) {
-            for (let i=0; i<savedPendingTasks.length; ++i) {
-              addTask(savedPendingTasks[i])
-            }
+          if (savedPendingTasks !== null) {                               // check if obj exists in LS
+            for (let i=0; i<savedPendingTasks.length; ++i) {              // loop through items
+              addTask(savedPendingTasks[i])                               // run them though function
+            }                                                             // that creates the GUI;
+          }                                                               // same as create new task
+
+          if (savedCompletedTasks !== null) {                             // check if obj exists in LS
+            for (let i=0; i<savedCompletedTasks.length; ++i) {            // loop through items
+              addTask(savedCompletedTasks[i], true)                       // run them though function
+            }                                                             // that creates the GUI;
           }
-
-          if (savedCompletedTasks !== null) {
-            for (let i=0; i<savedCompletedTasks.length; ++i) {
-              addTask(savedCompletedTasks[i], true)
-            }
-          }
         }
-        window.onload = populateTasksFromLocalStorage
+        window.onload = populateTasksFromLocalStorage // loads existing tasks from LocalStorage on page load
 
-        function addTask(taskDetail, completed) {
-          if (taskDetail != '') {
-            let div_task = document.createElement('div')
-            div_task.setAttribute('class', 'task')
-            if (completed == null) {
-              pendingTaskRows.appendChild(div_task)
-            } else {
-              completedTaskRows.appendChild(div_task)
-            }
+        function addTask(taskDetail, completed) {                         // add task function
+          if (taskDetail != '') {                                         // input validation (check for '')
+            let div_task = document.createElement('div')                  // create a new div
+            div_task.setAttribute('class', 'task')                        // set class=task, for CSS styling
+            if (completed == null) {                                      // if 'completed' is NOT passed
+              pendingTaskRows.appendChild(div_task)                       // add new task to Pending
+            } else {                                                      // otherwise,
+              completedTaskRows.appendChild(div_task)                     // add new task to Completed ..
+            }                                                             // .. when tasks built from LS
 
-            let span = document.createElement('span')
-            div_task.appendChild(span)
+            let span = document.createElement('span')                     // create new span (checkbox, task)
+            div_task.appendChild(span)                                    // add to div created above
 
-            let input = document.createElement('input')
-            input.setAttribute('type', 'checkbox')
-              if (completed == null) {
-                input.onclick = function() {
-                  if (input.checked == true) {
-                    pendingTaskRows.removeChild(div_task)
-                    completedTaskRows.appendChild(div_task)
-                    span_text.style.textDecoration = 'line-through'
-                  } else {
-                    completedTaskRows.removeChild(div_task)
-                    pendingTaskRows.appendChild(div_task)
-                    span_text.style.textDecoration = 'none'
-                  }
-                saveTasksToLocalStorage()
+            // ### CHECKBOX (INPUT) ###
+            let input = document.createElement('input')                   // create new elem (input:checkbox)
+            input.setAttribute('type', 'checkbox')                        // set type to checkbox
+            span.appendChild(input)                                       // add checkbox to GUI
+            if (completed == null) {                                      // if 'completed' is NOT passed
+              input.onclick = function() {                                // listen for checkbox click (later)
+                if (input.checked == true) {                              // if box IS checked
+                  pendingTaskRows.removeChild(div_task)                   //   remove from Pending
+                  completedTaskRows.appendChild(div_task)                 //   add to Completed
+                  span_text.style.textDecoration = 'line-through'         //   strikethrough task (text)
+                } else {                                                  // if box IS NOT checked
+                  completedTaskRows.removeChild(div_task)                 //   remove from Completed
+                  pendingTaskRows.appendChild(div_task)                   //   add to Pending
+                  span_text.style.textDecoration = 'none'                 //   remove strikethrough
                 }
-              } else {
-                input.setAttribute('checked', null)
-                input.onclick = function() {
-                  if (input.checked == false) {
-                    completedTaskRows.removeChild(div_task)
-                    pendingTaskRows.appendChild(div_task)
-                    span_text.style.textDecoration = 'none'
-                  } else {
-                    pendingTaskRows.removeChild(div_task)
-                    completedTaskRows.appendChild(div_task)
-                    span_text.style.textDecoration = 'line-through'
-                  }
-                saveTasksToLocalStorage()
+              saveTasksToLocalStorage()                                   // save to LocalStorage onclick
+              }
+            } else {                                                      // if 'completed' IS passed
+              input.setAttribute('checked', null)                         // check the box
+              input.onclick = function() {                                // listen for checkbox click (later)
+                if (input.checked == false) {                             // if box IS NOT checked
+                  completedTaskRows.removeChild(div_task)                 //   remove from Completed
+                  pendingTaskRows.appendChild(div_task)                   //   add to Pending
+                  span_text.style.textDecoration = 'none'                 //   remove strikethrough
+                } else {                                                  // if box IS checked
+                  pendingTaskRows.removeChild(div_task)                   //   remove from Pending
+                  completedTaskRows.appendChild(div_task)                 //   add to Completed
+                  span_text.style.textDecoration = 'line-through'         //  strikethrough task (text)
                 }
+              saveTasksToLocalStorage()                                   // save to LocalStorage onclick
               }
-            span.appendChild(input)
-
-            let span_text = document.createElement('span')
-            span_text.setAttribute('class', 'span_text')
-            span_text.innerText = taskDetail
-            if (completed != null) {
-              span_text.style.textDecoration = 'line-through'
             }
-            span.appendChild(span_text)
 
-            let deleteBtn = document.createElement('button')
-            deleteBtn.innerText = 'Delete'
-            deleteBtn.onclick = function() {
-              if (pendingTaskRows.contains(div_task)) {
-                pendingTaskRows.removeChild(div_task)
-              } else {
-                completedTaskRows.removeChild(div_task)
-              }
-            saveTasksToLocalStorage()
+            // ### TASK (SPAN) ###
+            let span_text = document.createElement('span')                // create new span (text)
+            span_text.setAttribute('class', 'span_text')                  // set class=span_text (for CSS)
+            span_text.innerText = taskDetail              // set innerText to value passed to function call
+            if (completed != null) {                                      // if 'completed' IS passed
+              span_text.style.textDecoration = 'line-through'             // strikethrough task (text)
             }
-            div_task.appendChild(deleteBtn)
+            span.appendChild(span_text)                                   // add span to GUI
+
+            // ### DELETE (BUTTON) ###
+            let deleteBtn = document.createElement('button')              // create new button ()
+            deleteBtn.innerText = 'Delete'                                // set button's innerText
+            div_task.appendChild(deleteBtn)                               // add button to GUI
             inputNewTask.value = ''
+            deleteBtn.onclick = function() {                              // listen for button click (later)
+              if (pendingTaskRows.contains(div_task)) {                   // check if it exists in Pending,..
+                pendingTaskRows.removeChild(div_task)                     // .. remove from Pending
+              } else {                                                    // if it exists in Completed,..
+                completedTaskRows.removeChild(div_task)                   // .. remove from Completed
+              }
+            saveTasksToLocalStorage()                                     // save to LocalStorage onclick
+            }
           }
         }
 
-        addTaskBtn.onclick = function() {
-          addTask(inputNewTask.value)
-          saveTasksToLocalStorage()
+        addTaskBtn.onclick = function() {                                 // listen for Add button clicks
+          addTask(inputNewTask.value)                                     // call 'addTask' function
+          saveTasksToLocalStorage()                                       // save to LocalStorage onclick
         }
 
-        inputNewTask.addEventListener("keydown", function (event) {
-          if (event.keyCode === 13) {
-              addTaskBtn.click()
+        inputNewTask.addEventListener("keydown", function (event) {       // listen for keyboard clicks
+          if (event.keyCode === 13) {                                     // if it's the return/enter key
+              addTaskBtn.click()                                          // emulate click on Add a Task btn
           }
         })
 
-        function saveTasksToLocalStorage() {
-          let w = document.querySelectorAll("#pendingTaskRows .span_text")
-          let x = Array.from(w)
-          let y = x.map(function(e) { return e.innerText; })
-          let z = JSON.stringify(y)
-          localStorage.setItem('allPendingTasks', z)
+        function saveTasksToLocalStorage() {                              // Save tasks to LocalStorage
+          let w = document.querySelectorAll("#pendingTaskRows .span_text")// Get values from the GUI
+          let x = Array.from(w)                                           // convert nodes to an array
+          let y = x.map(function(e) { return e.innerText; })              // add innerText to new array
+          let z = JSON.stringify(y)                                       // convert array to string
+          localStorage.setItem('allPendingTasks', z)                      // set string in localStorage
 
-          let a = document.querySelectorAll("#completedTaskRows .span_text")
-          let b = Array.from(a)
-          let c = b.map(function(e) { return e.innerText; })
-          let d = JSON.stringify(c)
-          localStorage.setItem('allCompletedTasks', d)
+          let a = document.querySelectorAll("#completedTaskRows .span_text") // Get values from the GUI
+          let b = Array.from(a)                                           // convert nodes to an array
+          let c = b.map(function(e) { return e.innerText; })              // add innerText to new array
+          let d = JSON.stringify(c)                                       // convert array to string
+          localStorage.setItem('allCompletedTasks', d)                    // set string in localStorage
         }
 
     </script>

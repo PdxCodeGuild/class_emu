@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style media="screen">
+      #container > * {
+        margin:10px;
+      }
+      #todo_items input {
+        margin:4px;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div id="container">
+      <input id="todo_text" type="text" placeholder="new todo item"/><button id="bt_create" class="btn btn-primary">add</button>
+    </div>
+    <ul id="todo_items">
+    </ul>
+    <script type="text/javascript">
+      let todo_text = document.querySelector('#todo_text')
+      let todo_items = document.querySelector('#todo_items')
+      let bt_create = document.querySelector('#bt_create')
+      
+      //let counter = 0
+      
+      bt_create.onclick = function() {
+        let text = todo_text.value
+        let li = document.createElement('li')
+        li.innerText = text
+        //li.id = 'li_' + counter
+        
+        let checkbox = document.createElement('input')
+        checkbox.setAttribute('type', 'checkbox')
+        //checkbox.dataset.id = counter
+        //counter++
+        
+        checkbox.onclick = function() {
+          //let id = this.dataset.id
+          //let li = document.querySelector('#li_' + id)
+          if (li.style.textDecoration == 'line-through') {
+            li.style.textDecoration = 'none'
+            todo_items.insertBefore(li, todo_items.firstChild)
+          } else {
+            li.style.textDecoration = 'line-through'
+            todo_items.appendChild(li)
+          }
+        }
+        
+        li.appendChild(checkbox)
+        
+        todo_items.appendChild(li)
+      }
+      
+      
+      for (let i=0; i<10; ++i) {
+        todo_text.value = i
+        bt_create.onclick()
+      }
+      
+    </script>
+  </body>
+</html>
+

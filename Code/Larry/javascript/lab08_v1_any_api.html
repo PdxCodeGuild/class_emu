@@ -1,0 +1,162 @@
+<!-- JavaScript lab: lab08_v1_any_api.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 08: Any API</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="api_keys.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      html, body {
+        background-color: #C0C0C0;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+        font-weight:
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+      #version_info {
+        padding: 20px 0;
+      }
+      #lab_instructions {
+        vertical-align: top;
+        width: 100%;
+      }
+      #lab_instructions > * {
+        margin: 0 8px 0;
+        padding-top: 18.720px;
+      }
+      #container {
+        background-color: rgba(255,255,255,0.5);
+        height: 100%;
+        margin: 0;
+        padding: 10px auto;
+        width: 100%;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+      #header {
+        font-size: 65px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lab_instructions">
+      <h1>JS Lab 08: Any API</h1>
+      <div>
+        <p>Choose any API and write a page to interact with it.</p>
+      </div>
+      <div id="version_info">
+        <span><b>v1: first iteration of JS Any API lab - Flickr</b></span>
+      </div>
+    </div>
+    <div id="container">
+      <div class="flex">
+        <div id="header">Any API</div>
+        <div id="photos"></div>
+      </div>
+      <div id="code">
+        <pre>
+          ##################
+          # UNDER THE HOOD #
+          ##################
+
+          Axios (from &lt;head&gt;): &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"&gt;&lt;/script&gt;
+
+          &lt;script type="text/javascript"&gt;
+          <!-- codes goes here -->
+          &lt;/script&gt;
+        </pre>
+      </div> <!-- code div end -->
+    </div> <!-- container div end -->
+    <script type="text/javascript">
+    let flickr_url = 'https://api.flickr.com/services/rest/?'
+    let flickr_username = 'larrym'
+
+    function lookupUser() {
+      let config = {
+        params: {
+          method: 'flickr.urls.lookupUser',
+          url: 'https://www.flickr.com/photos/'+flickr_username,
+          api_key: flickr_api_key,
+          format: 'json',
+          nojsoncallback: 1
+        }, // end of 'params'
+      } // end of 'config'
+      axios.get(flickr_url, config)
+      .then(function (response) {                                     // then do the cool stuff
+        var data = response.data                                      // get data from api response
+        getPublicPhotos(data.user.id)
+      })
+    } // end of 'lookupUser'
+
+    function getPublicPhotos(user_id) {
+      let config = {
+        params: {
+          method: 'flickr.people.getPublicPhotos',
+          user_id: user_id,
+          api_key: flickr_api_key,
+          format: 'json',
+          nojsoncallback: 1
+        }, // end of 'params'
+      } // end of 'config'
+      axios.get(flickr_url, config)
+      .then(function (response) {                                     // then do the cool stuff
+        var data = response.data                                      // get data from api response
+        let photos = data.photos.photo
+        for (let i=0; i<photos.length; ++i) {
+            let photo_id = photos[i].id
+            getSizes(photo_id)
+        }
+      })
+    } // end of getPublicPhotos
+
+    function getSizes(photo_id) {
+      let config = {
+        params: {
+          method: 'flickr.photos.getSizes',
+          photo_id: photo_id,
+          api_key: flickr_api_key,
+          format: 'json',
+          nojsoncallback: 1
+        }, // end of 'params'
+      } // end of 'config'
+      axios.get(flickr_url, config)
+      .then(function (response) {                                     // then do the cool stuff
+        var data = response.data                                      // get data from api response
+
+        // *** matt's code below ***
+        let photo_size_array = data.sizes.size
+        let little_photo_url = photo_size_array[0].source
+        let original_photo_url = photo_size_array[photo_size_array.length-1].source
+
+        let a_element = document.createElement('a')
+        a_element.setAttribute('href', original_photo_url)
+
+        let img_element = document.createElement('img')
+        img_element.setAttribute('src', little_photo_url)
+
+        a_element.appendChild(img_element)
+        photos.appendChild(a_element)
+
+      })
+    } // end of getPublicPhotos
+
+    window.onload = lookupUser
+
+    </script>
+  </body>
+</html>

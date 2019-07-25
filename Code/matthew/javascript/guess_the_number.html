@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    
+      // function randomInt(a, b) {
+      //   return a + Math.random()*(b-a)
+      // }
+      
+      // let min = Number.POSITIVE_INFINITY
+      // let max = Number.NEGATIVE_INFINITY
+      // for (let i=0; i<100000; ++i) {
+      //   let x = Math.random()
+      //   min = Math.min(min, x)
+      //   max = Math.max(max, x)
+      // }
+      // console.log(min)
+      // console.log(max)
+      
+      // let i = 0
+      // while (i < 10) {
+      //   console.log(i)
+      //   i++
+      // }
+      // 
+      // for (let i=0; i<10; i++) {
+      //     console.log(i)
+      // }
+    
+      // pick a random number between 1 and 10
+      // repeatedly ask the user to guess a number
+      // if they get it right, tell them so
+      // if they get it wrong, keep looping
+      
+      while (true) {
+      
+        let x = Math.floor(1 + Math.random()*10) //  Math.ceil(Math.random()*10)
+        
+        // console.log(x)
+        // isNaN(x)
+        
+        for (let i=0; i<10; i++) {
+          let guess = parseInt(prompt('Pick a number between 1 and 10'))
+          if (guess === x) {
+            alert('You guessed it correctly!')
+            break
+          } else {
+            if (guess > x) {
+              alert('You guessed incorrectly! too high')
+            } else if (guess < x) {
+              alert('You guessed incorrectly! too low')
+            }
+          }
+          // alert((guess === x)? 'You guessed right': 'You guessed wrong')
+        }
+        
+        let play_again = prompt('Do you want to play again? (yes/no)')
+        if (play_again == 'no') {
+          break
+        }
+      }
+      
+    </script>
+  </head>
+  <body>
+    
+  </body>
+</html>
