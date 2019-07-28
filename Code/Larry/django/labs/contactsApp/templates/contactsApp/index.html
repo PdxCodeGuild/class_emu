@@ -1,0 +1,9 @@
+{% if contacts_list %}
+  <ul>
+    {% for contact in contacts_list %}
+      <li>{{contact}}
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No contacts are available.</p>
+{% endif %}

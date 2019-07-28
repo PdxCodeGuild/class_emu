@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Django App</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <style media="screen" type="text/css">
+      body {
+        font-family: 'Ubuntu', sans-serif;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+      #container {
+        display: flex;
+        justify-content: center;
+      }
+      .code_title {
+        background-color: #DDD;
+        border-radius: 10px;
+        color: #333;
+        font-size: 1.0em;
+        font-weight: bold;
+        margin-top: 15px;
+        padding: 10px;
+        width: 750px;
+      }
+      .code_body {
+        background-color: #EEE;
+        border-radius: 10px;
+        color: #333;
+        font-family: monospace;
+        font-size: 1.25em;
+        padding: 10px;
+        width: 750px;
+      }
+      ol {
+        margin: 0;
+        padding: 0;
+      }
+      h1, h4 {
+        margin: 10px;
+      }
+      @media all and (max-width: 500px) {
+        body {
+          /* On small screens, we are no longer using row direction but column */
+          font-size: 40%;
+        }
+        .code_title {
+          /* width: 200px; */
+          width: 100%;
+          font-size: 0.65em;
+        }
+        .code_body {
+          /* width: 200px; */
+          width: 100%;
+          font-size: 0.8em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Basic Django App</h1>
+    <h4><i>Based on <a href="https://docs.djangoproject.com/en/2.2/intro/tutorial01/" target="_blank"</i>https://docs.djangoproject.com/en/2.2/intro/tutorial01/</a></i></h4>
+    <hr/>
+    <div id="container">
+      <ol>
+        <div>
+          <h2><li>Check versions - e.g. Python 3.7.3, Django 2.2</li></h2>
+          <div class="code_body">$ python3 --versions
+            <br/>$ python3 -m django --version
+          </div>
+        </div>
+        <div>
+          <h2><li>Creating a project</li></h2>
+          <div class="code_body">$ django-admin startproject &lt;<i>project name</i>&gt;</div>
+        </div>
+        <div>
+          <h2><li>Creating the app</li></h2>
+          <div class="code_body">$ python3 manage.py startapp &lt;<i>app name</i>&gt;</div>
+        </div>
+        <div class="code_wrapper">
+          <h2><li>Write your first view</li></h2>
+          <div class="code_title">&lt;<i>app name</i>&gt;/views.py</div>
+          <div class="code_body">from django.http import HttpResponse
+            <br/>
+            <br/>def index(request):
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;return HttpResponse("Hello world!")
+          </div>
+          <div class="code_title">&lt;<i>app name</i>&gt;/urls.py</div>
+          <div class="code_body">from django.urls import path
+            <br/>
+            <br/>from . import views
+            <br/>
+            <br/>urlpatterns = [
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;path('', views.index, name='index'),
+            <br/>]
+          </div>
+          <div class="code_title">&lt;<i>project name</i>&gt;/urls.py</div>
+          <div class="code_body">from django.contrib import admin
+            <br/>from django.urls import include, path
+            <br/>
+            <br/>urlpatterns = [
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;path('&lt;<i>name of app</i>&gt;/', include('&lt;<i>name of app</i>&gt;.urls')),
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;path('admin/', admin.site.urls),
+            <br/>]
+          </div>
+        </div>
+        <div>
+          <h2><li>Start the local server</li></h2>
+          <div class="code_body">$ python3 manage.py runserver</div>
+        </div>
+        <div>
+          <h2><li>Database setup - for the auth_ and django_ bits</li></h2>
+          <div class="code_body">$ python3 manage.py migrate</div>
+        </div>
+        <div>
+          <h2><li>Creating models</li></h2>
+          <div class="code_title">&lt;<i>app name</i>&gt;/models.py</div>
+          <div class="code_body">import datetime
+            <br/>
+            <br/>from django.db import models
+            <br/>from django.utils import timezone
+            <br/>
+            <br/><u>e.g.</u>
+            <br/>class Question(models.Model):
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;question_text = models.CharField(max_length=200)
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;pub_date = models.DateTimeField('date published')
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;def __str__(self):
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.question_text
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;def was_published_recently(self):
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+            <br/>
+            <br/>class Choice(models.Model):
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;question = models.ForeignKey(Question, on_delete=models.CASCADE)
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;choice_text = models.CharField(max_length=200)
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;votes = models.IntegerField(default=0)
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;def __str__(self):
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.choice_text
+          </div>
+        </div>
+        <div>
+          <h2><li>Activating models</li></h2>
+          <div class="code_title">&lt;<i>project name</i>&gt;/settings.py</div>
+          <div class="code_body">INSTALLED_APPS = [
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;'&lt;<i>app name</i>&gt;',
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;'django.contrib.admin',
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;'django.contrib.auth',
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;'django.contrib.contenttypes',
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;'django.contrib.sessions',
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;'django.contrib.messages',
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;'django.contrib.staticfiles',
+            <br/>]
+          </div>
+        </div>
+        <div>
+          <h2><li>Stage the migration</li></h2>
+          <div class="code_body">$ python3 manage.py makemigrations</div>
+        </div>
+        <div>
+          <h2><li>Perform the migration</li></h2>
+          <div class="code_body">$ python3 manage.py migrate</div>
+        </div>
+        <div>
+          <h2><li>Creating an admin user</li></h2>
+          <div class="code_body">$ python3 manage.py createsuperuser
+          <br/>
+          <br/>Username: admin
+          <br/>Email address: admin@example.com
+          <br/>Password: **********
+          <br/>Password (again): *********
+          <br/>Superuser created successfully.
+        </div>
+        </div>
+        <div>
+          <h2><li>Restart the local server</li></h2>
+          <div class="code_body">$ quit()
+            <br/>$ python3 manage.py runserver
+          </div>
+        </div>
+        <div>
+          <h2><li>Go to the Admin interface</li></h2>
+          <div class="code_body">http://127.0.0.1:8000/admin/</div>
+        </div>
+        <div>
+          <h2><li>Make the app modifiable in the admin</li></h2>
+          <div class="code_title">&lt;<i>app name</i>&gt;/admin.py</div>
+          <div class="code_body">from django.contrib import admin
+            <br/>
+            <br/>from .models import &lt;<i>function name</i>&gt; <u>e.g.</u> Question
+            <br/>from .models import &lt;<i>function name</i>&gt; <u>e.g.</u> Choice
+            <br/>
+            <br/>admin.site.register(&lt;<i>function name</i>&gt;) <u>e.g.</u> Question
+            <br/>admin.site.register(&lt;<i>function name</i>&gt;) <u>e.g.</u> Choice
+          </div>
+        </div>
+        <div>
+          <h2><li><i>&lt;next step&gt;</i></li></h2>
+          <div class="code_body">$ <i>command</i></div>
+        </div>
+      </ol>
+    </div>
+  </body>
+</html>
