@@ -8,4 +8,4 @@ class Contact(models.Model):
     is_cell = models.BooleanField()
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name 
+        return str(self.id) + ', ' + self.last_name + ', ' + self.first_name + ', ' + self.phone_number + ', ' + str(self.birthday)
