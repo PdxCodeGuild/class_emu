@@ -148,7 +148,7 @@ def add(request):
 If you need to redirect to a full url, you can use the [redirect](https://docs.djangoproject.com/en/2.2/topics/http/shortcuts/#redirect) function.
 
 ```python
-from django.shortcuts import
+from django.shortcuts import redirect
 def redirect(request):
     return redirect('http://www.mozilla.org/')
 ```
