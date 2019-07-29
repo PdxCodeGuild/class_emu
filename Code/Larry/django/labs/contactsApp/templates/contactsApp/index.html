@@ -33,7 +33,7 @@
       {% if contacts_list %}
         <ul>
           {% for contact in contacts_list %}
-            <li><a href="#">{{contact}}</a>
+            <li><a href="/contactsApp/{{contact.id}}/">{{contact.first_name}} {{contact.last_name}}</a>
           {% endfor %}
         </ul>
       {% else %}
