@@ -1,0 +1,86 @@
+<!-- JavaScript lab lab02_v1_password_gen.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS lab 02: Password Generator - v1</title>
+    <style media="screen" type="text/css">
+      #version_info {
+        padding: 20px 0;
+      }
+      .input_output {
+        font-size: 24px;
+        padding: 15px 0;
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        vertical-align: middle;
+      }
+      #button_get_pwd {
+        background-color: #C0C0C0;
+        border: 1px solid #333;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        font-size: 24px;
+        margin: auto;
+        padding: auto;
+        text-decoration: none;
+        vertical-align: middle;
+      }
+      #button_get_pwd:active{
+        box-shadow: none;
+      }
+      button_get_pwd: {
+        outline: 0;
+      }
+      #span_output {
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>JS lab 02: Password Generator</h1>
+      <h3>Let's generate a 10-character password using a while loop and random.choice. This will be a string of random characters.</h3>
+    </div>
+    <div><u>Hint</u>: random.choice can be used to pick a character out of a string, as well as an element out of a list.</div>
+    <div id="version_info">
+      <span><b>v1: recreate Python password generator lab 06 v1</b></span>
+    </div>
+    <hr/>
+    <div class="input_output">Click to get a <button id="button_get_pwd">new password</button></div>
+    <div>&nbsp;</div>
+    <div class="input_output">Your password is: <span id="span_output"></span></div>
+    <script type="text/javascript">
+
+      function randomChar(s) {                       // Matt's code
+        return s[Math.floor(Math.random()*s.length)] // Math.random() => [0,1) or 0 to .999999.. (16 decimal places);
+      }                                              // multiply by length of password_chars, rounded down to nearest int
+                                                     // use resulting number as index for password_chars to get the char
+
+      // THIS BUILDS THE password_chars FROM THE ASCII TABLE & CHAR CODES
+      // let password_chars = '';
+      // for (let i = 33; i <= 126; ++i) {
+      //     password_chars += String.fromCharCode(i);
+      // }
+      // alert(password_chars)
+
+      // string of all upper+lowercase letters + numbers + punctuation
+      password_chars = "`1234567890-=~!@#$%^&*()_+qwertyuiop[]\\QWERTYUIOP{}|asdfghjkl;'ASDFGHJKL:\"zxcvbnm,./ZXCVBNM<>?"
+
+      let button_get_pwd = document.querySelector('#button_get_pwd') // get the whole object (button_get_pwd)
+      let span_output = document.querySelector('#span_output')       // get the whole object (span_output)
+
+      button_get_pwd.onclick = function() {                         // eventListener for onclick
+        // loop through 10xs to create a password
+        your_password = ''                                           // base value for your_password
+        for (let i=0; i<=10; ++i) {                                  // loop through 10xs
+          your_password += randomChar(password_chars)                // call randomChar, add char to your_password
+        }
+
+        // Print the 10-character password
+          span_output.innerText = your_password                      // print result to the HTML doc
+      }
+    </script>
+  </body>
+</html>

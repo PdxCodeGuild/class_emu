@@ -2,19 +2,82 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
+    <title></title>
+    <style>
+      table tr:nth-child(even) {
+        background-color:skyblue;
+      }
+      .no_background {
+        background-color:white !important;
+      }
+      .completed {
+        text-decoration:line-through;
+        color:grey;
+      }
+    </style>
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <form action="/todoapp/addtodo/" method="post">
-      {% csrf_token %}
-      <input type="text" name="todo_text" required/>
-      <button type="submit">add</button>
-    </form>
-    <ul>
-      {% for todo in todos %}
-      <li>{{ todo.text }}</li>
-      {% endfor %}
-    </ul>
+    
+      
+      <table>
+        <tr>
+          <td>Text</td>
+          <td>Type</td>
+          <td>Urgency</td>
+          <td></td>
+        </tr>
+        <form action="{% url 'todoapp:savetodo' %}" method="post">
+          {% csrf_token %}
+          <tr class="no_background">
+            <td>
+              <input type="text" name="todo_text" required/>
+            </td>
+            <td>
+              <select name="todo_type_id">
+                <option value="" selected>None</option>
+                {% for type in types %}
+                <option value="{{type.id}}">{{type.name}}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td>
+              <select name="todo_urgency_id">
+                {% for urgency in urgencies %}
+                <option value="{{urgency.id}}">{{urgency.name}}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td>
+              <button type="submit">add</button>
+            </td>
+            
+          </tr>
+        </form>
+        {% for item in items %}
+        <tr>
+          <td>{{item.text}}</td>
+          <td>{{item.type.name}}</td>
+          <td>{{item.urgency.name}}</td>
+          <td>
+            <form action="{% url 'todoapp:completetodo' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="todo_item_id" value="{{ item.id }}"/>
+              <button>Complete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+        {% for item in completed_items %}
+        <tr class="completed">
+          <td>{{item.text}}</td>
+          <td>{{item.type.name}}</td>
+          <td>{{item.urgency.name}}</td>
+          <td>
+            {{item.date_completed}}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    
   </body>
 </html>
