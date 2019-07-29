@@ -39,31 +39,27 @@
   </head>
   <body>
     <div id="container">
-      <h1><a href="/contactsApp/">All Contacts</a> > Details</h1>
+      <h1><a href="{% url 'contactsApp:index' %}">All Contacts</a> &gt; Details</h1>
       <div>
         <table>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Birthday</th>
-          <th>Phone Number</th>
-          <th>Cell phone?</th>
-          {% if contact_details %}
-            {% for contact in contact_details %}
-              <tr>
-                <td>{{contact.first_name}}</td>
-                <td>{{contact.last_name}}</td>
-                <td>{{contact.birthday}}</td>
-                <td>{{contact.phone_number}}</td>
-                {% if contact.is_cell %}
-                  <td>Yes</td>
-                {% else %}
-                  <td>No</td>
-                {% endif %}
-              </tr>
-            {% endfor %}
-          {% else %}
-            <p>No contact details are available.</p>
-          {% endif %}
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birthday</th>
+            <th>Phone Number</th>
+            <th>Cell phone?</th>
+          </tr>
+          <tr>
+            <td>{{contact.first_name}}</td>
+            <td>{{contact.last_name}}</td>
+            <td>{{contact.birthday}}</td>
+            <td>{{contact.phone_number}}</td>
+            {% if contact.is_cell %}
+              <td>Yes</td>
+            {% else %}
+              <td>No</td>
+            {% endif %}
+          </tr>
         </table>
       </div>
     </div>

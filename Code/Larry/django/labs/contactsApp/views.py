@@ -13,6 +13,6 @@ def detail(request, contact_id):
     # use the id to look up a contacts (Contact.objects.get)
     # pass that contact to a template to be rendered
     # return HttpResponse(contact_id)
-    contact_details = Contact.objects.filter(id=contact_id)
-    context = {'contact_details': contact_details}
-    return render(request, 'contactsApp/details.html', context)
+    contact = Contact.objects.get(id=contact_id)
+    context = {'contact': contact}
+    return render(request, 'contactsApp/detail.html', context)
