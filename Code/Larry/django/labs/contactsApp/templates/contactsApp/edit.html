@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts App</title>
+    <style media="screen" type="text/css">
+      html, body {
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+      }
+      #container {
+        background-color: #CCC;
+        padding: 10px;
+        height: 100%;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      #container > h1 {
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 10px;
+      }
+      h1 {
+        padding-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1><a href="{% url 'contactsApp:index' %}">All Contacts</a> &gt; Edit Contact</h1>
+      <div>
+        <table>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birthday</th>
+            <th>Phone Number</th>
+            <th>Cell phone?</th>
+          </tr>
+          <tr>
+            <td>{{contact.first_name}}</td>
+            <td>{{contact.last_name}}</td>
+            <td>{{contact.birthday}}</td>
+            <td>{{contact.phone_number}}</td>
+            {% if contact.is_cell %}
+              <td>Yes</td>
+            {% else %}
+              <td>No</td>
+            {% endif %}
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
