@@ -35,8 +35,8 @@ def create_contact(request):
 
 def edit(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
-    # birthday = str(contact.birthday)                              # modified the date format in edit.html
-    # context = {'contact': contact, 'birthday': birthday}          # {{ contact.birthday|date:"Y-m-d"}}
+    # birthday = str(contact.birthday)                      # modified format in template edit.html instead
+    # context = {'contact': contact, 'birthday': birthday}  # => {{ contact.birthday|date:"Y-m-d"}}
     context = {'contact': contact}
     # return HttpResponse("Edit existing contact")
     return render(request, 'contactsApp/edit.html', context)

@@ -53,13 +53,13 @@
               <th>Phone Number</th>
               <th>Cell phone?</th>
               <th>Save</th>
-              <th/>
+              <th>Action</th>
             </tr>
             <tr>
               <!-- <td>{{contact.id}}</td> -->
               <td><input type="text" name="first_name" value="{{contact.first_name}}" placeholder="enter first name"/></td>
               <td><input type="text" name="last_name" value="{{contact.last_name}}" placeholder="enter last name"/></td>
-              <td><input type="date" name="birthday" value="{{ contact.birthday|date:"Y-m-d"}}" placeholder="enter birthday"/></td>
+              <td><input type="date" name="birthday" value="{{contact.birthday|date:"Y-m-d"}}" placeholder="enter birthday"/></td>
               <td><input type="text" name="phone_number" value="{{contact.phone_number}}" placeholder="enter phone number"/></td>
               {% if contact.is_cell %}
                 <td><input type="checkbox" name="is_cell" checked/></td>
