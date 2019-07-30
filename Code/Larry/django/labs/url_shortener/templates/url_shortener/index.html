@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts App</title>
+    <title>URL shortener</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style media="screen" type="text/css">
       html, body {
         box-sizing: border-box;
@@ -25,15 +26,40 @@
       #container > h1 {
         margin: 0;
       }
+      h2 {
+        margin-bottom: 0;
+      }
+      hr {
+        width: 100%;
+        margin-top: 25px;
+      }
+      #shorten_long_url_form {
+        display: flex;
+        align-items: flex-start;
+      }
+      #shorten_long_url_form > input {
+        margin: 10px;
+      }
     </style>
   </head>
   <body>
     <div id="container">
-      <h1>All Shortened Links</h1>
+      <div>
+        <h1>Generate a new shortcode</h1>
+        <form action="{% url 'url_shortener:saveurl' %}" method="post">
+          {% csrf_token %}
+          <div id="shorten_long_url_form">
+            <input class="w3-input w3-animate-input" type="text" style="width:230px" name="long_url">
+            <input type="submit" class="w3-btn w3-black" value="Save"/>
+          </div>
+        </form>
+      </div>
+      <hr/>
+      <h2>All Shortened Links</h2>
       {% if shortened_urls %}
         <ul>
           {% for url in shortened_urls %}
-            <li>{{url}}</li>
+            <li>{{url.code}} => {{url.long_url}}</li>
           {% endfor %}
         </ul>
       {% else %}
