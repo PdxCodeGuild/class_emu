@@ -41,26 +41,35 @@
     <div id="container">
       <h1><a href="{% url 'contactsApp:index' %}">All Contacts</a> &gt; Edit Contact</h1>
       <div>
-        <table>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Birthday</th>
-            <th>Phone Number</th>
-            <th>Cell phone?</th>
-          </tr>
-          <tr>
-            <td>{{contact.first_name}}</td>
-            <td>{{contact.last_name}}</td>
-            <td>{{contact.birthday}}</td>
-            <td>{{contact.phone_number}}</td>
-            {% if contact.is_cell %}
-              <td>Yes</td>
-            {% else %}
-              <td>No</td>
-            {% endif %}
-          </tr>
-        </table>
+        <form action="{% url 'contactsApp:save_contact' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{contact.id}}"/>
+          <table>
+            <tr>
+              <!-- <th>ID</th> -->
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Birthday</th>
+              <th>Phone Number</th>
+              <th>Cell phone?</th>
+              <th>Save</th>
+            </tr>
+            <tr>
+              <!-- <td>{{contact.id}}</td> -->
+              <td><input type="text" name="first_name" value="{{contact.first_name}}" placeholder="enter first name"/></td>
+              <td><input type="text" name="last_name" value="{{contact.last_name}}" placeholder="enter last name"/></td>
+              <!-- <td><input type="date" name="birthday" value="{{contact.birthday}}" placeholder="enter birthday"/></td> -->
+              <td><input type="date" name="birthday" value="{{contact.birthday}}" placeholder="enter birthday"/></td>
+              <td><input type="text" name="phone_number" value="{{contact.phone_number}}" placeholder="enter phone number"/></td>
+              {% if contact.is_cell %}
+                <td><input type="checkbox" name="is_cell" checked/></td>
+              {% else %}
+                <td><input type="checkbox" name="is_cell"/></td>
+              {% endif %}
+              <td><input type="submit" value="Submit"></td>
+            </tr>
+          </table>
+        </form>
       </div>
     </div>
   </body>
