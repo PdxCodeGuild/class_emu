@@ -49,6 +49,7 @@
             <th>Birthday</th>
             <th>Phone Number</th>
             <th>Cell phone?</th>
+            <th/>
           </tr>
           <tr>
             <!-- <td>{{contact.id}}</td> -->
@@ -61,6 +62,7 @@
             {% else %}
               <td>No</td>
             {% endif %}
+            <td>[ <a href="/contactsApp/{{contact.id}}/edit/">Edit</a> ]</td>
           </tr>
         </table>
       </div>
