@@ -17,7 +17,6 @@ def detail(request, contact_id):
     return render(request, 'contactsApp/detail.html', context)
 
 def create(request):
-    # return HttpResponse("Create new contact")todo_text = request.POST['todo_text']
     return render(request, 'contactsApp/create.html')
 
 def create_contact(request):
@@ -27,18 +26,13 @@ def create_contact(request):
     birthday = request.POST['birthday']
     phone_number = request.POST['phone_number']
     is_cell = 'is_cell' in request.POST
-
     contact = Contact(first_name=first_name, last_name=last_name, birthday=birthday, phone_number=phone_number, is_cell=is_cell)
     contact.save()
-    # return HttpResponse('Create new contact')
     return HttpResponseRedirect(reverse('contactsApp:index'))
 
 def edit(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
-    # birthday = str(contact.birthday)                      # modified format in template edit.html instead
-    # context = {'contact': contact, 'birthday': birthday}  # => {{ contact.birthday|date:"Y-m-d"}}
     context = {'contact': contact}
-    # return HttpResponse("Edit existing contact")
     return render(request, 'contactsApp/edit.html', context)
 
 def save_contact(request):
@@ -49,8 +43,5 @@ def save_contact(request):
     contact.birthday = request.POST['birthday']
     contact.phone_number = request.POST['phone_number']
     contact.is_cell = 'is_cell' in request.POST
-
-    # contact = Contact(id=id, first_name=first_name, last_name=last_name, birthday=birthday, phone_number=phone_number, is_cell=is_cell)
     contact.save()
-    # return HttpResponse('Save existing contact')
     return HttpResponseRedirect(reverse('contactsApp:detail', args=(contact.id,)))
