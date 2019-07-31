@@ -18,13 +18,18 @@
         background-color: #CCC;
         padding: 10px;
         height: 100%;
+        width: 100%;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column;
         justify-content: flex-start;
       }
-      #container > h1 {
+      h1 {
         margin: 0;
+        text-align: center;
+      }
+      #container > div {
+        width: 50%;
       }
       h2 {
         margin-bottom: 0;
@@ -35,7 +40,10 @@
       }
       #shorten_long_url_form {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        width
       }
       #shorten_long_url_form > input {
         margin: 10px;
@@ -49,7 +57,7 @@
         <form action="{% url 'url_shortener:saveurl' %}" method="post">
           {% csrf_token %}
           <div id="shorten_long_url_form">
-            <input class="w3-input w3-animate-input" type="text" style="width:230px" name="long_url">
+            <input class="w3-input w3-animate-input" type="text" style="width:230px" name="long_url" required>
             <input type="submit" class="w3-btn w3-black" value="Save"/>
           </div>
         </form>
@@ -57,14 +65,26 @@
       <hr/>
       <h2>All Shortened Links</h2>
       {% if shortened_urls %}
-        <ul>
+        <table>
+            <tr align="right">
+              <th>Long URL</th>
+              <th/>
+              <th>Shortcode</th>
+            </tr>
           {% for url in shortened_urls %}
-            <li>{{url.code}} => {{url.long_url}}</li>
+            <tr>
+              <td align="right">{{url.long_url}}</td>
+              <td><b>&#8594;</b></td>
+              <td align="left"><a href="{{url.code}}/" target="_blank">{{url.code}}</a></td>
+            </tr>
           {% endfor %}
-        </ul>
+        </table>
       {% else %}
         <p>No URLs are available.</p>
       {% endif %}
     </div>
+    <script type="text/javascript">
+
+    </script>
   </body>
 </html>
