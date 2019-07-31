@@ -1,0 +1,13 @@
+<form action ="/contacts/create_contact/" method="post">
+    {% csrf_token %}
+    First name:<br>
+    <input type="text" name="first_name" ><br>
+    Last name: <br>
+    <input type="text" name="last_name" ><br>
+    Birthday: <br>
+    <input type="date" name="birthday"><br>
+    Phone number: <br>
+    <input type="text" name="phone_number"><br>
+    <input type="checkbox" name="is_cell" value="cell">Cell Phone<br>
+    <input type="submit" value="Submit">
+</form>
