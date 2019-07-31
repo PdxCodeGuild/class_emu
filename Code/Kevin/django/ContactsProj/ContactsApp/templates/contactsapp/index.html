@@ -1,11 +1,20 @@
-{% if contacts_list %}
+<h2>Contacts List</h2>
+{% if current_contact_list %}
 
     <ul>
-    {% for contact in contacts_list %}
-        <li><a href="/contacts/{{ contact.id }}/">{{ contact.first_name }}</a></li>
-
+    {% for contact in current_contact_list %}
+        <li>
+            <a href="{% url 'ContactsApp:detail' contact.id %}"> {{ contact.last_name }}, {{ contact.first_name }}</a>
+            <a href="{% url 'ContactsApp:edit' contact.id%}">
+                
+                <button>Edit</button>
+            </a>
+        </li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No contacts available yet. Add some!</p>
 {% endif %}
+
+
+    <a href="/contacts/new/"><button>New</button></a>
