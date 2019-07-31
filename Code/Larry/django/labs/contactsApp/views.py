@@ -35,9 +35,8 @@ def edit(request, contact_id):
     context = {'contact': contact}
     return render(request, 'contactsApp/edit.html', context)
 
-def save_contact(request):
+def save_contact(request, contact_id):
     contact = Contact.objects.get(id=request.POST['id'])
-    contact.id = request.POST['id']
     contact.first_name = request.POST['first_name']
     contact.last_name = request.POST['last_name']
     contact.birthday = request.POST['birthday']
@@ -45,3 +44,8 @@ def save_contact(request):
     contact.is_cell = 'is_cell' in request.POST
     contact.save()
     return HttpResponseRedirect(reverse('contactsApp:detail', args=(contact.id,)))
+
+def delete_contact(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    contact.delete()
+    return HttpResponseRedirect(reverse('contactsApp:index'))

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL shortener</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style media="screen" type="text/css">
+      html, body {
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+      }
+      #container {
+        background-color: rgba(141, 201, 0, 0.5);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      h1 {
+        margin: 0;
+        text-align: center;
+      }
+      #container > div {
+        background-color: rgba(101, 222, 0, 0.9);
+        width: 100%;
+        margin: 0;
+        padding: 20px 40px 40px;
+      }
+      h2 {
+        margin-bottom: 0;
+      }
+      #shorten_long_url_form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        width
+      }
+      #shorten_long_url_form > input {
+        margin: 10px;
+      }
+      #td-long {
+        width: 600px;
+        max-width: 600px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: right
+      }
+      #td-short {
+         width: 600px;
+      }
+      th {
+        text-align: left;
+      }
+      th:first-child{
+        text-align: right;
+      }
+      tr:nth-child(odd){
+        background-color: rgba(216, 251, 208, 0.8);
+      }
+      /* table, tr, th, td {
+        border: 1px solid #9C7;
+      } */
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div>
+        <h1>Generate a new shortcode</h1>
+        <form action="{% url 'url_shortener:saveurl' %}" method="post" id="url_form">
+          {% csrf_token %}
+          <div id="shorten_long_url_form">
+            <input class="w3-input" type="url" style="width:500px" id="long_url_field" name="long_url" required />
+            <!-- <input class="w3-input" type="text" style="width:500px" id="long_url_field" name="long_url" required pattern="^(http|https):\/\/.*" title="URL should start with http:// or https://"/> -->
+            <input type="submit" class="w3-btn w3-black" value="Save" id="submit_button"/>
+          </div>
+        </form>
+      </div>
+      <h2>All Shortened Links</h2>
+      {% if shortened_urls %}
+        <table>
+          <tr align="right">
+            <th>Long URL</th>
+            <th>&#8594;</th>
+            <th>Shortcode</th>
+          </tr>
+          {% for url in shortened_urls %}
+          <tr>
+            <td id="td-long">{{url.long_url}}</td>
+            <td><b>&#8594;</b></td>
+            <td id="td-short"><a href="{{url.code}}/" target="_blank">{{url.code}}</a></td>
+          </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No URLs are available.</p>
+      {% endif %}
+    </div> <!-- end of 'container'-->
+  </body>
+</html>

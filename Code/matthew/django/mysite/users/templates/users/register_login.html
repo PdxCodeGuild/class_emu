@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% if message == 'fail' %}
+    <div style="background-color:red;color:white;">Your username and password did not match</div>
+    {% endif %}
+    {% if message == 'logout' %}
+    <div style="background-color:blue;color:white;">You have successfully logged out</div>
+    {% endif %}
+    <h2>Register</h2>
+    <form action="{% url 'users:register_user' %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{next}}"/>
+      <input type="text" name="username" placeholder="username" required pattern="\w{3,15}" title="username must be between 3 and 15 characters, all lowercase"/>
+      <input type="text" name="email" placeholder="email" required pattern="\w+@\w+\.\w+" title="please enter a properly formatted email address"/>
+      <input type="password" id="input_password" name="password" placeholder="password"/>
+      <input type="password" id="input_password2" name="password2" placeholder="retype password"/>
+      <button type="submit" id="bt_register">Register</button>
+    </form>
+    <h2>Login</h2>
+    <form action="{% url 'users:login_user' %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{next}}"/>
+      <input type="text" name="username" placeholder="username"/>
+      <input type="password" name="password" placeholder="password"/>
+      <button type="submit">Login</button>
+    </form>
+    <script type="text/javascript">
+      bt_register = document.querySelector('#bt_register')
+      input_password = document.querySelector('#input_password')
+      input_password2 = document.querySelector('#input_password2')
+      
+      bt_register.onclick = function(evt) {
+        if (input_password.value != input_password2.value) {
+          alert('those passwords do not match')
+          evt.preventDefault()
+        }
+      }
+    </script>
+  </body>
+</html>
