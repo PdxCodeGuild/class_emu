@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL shortener</title>
+    <title>Library App</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style media="screen" type="text/css">
       html, body {
@@ -49,8 +49,12 @@
           <tr>
             <td>{{book.title}}</td>
             <td>{{book.author}}</td>
-            <td>{{book.publish_date}}</td>
-            <td>{{book.checked_out}}</td>
+            <td>{{book.publish_date|date:"F d, Y"}}</td>
+            {% if book.checked_out %}
+              <td>Yes</td>
+            {% else %}
+              <td>No</td>
+            {% endif %}
           </tr>
           {% endfor %}
         </table>

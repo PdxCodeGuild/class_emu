@@ -77,8 +77,8 @@
         <form action="{% url 'url_shortener:saveurl' %}" method="post" id="url_form">
           {% csrf_token %}
           <div id="shorten_long_url_form">
-            <input class="w3-input" type="text" style="width:500px" id="long_url_field" name="long_url" required />
-            <input type="button" class="w3-btn w3-black" value="Save" id="submit_button"/>
+            <input class="w3-input" type="text" style="width:500px" id="long_url_field" name="long_url" required pattern="^(http|https)://" title="URLs must include the protocol (http:// or https://)"/>
+            <input type="submit" class="w3-btn w3-black" value="Save" id="submit_button"/>
           </div>
         </form>
       </div>
@@ -102,17 +102,6 @@
         <p>No URLs are available.</p>
       {% endif %}
     </div> <!-- end of 'container'-->
-    <script type="text/javascript">
-      let long_url_field = document.querySelector('#long_url_field')
-      let submit_button = document.querySelector('#submit_button')
-      submit_button.onclick = function() {
-        let long_url = long_url_field.value
-        if (long_url.includes("http://") || long_url.includes("https://")) {
-          document.querySelector("#url_form").submit();
-        } else {
-          alert("\nMissing Protocol\n\t\t\t\t\t\t\t\tThe URL should include http:// or https://.")
-        }
-      }
     </script>
   </body>
 </html>
