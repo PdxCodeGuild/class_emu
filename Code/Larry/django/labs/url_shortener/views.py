@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import shortURLgen
+from .models import shortened_url
 import string
 import random
 
 def index(request):
-    shortened_urls = shortURLgen.objects.order_by('-id')
+    shortened_urls = shortened_url.objects.order_by('-id')
     context = {'shortened_urls': shortened_urls}
     return render(request, 'url_shortener/index.html', context)
 
@@ -20,14 +20,12 @@ def saveurl(request):
     while counter < 5:
         shorturl_code += random.choice(letters_digits)
         counter = counter + 1
-    # Print the 5-character code
-    # return HttpResponse(your_password)
     long_url = request.POST['long_url']
-    short_url = shortURLgen(code=shorturl_code, long_url=long_url)
+    short_url = shortened_url(code=shorturl_code, long_url=long_url)
     short_url.save()
     return HttpResponseRedirect(reverse('url_shortener:index'))
 
 def redir_to_long_url(request, code):
-    url_object = shortURLgen.objects.get(code=code)
+    url_object = shortened_url.objects.get(code=code)
     print(url_object.long_url)
     return redirect(url_object.long_url)

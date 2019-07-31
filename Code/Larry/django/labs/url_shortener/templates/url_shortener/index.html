@@ -15,8 +15,7 @@
         width: 100%;
       }
       #container {
-        background-color: #CCC;
-        padding: 10px;
+        background-color: rgba(141, 201, 0, 0.5);
         height: 100%;
         width: 100%;
         display: flex;
@@ -29,14 +28,13 @@
         text-align: center;
       }
       #container > div {
-        width: 50%;
+        background-color: rgba(101, 222, 0, 0.9);
+        width: 100%;
+        margin: 0;
+        padding: 20px 40px 40px;
       }
       h2 {
         margin-bottom: 0;
-      }
-      hr {
-        width: 100%;
-        margin-top: 25px;
       }
       #shorten_long_url_form {
         display: flex;
@@ -47,6 +45,21 @@
       }
       #shorten_long_url_form > input {
         margin: 10px;
+      }
+      #td-long {
+        width: 600px;
+        max-width: 600px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      #td-short {
+         width: 600px;
+      }
+      th {
+        text-align: left;
+      }
+      th:first-child{
+        text-align: right;
       }
     </style>
   </head>
@@ -62,27 +75,26 @@
           </div>
         </form>
       </div>
-      <hr/>
       <h2>All Shortened Links</h2>
       {% if shortened_urls %}
         <table>
-            <tr align="right">
-              <th>Long URL</th>
-              <th/>
-              <th>Shortcode</th>
-            </tr>
+          <tr align="right">
+            <th>Long URL</th>
+            <th/>
+            <th>Shortcode</th>
+          </tr>
           {% for url in shortened_urls %}
-            <tr>
-              <td align="right">{{url.long_url}}</td>
-              <td><b>&#8594;</b></td>
-              <td align="left"><a href="{{url.code}}/" target="_blank">{{url.code}}</a></td>
-            </tr>
+          <tr>
+            <td id="td-long">{{url.long_url}}</td>
+            <td><b>&#8594;</b></td>
+            <td id="td-short"><a href="{{url.code}}/" target="_blank">{{url.code}}</a></td>
+          </tr>
           {% endfor %}
         </table>
       {% else %}
         <p>No URLs are available.</p>
       {% endif %}
-    </div>
+    </div> <!-- end of 'container'-->
     <script type="text/javascript">
 
     </script>
