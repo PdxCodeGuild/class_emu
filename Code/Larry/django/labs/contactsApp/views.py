@@ -8,7 +8,6 @@ def index(request):
     context = {'contacts_list': contacts_list}
     return render(request, 'contactsApp/index.html', context)
 
-
 def detail(request, contact_id):
     # use the id to look up a contacts (Contact.objects.get)
     # pass that contact to a template to be rendered
@@ -16,3 +15,37 @@ def detail(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
     context = {'contact': contact}
     return render(request, 'contactsApp/detail.html', context)
+
+def create(request):
+    return render(request, 'contactsApp/create.html')
+
+def create_contact(request):
+    print(request.POST)
+    first_name = request.POST['first_name']
+    last_name = request.POST['last_name']
+    birthday = request.POST['birthday']
+    phone_number = request.POST['phone_number']
+    is_cell = 'is_cell' in request.POST
+    contact = Contact(first_name=first_name, last_name=last_name, birthday=birthday, phone_number=phone_number, is_cell=is_cell)
+    contact.save()
+    return HttpResponseRedirect(reverse('contactsApp:index'))
+
+def edit(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    context = {'contact': contact}
+    return render(request, 'contactsApp/edit.html', context)
+
+def save_contact(request, contact_id):
+    contact = Contact.objects.get(id=request.POST['id'])
+    contact.first_name = request.POST['first_name']
+    contact.last_name = request.POST['last_name']
+    contact.birthday = request.POST['birthday']
+    contact.phone_number = request.POST['phone_number']
+    contact.is_cell = 'is_cell' in request.POST
+    contact.save()
+    return HttpResponseRedirect(reverse('contactsApp:detail', args=(contact.id,)))
+
+def delete_contact(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    contact.delete()
+    return HttpResponseRedirect(reverse('contactsApp:index'))

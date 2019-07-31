@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from .models import Contact
 
 def index(request):
-    return HttpResponse('Index: ok')
+    contacts_list = Contact.objects.order_by('-first_name')[:10]
+    context = {'current_contact_list': contacts_list}
+    return render(request, 'contactsapp/index.html', context)
 
 def details(request, contacts_id):
     return HttpResponse('Details: ok' + ' ' + str(contacts_id))

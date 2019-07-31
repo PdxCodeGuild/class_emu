@@ -33,12 +33,13 @@
       {% if contacts_list %}
         <ul>
           {% for contact in contacts_list %}
-            <li><a href="/contactsApp/{{contact.id}}/">{{contact.first_name}} {{contact.last_name}}</a>
+            <li><a href="/contactsApp/{{contact.id}}/">{{contact.first_name}} {{contact.last_name}}</a></li>
           {% endfor %}
         </ul>
       {% else %}
         <p>No contacts are available.</p>
       {% endif %}
+      <div><hr/><a href="/contactsApp/create/">Create new contact</a></div>
     </div>
   </body>
 </html>

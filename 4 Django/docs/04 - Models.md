@@ -138,7 +138,8 @@ class Mother(models.Model):
     name = models.CharField(max_length=200)
 
 class Child(models.Model):
-    name = models.
+    name = models.CharField(max_length=200)
+    mother = models.ForeignKey(Mother)
 ```
 
 

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'contactsApp',
+    'url_shortener',
+    'library',
 ]
 
 MIDDLEWARE = [
