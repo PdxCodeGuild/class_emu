@@ -23,6 +23,9 @@
         flex-direction: column;
         justify-content: flex-start;
       }
+      h1 {
+        text-align: center;
+      }
       table, tr, th, td {
         border: 1px solid #333;
       }
@@ -32,38 +35,66 @@
       th {
         background-color: rgba(10, 10, 100, 0.2);
       }
+      #spacer {
+        margin-top: 25px;
+      }
+      #checkout_books {
+        margin: 0 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      #checkout_books > * {
+        margin: 10px;
+      }
     </style>
   </head>
   <body>
     <div id="container">
-      <h1>Books</h1>
-      {% if books %}
-        <table>
-          <tr align="left">
-            <th>Title</th>
-            <th>Author</th>
-            <th>Publish Date</th>
-            <th>Checked out?</th>
-          </tr>
-          {% for book in books %}
-          <tr>
-            <td>{{book.title}}</td>
-            <td>{{book.author}}</td>
-            <td>{{book.publish_date|date:"F d, Y"}}</td>
-            {% if book.checked_out %}
-              <td>Yes</td>
-            {% else %}
-              <td>No</td>
-            {% endif %}
-          </tr>
-          {% endfor %}
-        </table>
-      {% else %}
-        <p>No books are available.</p>
-      {% endif %}
+      <div id="book_list">
+        <h1>Books</h1>
+        {% if books %}
+          <table>
+            <tr align="left">
+              <th>Title</th>
+              <th>Author</th>
+              <th>Publish Date</th>
+              <th>Checked out?</th>
+            </tr>
+            {% for book in books %}
+            <tr>
+              <td>{{book.title}}</td>
+              <td>{{book.author}}</td>
+              <td>{{book.publish_date|date:"F d, Y"}}</td>
+              {% if book.checked_out %}
+                <td>Yes</td>
+              {% else %}
+                <td>No</td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </table>
+        {% else %}
+          <p>No books are available.</p>
+        {% endif %}
+      </div>
+      <div id="spacer">***</div>
+      <div id="checkout_books">
+        {% if books_sortby_title %}
+          <form action="{% url 'library:checkout' %}" method="post" id="checkout_form">
+          {% csrf_token %}
+          <span>Checkout one of the books:</span>
+          <select name="checkout_select">
+            {% for book in books_sortby_title %}
+            <option value="{{book.title}}">{{book.title}}</option>
+            {% endfor %}
+          </select>
+          <button type="submit">Checkout</button>
+        {% else %}
+        <h4>There are currently no books to checkout. Try back later.</h4>
+        {% endif %}
+      </div>
     </div> <!-- end of 'container'-->
-    <script type="text/javascript">
-      // code goes here
-    </script>
   </body>
 </html>
