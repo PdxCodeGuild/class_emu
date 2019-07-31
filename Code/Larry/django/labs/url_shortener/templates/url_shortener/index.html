@@ -77,7 +77,8 @@
         <form action="{% url 'url_shortener:saveurl' %}" method="post" id="url_form">
           {% csrf_token %}
           <div id="shorten_long_url_form">
-            <input class="w3-input" type="text" style="width:500px" id="long_url_field" name="long_url" required pattern="^(http|https)://" title="URLs must include the protocol (http:// or https://)"/>
+            <input class="w3-input" type="url" style="width:500px" id="long_url_field" name="long_url" required />
+            <!-- <input class="w3-input" type="text" style="width:500px" id="long_url_field" name="long_url" required pattern="^(http|https):\/\/.*" title="URL should start with http:// or https://"/> -->
             <input type="submit" class="w3-btn w3-black" value="Save" id="submit_button"/>
           </div>
         </form>
@@ -102,6 +103,5 @@
         <p>No URLs are available.</p>
       {% endif %}
     </div> <!-- end of 'container'-->
-    </script>
   </body>
 </html>
