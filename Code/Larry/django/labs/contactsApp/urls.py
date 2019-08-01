@@ -12,10 +12,10 @@ urlpatterns = [
     path('create/', views.create, name='create'),
     # /contactsApp/create_contact/
     path('create_contact/', views.create_contact, name='create_contact'),
-    # /contacts/123/edit
+    # /contactsApp/123/edit
     path('<int:contact_id>/edit/', views.edit, name='edit'),
-    # /contacts/save
+    # /contactsApp/save
     path('save_contact/', views.save_contact, name='save_contact'),
-    # /contacts/123/delete
+    # /contactsApp/123/delete
     path('<int:contact_id>/delete/', views.delete_contact, name='delete_contact'),
 ]
