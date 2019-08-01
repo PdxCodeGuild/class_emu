@@ -35,15 +35,19 @@
       th {
         background-color: rgba(10, 10, 100, 0.2);
       }
+      select, option {
+        padding: 10px;
+        font-size: 1.25em;
+      }
       #spacer {
         margin-top: 25px;
       }
-      #checkout_books {
-        margin: 0 25px;
+      #checkout_form {
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
+      }
+      #checkout_form > * {
+        padding: 1  5px;
+        margin: 5px;
       }
       #checkout_books > * {
         margin: 10px;
@@ -83,14 +87,16 @@
       <div id="checkout_books">
         {% if books_sortby_title %}
           <form action="{% url 'library:checkout' %}" method="post" id="checkout_form">
-          {% csrf_token %}
-          <select name="checkout_select" required>
-            <option value="" disabled selected>Select one of these books...</option>
-            {% for book in books_sortby_title %}
-            <option value="{{book.title}}">{{book.title}}</option>
-            {% endfor %}
-          </select>
-          <button type="submit">Checkout</button>
+            {% csrf_token %}
+            <h2><u>Front Desk</u>:</h2>
+            <select name="checkout_select" required>
+              <option value="" disabled selected>Select one of these books...</option>
+              {% for book in books_sortby_title %}
+              <option value="{{book.title}}">{{book.title}}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="w3-button w3-black w3-round-large">Checkout</button>
+          </form>
         {% else %}
           <h4>There are currently no books to checkout. Try back later.</h4>
         {% endif %}

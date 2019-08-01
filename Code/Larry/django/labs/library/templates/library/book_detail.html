@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library App</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style media="screen" type="text/css">
+      html, body {
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+      }
+      #container {
+        background-color: rgba(10, 10, 100, 0.4);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      #wrapper {
+        /* width: 640px; */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      h1 {
+        text-align: center;
+      }
+      table, tr, th, td, #wrapper {
+        /* border: 1px solid #333;
+        background-color: #fff; */
+      }
+      th, td {
+        /* padding: 10px; */
+      }
+      th {
+        background-color: rgba(10, 10, 100, 0.2);
+      }
+      select, option {
+        padding: 10px;
+        font-size: 0.9em;
+      }
+      .desc {
+        width: 50%;
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <table border=1>
+        <tr>
+          <td colspan="2"><h1>{{title}}</h1></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center"><h3>Author: {{author}} * Published on: {{pub_date}}</h3></td>
+        </tr>
+        <tr>
+          <td width="45%" align="center"><img src="{{img_url}}"></td>
+          <td width="55%"><p class="desc">{{desc}}</p></td>
+        </tr>
+      </table>
+    </div> <!-- end of 'container'-->
+  </body>
+</html>
