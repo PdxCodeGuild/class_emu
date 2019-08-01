@@ -46,7 +46,9 @@ def checkin(request):
     book = Book.objects.get(title=book_title)
     book.checked_out = False
     book.save()
-    book_checkout_details = BookCheckout.objects.get(book_id=book.id).delete()
+    book_checkout_details = BookCheckout.objects.get(book_id=book.id, checkin_date__isnull=True)
+    book_checkout_details.checkin_date = timezone.now()
+    book_checkout_details.save()
     return HttpResponseRedirect(reverse('library:v2'))
 
 def book_detail(request, book_id):
