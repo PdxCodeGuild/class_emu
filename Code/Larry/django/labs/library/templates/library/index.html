@@ -84,8 +84,8 @@
         {% if books_sortby_title %}
           <form action="{% url 'library:checkout' %}" method="post" id="checkout_form">
           {% csrf_token %}
-          <span>Select one of these books:</span>
-          <select name="checkout_select">
+          <select name="checkout_select" required>
+            <option value="" disabled selected>Select one of these books...</option>
             {% for book in books_sortby_title %}
             <option value="{{book.title}}">{{book.title}}</option>
             {% endfor %}
