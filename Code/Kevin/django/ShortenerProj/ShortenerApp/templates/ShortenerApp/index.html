@@ -1,0 +1,42 @@
+<form action ="{% url 'ShortenerApp:saveurl' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name = "long_url" placeholder="www.something.com/longstrings" > 
+    <input type="submit" value="Submit">
+</form>
+
+<style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>URL</th>
+    </tr>
+    <tr>
+    {% for shorturl in shorturls %}
+    <td>{{shorturl.id}}</td>
+    <td>{{shorturl.code}}</td>
+    <td>{{shorturl.longurl}}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+
+
