@@ -24,7 +24,6 @@
         justify-content: flex-start;
       }
       #wrapper {
-        /* width: 640px; */
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -71,15 +70,15 @@
             <tr align="left">
               <th>Title</th>
               <th>Author</th>
-              <th>Publish Date</th>
+              <th>Year Published</th>
               <th>Available?</th>
               <th>Lendee</th>
             </tr>
             {% for book in books %}
             <tr>
-              <td>{{book.title}}</td>
+              <td><a href="detail/{{book.id}}/">{{book.title}}</a></td>
               <td>{{book.author}}</td>
-              <td>{{book.publish_date|date:"F d, Y"}}</td>
+              <td>{{book.publish_date|date:"Y"}}</td>
               {% if book.checked_out %}
                 <td>No</td>
               {% else %}

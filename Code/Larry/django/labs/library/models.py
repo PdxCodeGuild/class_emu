@@ -9,6 +9,7 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(default="add some detail")
+    desc_url = models.CharField(default="add a description url", max_length=200)
     image_url = models.CharField(default="https://lar-mo.com/images/lazy_placeholder.gif", max_length=200)
     publish_date = models.DateField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)

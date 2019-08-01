@@ -11,7 +11,7 @@ def index(request):
     return render(request, 'library/index.html', context)
 
 def v2(request):
-    books = Book.objects.order_by('author', 'publish_date')
+    books = Book.objects.order_by('author', 'title')
     books_available = Book.objects.filter(checked_out=False).order_by('title')
     books_notavailable = Book.objects.filter(checked_out=True).order_by('title')
     # book_lendee = Book.objects.get(bookcheckout__book=books_notavailable)
@@ -55,13 +55,14 @@ def book_detail(request, book_id):
     author = books_details.author
     pub_date = books_details.publish_date
     desc = books_details.description
+    desc_url = books_details.desc_url
     img_url = books_details.image_url
-    print(title, desc, img_url)
     context = {
         'title': title,
         'author': author,
         'pub_date': pub_date,
         'desc': desc,
+        'desc_url': desc_url,
         'img_url': img_url,
     }
     return render(request, 'library/book_detail.html', context)

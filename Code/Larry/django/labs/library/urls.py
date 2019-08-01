@@ -15,5 +15,5 @@ urlpatterns = [
     # /library/checkin/
     path('checkin/', views.checkin, name='checkin'),
     # /library/v2/1/detail/
-    path('v2/<int:book_id>/detail/', views.book_detail, name='book_detail  '),
+    path('v2/detail/<int:book_id>/', views.book_detail, name='book_detail'),
 ]
