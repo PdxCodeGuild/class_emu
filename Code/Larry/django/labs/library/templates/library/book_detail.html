@@ -43,9 +43,14 @@
       th {
         background-color: rgba(10, 10, 100, 0.2);
         padding: 10px;
+        /* border: 1px solid #333; */
+      }
+      #checkout_details tr:nth-child(2n+1) {
+        background-color: rgba(0, 0, 0, 0.1);
       }
       td {
         text-align: center;
+        /* border: 1px solid #333; */
       }
       .desc {
         padding: 30px;
@@ -82,23 +87,33 @@
           <th align="center"><h4>author: {{author}} || published on: {{pub_date}}</h4></th>
         </tr>
         <tr>
-          <td ><p class="desc"><img src="{{img_url}}">"{{desc}}" <i>(<a href="{{desc_url}}" target="_blank">Source</a>)</i></p></td>
+          <td ><p class="desc"><img src="{{img_url}}">"{{desc}}" (Google Books: <a href="{{desc_url}}" target="_blank"><i>source</i></a>)</p></td>
         </tr>
       </table>
       <div id="checkout_details">
         <h1>Checkout History</h1>
+        {% if book_checkout_details %}
         <table>
           <tr>
             <th>Lendee</th>
             <th>Checked Out</th>
             <th>Checked In</th>
           </tr>
-          <tr>
-            <td>Larry</td>
-            <td>July 31, 2019 23:15:43</td>
-            <td>August 1, 2019 10:44:20</td>
-          </tr>
+          {% for details in book_checkout_details %}
+            <tr>
+              <td>{{details.name}}</td>
+              <td>{{details.checkout_date}}</td>
+              {% if details.checkin_date == None %}
+                <td><i><a href="{% url 'library:v2' %}?book={{details.book.title}}">N/A</a></i></td>
+              {% else %}
+                <td>{{details.checkin_date}}</td>
+              {% endif %}
+            </tr>
+          {% endfor %}
         </table>
+        {% else %}
+          <h4>This are no checkout records for this book.</h4>
+        {% endif %}
       </div>
     </div> <!-- end of 'container'-->
   </body>

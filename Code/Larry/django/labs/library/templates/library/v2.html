@@ -31,7 +31,7 @@
       h1 {
         text-align: center;
       }
-      table, tr, th, td, #wrapper {
+      table, tr, #wrapper {
         border: 1px solid #333;
         background-color: #fff;
       }
@@ -118,7 +118,7 @@
             <form action="{% url 'library:checkin' %}" method="post" id="checkin_form">
             {% csrf_token %}
               <h2>&nbsp;&nbsp;<u>Check-in</u>:</h2>
-              <select name="checkin_select" required class="w3-pale-green">
+              <select id="checkin_select" name="checkin_select" required class="w3-pale-green">
                 <option value="" disabled selected>Select one of these books...</option>
                 {% for book in books_notavailable %}
                 <option value="{{book.title}}">{{book.title}}</option>
@@ -132,5 +132,12 @@
         </div> <!-- end of 'checkin_books' -->
       </div> <!-- end of 'wrapper' -->
     </div> <!-- end of 'container'-->
+    <script type="text/javascript">
+      checkin_select = document.querySelector('#checkin_select')
+      // console.log('{{selected_book}}')
+        // if ({{selected_book}} != NULL) {
+          checkin_select.value = "{{selected_book}}"
+        // }
+    </script>
   </body>
 </html>

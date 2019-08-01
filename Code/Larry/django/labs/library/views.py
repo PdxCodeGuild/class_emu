@@ -14,13 +14,14 @@ def v2(request):
     books = Book.objects.order_by('author', 'title')
     books_available = Book.objects.filter(checked_out=False).order_by('title')
     books_notavailable = Book.objects.filter(checked_out=True).order_by('title')
-    # book_lendee = Book.objects.get(bookcheckout__book=books_notavailable)
-    # print(book_lendee[0])
+    selected_book = ''
+    if request.method == 'GET' and 'book' in request.GET:
+        selected_book = request.GET['book']
     context = {
         'books': books,
         'books_available': books_available,
         'books_notavailable': books_notavailable,
-        # 'book_lendee': book_lendee,
+        'selected_book': selected_book,
     }
     return render(request, 'library/v2.html', context)
 
@@ -59,6 +60,7 @@ def book_detail(request, book_id):
     desc = books_details.description
     desc_url = books_details.desc_url
     img_url = books_details.image_url
+    book_checkout_details = BookCheckout.objects.filter(book_id=book_id)
     context = {
         'title': title,
         'author': author,
@@ -66,6 +68,7 @@ def book_detail(request, book_id):
         'desc': desc,
         'desc_url': desc_url,
         'img_url': img_url,
+        'book_checkout_details': book_checkout_details,
     }
     return render(request, 'library/book_detail.html', context)
     # return HttpResponse('ok')
