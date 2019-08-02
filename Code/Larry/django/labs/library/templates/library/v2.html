@@ -70,21 +70,21 @@
             <tr align="left">
               <th>Title</th>
               <th>Author</th>
-              <th>Year Published</th>
-              <th>Available?</th>
+              <th align="center">Year Published</th>
+              <th align="center">Available?</th>
               <th>Lendee</th>
             </tr>
             {% for book in books %}
             <tr>
               <td><a href="detail/{{book.id}}/">{{book.title}}</a></td>
               <td>{{book.author}}</td>
-              <td>{{book.publish_date|date:"Y"}}</td>
-              {% if book.checked_out %}
-                <td>No</td>
+              <td align="center">{{book.publish_date|date:"Y"}}</td>
+              {% if book.is_checked_out.checkout_date %}
+                <td align="center">No</td>
               {% else %}
-                <td>Yes</td>
+                <td align="center">Yes</td>
               {% endif %}
-              <td>{{book_lendee}}</td>
+              <td>{{book.get_lendee.name}}</td>
             </tr>
             {% endfor %}
           </table>
@@ -93,7 +93,7 @@
         {% endif %}
       </div> <!-- end of 'book_list' -->
       <div id="spacer"></div>
-      <h2>Front Desk</h2>
+      <h1>Front Desk</h1>
       <div id="wrapper">
         <div id="checkout_books">
           {% if books_available %}

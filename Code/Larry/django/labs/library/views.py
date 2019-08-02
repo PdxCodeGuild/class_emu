@@ -15,6 +15,7 @@ def v2(request):
     books_available = Book.objects.filter(checked_out=False).order_by('title')
     books_notavailable = Book.objects.filter(checked_out=True).order_by('title')
     selected_book = ''
+    # lendee = Book.get_lendee(books)
     if request.method == 'GET' and 'book' in request.GET:
         selected_book = request.GET['book']
     context = {
@@ -22,6 +23,7 @@ def v2(request):
         'books_available': books_available,
         'books_notavailable': books_notavailable,
         'selected_book': selected_book,
+        # 'lendee': lendee,
     }
     return render(request, 'library/v2.html', context)
 

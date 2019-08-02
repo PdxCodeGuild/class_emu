@@ -21,11 +21,10 @@ class Book(models.Model):
     def get_lendee(self):
         # the latest book checkout associated with this books (self.bookcheckout_set, order_by)
         # if the checkin date is null, then it's checked out
-        pass
+        return self.bookcheckout_set.order_by('-checkout_date').first()
 
     def is_checked_out(self):
-        pass
-
+        return self.bookcheckout_set.order_by('checkout_date').first()
 
 class BookCheckout(models.Model):
     name = models.CharField(max_length=200)
