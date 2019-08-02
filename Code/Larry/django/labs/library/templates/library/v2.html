@@ -79,12 +79,12 @@
               <td><a href="detail/{{book.id}}/">{{book.title}}</a></td>
               <td>{{book.author}}</td>
               <td align="center">{{book.publish_date|date:"Y"}}</td>
-              {% if book.is_checked_out.checkout_date %}
+              {% if book.checked_out %}
                 <td align="center">No</td>
               {% else %}
-                <td align="center">Yes</td>
+                <td align="center"><u>Yes</u></td>
               {% endif %}
-              <td>{{book.get_lendee.name}}</td>
+              <td>{{book.get_lendee}}</td>
             </tr>
             {% endfor %}
           </table>

@@ -62,7 +62,7 @@ def book_detail(request, book_id):
     desc = books_details.description
     desc_url = books_details.desc_url
     img_url = books_details.image_url
-    book_checkout_details = BookCheckout.objects.filter(book_id=book_id)
+    book_checkout_details = BookCheckout.objects.filter(book_id=book_id).order_by('checkin_date')
     context = {
         'title': title,
         'author': author,
