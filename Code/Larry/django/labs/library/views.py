@@ -28,16 +28,16 @@ def v2(request):
     return render(request, 'library/v2.html', context)
 
 def checkout(request):
-    book_title = request.POST['checkout_select']
-    book = Book.objects.get(title=book_title)
+    book_id = request.POST['checkout_select']
+    book = Book.objects.get(id=book_id)
     book.checked_out = True
     book.save()
     return HttpResponseRedirect(reverse('library:index'))
 
 def checkout_v2(request):
     lendee = request.POST['lendee']
-    book_title = request.POST['checkout_select']
-    book = Book.objects.get(title=book_title)
+    book_id = request.POST['checkout_select']
+    book = Book.objects.get(id=book_id)
     book.checked_out = True
     book.save()
     book_checkout_details = BookCheckout(name=lendee, book=book, checkout_date=timezone.now())
@@ -45,8 +45,8 @@ def checkout_v2(request):
     return HttpResponseRedirect(reverse('library:v2'))
 
 def checkin(request):
-    book_title = request.POST['checkin_select']
-    book = Book.objects.get(title=book_title)
+    book_id = request.POST['checkin_select']
+    book = Book.objects.get(id=book_id)
     book.checked_out = False
     book.save()
     book_checkout_details = BookCheckout.objects.get(book_id=book.id, checkin_date__isnull=True)

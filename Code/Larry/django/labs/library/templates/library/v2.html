@@ -104,7 +104,7 @@
               <select name="checkout_select" required class="w3-pale-green">
                 <option value="" disabled selected>Select one of these books...</option>
                 {% for book in books_available %}
-                <option value="{{book.title}}">{{book.title}}</option>
+                <option value="{{book.id}}">{{book.title}}</option>
                 {% endfor %}
               </select>
               <button type="submit" class="w3-button w3-black w3-round-large">Save</button>
@@ -121,7 +121,7 @@
               <select id="checkin_select" name="checkin_select" required class="w3-pale-green">
                 <option value="" disabled selected>Select one of these books...</option>
                 {% for book in books_notavailable %}
-                <option value="{{book.title}}">{{book.title}}</option>
+                <option value="{{book.id}}">{{book.title}}</option>
                 {% endfor %}
               </select>
               <button type="submit" class="w3-button w3-black w3-round-large">Save</button>
