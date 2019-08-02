@@ -35,7 +35,7 @@ def edit(request, contact_id):
     context = {'contact': contact}
     return render(request, 'contactsApp/edit.html', context)
 
-def save_contact(request, contact_id):
+def save_contact(request):
     contact = Contact.objects.get(id=request.POST['id'])
     contact.first_name = request.POST['first_name']
     contact.last_name = request.POST['last_name']
