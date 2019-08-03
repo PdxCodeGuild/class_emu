@@ -56,20 +56,14 @@ def checkin(request):
 
 def book_detail(request, book_id):
     books_details = Book.objects.get(id=book_id)
-    title = books_details.title
-    author = books_details.author
-    pub_date = books_details.publish_date
-    desc = books_details.description
-    desc_url = books_details.desc_url
-    img_url = books_details.image_url
     book_checkout_details = BookCheckout.objects.filter(book_id=book_id).order_by('checkin_date')
     context = {
-        'title': title,
-        'author': author,
-        'pub_date': pub_date,
-        'desc': desc,
-        'desc_url': desc_url,
-        'img_url': img_url,
+        'title': books_details.title,
+        'author': books_details.author,
+        'pub_date': books_details.publish_date,
+        'desc': books_details.description,
+        'desc_url': books_details.desc_url,
+        'img_url': books_details.image_url,
         'book_checkout_details': book_checkout_details,
     }
     return render(request, 'library/book_detail.html', context)
