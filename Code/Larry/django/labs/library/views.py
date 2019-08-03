@@ -18,6 +18,7 @@ def v2(request):
     # lendee = Book.get_lendee(books)
     if request.method == 'GET' and 'book' in request.GET:
         selected_book = request.GET['book']
+    print(selected_book)
     context = {
         'books': books,
         'books_available': books_available,

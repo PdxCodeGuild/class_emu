@@ -104,7 +104,7 @@
               <td>{{details.name}}</td>
               <td>{{details.checkout_date}}</td>
               {% if details.checkin_date == None %}
-                <td><i><a href="{% url 'library:v2' %}?book={{details.book.title}}">N/A</a></i></td>
+                <td><i><a href="{% url 'library:v2' %}?book={{details.book.id}}">N/A</a></i></td>
               {% else %}
                 <td>{{details.checkin_date}}</td>
               {% endif %}
