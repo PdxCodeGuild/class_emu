@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>hello world!</h1>
+    <ul id="todo_list">
+    </ul>
+    <script type="text/javascript">
+      let todo_list = document.querySelector('#todo_list')
+    
+      axios.get('{% url 'todoapp:get_todos' %}').then(response => {
+        let todos = response.data.todos
+        for (let i=0; i<todos.length; ++i) {
+          let li = document.createElement('li')
+          li.innerText = todos[i]
+          todo_list.appendChild(li)
+        }
+      })
+    </script>
+  </body>
+</html>
