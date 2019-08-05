@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style type="text/css">
+      header {
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        max-width:500px;
+        margin: 0 auto;
+        color:white;
+        background-color:darkblue;
+        margin-bottom:5px;
+        padding:20px;
+      }
+      main {
+        max-width:500px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>TodoManager</h1>
+      <div>Logged in as {{request.user.username}}, <a href="{% url 'users:logout_user' %}">logout</a></div>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

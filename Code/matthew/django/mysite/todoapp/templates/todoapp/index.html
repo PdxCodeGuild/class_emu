@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  </head>
-  <body>
-    <h1>hello world!</h1>
-    <ul id="todo_list">
-    </ul>
-    <script type="text/javascript">
-      let todo_list = document.querySelector('#todo_list')
+{% extends 'todoapp/base.html' %}
+
+{% block content %}
+  <div>
+    <input type="text" id="todo_input"/>
+    <button id="bt_add_todo">add</button>
+  </div>
+  <ul id="todo_list">
+  </ul>
+  
+  <script type="text/javascript">
+    let todo_list = document.querySelector('#todo_list')
+    let todo_input = document.querySelector('#todo_input')
+    let bt_add_todo = document.querySelector('#bt_add_todo')
     
+    function getData() {
+      
       axios.get('{% url 'todoapp:get_todos' %}').then(response => {
+        todo_list.innerHTML = ''
         let todos = response.data.todos
         for (let i=0; i<todos.length; ++i) {
           let li = document.createElement('li')
@@ -20,6 +24,23 @@
           todo_list.appendChild(li)
         }
       })
-    </script>
-  </body>
-</html>
+    }
+    getData()
+
+    
+    bt_add_todo.onclick = function() {
+      let data = {
+        todo_text: todo_input.value
+      }
+      let config = {
+        headers: {
+          'X-CSRFToken': '{{ csrf_token }}'
+        }
+      }
+      axios.post('{% url 'todoapp:save_todo' %}', data, config).then(response => {
+        console.log(response.data)
+        getData()
+      })
+    }
+  </script>
+{% endblock %}

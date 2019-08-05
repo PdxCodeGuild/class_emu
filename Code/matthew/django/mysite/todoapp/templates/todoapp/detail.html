@@ -1,0 +1,5 @@
+{% extends 'todoapp/base.html' %}
+
+{% block content %}
+{{ todo_item.text }} - {{todo_item.user.username}}
+{% endblock %}
