@@ -68,7 +68,7 @@
       </div>
     </div>
     <script type="text/javascript">
-      delete_link = document.querySelector('#delete_link')
+      let delete_link = document.querySelector('#delete_link')
       delete_link.onclick = function() {
         let answer = confirm("Are you sure you want to delete this contact?")
         if (answer) {
