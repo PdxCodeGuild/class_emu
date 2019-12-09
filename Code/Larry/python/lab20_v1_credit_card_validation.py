@@ -72,32 +72,19 @@ if len(argv) > 1:
             (2, "4556737586899856", False),  # Lab 20 with check_digit+1
             (3, "378282246310005", True),    # American Express
             (4, "371449635398431", False),   # American Express
-            (5, "370132601027215", True),    # American Express
-            (6, "374375341030025", True),    # American Express
-            (7, "378734493671000", True),    # American Express Corporate
-            (8, "5610591081018250", True),   # Australian BankCard
-            (9, "30569309025904", False),    # Diners Club
-            (10, "38520000023237", False),   # Diners Club
-            (11, "6011111111111117", False), # Discover
-            (12, "6011000990139424", False), # Discover
-            (13, "6011763916277285", True),  # Discover
-            (14, "3530111333300000", True),  # JCB
-            (15, "3566002020360505", True),  # JCB
-            (16, "5555555555554444", False), # MasterCard
-            (17, "5105105105105100", True),  # MasterCard
-            (18, "5392799316110230", True),  # MasterCard
-            (19, "4111111111111111", False), # Visa
-            (20, "4012888888881881", False), # Visa
-            (21, "4971023049709545", True),  # Visa
-            (22, "4539243436100570", True),  # Visa
-            (23, "4556967186646345", True),  # Visa
-            (24, "4024007162141435", True),  # Visa
-            (25, "4457294243138855", True),  # Visa
-            (26, "5357700129102680", True),  # MasterCard
-            (27, "5535716632636290", True),  # MasterCard
-            (28, "371051674618115", True),   # American Express
-            (29, "379924488760905", True),   # American Express
-            (30, "343771381317140", True)    # American Express
+            (5, "378734493671000", True),    # American Express Corporate
+            (6, "5610591081018250", True),   # Australian BankCard
+            (7, "30569309025904", False),    # Diners Club
+            (8, "38520000023237", False),    # Diners Club
+            (9, "6011111111111117", False),  # Discover
+            (10, "6011000990139424", False), # Discover
+            (11, "3530111333300000", True),  # JCB
+            (12, "3566002020360505", True),  # JCB
+            (13, "5555555555554444", False), # MasterCard
+            (14, "5105105105105100", True),  # MasterCard
+            (15, "5392799316110230", True),  # MasterCard
+            (16, "4111111111111111", False), # Visa
+            (17, "4012888888881881", False), # Visa
         ]
 
         from lab_functions import unit_tester_1
